@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "measuredAt": "2026-08-02",
+  "features": [
+    "linear-easing",
+    "individual-transform",
+    "animation-composition",
+    "scroll-timeline",
+    "view-timeline",
+    "view-transition",
+    "interpolate-size",
+    "sibling-index",
+    "corner-shape",
+    "scroll-state",
+    "css-d",
+    "mask-composite"
+  ],
+  "runs": [
+    {
+      "browser": "Chromium 150",
+      "environment": "Codex in-app browser / Google Chrome 150",
+      "features": {
+        "linear-easing": true,
+        "individual-transform": true,
+        "animation-composition": true,
+        "scroll-timeline": true,
+        "view-timeline": true,
+        "view-transition": true,
+        "interpolate-size": true,
+        "sibling-index": true,
+        "corner-shape": true,
+        "scroll-state": true,
+        "css-d": true,
+        "mask-composite": true
+      },
+      "verification": {
+        "total": 211,
+        "fail": 0,
+        "warn": 0,
+        "runtimeUntested": 29,
+        "passed": 182,
+        "animations": 596,
+        "elapsedMs": 2798
+      },
+      "failures": []
+    },
+    {
+      "browser": "Safari 26.5",
+      "environment": "macOS Safari 605.1.15",
+      "features": {
+        "linear-easing": true,
+        "individual-transform": true,
+        "animation-composition": true,
+        "scroll-timeline": true,
+        "view-timeline": true,
+        "view-transition": true,
+        "interpolate-size": false,
+        "sibling-index": true,
+        "corner-shape": false,
+        "scroll-state": false,
+        "css-d": false,
+        "mask-composite": true
+      },
+      "verification": {
+        "total": 211,
+        "fail": 5,
+        "warn": 0,
+        "runtimeUntested": 29,
+        "passed": 177,
+        "animations": 601,
+        "elapsedMs": 7769
+      },
+      "failures": [
+        "at-function",
+        "attr-param",
+        "boil",
+        "corner-shape",
+        "if-branch"
+      ]
+    },
+    {
+      "browser": "Firefox 153",
+      "environment": "macOS Firefox 153.0",
+      "features": {
+        "linear-easing": true,
+        "individual-transform": true,
+        "animation-composition": true,
+        "scroll-timeline": false,
+        "view-timeline": false,
+        "view-transition": true,
+        "interpolate-size": false,
+        "sibling-index": false,
+        "corner-shape": false,
+        "scroll-state": false,
+        "css-d": true,
+        "mask-composite": true
+      },
+      "verification": {
+        "total": 211,
+        "fail": 6,
+        "warn": 0,
+        "runtimeUntested": 29,
+        "passed": 176,
+        "animations": 601,
+        "elapsedMs": 1339
+      },
+      "failures": [
+        "at-function",
+        "attr-param",
+        "container-style-q",
+        "corner-shape",
+        "if-branch",
+        "inherit-drive"
+      ]
+    }
+  ]
+}

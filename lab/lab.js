@@ -72,21 +72,20 @@ export function reportFailures() {
   addEventListener('error', (e) => showFatal(e.error ?? e.message));
 }
 
-/** 各実験の anim.css を読み込む。セレクタは [data-exp="id"] で閉じている前提。 */
-export function injectStyles(items) {
-  return Promise.all(
-    items.map(
-      (it) =>
-        new Promise((resolve) => {
-          const link = document.createElement('link');
-          link.rel = 'stylesheet';
-          link.href = `/experiments/${it.id}/anim.css`;
-          link.addEventListener('load', resolve, { once: true });
-          link.addEventListener('error', resolve, { once: true });
-          document.head.append(link);
-        }),
-    ),
-  );
+/** 全実験の CSS を 1 リクエストで読み込む。各セレクタは data-exp で閉じている。 */
+let stylesPromise;
+export function injectStyles() {
+  if (stylesPromise) return stylesPromise;
+  stylesPromise = new Promise((resolve, reject) => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/api/styles';
+    link.dataset.experimentStyles = '';
+    link.addEventListener('load', resolve, { once: true });
+    link.addEventListener('error', () => reject(new Error('実験 CSS を取得できません')), { once: true });
+    document.head.append(link);
+  });
+  return stylesPromise;
 }
 
 /**
@@ -107,6 +106,8 @@ export function buildCell(item, { tabbable = true } = {}) {
   // keyframes 駆動は時計で任意の時点に固定できるが、state 駆動は実時間でしか動かない。
   fig.dataset.mode = item.mode ?? 'keyframes';
   if (tabbable) fig.tabIndex = 0;
+  fig.setAttribute('aria-label', `${item.id} ${item.title}、${fig.dataset.mode} 駆動`);
+  fig.setAttribute('aria-expanded', 'false');
 
   fig.innerHTML = `
     <div class="stage">${item.markup ?? SUBJECT}</div>

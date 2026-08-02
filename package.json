@@ -1,0 +1,11 @@
+{
+  "name": "css-animation-lab",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node lab/server.mjs",
+    "validate": "node scripts/validate.mjs",
+    "export": "node scripts/export.mjs",
+    "test": "node --test"
+  }
+}

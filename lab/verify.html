@@ -13,11 +13,39 @@
     font-size: 12px;
   }
   .vbar b { font-size: 13px; }
+  .vbar a { color: #8b93b5; text-decoration: none; }
+  .vbar a:hover, .vbar a:focus-visible { color: #e6e9f5; }
+  .vbar .current { color: #7dd3fc; }
+  .vbar .spacer { flex: 1; }
   .tally { display: flex; gap: 10px; }
   .tally span { padding: 2px 9px; border-radius: 999px; font-weight: 700; }
   .t-fail { background: #4c0519; color: #fecdd3; }
   .t-warn { background: #422006; color: #fde68a; }
   .t-ok   { background: #052e1a; color: #a7f3d0; }
+  .t-skip { background: #172554; color: #bfdbfe; }
+
+  .metrics, .compat {
+    margin: 12px 14px 0;
+    border-top: 1px solid #2a3150;
+    border-bottom: 1px solid #2a3150;
+    background: #10162a;
+  }
+  .metrics {
+    display: flex; flex-wrap: wrap; gap: 18px;
+    padding: 10px 12px; color: #8b93b5; font-size: 11px;
+  }
+  .metrics b { color: #e6e9f5; }
+  .compat { padding: 10px 12px 12px; }
+  .compat h2 { margin: 0 0 8px; font-size: 12px; }
+  .compat p { margin: 0 0 8px; color: #8b93b5; font-size: 11px; }
+  .compat-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+  .feature { padding: 3px 7px; border-radius: 4px; font: 10px/1.4 ui-monospace, monospace; }
+  .feature.ok { background: #052e1a; color: #a7f3d0; }
+  .feature.no { background: #4c0519; color: #fecdd3; }
+  .report-button {
+    padding: 4px 9px; border: 1px solid #2a3150; border-radius: 6px;
+    background: #151a2e; color: #e6e9f5; font: inherit; cursor: pointer;
+  }
 
   .findings { padding: 14px; display: grid; gap: 8px; }
   .f {
@@ -52,11 +80,22 @@
 
 <div class="vbar">
   <b>検証</b>
+  <a href="/lab/contact.html">評価</a>
+  <a href="/lab/strip.html">ストリップ</a>
+  <a class="current" href="/lab/verify.html" aria-current="page">検証</a>
   <span id="status">読み込み中…</span>
   <div class="tally" id="tally"></div>
+  <span class="spacer"></span>
   <label><input type="checkbox" id="showProbe"> 測定用の描画を見る</label>
+  <button class="report-button" id="exportReport" type="button" disabled>結果JSON</button>
 </div>
 
+<div class="metrics" id="metrics" aria-live="polite"></div>
+<section class="compat" aria-labelledby="compat-title">
+  <h2 id="compat-title">ブラウザ機能マトリクス</h2>
+  <p id="browser"></p>
+  <div class="compat-grid" id="compat-grid"></div>
+</section>
 <div class="findings" id="findings"></div>
 <div class="probe" id="probe" hidden><div class="sheet" id="sheet"></div></div>
 
@@ -70,6 +109,28 @@ reportFailures();
 
 const findings = [];
 const add = (sev, id, rule, msg, why) => findings.push({ sev, id, rule, msg, why });
+const startedAt = performance.now();
+
+const featureChecks = [
+  ['linear-easing', 'linear()', CSS.supports('animation-timing-function', 'linear(0, 1)')],
+  ['individual-transform', 'translate/rotate/scale', CSS.supports('translate', '1px')],
+  ['animation-composition', 'animation-composition', CSS.supports('animation-composition', 'add')],
+  ['scroll-timeline', 'animation-timeline: scroll()', CSS.supports('animation-timeline', 'scroll()')],
+  ['view-timeline', 'animation-timeline: view()', CSS.supports('animation-timeline', 'view()')],
+  ['view-transition', 'View Transitions', typeof document.startViewTransition === 'function'],
+  ['interpolate-size', 'interpolate-size', CSS.supports('interpolate-size', 'allow-keywords')],
+  ['sibling-index', 'sibling-index()', CSS.supports('animation-delay', 'calc(sibling-index() * 1ms)')],
+  ['corner-shape', 'corner-shape', CSS.supports('corner-shape', 'squircle')],
+  ['scroll-state', 'scroll-state container', CSS.supports('container-type', 'scroll-state')],
+  ['css-d', 'CSS d:path()', CSS.supports('d', 'path("M0 0 L1 1")')],
+  ['mask-composite', 'mask-composite', CSS.supports('mask-composite', 'exclude')],
+];
+const browserLabel = navigator.userAgentData?.brands?.map((entry) => `${entry.brand} ${entry.version}`).join(', ')
+  ?? navigator.userAgent;
+document.querySelector('#browser').textContent = browserLabel;
+document.querySelector('#compat-grid').innerHTML = featureChecks.map(([id, label, supported]) =>
+  `<span class="feature ${supported ? 'ok' : 'no'}" data-feature="${id}">${supported ? '✓' : '×'} ${label}</span>`
+).join('');
 
 /* ───────────────────────── 静的な検査 ───────────────────────── */
 
@@ -344,10 +405,14 @@ try {
   const items = await loadCatalog();
   status.textContent = `${items.length} 件を検査中…`;
 
-  const [commonCss, ...cssList] = await Promise.all([
+  const [commonCss, sources] = await Promise.all([
     fetch('/lab/common.css').then((r) => r.text()),
-    ...items.map((it) => fetch(`/experiments/${it.id}/anim.css`).then((r) => r.text()).catch(() => '')),
+    fetch('/api/sources').then((r) => {
+      if (!r.ok) throw new Error(`CSS ソースを取得できません（HTTP ${r.status}）`);
+      return r.json();
+    }),
   ]);
+  const cssList = items.map((it) => sources[it.id] ?? '');
   const shared = sharedClassNames(commonCss);
 
   const cssOf = new Map(items.map((it, i) => [it.id, cssList[i]]));
@@ -384,6 +449,16 @@ try {
   }
 
   let done = 0;
+  const untested = new Set();
+  const costClass = new Map();
+  let animationCount = 0;
+
+  const COMPOSITOR = new Set(['opacity', 'transform', 'translate', 'rotate', 'scale']);
+  const LAYOUT = new Set([
+    'width', 'height', 'minWidth', 'minHeight', 'maxWidth', 'maxHeight',
+    'left', 'right', 'top', 'bottom', 'margin', 'padding', 'gap',
+    'gridTemplateColumns', 'gridTemplateRows', 'aspectRatio', 'fontSize', 'letterSpacing',
+  ]);
 
   for (const it of items) {
     if (++done % 20 === 0) {
@@ -394,6 +469,22 @@ try {
     const cell = cells.get(it.id);
     const own = cell.getAnimations({ subtree: true }).filter(isCssAnimation);
     const timed = own.filter((a) => a.timeline === document.timeline);
+    animationCount += own.length;
+
+    const animatedProps = new Set();
+    for (const animation of own) {
+      for (const frame of animation.effect?.getKeyframes?.() ?? []) {
+        for (const key of Object.keys(frame)) {
+          if (!['offset', 'computedOffset', 'easing', 'composite'].includes(key)) animatedProps.add(key);
+        }
+      }
+    }
+    const cost = [...animatedProps].some((key) => LAYOUT.has(key))
+      ? 'layout'
+      : animatedProps.size && [...animatedProps].every((key) => COMPOSITOR.has(key))
+        ? 'compositor'
+        : animatedProps.size ? 'paint' : 'unknown';
+    costClass.set(it.id, { cost, properties: [...animatedProps].sort() });
 
     // この実験のぶんだけ標本を取る
     const sig = [];
@@ -413,7 +504,10 @@ try {
         '指定が通っていても生成されないことがある。擬似要素などは特に。');
       continue;
     }
-    if (it.mode) continue; // 状態・スクロール・操作で動くものは時計では測れない
+    if (it.mode) {
+      untested.add(it.id);
+      continue; // 状態・スクロール・操作で動くものは時計では測れない
+    }
     if (!measurable) continue; // 幅が無い環境では、以下の判定はすべて意味を持たない
 
     // R2 描画が変わらない
@@ -638,18 +732,60 @@ try {
 
   const nFail = findings.filter((f) => f.sev === 'fail').length;
   const nWarn = findings.length - nFail;
+  const findingIds = new Set(findings.map((f) => f.id));
+  const nUntested = [...untested].filter((id) => !findingIds.has(id)).length;
+  const nOk = items.length - new Set([...findingIds, ...untested]).size;
   document.querySelector('#tally').innerHTML =
     `<span class="t-fail">要修正 ${nFail}</span>` +
     `<span class="t-warn">注意 ${nWarn}</span>` +
-    `<span class="t-ok">問題なし ${items.length - new Set(findings.map((f) => f.id)).size}</span>`;
+    `<span class="t-skip">実行時未検証 ${nUntested}</span>` +
+    `<span class="t-ok">問題なし ${nOk}</span>`;
   status.textContent = `${items.length} 件`;
+
+  const costCounts = {};
+  for (const entry of costClass.values()) costCounts[entry.cost] = (costCounts[entry.cost] ?? 0) + 1;
+  const elapsedMs = Math.round(performance.now() - startedAt);
+  const cssBytes = Object.values(sources).reduce((sum, css) => sum + new Blob([css]).size, 0);
+  document.querySelector('#metrics').innerHTML = [
+    `<span>アニメーション <b>${animationCount}</b> 本</span>`,
+    `<span>合成候補 <b>${costCounts.compositor ?? 0}</b> 件</span>`,
+    `<span>paint候補 <b>${costCounts.paint ?? 0}</b> 件</span>`,
+    `<span>layout候補 <b>${costCounts.layout ?? 0}</b> 件</span>`,
+    `<span>分類不能 <b>${costCounts.unknown ?? 0}</b> 件</span>`,
+    `<span>CSS <b>${Math.round(cssBytes / 1024)}</b> KiB</span>`,
+    `<span>検証 <b>${elapsedMs}</b> ms</span>`,
+  ].join('');
 
   document.querySelector('#showProbe').addEventListener('change', (e) => {
     document.querySelector('#probe').style.display = e.target.checked ? '' : 'none';
   });
   document.querySelector('#probe').style.display = 'none';
 
-  window.__report = { total: items.length, findings, measurable, probeWidth: Math.round(probeWidth) };
+  window.__report = {
+    version: 1,
+    generatedAt: new Date().toISOString(),
+    browser: browserLabel,
+    total: items.length,
+    findings,
+    runtimeUntested: [...untested],
+    measurable,
+    probeWidth: Math.round(probeWidth),
+    elapsedMs,
+    animationCount,
+    featureChecks: Object.fromEntries(featureChecks.map(([id, , supported]) => [id, supported])),
+    costClass: Object.fromEntries(costClass),
+  };
+  const exportButton = document.querySelector('#exportReport');
+  exportButton.disabled = false;
+  exportButton.addEventListener('click', () => {
+    const blob = new Blob([`${JSON.stringify(window.__report, null, 2)}\n`], { type: 'application/json' });
+    const href = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = href;
+    link.download = `browser-report-${Date.now()}.json`;
+    link.click();
+    URL.revokeObjectURL(href);
+  });
 } catch (err) {
   showFatal(err);
 }

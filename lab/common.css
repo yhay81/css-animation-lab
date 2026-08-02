@@ -37,7 +37,7 @@ body {
   border: 1px solid var(--line);
   border-radius: 12px;
   overflow: hidden;
-  scroll-margin: 90px;
+  scroll-margin: 150px;
 }
 
 .cell:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -54,9 +54,20 @@ body {
   font-size: 10px;
 }
 
-/* state 駆動は実時間でしか動かないので、時計が効かないことを明示する。 */
-.cell[data-mode="state"] .id::before {
-  content: "state";
+.cell[data-predicted="bad"] { border-color: color-mix(in srgb, var(--veto) 58%, var(--line)); }
+.cell[data-predicted="bad"] .id::after {
+  content: "予測NG";
+  margin-left: 6px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #4c1827;
+  color: #fecdd3;
+  font-size: 10px;
+}
+
+/* 共通時計の管轄外にある駆動方式を明示する。 */
+.cell:not([data-mode="keyframes"]) .id::before {
+  content: attr(data-mode);
   margin-right: 6px;
   padding: 1px 5px;
   border-radius: 4px;
@@ -64,6 +75,8 @@ body {
   color: #d8c2f5;
   font-size: 10px;
 }
+.cell[data-mode="scroll"] .id::before { background: #123d45; color: #a5f3fc; }
+.cell[data-mode="interactive"] .id::before { background: #45300f; color: #fde68a; }
 
 .cell[data-state="veto"] { opacity: 0.34; border-color: var(--veto); }
 .cell[data-state="flag"] { border-color: var(--flag); }

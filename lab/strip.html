@@ -7,13 +7,15 @@
 <link rel="stylesheet" href="/lab/common.css">
 <style>
   /* 動きを静止画の連番に開く。人間には一望のため、私には「読める形」にするため。 */
-  .bar {
+  .stripbar {
     position: sticky; top: 0; z-index: 10;
     display: flex; align-items: center; gap: 12px;
     padding: 10px 14px; font-size: 12px;
     background: rgba(11,16,32,.94); border-bottom: 1px solid var(--line);
   }
-  .bar label { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+  .stripbar label { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+  .stripbar a { color: var(--muted); text-decoration: none; }
+  .stripbar a:hover, .stripbar a:focus-visible, .stripbar a[aria-current="page"] { color: var(--accent); }
   select {
     background: var(--panel); color: var(--fg);
     border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; font: inherit;
@@ -40,7 +42,11 @@
 </head>
 <body>
 
-<div class="bar">
+<div class="stripbar">
+  <b>ストリップ</b>
+  <a href="/lab/contact.html">評価</a>
+  <a href="/lab/strip.html" aria-current="page">ストリップ</a>
+  <a href="/lab/verify.html">検証</a>
   <label>イージング <select id="ease"></select></label>
   <label>コマ数 <select id="frames">
     <option>5</option><option selected>9</option><option>13</option>
@@ -61,8 +67,8 @@
       '<div style="position:fixed;left:16px;right:16px;bottom:16px;padding:14px 16px;' +
       'border:1px solid #f43f5e;border-radius:10px;background:#2a0f1c;color:#ffe4e6;' +
       'font:13px/1.9 ui-sans-serif,system-ui,sans-serif">' +
-      'file:// では動きません。<br>ターミナルで <code>node lab/server.mjs</code> を起動し、' +
-      '<a href="http://localhost:5757/lab/strip.html" style="color:#7dd3fc">http://localhost:5757/lab/strip.html</a> から開いてください。</div>');
+      'file:// では動きません。<br>ターミナルで <code>npm start</code> を起動し、' +
+      '<a href="http://127.0.0.1:5757/lab/strip.html" style="color:#7dd3fc">http://127.0.0.1:5757/lab/strip.html</a> から開いてください。</div>');
   }
 </script>
 
@@ -135,7 +141,7 @@ function freeze() {
   }
   document.querySelector('#status').textContent =
     (n ? `${items.length} 実験 / ${n} コマ` : '⚠ アニメーションを駆動できていません') +
-    (skipped ? `（state 駆動 ${skipped} 件は静止画にできないため除外）` : '');
+    (skipped ? `（state / scroll / interactive 駆動 ${skipped} 件は静止画にできないため除外）` : '');
 }
 
 easeSel.addEventListener('change', freeze);
