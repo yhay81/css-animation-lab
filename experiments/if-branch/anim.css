@@ -1,0 +1,22 @@
+@property --sw {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@keyframes exp-if-branch { to { --sw: 3; } }
+
+[data-exp="if-branch"] .ib {
+  width: 96px;
+  height: 96px;
+  border-radius: 18px;
+  /* 値そのものではなく、値の意味で見た目を決める。 */
+  background: if(
+    style(--sw: 0): #22d3ee;
+    style(--sw: 1): #a855f7;
+    style(--sw: 2): #f472b6;
+    else: #fbbf24);
+  animation-name: exp-if-branch;
+  animation-timing-function: steps(4, end);
+  animation-iteration-count: infinite;
+}

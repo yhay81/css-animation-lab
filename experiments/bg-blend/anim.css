@@ -1,0 +1,17 @@
+@keyframes exp-bg-blend {
+  0%, 100% { background-position: 0% 50%, 100% 50%, 0 0; }
+  50%      { background-position: 100% 50%, 0% 50%, 0 0; }
+}
+
+[data-exp="bg-blend"] .bb {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(60% 90% at 30% 50%, #f43f5e 0 60%, transparent 60%),
+    radial-gradient(60% 90% at 70% 50%, #22d3ee 0 60%, transparent 60%),
+    linear-gradient(#0e132a, #0e132a);
+  background-size: 180% 100%, 180% 100%, 100% 100%;
+  background-blend-mode: screen, screen, normal;
+  animation-name: exp-bg-blend;
+  animation-iteration-count: infinite;
+}

@@ -1,0 +1,28 @@
+@property --drive {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@keyframes exp-inherit-drive {
+  0%, 100% { --drive: -1; }
+  50%      { --drive: 1; }
+}
+
+[data-exp="inherit-drive"] .idr {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  /* 動いているのはここ 1 本だけ。 */
+  animation-name: exp-inherit-drive;
+  animation-iteration-count: infinite;
+}
+[data-exp="inherit-drive"] .idr span {
+  --k: calc(sibling-index() * 1);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #7dd3fc;
+  /* 子は同じ値を、それぞれ違う係数で読むだけ。 */
+  translate: 0 calc(var(--drive) * var(--k) * 5px);
+}

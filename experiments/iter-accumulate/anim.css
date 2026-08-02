@@ -1,0 +1,37 @@
+/*
+ * animation-iteration-composite: accumulate は、繰り返しのたびに前回の結果へ積み上げる指定。
+ * 効けば「90° を 4 回」で 360° になり、速度（1 回の長さ）と量（1 回の角度）を独立に決められる。
+ * ただし現時点の Chromium は未対応で、CSS.supports も false を返す。
+ * 未対応だと指定が無視され、毎回 0° に戻る跳ねになる。右の手書き 360° と見比べる。
+ */
+@keyframes exp-iter-accumulate-quarter { from { rotate: 0deg; } to { rotate: 90deg; } }
+@keyframes exp-iter-accumulate-full    { from { rotate: 0deg; } to { rotate: 360deg; } }
+
+[data-exp="iter-accumulate"] .ia { display: flex; gap: 14px; }
+
+[data-exp="iter-accumulate"] .col {
+  display: grid;
+  justify-items: center;
+  gap: 7px;
+}
+[data-exp="iter-accumulate"] .lb {
+  color: #8b93b5;
+  font-size: 10px;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+}
+[data-exp="iter-accumulate"] .b {
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7dd3fc, #6366f1);
+  animation-iteration-count: infinite;
+}
+
+[data-exp="iter-accumulate"] .acc {
+  animation-name: exp-iter-accumulate-quarter;
+  animation-duration: 250ms;
+  animation-iteration-composite: accumulate;
+}
+[data-exp="iter-accumulate"] .full {
+  animation-name: exp-iter-accumulate-full;
+}

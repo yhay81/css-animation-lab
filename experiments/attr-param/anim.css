@@ -1,0 +1,16 @@
+@keyframes exp-attr-param {
+  0%, 100% { translate: 0 calc(-1 * var(--d)); }
+  50%      { translate: 0 var(--d); }
+}
+
+[data-exp="attr-param"] .ap { display: flex; gap: 16px; }
+[data-exp="attr-param"] .ap span {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #7dd3fc, #6366f1);
+  /* 属性を型付きで読む。型がないと文字列にしかならず計算に使えなかった。 */
+  --d: attr(data-d type(<length>), 0px);
+  animation-name: exp-attr-param;
+  animation-iteration-count: infinite;
+}

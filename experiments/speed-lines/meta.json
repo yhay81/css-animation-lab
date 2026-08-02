@@ -1,0 +1,21 @@
+{
+  "id": "speed-lines",
+  "n": 901,
+  "title": "集中線",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "漫画",
+    "technique": [
+      "repeating-conic-gradient",
+      "mask",
+      "steps()"
+    ],
+    "use": "強調 / 到達の合図"
+  },
+  "predicted": "uncertain",
+  "note": "漫画で驚きや衝撃を表す定番。中心へ収束する線を放射状に描く。線を 1 本ずつ要素にすると数十個になるが、繰り返しの円錐グラデーションなら 1 要素で済む。線の太さがランダムに見えるよう 2 枚重ねる。",
+  "markup": "<div class=\"sl\"><div class=\"lines\"></div><div class=\"core\">！</div></div>"
+}

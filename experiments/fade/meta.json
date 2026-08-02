@@ -1,0 +1,21 @@
+{
+  "id": "fade",
+  "n": 1,
+  "title": "フェード",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "opacity"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "good",
+  "note": "最も基本。単体では退屈だが、ほぼ全ての複合の土台になる。合成レイヤに乗るので負荷は最小。"
+}

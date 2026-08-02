@@ -1,0 +1,19 @@
+{
+  "id": "wave-text",
+  "n": 371,
+  "title": "文字を渡る波",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "sibling-index()",
+      "負の遅延"
+    ],
+    "use": "待機中の表示 / 装飾"
+  },
+  "predicted": "uncertain",
+  "note": "負の遅延を文字ごとにずらすと、同じ上下運動が波として伝わって見える。遅延を正にすると波ではなく順送りになる。この違いは負の遅延にしか出せない。",
+  "markup": "<div class=\"head\"><span class=\"\">W</span><span class=\"\">A</span><span class=\"\">V</span><span class=\"\">E</span></div>"
+}

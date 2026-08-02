@@ -1,0 +1,21 @@
+{
+  "id": "iris",
+  "n": 10,
+  "title": "円形開き",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "clip-path"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "円で開く。中心が強調される。View Transitions の定番だが、汎用パーツとして使えるかは疑問。"
+}

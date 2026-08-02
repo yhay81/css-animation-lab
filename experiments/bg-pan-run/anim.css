@@ -1,0 +1,43 @@
+@keyframes exp-bp-ground { to { background-position: -64px 0; } }
+@keyframes exp-bp-hill   { to { background-position: -110px 0; } }
+@keyframes exp-bp-runner {
+  0%, 100% { translate: 0 0;    scale: 1; }
+  25%      { translate: 0 -9px; scale: 0.94 1.06; }
+  50%      { translate: 0 0;    scale: 1.06 0.94; }
+  75%      { translate: 0 -7px; scale: 0.96 1.04; }
+}
+
+[data-exp="bg-pan-run"] .bp {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(#1e3a8a, #312e81);
+}
+[data-exp="bg-pan-run"] .hill {
+  position: absolute;
+  inset: auto 0 40px 0;
+  height: 56px;
+  /* 1 周期 110px。同じ量だけ送ると継ぎ目が出ない。 */
+  background: repeating-linear-gradient(100deg, #4338ca 0 44px, #3730a3 44px 110px);
+  animation-name: exp-bp-hill;
+  animation-iteration-count: infinite;
+}
+[data-exp="bg-pan-run"] .ground {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 42px;
+  background: repeating-linear-gradient(90deg, #0f172a 0 30px, #1e293b 30px 64px);
+  animation-name: exp-bp-ground;
+  animation-iteration-count: infinite;
+}
+[data-exp="bg-pan-run"] .runner {
+  position: absolute;
+  left: 44%;
+  bottom: 42px;
+  width: 26px;
+  height: 34px;
+  border-radius: 9px 9px 5px 5px;
+  background: #fbbf24;
+  animation-name: exp-bp-runner;
+  animation-iteration-count: infinite;
+}

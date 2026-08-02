@@ -1,0 +1,41 @@
+/*
+ * ::marker には animation-name が「計算値としては」適用される。
+ * それでもアニメーションは生成されず、色は止まったままになる。
+ * 標準のマーカーを動かしたいなら、list-style を消して ::before に置き換えるしかない。
+ */
+@keyframes exp-marker-anim {
+  0%, 100% { color: #33406e; }
+  50%      { color: #7dd3fc; }
+}
+
+[data-exp="marker-anim"] .mk {
+  display: flex;
+  gap: 16px;
+  color: #8b93b5;
+  font-size: 12px;
+  line-height: 1.9;
+}
+[data-exp="marker-anim"] ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 左：標準のマーカーに直接当てる。効かない。 */
+[data-exp="marker-anim"] .native { list-style: disc; padding-left: 20px; }
+[data-exp="marker-anim"] .native li::marker {
+  animation-name: exp-marker-anim;
+  animation-iteration-count: infinite;
+  animation-delay: calc((sibling-index() - 1) * -180ms);
+}
+
+/* 右：自前の擬似要素に置き換える。こちらは動く。 */
+[data-exp="marker-anim"] .pseudo li { position: relative; padding-left: 20px; }
+[data-exp="marker-anim"] .pseudo li::before {
+  content: "●";
+  position: absolute;
+  left: 4px;
+  animation-name: exp-marker-anim;
+  animation-iteration-count: infinite;
+  animation-delay: calc((sibling-index() - 1) * -180ms);
+}

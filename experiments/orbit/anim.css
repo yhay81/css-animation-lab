@@ -1,0 +1,17 @@
+@keyframes exp-orbit {
+  from { offset-distance: 0%; }
+  to   { offset-distance: 100%; }
+}
+
+/*
+ * path() は絶対座標なので舞台の大きさに追従せず、小さい枠ではみ出す。
+ * 基本図形なら参照ボックスに対する % で書けるため、どの大きさでも成立する。
+ */
+[data-exp="orbit"] .subject {
+  width: 44px;
+  height: 44px;
+  font-size: 11px;
+  offset-path: ellipse(30% 26%);
+  offset-rotate: 0deg;
+  animation-name: exp-orbit;
+}

@@ -1,0 +1,20 @@
+{
+  "id": "follow-through",
+  "n": 911,
+  "title": "しなって遅れて追う",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "アニメ",
+    "technique": [
+      "連鎖する遅延",
+      "バネの減衰"
+    ],
+    "use": "髪 / 尾 / 布 / 一覧の連動"
+  },
+  "predicted": "uncertain",
+  "note": "アニメーションの基本原則のひとつ。先端ほど遅れて追いつくと、硬い物体が柔らかく見える。遅延を等差で増やし、揺り戻しのあるイージングを当てるだけで、物理演算なしにしなりが出る。",
+  "markup": "<div class=\"ft\"><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+}

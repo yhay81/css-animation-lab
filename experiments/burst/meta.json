@@ -1,0 +1,20 @@
+{
+  "id": "burst",
+  "n": 206,
+  "title": "放射する粒",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "sibling-index()",
+      "多数要素",
+      "@property <length>"
+    ],
+    "use": "成功のフィードバック / お祝い"
+  },
+  "predicted": "uncertain",
+  "note": "15 個の粒の角度と距離を CSS だけで決める。マークアップに番号を書かないので、粒の数を変えても CSS は変わらない。",
+  "markup": "<div class=\"burst\"><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span></div>"
+}

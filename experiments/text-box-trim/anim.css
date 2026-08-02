@@ -1,0 +1,25 @@
+@keyframes exp-text-box-trim {
+  0%, 100% { scale: 1; }
+  50%      { scale: 1.18; }
+}
+
+[data-exp="text-box-trim"] .tb { display: grid; gap: 10px; }
+[data-exp="text-box-trim"] .row {
+  display: inline-flex;
+  padding: 6px;
+  border: 1px solid #7dd3fc;
+  border-radius: 8px;
+  background: #1b2340;
+  animation-name: exp-text-box-trim;
+  animation-iteration-count: infinite;
+}
+[data-exp="text-box-trim"] .row span {
+  font-size: 22px;
+  font-weight: 800;
+  color: #e6e9f5;
+}
+/* 上下の余白を削ると、枠と文字の間隔が指定どおりになる。 */
+[data-exp="text-box-trim"] .trim span {
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}

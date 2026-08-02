@@ -1,0 +1,30 @@
+[data-exp="modal-rise"] .backdrop {
+  opacity: 0;
+  transition: opacity 220ms;
+}
+[data-exp="modal-rise"][data-open="true"] .backdrop { opacity: 1; }
+
+[data-exp="modal-rise"] .dialog {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 136px;
+}
+
+[data-exp="modal-rise"] .dialog {
+  translate: -50% calc(-50% + 26px);
+  opacity: 0;
+  display: none;
+  transition: opacity 200ms, translate 260ms cubic-bezier(0.22, 1, 0.36, 1), display 260ms allow-discrete;
+}
+[data-exp="modal-rise"][data-open="true"] .dialog {
+  translate: -50% -50%;
+  opacity: 1;
+  display: block;
+}
+@starting-style {
+  [data-exp="modal-rise"][data-open="true"] .dialog {
+    translate: -50% calc(-50% + 26px);
+    opacity: 0;
+  }
+}

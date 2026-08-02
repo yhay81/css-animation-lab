@@ -1,0 +1,32 @@
+@keyframes exp-orbit-cam {
+  from { transform: rotateX(-24deg) rotateY(0deg); }
+  to   { transform: rotateX(-24deg) rotateY(360deg); }
+}
+
+[data-exp="orbit-cam"] .oc {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  perspective: 560px;
+}
+[data-exp="orbit-cam"] .box {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  transform-style: preserve-3d;
+  animation-name: exp-orbit-cam;
+  animation-iteration-count: infinite;
+}
+[data-exp="orbit-cam"] .f,
+[data-exp="orbit-cam"] .top {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+/* 面ごとに明るさを変える。光源が固定されている前提の陰影。 */
+[data-exp="orbit-cam"] .f1 { transform: translateZ(29px);                background: #7dd3fc; }
+[data-exp="orbit-cam"] .f2 { transform: rotateY(90deg) translateZ(29px);  background: #4f74d8; }
+[data-exp="orbit-cam"] .f3 { transform: rotateY(180deg) translateZ(29px); background: #2f4aa0; }
+[data-exp="orbit-cam"] .f4 { transform: rotateY(-90deg) translateZ(29px); background: #4059bd; }
+[data-exp="orbit-cam"] .top { transform: rotateX(90deg) translateZ(29px); background: #bae6fd; }

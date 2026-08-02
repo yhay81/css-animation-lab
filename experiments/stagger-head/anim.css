@@ -1,0 +1,7 @@
+@keyframes exp-stagger-head { from { opacity: 0; translate: 0 20px; } to { opacity: 1; translate: 0 0; } }
+
+[data-exp="stagger-head"] .subject {
+  animation-name: exp-stagger-head;
+  animation-duration: 520ms;
+  animation-delay: calc(var(--i) * 110ms);
+}

@@ -1,0 +1,31 @@
+{
+  "id": "stamp",
+  "n": 1206,
+  "title": "判が押される",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "モーショングラフィックス",
+    "technique": [
+      "接地の減速",
+      "インクの広がり",
+      "振動の伝播"
+    ],
+    "use": "承認 / 完了 / 確定"
+  },
+  "predicted": "uncertain",
+  "note": "落ちてきて当たり、周囲が震え、インクがわずかに広がる。当たった瞬間だけ大きく潰し、直後に少し戻すと重さが出る。にじみは印影より後ろに置かないと、文字の上に乗って読めなくなる。",
+  "markup": "<div class=\"st\"><span class=\"paper\"></span><span class=\"ink\"></span><span class=\"seal\">承認</span><span class=\"dust\"></span></div>",
+  "expect": [
+    {
+      "at": "60%",
+      "near": [
+        ".seal",
+        ".paper"
+      ],
+      "within": 8
+    }
+  ]
+}

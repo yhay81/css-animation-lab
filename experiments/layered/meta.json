@@ -1,0 +1,24 @@
+{
+  "id": "layered",
+  "n": 23,
+  "title": "三重・長さ違い",
+  "layer": "L2",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [
+      "多重アニメーション"
+    ],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "位置・拡大・不透明度をそれぞれ違う長さで動かす。個別プロパティだから衝突せずに書ける（F006 の裏返し）。"
+}

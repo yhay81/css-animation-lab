@@ -1,0 +1,30 @@
+@keyframes exp-ripple {
+  from { scale: 0.5; opacity: 0.55; }
+  to   { scale: 1.9; opacity: 0; }
+}
+
+[data-exp="ripple"] .rip {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+[data-exp="ripple"] .w {
+  grid-area: 1 / 1;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid #7dd3fc;
+  animation-name: exp-ripple;
+  animation-delay: calc((sibling-index() - 1) * -333ms);
+  /* 負の遅延で位相をずらす場合、繰り返しが 1 回だと先行した要素から順に終端で止まり、
+     閉じた動きでは全員が同じ位置へ溜まってしまう。位相を回し続けるには infinite が要る。 */
+  animation-iteration-count: infinite;
+}
+[data-exp="ripple"] .core {
+  grid-area: 1 / 1;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #6366f1;
+}

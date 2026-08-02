@@ -1,0 +1,19 @@
+{
+  "id": "counter-progress",
+  "n": 608,
+  "title": "数字と長さが 1 つの値から出る",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "@property <integer>",
+      "counter()"
+    ],
+    "use": "進捗 / 達成率"
+  },
+  "predicted": "uncertain",
+  "note": "割合を 1 つの型付きプロパティに持たせ、棒の長さと数字の両方をそこから導く。数値と表示がずれない。JS で 2 か所を更新する必要がなくなる。",
+  "markup": "<div class=\"cp\"><div class=\"track\"><div class=\"fill\"></div></div><div class=\"pct\"></div></div>"
+}

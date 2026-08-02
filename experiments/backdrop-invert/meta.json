@@ -1,0 +1,18 @@
+{
+  "id": "backdrop-invert",
+  "n": 614,
+  "title": "背後を反転する帯",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "backdrop-filter: invert()"
+    ],
+    "use": "カーソル追従 / 読み取り位置"
+  },
+  "predicted": "uncertain",
+  "note": "backdrop-filter はぼかしだけではない。反転を掛けると、板の下だけが色も文字も反転する。ブレンドと違い板そのものには色が要らない。",
+  "markup": "<div class=\"bi\"><div class=\"under\"><div class=\"t\">1</div><div class=\"t\">2</div><div class=\"t\">3</div><div class=\"t\">4</div><div class=\"t\">5</div><div class=\"t\">6</div></div><div class=\"band\"></div></div>"
+}

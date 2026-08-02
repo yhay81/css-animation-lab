@@ -1,0 +1,5 @@
+@keyframes exp-skew {
+  from { transform: skewX(14deg); }
+  to   { transform: skewX(0deg); }
+}
+[data-exp="skew"] .subject { animation-name: exp-skew; }

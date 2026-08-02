@@ -1,0 +1,27 @@
+{
+  "id": "eye-path",
+  "n": 1212,
+  "title": "目線の順路",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "モーショングラフィックス",
+    "technique": [
+      "stroke-dashoffset",
+      "SVG 内で座標系を統一",
+      "順次の強調"
+    ],
+    "use": "操作説明 / 資料の読み順"
+  },
+  "predicted": "uncertain",
+  "note": "見る順番を動きで指示する。番号を振るだけでは順路は伝わらず、線が引かれることで初めて経路になる。線と点を別の座標系（SVG と割合指定）で置くと必ずずれるので、同じ SVG の中に入れる。伸縮も要らなくなるので線の太さも揃う。",
+  "markup": "<div class=\"ep\"><svg viewBox=\"0 0 100 100\"><path class=\"ln\" pathLength=\"100\" d=\"M22 26 L74 34 L30 62 L76 76\"/><g class=\"pt p1\" style=\"--x:22;--y:26\"><circle cx=\"22\" cy=\"26\" r=\"9\"/><text x=\"22\" y=\"26\" dy=\"3.2\">1</text></g><g class=\"pt p2\" style=\"--x:74;--y:34\"><circle cx=\"74\" cy=\"34\" r=\"9\"/><text x=\"74\" y=\"34\" dy=\"3.2\">2</text></g><g class=\"pt p3\" style=\"--x:30;--y:62\"><circle cx=\"30\" cy=\"62\" r=\"9\"/><text x=\"30\" y=\"62\" dy=\"3.2\">3</text></g><g class=\"pt p4\" style=\"--x:76;--y:76\"><circle cx=\"76\" cy=\"76\" r=\"9\"/><text x=\"76\" y=\"76\" dy=\"3.2\">4</text></g></svg></div>",
+  "expect": [
+    {
+      "inside": ".p4",
+      "at": "80%"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+@property --arc-a {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes exp-mask-arc { to { --arc-a: 360deg; } }
+
+[data-exp="mask-arc"] .arc {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background: conic-gradient(#22d3ee, #a855f7, #f472b6, #22d3ee);
+  /* 1 枚目で輪、2 枚目で扇。重なった部分だけが残る。 */
+  mask-image:
+    radial-gradient(farthest-side, transparent calc(100% - 13px), #000 calc(100% - 13px)),
+    conic-gradient(from var(--arc-a), #000 0 28%, transparent 28% 100%);
+  mask-composite: intersect;
+  animation-name: exp-mask-arc;
+  animation-iteration-count: infinite;
+}

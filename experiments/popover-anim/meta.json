@@ -1,0 +1,22 @@
+{
+  "id": "popover-anim",
+  "n": 600,
+  "title": "ポップオーバーの出入り",
+  "layer": "T",
+  "mode": "interactive",
+  "axes": {
+    "driver": [
+      "操作"
+    ],
+    "technique": [
+      "popover",
+      "@starting-style",
+      "overlay の遷移",
+      "アンカー配置"
+    ],
+    "use": "メニュー / 補足"
+  },
+  "predicted": "uncertain",
+  "note": "ボタンを押して開閉する。閉じる側までアニメーションさせるには overlay も遷移対象に入れる必要がある。これが無いと最上位レイヤーから即座に外れ、出るときだけ動いて消えるときは瞬間になる。配置はアンカーで決めているので位置計算も要らない。",
+  "markup": "<div class=\"pw\"><button popovertarget=\"pa-sheet\">開く</button><div id=\"pa-sheet\" popover class=\"pop\"><div class=\"bar\"></div><div class=\"line\"></div><div class=\"line s\"></div></div></div>"
+}

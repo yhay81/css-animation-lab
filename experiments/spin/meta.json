@@ -1,0 +1,21 @@
+{
+  "id": "spin",
+  "n": 6,
+  "title": "回転",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "rotate"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "-90deg→0。単体では強すぎて実用に耐えない可能性が高い。微小角（-6deg程度）が正解かもしれない。"
+}

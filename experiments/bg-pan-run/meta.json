@@ -1,0 +1,20 @@
+{
+  "id": "bg-pan-run",
+  "n": 1103,
+  "title": "走る背景",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "アニメ",
+    "technique": [
+      "背景の周期送り",
+      "上下の反復"
+    ],
+    "use": "読み込み / 進行中"
+  },
+  "predicted": "uncertain",
+  "note": "アニメで走行を表すとき、動いているのは背景のほう。人物はその場で上下するだけで、前へ進んでいるように見える。背景は 1 周期ぶん動かして継ぎ目を消す。手前ほど速く送ると奥行きも出る。",
+  "markup": "<div class=\"bp\"><span class=\"ground\"></span><span class=\"hill\"></span><span class=\"runner\"></span></div>"
+}

@@ -1,0 +1,45 @@
+@keyframes exp-panel-split {
+  0%, 44%   { translate: 0 0; rotate: 0deg; opacity: 1; }
+  100%      { translate: var(--dx) var(--dy); rotate: var(--dr); opacity: 0; }
+}
+@keyframes exp-panel-cap {
+  0%, 30%  { opacity: 1; }
+  52%, 100% { opacity: 0; }
+}
+
+[data-exp="panel-split"] .ps {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #0b1020;
+}
+[data-exp="panel-split"] .p {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(128deg, #a5f3fc, #6366f1 55%, #a855f7);
+  animation-name: exp-panel-split;
+  animation-iteration-count: infinite;
+}
+[data-exp="panel-split"] .cap {
+  position: relative;
+  color: #0b1020;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  animation-name: exp-panel-cap;
+  animation-iteration-count: infinite;
+}
+/*
+ * 断片は矩形を隙間なく分けていなければならない。
+ * 三角形を並べただけでは、面積ゼロの図形（頂点が一直線に並ぶもの）が混ざって消えたり、
+ * 覆われない領域が残ったりする。
+ *
+ * 中心を 1 点決め、外周を 4 点で区切って、中心と隣り合う 2 点で四角形を作る。
+ * これなら 4 枚がちょうど元の矩形になり、断片ごとに中心から外へ飛ばせる。
+ */
+[data-exp="panel-split"] .p1 { clip-path: polygon(52% 46%, 58% 0,     100% 0,    100% 38%);  --dx: 48px;  --dy: -32px; --dr: 11deg; }
+[data-exp="panel-split"] .p2 { clip-path: polygon(52% 46%, 100% 38%,  100% 100%, 30% 100%);  --dx: 42px;  --dy: 36px;  --dr: -9deg; }
+[data-exp="panel-split"] .p3 { clip-path: polygon(52% 46%, 30% 100%,  0 100%,    0 62%);     --dx: -46px; --dy: 32px;  --dr: 13deg; }
+[data-exp="panel-split"] .p4 { clip-path: polygon(52% 46%, 0 62%,     0 0,       58% 0);     --dx: -42px; --dy: -36px; --dr: -13deg; }

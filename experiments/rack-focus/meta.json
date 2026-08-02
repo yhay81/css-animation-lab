@@ -1,0 +1,19 @@
+{
+  "id": "rack-focus",
+  "n": 905,
+  "title": "ピント送り",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "CG / 実写",
+    "technique": [
+      "層ごとの blur 遷移"
+    ],
+    "use": "視線誘導 / 主題の切り替え"
+  },
+  "predicted": "uncertain",
+  "note": "撮影で被写体から背景へピントを移す技法。どこを見るべきかを、動かさずに指示できる。要素を動かさないので情報の位置が変わらず、読んでいる途中でも邪魔にならない。",
+  "markup": "<div class=\"rf\"><div class=\"l far\"></div><div class=\"l mid\"></div><div class=\"l near\"></div></div>"
+}

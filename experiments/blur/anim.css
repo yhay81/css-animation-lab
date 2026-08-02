@@ -1,0 +1,5 @@
+@keyframes exp-blur {
+  from { filter: blur(12px); }
+  to   { filter: blur(0px); }
+}
+[data-exp="blur"] .subject { animation-name: exp-blur; }

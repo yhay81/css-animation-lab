@@ -1,0 +1,5 @@
+@keyframes exp-spin {
+  from { rotate: -90deg; }
+  to   { rotate: 0deg; }
+}
+[data-exp="spin"] .subject { animation-name: exp-spin; }

@@ -1,0 +1,42 @@
+@keyframes exp-px-sky   { to { translate: 0 -14px; } }
+@keyframes exp-px-hill  { to { translate: 0 -40px; } }
+@keyframes exp-px-fore  { to { translate: 0 -78px; } }
+
+[data-exp="parallax"] .px {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+[data-exp="parallax"] .px > :where(.sky, .hill, .fore) {
+  position: sticky;
+  top: 0;
+  animation-timeline: scroll(nearest);
+  animation-duration: auto;
+  animation-play-state: running;
+}
+[data-exp="parallax"] .sky {
+  height: 96px;
+  margin-bottom: -96px;
+  background: linear-gradient(#1e3a8a, #6366f1);
+  animation-name: exp-px-sky;
+}
+[data-exp="parallax"] .hill {
+  height: 96px;
+  margin-bottom: -96px;
+  background: radial-gradient(60% 100% at 50% 118%, #a855f7 0 70%, transparent 70%);
+  animation-name: exp-px-hill;
+}
+[data-exp="parallax"] .fore {
+  height: 96px;
+  margin-bottom: -96px;
+  background: radial-gradient(46% 100% at 22% 128%, #22d3ee 0 70%, transparent 70%);
+  animation-name: exp-px-fore;
+}
+[data-exp="parallax"] .filler { padding-top: 96px; }
+[data-exp="parallax"] .filler .ln {
+  height: 26px;
+  margin: 8px 18px;
+  border-radius: 6px;
+  background: #26304f;
+}

@@ -1,0 +1,29 @@
+@keyframes exp-spotlight {
+  0%, 100% { translate: -58px 0; }
+  50%      { translate: 58px 0; }
+}
+
+[data-exp="spotlight"] .sp {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+[data-exp="spotlight"] .sp-tx {
+  grid-area: 1 / 1;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #2f3a63;
+}
+[data-exp="spotlight"] .sp-lite {
+  grid-area: 1 / 1;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #bae6fd 0%, transparent 70%);
+  mix-blend-mode: color-dodge;
+  animation-name: exp-spotlight;
+}

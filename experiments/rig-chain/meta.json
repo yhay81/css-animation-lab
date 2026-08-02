@@ -1,0 +1,27 @@
+{
+  "id": "rig-chain",
+  "n": 1012,
+  "title": "関節がつながって振れる",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "CG / アニメ",
+    "technique": [
+      "入れ子による回転の累積",
+      "段ごとの遅延"
+    ],
+    "use": "尾 / 腕 / 連なる一覧"
+  },
+  "predicted": "uncertain",
+  "note": "関節を入れ子にすると、親の回転が子に積み上がる。段ごとに遅らせるだけで、根元から先端へ振れが伝わる。位置の計算をせずに骨格の動きが出る。follow-through が個々の遅れなのに対し、こちらは回転が累積する。",
+  "markup": "<div class=\"rc\"><div class=\"s\"><div class=\"s\"><div class=\"s\"><div class=\"s\"><div class=\"s\"><span class=\"tip\"></span></div></div></div></div></div></div>",
+  "expect": [
+    {
+      "ordered": ".s",
+      "by": "top",
+      "at": "50%"
+    }
+  ]
+}

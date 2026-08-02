@@ -1,0 +1,19 @@
+{
+  "id": "neon",
+  "n": 330,
+  "title": "ネオン管の明滅",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "多重 text-shadow",
+      "steps"
+    ],
+    "use": "演出 / 見出し"
+  },
+  "predicted": "uncertain",
+  "note": "影を 4 段重ねて発光の減衰を作る。明滅は steps で刻む。滑らかに補間すると蛍光灯にならない。",
+  "markup": "<div class=\"ne\">NEON</div>"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "vf-weight",
+  "n": 430,
+  "title": "太さを渡る波",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "font-weight の補間",
+      "sibling-index()"
+    ],
+    "use": "見出し / 待機中"
+  },
+  "predicted": "uncertain",
+  "note": "可変フォントがあれば font-weight は連続的に補間される。文字ごとに位相をずらすと太さの波になる。可変でないフォントでは段階的に飛ぶので、環境依存が出る技法。",
+  "markup": "<div class=\"head\"><span>W</span><span>E</span><span>I</span><span>G</span><span>H</span><span>T</span></div>"
+}

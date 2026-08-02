@@ -1,0 +1,13 @@
+@keyframes exp-aspect-flow {
+  0%, 100% { aspect-ratio: 1 / 1; }
+  50%      { aspect-ratio: 16 / 7; }
+}
+
+[data-exp="aspect-flow"] .af { display: grid; place-items: center; width: 100%; }
+[data-exp="aspect-flow"] .box {
+  width: 118px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #7dd3fc, #6366f1);
+  animation-name: exp-aspect-flow;
+  animation-iteration-count: infinite;
+}

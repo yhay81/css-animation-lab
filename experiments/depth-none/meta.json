@@ -1,0 +1,24 @@
+{
+  "id": "depth-none",
+  "n": 50,
+  "title": "逆方向のみ（基準線）",
+  "layer": "L2",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": [
+      "親子"
+    ]
+  },
+  "predicted": "bad",
+  "note": "親子逆方向だけでは奥行きに見えないことが判明済み。比較の基準線として置く。"
+}

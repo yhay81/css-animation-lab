@@ -1,0 +1,57 @@
+/*
+ * 線を SVG、箱を通常の要素で書くと座標系が 2 つになり、縦横比が変わった瞬間にずれる。
+ * 伸縮で合わせようとすると別の問題が出る。pathLength での正規化は
+ * non-scaling-stroke と併用すると効かず、破線の長さがデバイス座標に落ちて線が途中で切れる。
+ * 全部を SVG の中に入れれば、どちらも起きない。
+ *
+ * 順序を animation-delay で作ると、遅らせたぶんが 1 周に収まらない。
+ * 最後の要素が出る頃には最初の要素が消え始め、全部が揃う瞬間が来ない。
+ * 順序は各要素のキーフレームの位置で表す。
+ */
+@keyframes exp-db-b1 { 0%, 2%  { opacity: 0; scale: 0.7; } 8%, 90%  { opacity: 1; scale: 1; } 100% { opacity: 0; scale: 0.7; } }
+@keyframes exp-db-l1 { 0%, 10% { stroke-dashoffset: 100; } 22%, 90% { stroke-dashoffset: 0; }  100% { stroke-dashoffset: 100; } }
+@keyframes exp-db-b2 { 0%, 24% { opacity: 0; scale: 0.7; } 30%, 90% { opacity: 1; scale: 1; } 100% { opacity: 0; scale: 0.7; } }
+@keyframes exp-db-l2 { 0%, 32% { stroke-dashoffset: 100; } 44%, 90% { stroke-dashoffset: 0; }  100% { stroke-dashoffset: 100; } }
+@keyframes exp-db-b3 { 0%, 46% { opacity: 0; scale: 0.7; } 52%, 90% { opacity: 1; scale: 1; } 100% { opacity: 0; scale: 0.7; } }
+@keyframes exp-db-l3 { 0%, 54% { stroke-dashoffset: 100; } 68%, 90% { stroke-dashoffset: 0; }  100% { stroke-dashoffset: 100; } }
+
+[data-exp="diagram-build"] .db {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+[data-exp="diagram-build"] svg {
+  width: 100%;
+  height: 100%;
+}
+[data-exp="diagram-build"] .ln {
+  fill: none;
+  stroke: #7dd3fc;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  animation-iteration-count: infinite;
+}
+[data-exp="diagram-build"] .l1 { animation-name: exp-db-l1; }
+[data-exp="diagram-build"] .l2 { animation-name: exp-db-l2; }
+[data-exp="diagram-build"] .l3 { animation-name: exp-db-l3; }
+
+[data-exp="diagram-build"] .bx rect {
+  fill: #6366f1;
+  /* 拡縮の中心を箱そのものに置く。既定では viewBox の原点が中心になる。 */
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-iteration-count: infinite;
+}
+[data-exp="diagram-build"] .bx text {
+  fill: #fff;
+  text-anchor: middle;
+  font-size: 10px;
+  font-weight: 800;
+  animation-iteration-count: infinite;
+}
+[data-exp="diagram-build"] .b1 * { animation-name: exp-db-b1; }
+[data-exp="diagram-build"] .b2 * { animation-name: exp-db-b2; }
+[data-exp="diagram-build"] .b3 * { animation-name: exp-db-b3; }

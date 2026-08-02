@@ -1,0 +1,20 @@
+{
+  "id": "panel-split",
+  "n": 1001,
+  "title": "コマが割れる",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "漫画",
+    "technique": [
+      "clip-path の分割",
+      "断片ごとの離散"
+    ],
+    "use": "場面転換 / 破棄"
+  },
+  "predicted": "uncertain",
+  "note": "1 枚の絵を斜めの線で断ち割り、断片が別々にずれる。漫画のコマ割りが崩れる表現。断ち方が垂直や水平だと事務的に見えるので、斜めに切るのが要点。",
+  "markup": "<div class=\"ps\"><span class=\"p p1\"></span><span class=\"p p2\"></span><span class=\"p p3\"></span><span class=\"p p4\"></span><span class=\"cap\">場面</span></div>"
+}

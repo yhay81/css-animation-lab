@@ -1,0 +1,35 @@
+@keyframes exp-blend-diff {
+  0%, 100% { translate: -76px 0; }
+  50%      { translate: 76px 0; }
+}
+
+[data-exp="blend-diff"] .wrap {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #0e132a;
+  isolation: isolate;
+}
+[data-exp="blend-diff"] .tx {
+  grid-area: 1 / 1;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #e6e9f5;
+}
+[data-exp="blend-diff"] .band {
+  /* 舞台より高いので格子の中央寄せは効かない（F029）。上下いっぱいに張る。 */
+  position: absolute;
+  top: -20px;
+  bottom: -20px;
+  height: auto;
+  /* 左右は中央から動かす。grid-area に頼ると絶対配置で静的位置になり中心がずれる。 */
+  left: 50%;
+  width: 46px;
+  margin-left: -23px;
+  background: #e6e9f5;
+  mix-blend-mode: difference;
+  animation-name: exp-blend-diff;
+}

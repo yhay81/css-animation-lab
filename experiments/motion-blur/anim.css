@@ -1,0 +1,26 @@
+@keyframes exp-motion-blur {
+  0%, 100% { translate: -52px 0; }
+  50%      { translate: 52px 0; }
+}
+
+[data-exp="motion-blur"] .mb { display: grid; gap: 18px; }
+[data-exp="motion-blur"] .row { display: flex; align-items: center; gap: 10px; }
+[data-exp="motion-blur"] .lb {
+  width: 26px;
+  color: #8b93b5;
+  font-size: 10px;
+  font-family: ui-monospace, monospace;
+}
+[data-exp="motion-blur"] .b {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #a5f3fc, #6366f1);
+  animation-name: exp-motion-blur;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+/* 全方向に等しくぼける。 */
+[data-exp="motion-blur"] .iso { filter: blur(5px); }
+/* 横だけぼける。 */
+[data-exp="motion-blur"] .dir { filter: url(#mb-x); }

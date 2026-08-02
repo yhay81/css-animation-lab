@@ -1,0 +1,56 @@
+[data-exp="tab-machine"] .tm { position: absolute; inset: 0; padding: 20px; }
+[data-exp="tab-machine"] input { position: absolute; opacity: 0; pointer-events: none; }
+
+[data-exp="tab-machine"] .tabs {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid #3d4a78;
+}
+[data-exp="tab-machine"] label {
+  padding: 7px 0;
+  text-align: center;
+  color: #8b93b5;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 200ms;
+}
+/* 下線は 1 本だけ置いて、選択に応じて滑らせる。 */
+[data-exp="tab-machine"] .tabs::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: calc(100% / 3);
+  height: 2px;
+  background: #7dd3fc;
+  transition: translate 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-exp="tab-machine"] #tm-2:checked ~ .tabs::after { translate: 100% 0; }
+[data-exp="tab-machine"] #tm-3:checked ~ .tabs::after { translate: 200% 0; }
+
+[data-exp="tab-machine"] .panes { position: relative; height: 56px; }
+[data-exp="tab-machine"] .pane {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  margin-top: 10px;
+  background: #26304f;
+  color: #e6e9f5;
+  font-weight: 700;
+  opacity: 0;
+  translate: 0 8px;
+  transition: opacity 220ms, translate 220ms;
+}
+[data-exp="tab-machine"] #tm-1:checked ~ .panes .pane:nth-child(1),
+[data-exp="tab-machine"] #tm-2:checked ~ .panes .pane:nth-child(2),
+[data-exp="tab-machine"] #tm-3:checked ~ .panes .pane:nth-child(3) {
+  opacity: 1;
+  translate: 0 0;
+}
+[data-exp="tab-machine"] #tm-1:checked ~ .tabs label:nth-child(1),
+[data-exp="tab-machine"] #tm-2:checked ~ .tabs label:nth-child(2),
+[data-exp="tab-machine"] #tm-3:checked ~ .tabs label:nth-child(3) { color: #e6e9f5; }

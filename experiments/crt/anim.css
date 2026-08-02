@@ -1,0 +1,39 @@
+@keyframes exp-crt-roll {
+  0%   { translate: 0 -110%; }
+  100% { translate: 0 110%; }
+}
+@keyframes exp-crt-shift {
+  0%, 100% { text-shadow: -1.5px 0 #f43f5e, 1.5px 0 #22d3ee; }
+  50%      { text-shadow: 1.5px 0 #f43f5e, -1.5px 0 #22d3ee; }
+}
+
+[data-exp="crt"] .crt {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #06121a;
+}
+[data-exp="crt"] .tx {
+  color: #a7f3d0;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  animation-name: exp-crt-shift;
+  animation-iteration-count: infinite;
+}
+/* 走査線は止めたまま。 */
+[data-exp="crt"] .scan {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.42) 0 1px, transparent 1px 3px);
+}
+[data-exp="crt"] .roll {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, rgba(167, 243, 208, 0.11) 46%, transparent);
+  animation-name: exp-crt-roll;
+  animation-iteration-count: infinite;
+}

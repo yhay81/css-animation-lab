@@ -1,0 +1,8 @@
+@keyframes exp-depth-none-out { from { translate: 0 34px; }  to { translate: 0 0; } }
+@keyframes exp-depth-none-in  { from { translate: 0 -16px; } to { translate: 0 0; } }
+
+[data-exp="depth-none"] .subject { animation-name: exp-depth-none-out; }
+[data-exp="depth-none"] .label {
+  display: inline-block;
+  animation-name: exp-depth-none-in;
+}

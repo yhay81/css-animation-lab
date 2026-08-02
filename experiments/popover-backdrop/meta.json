@@ -1,0 +1,20 @@
+{
+  "id": "popover-backdrop",
+  "n": 711,
+  "title": "背後を沈める",
+  "layer": "T",
+  "mode": "interactive",
+  "axes": {
+    "driver": [
+      "操作"
+    ],
+    "technique": [
+      "::backdrop",
+      "allow-discrete"
+    ],
+    "use": "モーダル / 集中"
+  },
+  "predicted": "uncertain",
+  "note": "ボタンを押す。::backdrop は最上位レイヤーの裏側の面で、そこにぼかしを掛けると背後が沈む。要素を自分で敷く必要がなく、閉じたときに残らない。",
+  "markup": "<div class=\"pb\"><button popovertarget=\"pb-sheet\">開く</button><div id=\"pb-sheet\" popover class=\"pop\"><div class=\"bar\"></div><div class=\"line\"></div></div></div>"
+}

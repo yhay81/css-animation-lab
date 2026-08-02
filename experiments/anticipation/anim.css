@@ -1,0 +1,31 @@
+@keyframes exp-anticipation-plain {
+  0%, 22%   { translate: 0 0; }
+  62%       { translate: 76px 0; }
+  92%, 100% { translate: 0 0; }
+}
+@keyframes exp-anticipation-anti {
+  0%, 10%   { translate: 0 0;     scale: 1; }
+  /* まず反対へ引く。ここが溜め。 */
+  24%       { translate: -16px 0; scale: 0.86 1.12; }
+  30%       { translate: -18px 0; scale: 0.86 1.12; }
+  62%       { translate: 76px 0;  scale: 1.14 0.9; }
+  72%       { translate: 70px 0;  scale: 1; }
+  92%, 100% { translate: 0 0;     scale: 1; }
+}
+
+[data-exp="anticipation"] .an { display: grid; gap: 18px; }
+[data-exp="anticipation"] .row { display: flex; align-items: center; gap: 9px; }
+[data-exp="anticipation"] .lb {
+  width: 26px;
+  color: #8b93b5;
+  font-size: 10px;
+}
+[data-exp="anticipation"] .b {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #7dd3fc, #6366f1);
+  animation-iteration-count: infinite;
+}
+[data-exp="anticipation"] .plain { animation-name: exp-anticipation-plain; }
+[data-exp="anticipation"] .anti  { animation-name: exp-anticipation-anti; }

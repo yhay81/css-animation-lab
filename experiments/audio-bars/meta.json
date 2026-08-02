@@ -1,0 +1,20 @@
+{
+  "id": "audio-bars",
+  "n": 1109,
+  "title": "音の棒",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "JS でやってきたもの",
+    "technique": [
+      "棒ごとに異なる周期",
+      "約数による継ぎ目消し"
+    ],
+    "use": "再生中 / 録音中"
+  },
+  "predicted": "uncertain",
+  "note": "棒の高さを揃った周期で動かすと波打つ帯にしかならない。棒ごとに回数を変えると音に見える。1 周の約数だけを使えば、ばらばらでも繰り返しの継ぎ目が出ない。",
+  "markup": "<div class=\"ab\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+}

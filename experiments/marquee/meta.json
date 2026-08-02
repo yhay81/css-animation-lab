@@ -1,0 +1,18 @@
+{
+  "id": "marquee",
+  "n": 370,
+  "title": "継ぎ目のない無限流れ",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "複製 + -50% 移動"
+    ],
+    "use": "ロゴの帯 / お知らせ"
+  },
+  "predicted": "uncertain",
+  "note": "同じ内容を並べて 1 周期ぶん動かす。枚数は「コンテナ幅 + 1 周期」を満たす必要があり、2 枚では 1 周期動いた時点で右端に空白が出る。4 枚にして -25%（＝1 周期）動かす。",
+  "markup": "<div class=\"mq\"><div class=\"mq-in\"><span>CSS ANIMATION LAB&nbsp;·&nbsp;</span><span>CSS ANIMATION LAB&nbsp;·&nbsp;</span><span>CSS ANIMATION LAB&nbsp;·&nbsp;</span><span>CSS ANIMATION LAB&nbsp;·&nbsp;</span></div></div>"
+}

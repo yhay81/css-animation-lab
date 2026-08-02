@@ -1,0 +1,24 @@
+{
+  "id": "sim",
+  "n": 20,
+  "title": "同時",
+  "layer": "L2",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [
+      "多重アニメーション"
+    ],
+    "structure": []
+  },
+  "predicted": "good",
+  "note": "位置と不透明度を同じ窓で動かす。あらゆる登場演出の基準線。以降はこれとの差分で読む。"
+}

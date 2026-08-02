@@ -1,0 +1,21 @@
+{
+  "id": "impact-frame",
+  "n": 902,
+  "title": "ドン！（衝撃のコマ）",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "漫画 / アニメ",
+    "technique": [
+      "白フラッシュ",
+      "steps()",
+      "多層合成"
+    ],
+    "use": "達成 / 失敗 / 決定的瞬間"
+  },
+  "predicted": "uncertain",
+  "note": "衝撃の瞬間は、拡大・白フラッシュ・振動・集中線が同時に起きる。どれか 1 つでは弱く、重ねて初めて「ドン」になる。フラッシュは補間せず 1 コマで消すのが要点で、滑らかにすると安っぽくなる。",
+  "markup": "<div class=\"im\"><div class=\"panel\"><span>決定</span></div><div class=\"flash\"></div><div class=\"shock\"></div></div>"
+}

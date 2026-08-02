@@ -1,0 +1,12 @@
+@keyframes exp-seg-ring { to { rotate: 30deg; } }
+
+[data-exp="seg-ring"] .sr {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  /* 12 本の目盛り。1 本ぶん（30°）回せば継ぎ目なく繰り返せる。 */
+  background: repeating-conic-gradient(#7dd3fc 0 7deg, transparent 7deg 30deg);
+  mask: radial-gradient(farthest-side, transparent 62%, #000 62%);
+  animation-name: exp-seg-ring;
+  animation-iteration-count: infinite;
+}

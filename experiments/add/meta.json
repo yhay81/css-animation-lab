@@ -1,0 +1,24 @@
+{
+  "id": "add",
+  "n": 24,
+  "title": "加算合成",
+  "layer": "L2",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [
+      "animation-composition"
+    ],
+    "structure": []
+  },
+  "predicted": "good",
+  "note": "同じ translate を2本のアニメーションで別々に動かし add で足す。通常は後勝ちで消えるところを合成できる。ほぼ使われていない機能。"
+}

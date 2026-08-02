@@ -1,0 +1,20 @@
+{
+  "id": "handheld",
+  "n": 904,
+  "title": "手持ちカメラの揺れ",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "CG / 実写",
+    "technique": [
+      "非整数比の重ね合わせ",
+      "animation-composition: add"
+    ],
+    "use": "臨場感 / 記録映像風"
+  },
+  "predicted": "uncertain",
+  "note": "三脚を使わない撮影の微細な揺れ。一定周期で揺らすと機械的に見えるので、互いに割り切れない回数の揺れを重ねて周期を隠す。ここでは 3 回・5 回・7 回を加算しており、合成周期は 1 周と一致するので繰り返しの継ぎ目も出ない。",
+  "markup": "<div class=\"hh\"><div class=\"scene\"><div class=\"sky\"></div><div class=\"obj\"></div></div></div>"
+}

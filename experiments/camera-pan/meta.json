@@ -1,0 +1,30 @@
+{
+  "id": "camera-pan",
+  "n": 1105,
+  "title": "カメラが振れる",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "CG / 実写",
+    "technique": [
+      "場面の横送り",
+      "止めどころの減速"
+    ],
+    "use": "導入 / 一覧の紹介"
+  },
+  "predicted": "uncertain",
+  "note": "動いているのは被写体ではなく枠のほう。等速で送ると機械的なので、止めたい位置の手前で減速する。停止のたびに一拍おくと、見る側が内容を読む間ができる。",
+  "markup": "<div class=\"cp\"><div class=\"world\"><span class=\"s s1\">1</span><span class=\"s s2\">2</span><span class=\"s s3\">3</span><span class=\"s s4\">4</span></div><span class=\"frame\"></span></div>",
+  "expect": [
+    {
+      "at": "32%",
+      "near": [
+        ".frame",
+        ".s2"
+      ],
+      "within": 26
+    }
+  ]
+}

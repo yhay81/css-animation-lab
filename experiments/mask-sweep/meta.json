@@ -1,0 +1,22 @@
+{
+  "id": "mask-sweep",
+  "n": 11,
+  "title": "マスク掃引",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "mask-image",
+      "@property"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "good",
+  "note": "clip-path と違い境界をぼかせる。@property で型付けした percentage を補間している点が肝（型なしでは補間不可）。"
+}

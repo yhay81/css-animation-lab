@@ -1,0 +1,18 @@
+{
+  "id": "poly-morph",
+  "n": 320,
+  "title": "多角形の変形",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "clip-path: polygon()"
+    ],
+    "use": "装飾 / 状態の変化"
+  },
+  "predicted": "uncertain",
+  "note": "頂点の数が同じなら polygon 同士は補間できる。数が違うと切り替わってしまうので、頂点数を揃えるのが設計の要点。",
+  "markup": "<div class=\"poly\"></div>"
+}

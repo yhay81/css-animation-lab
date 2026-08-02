@@ -1,0 +1,28 @@
+@keyframes exp-anchor-size {
+  0%, 100% { padding-inline: 10px; }
+  50%      { padding-inline: 40px; }
+}
+
+[data-exp="anchor-size"] .as { position: absolute; inset: 0; display: grid; place-items: center; }
+[data-exp="anchor-size"] .target {
+  anchor-name: --as-t;
+  padding: 9px 10px;
+  border-radius: 8px;
+  background: #26304f;
+  color: #e6e9f5;
+  font-size: 13px;
+  font-weight: 700;
+  animation-name: exp-anchor-size;
+  animation-iteration-count: infinite;
+}
+[data-exp="anchor-size"] .under {
+  position: absolute;
+  position-anchor: --as-t;
+  position-area: block-end;
+  /* 対象の幅をそのまま読む。 */
+  width: anchor-size(--as-t width);
+  height: 3px;
+  margin-top: 6px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #7dd3fc, #a855f7);
+}

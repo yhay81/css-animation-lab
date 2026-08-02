@@ -1,0 +1,25 @@
+@keyframes exp-perspective-move {
+  0%, 100% { perspective-origin: 22% 40%; }
+  50%      { perspective-origin: 78% 60%; }
+}
+
+[data-exp="perspective-move"] .pv {
+  position: relative;
+  width: 108px;
+  height: 108px;
+  perspective: 340px;
+  transform-style: preserve-3d;
+  animation-name: exp-perspective-move;
+  animation-iteration-count: infinite;
+}
+[data-exp="perspective-move"] .pv span {
+  position: absolute;
+  inset: 18px;
+  border: 2px solid #7dd3fc;
+  border-radius: 12px;
+}
+[data-exp="perspective-move"] .p1 { transform: translateZ(-80px); opacity: 0.35; }
+[data-exp="perspective-move"] .p2 { transform: translateZ(-40px); opacity: 0.5; }
+[data-exp="perspective-move"] .p3 { transform: translateZ(0);     opacity: 0.68; }
+[data-exp="perspective-move"] .p4 { transform: translateZ(40px);  opacity: 0.84; }
+[data-exp="perspective-move"] .p5 { transform: translateZ(80px);  opacity: 1; }

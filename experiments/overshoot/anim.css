@@ -1,0 +1,7 @@
+@keyframes exp-overshoot {
+  from { translate: 0 30px; opacity: 0; }
+  55%  { translate: 0 -9px; opacity: 1; }
+  to   { translate: 0 0; }
+}
+
+[data-exp="overshoot"] .subject { animation-name: exp-overshoot; }

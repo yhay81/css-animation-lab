@@ -1,0 +1,18 @@
+{
+  "id": "spring-compare",
+  "n": 434,
+  "title": "バネと減速の違い",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "linear() イージング"
+    ],
+    "use": "手応えの設計"
+  },
+  "predicted": "uncertain",
+  "note": "linear() に多数の点を並べるとバネの減衰を CSS だけで表せる。cubic-bezier は 1 回の行き過ぎしか作れず、揺り戻しは書けない。同じ移動を並べると差がはっきり出る。",
+  "markup": "<div class=\"sc\"><div class=\"row\"><span class=\"lb\">spring</span><div class=\"b sp\"></div></div><div class=\"row\"><span class=\"lb\">ease-out</span><div class=\"b eo\"></div></div></div>"
+}

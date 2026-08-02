@@ -1,0 +1,19 @@
+{
+  "id": "view-inset",
+  "n": 708,
+  "title": "判定の境界をずらす",
+  "layer": "T",
+  "mode": "scroll",
+  "axes": {
+    "driver": [
+      "scroll-timeline"
+    ],
+    "technique": [
+      "view-timeline-inset"
+    ],
+    "use": "スクロール演出の詰め"
+  },
+  "predicted": "uncertain",
+  "note": "「視界に入った」と判定する縁を内側や外側へずらせる。同じ範囲指定でも、上から順に「早めに始まる」「標準」「遅れて始まる」になる。",
+  "markup": "<div class=\"vi\"><div class=\"pad\"></div><div class=\"it i1\">inset 1</div><div class=\"it i2\">inset 2</div><div class=\"it i3\">inset 3</div><div class=\"pad\"></div></div>"
+}

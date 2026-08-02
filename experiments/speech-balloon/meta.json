@@ -1,0 +1,28 @@
+{
+  "id": "speech-balloon",
+  "n": 1102,
+  "title": "吹き出しが出る",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "漫画",
+    "technique": [
+      "尻尾の遅延",
+      "行き過ぎと戻り"
+    ],
+    "use": "チャット / 補足 / 通知"
+  },
+  "predicted": "uncertain",
+  "note": "本体が出てから尻尾が伸びる。同時だと図形が現れただけに見え、順序があると「誰かが言った」に変わる。尻尾を本体と別に置くと、本体が拡縮したときに離れて浮く。同じ入れ物に入れて一緒に動かす必要がある。",
+  "markup": "<div class=\"sb\"><span class=\"grp\"><span class=\"bal\">なるほど</span><span class=\"tail\"></span></span></div>",
+  "expect": [
+    {
+      "at": "60%",
+      "of": ".tail",
+      "side": "below",
+      "from": ".bal"
+    }
+  ]
+}

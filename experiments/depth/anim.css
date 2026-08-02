@@ -1,0 +1,7 @@
+@keyframes exp-depth {
+  from { rotate: y -55deg; }
+  to   { rotate: y 0deg; }
+}
+
+[data-exp="depth"] .stage { perspective: 700px; }
+[data-exp="depth"] .subject { animation-name: exp-depth; }

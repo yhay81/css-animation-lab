@@ -1,0 +1,18 @@
+@keyframes exp-ruby-emphasis {
+  0%, 40%   { text-emphasis-color: transparent; }
+  55%, 100% { text-emphasis-color: #f472b6; }
+}
+
+[data-exp="ruby-emphasis"] .re {
+  display: flex;
+  font-size: 20px;
+  font-weight: 700;
+  color: #e6e9f5;
+  line-height: 2.2;
+}
+[data-exp="ruby-emphasis"] .re span {
+  text-emphasis: filled dot transparent;
+  text-emphasis-position: over;
+  animation-name: exp-ruby-emphasis;
+  animation-delay: calc((sibling-index() - 1) * 90ms);
+}

@@ -1,0 +1,20 @@
+{
+  "id": "scroll-reveal",
+  "n": 390,
+  "title": "スクロールで現れる",
+  "layer": "T",
+  "mode": "scroll",
+  "axes": {
+    "driver": [
+      "scroll-timeline"
+    ],
+    "technique": [
+      "animation-timeline: view()",
+      "animation-range"
+    ],
+    "use": "記事 / ランディング"
+  },
+  "predicted": "uncertain",
+  "note": "セル内をスクロールすると動く。時間ではなく位置で進むので、時計では駆動できずフィルムストリップにも開けない。JS を一切使わずに出現アニメーションが書ける。",
+  "markup": "<div class=\"sc\"><div class=\"it\">1</div><div class=\"it\">2</div><div class=\"it\">3</div><div class=\"it\">4</div><div class=\"it\">5</div><div class=\"it\">6</div></div>"
+}

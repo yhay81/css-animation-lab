@@ -1,0 +1,25 @@
+{
+  "id": "stagger-dense",
+  "n": 31,
+  "title": "詰まった順送り（45ms）",
+  "layer": "L3",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [
+      "stagger"
+    ],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "間隔が短く重なりが深い。ほぼ同時に見えるか、まとまりとして読めるか。stagger の下限を探る。",
+  "markup": "<div class=\"row5\"><div class=\"subject\" style=\"--i:0\"></div><div class=\"subject\" style=\"--i:1\"></div><div class=\"subject\" style=\"--i:2\"></div><div class=\"subject\" style=\"--i:3\"></div><div class=\"subject\" style=\"--i:4\"></div></div>"
+}

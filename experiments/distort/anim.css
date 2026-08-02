@@ -1,0 +1,20 @@
+@keyframes exp-distort {
+  0%, 100% { translate: -46px 0; }
+  50%      { translate: 46px 0; }
+}
+
+[data-exp="distort"] .ds {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  filter: url(#dist-f);
+}
+[data-exp="distort"] .b {
+  width: 74px;
+  height: 74px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #a5f3fc, #6366f1);
+  animation-name: exp-distort;
+  animation-iteration-count: infinite;
+}

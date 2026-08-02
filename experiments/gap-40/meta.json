@@ -1,0 +1,25 @@
+{
+  "id": "gap-40",
+  "n": 60,
+  "title": "間隔 40ms（重なり率 0.10）",
+  "layer": "L3",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [
+      "stagger"
+    ],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "長さ 400ms 固定。ラウンド2は長さも一緒に動いていて境目を特定できなかったため、間隔だけを振り直す。",
+  "markup": "<div class=\"row5\"><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div></div>"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "toast-pop",
+  "n": 111,
+  "title": "トースト｜下から跳ね上がり",
+  "layer": "L4",
+  "mode": "state",
+  "axes": {
+    "driver": [
+      "transition"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "固定"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "下から出て行き過ぎてから収まる。目を引くが、通知として過剰かどうかが論点。",
+  "markup": "<div class=\"scene\"><div class=\"toast panel\"><div class=\"bar\"></div><div class=\"line s\"></div></div></div>"
+}

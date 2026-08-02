@@ -1,0 +1,20 @@
+{
+  "id": "smoke",
+  "n": 1007,
+  "title": "煙が立つ",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "CG",
+    "technique": [
+      "blur と拡大の同時進行",
+      "負の遅延"
+    ],
+    "use": "消滅 / 処理中"
+  },
+  "predicted": "uncertain",
+  "note": "煙は上るだけでなく、上りながら広がり、広がりながら薄くなる。この 3 つが同時に起きないと蒸気に見えない。ぼかしを時間とともに強めるのが、拡散を表す一番安い方法。",
+  "markup": "<div class=\"sm\"><span></span><span></span><span></span><span></span><span></span></div>"
+}

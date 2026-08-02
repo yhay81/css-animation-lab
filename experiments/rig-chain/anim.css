@@ -1,0 +1,50 @@
+@keyframes exp-rig-chain {
+  0%, 100% { rotate: -17deg; }
+  50%      { rotate: 17deg; }
+}
+
+/*
+ * 舞台より背が高いと中央寄せが効かず（F029）、下端が切れる。
+ * 上端に貼り付けて、鎖の全長が収まる高さに抑える。
+ */
+[data-exp="rig-chain"] .rc {
+  position: absolute;
+  inset: 6px 0 auto 0;
+  display: grid;
+  justify-items: center;
+}
+[data-exp="rig-chain"] .s {
+  width: 12px;
+  height: 22px;
+  border-radius: 6px;
+  background: #6366f1;
+  /* 回転の中心を根元に置くと、関節としてつながる。 */
+  transform-origin: 50% 0;
+  animation-name: exp-rig-chain;
+  animation-iteration-count: infinite;
+}
+/*
+ * 入れ子の深さぶん、回転が積み上がる。
+ *
+ * 段の間隔を margin-top で取ると、境界も余白も無い入れ子では上下の余白が相殺され、
+ * 子が下がる代わりに親ごと下がる。結果として全段が同じ位置に重なる。
+ * translate なら相殺されない。回転の中心も一緒に運ばれるので関節として正しく繋がる。
+ */
+[data-exp="rig-chain"] .s .s {
+  translate: 0 20px;
+  animation-delay: -80ms;
+  background: color-mix(in oklch, #6366f1 70%, #7dd3fc);
+}
+[data-exp="rig-chain"] .s .s .s { animation-delay: -160ms; }
+[data-exp="rig-chain"] .s .s .s .s { animation-delay: -240ms; }
+[data-exp="rig-chain"] .s .s .s .s .s { animation-delay: -320ms; }
+[data-exp="rig-chain"] .tip {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  width: 20px;
+  height: 20px;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: #a5f3fc;
+}

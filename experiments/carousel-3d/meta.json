@@ -1,0 +1,19 @@
+{
+  "id": "carousel-3d",
+  "n": 421,
+  "title": "円周に並ぶカード",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "preserve-3d",
+      "sibling-index()"
+    ],
+    "use": "一覧の切替 / ギャラリー"
+  },
+  "predicted": "uncertain",
+  "note": "各カードの角度を sibling-index() から出すので、枚数を変えても CSS を書き換えなくてよい。円周上への配置を手で書かずに済む。",
+  "markup": "<div class=\"ring\"><div class=\"c\">1</div><div class=\"c\">2</div><div class=\"c\">3</div><div class=\"c\">4</div><div class=\"c\">5</div><div class=\"c\">6</div><div class=\"c\">7</div><div class=\"c\">8</div></div>"
+}

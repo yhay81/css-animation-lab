@@ -1,0 +1,20 @@
+{
+  "id": "first-letter",
+  "n": 712,
+  "title": "::first-letter は動かせない（回避あり）",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "::first-letter",
+      "要素で包む回避",
+      "適用可能な性質の制限"
+    ],
+    "use": "記事の書き出し"
+  },
+  "predicted": "bad",
+  "note": "上は ::first-letter に animation-name を当てたもので、計算値が none になり指定自体が受け付けられない。::marker が「指定は通るが動かない」だったのに対し、こちらは「指定が消える」。同じ意図でも失敗の仕方が違う。下は頭文字を要素で包んだもので、こちらは動く。",
+  "markup": "<div class=\"fw\"><p class=\"fl\">::first-letter に当てた場合。頭文字は大きくなるが動かない。</p><p class=\"fs\"><span class=\"cap\">回</span>避として要素で包んだ場合。こちらは動く。</p></div>"
+}

@@ -1,0 +1,21 @@
+@property --scan {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@keyframes exp-mask-text-scan { to { --scan: 130%; } }
+
+[data-exp="mask-text-scan"] .mt {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: transparent;
+  background-image: linear-gradient(92deg, #6366f1, #a5f3fc 55%, #f472b6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  mask-image: linear-gradient(92deg,
+    #000 0 calc(var(--scan) - 34%), rgba(0, 0, 0, 0.18) var(--scan), #000 calc(var(--scan) + 6%) 100%);
+  animation-name: exp-mask-text-scan;
+  animation-iteration-count: infinite;
+}

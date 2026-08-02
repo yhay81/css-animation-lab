@@ -1,0 +1,19 @@
+{
+  "id": "kinetic-type",
+  "n": 907,
+  "title": "キネティックタイポグラフィ",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "モーショングラフィックス",
+    "technique": [
+      "語ごとに異なる運動"
+    ],
+    "use": "導入 / 見出し / 動画の字幕"
+  },
+  "predicted": "uncertain",
+  "note": "語の意味と動きを一致させる。同じ入場効果を全部に当てるのではなく、語ごとに違う運動を与えることで、文字が意味を演じる。プレゼン動画の冒頭でよく使われる手法。",
+  "markup": "<div class=\"kt\"><span class=\"w fall\">落ちる</span><span class=\"w bounce\">弾む</span><span class=\"w vanish\">消える</span></div>"
+}

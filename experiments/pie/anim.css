@@ -1,0 +1,21 @@
+@property --a1 { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@property --a2 { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@property --a3 { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+
+@keyframes exp-pie {
+  0%        { --a1: 0deg;   --a2: 0deg;   --a3: 0deg; }
+  75%, 100% { --a1: 128deg; --a2: 226deg; --a3: 300deg; }
+}
+
+[data-exp="pie"] .pie {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #7dd3fc 0 var(--a1),
+    #a855f7 var(--a1) var(--a2),
+    #f472b6 var(--a2) var(--a3),
+    #26304f var(--a3) 360deg);
+  animation-name: exp-pie;
+  animation-duration: 900ms;
+}

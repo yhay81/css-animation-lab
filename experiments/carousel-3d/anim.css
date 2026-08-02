@@ -1,0 +1,32 @@
+@keyframes exp-carousel-3d {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(360deg); }
+}
+
+[data-exp="carousel-3d"] .stage { perspective: 460px; }
+
+/*
+ * 円周 2πr に対してカードの総幅が近すぎると、隙間が無くなって円筒の壁になる。
+ * 半径 62px なら円周は約 390px。8 枚 × 46px = 368px では詰まりすぎるため幅を落とす。
+ */
+[data-exp="carousel-3d"] .ring {
+  position: relative;
+  width: 34px;
+  height: 62px;
+  transform-style: preserve-3d;
+  animation-name: exp-carousel-3d;
+  animation-iteration-count: infinite;
+}
+[data-exp="carousel-3d"] .c {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #7dd3fc, #6366f1);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  /* 8 枚なら 45° ずつ。枚数に合わせて手で書く必要がない。 */
+  transform: rotateY(calc(sibling-index() * 45deg)) translateZ(62px);
+}

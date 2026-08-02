@@ -1,0 +1,19 @@
+{
+  "id": "flash",
+  "n": 512,
+  "title": "閃光",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "filter の連鎖",
+      "steps"
+    ],
+    "use": "取得 / 失敗の合図"
+  },
+  "predicted": "uncertain",
+  "note": "brightness と contrast を重ねて一瞬だけ飛ばす。色を変えずに強度だけを跳ね上げられるので、元の配色を壊さない。",
+  "markup": "<div class=\"fl\"><span class=\"l\"></span><span class=\"l s\"></span></div>"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "modal-rise",
+  "n": 101,
+  "title": "モーダル｜下から持ち上げ",
+  "layer": "L4",
+  "mode": "state",
+  "axes": {
+    "driver": [
+      "transition",
+      "@starting-style",
+      "allow-discrete"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "固定"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "下から持ち上げて開く。方向を持つぶん「どこから来たか」が伝わるが、その場で開くより重い印象になるはず。",
+  "markup": "<div class=\"scene\"><div class=\"backdrop\"></div><div class=\"dialog panel\"><div class=\"bar\"></div><div class=\"line\"></div><div class=\"line s\"></div></div></div>"
+}

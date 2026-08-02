@@ -1,0 +1,21 @@
+{
+  "id": "morph",
+  "n": 15,
+  "title": "角の変形",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "border-radius"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "bad",
+  "note": "円→角丸。形が変わるだけで位置も不透明度も変わらない。単体で意味を持つ場面は稀だと予想。"
+}

@@ -1,0 +1,15 @@
+@property --sweep {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@keyframes exp-mask-sweep {
+  from { --sweep: 0%; }
+  to   { --sweep: 140%; }
+}
+
+[data-exp="mask-sweep"] .subject {
+  mask-image: linear-gradient(100deg, #000 var(--sweep), transparent calc(var(--sweep) + 22%));
+  animation-name: exp-mask-sweep;
+}

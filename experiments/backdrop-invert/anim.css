@@ -1,0 +1,44 @@
+@keyframes exp-backdrop-invert {
+  0%, 100% { translate: -84px 0; }
+  50%      { translate: 84px 0; }
+}
+
+[data-exp="backdrop-invert"] .bi {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+[data-exp="backdrop-invert"] .under {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 14px;
+  background: #101736;
+}
+[data-exp="backdrop-invert"] .t {
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  background: #2b3766;
+  color: #bae6fd;
+  font-weight: 700;
+  font-size: 13px;
+}
+[data-exp="backdrop-invert"] .band {
+  /* 舞台より高いので格子の中央寄せは効かない（F029）。上下いっぱいに張る。 */
+  position: absolute;
+  top: -20px;
+  bottom: -20px;
+  height: auto;
+  /* 左右は中央から動かす。 */
+  left: 50%;
+  width: 42px;
+  margin-left: -21px;
+  backdrop-filter: invert(1);
+  animation-name: exp-backdrop-invert;
+  animation-iteration-count: infinite;
+}

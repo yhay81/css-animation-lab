@@ -1,0 +1,20 @@
+{
+  "id": "dof-stack",
+  "n": 508,
+  "title": "奥ほどぼける層",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "preserve-3d",
+      "translateZ",
+      "blur"
+    ],
+    "use": "ヒーロー / 空間の表現"
+  },
+  "predicted": "uncertain",
+  "note": "奥行きに応じてぼかしを変えると、動かした瞬間に前後関係が読める。逆方向に動かすだけの視差（F011）が奥行きにならなかったのに対し、こちらは成立するかを見たい。",
+  "markup": "<div class=\"df\"><span class=\"l1\"></span><span class=\"l2\"></span><span class=\"l3\"></span></div>"
+}

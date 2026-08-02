@@ -1,0 +1,26 @@
+[data-exp="details-anim"] .dt {
+  width: 156px;
+  border: 1px solid #3d4a78;
+  border-radius: 10px;
+  background: #1b2340;
+  overflow: hidden;
+}
+[data-exp="details-anim"] summary {
+  padding: 10px 12px;
+  color: #e6e9f5;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+[data-exp="details-anim"] .in { padding: 0 12px 12px; display: grid; gap: 7px; }
+
+[data-exp="details-anim"] .dt::details-content {
+  /* auto への遷移を解禁したうえで、消えるタイミングも繋ぐ。 */
+  interpolate-size: allow-keywords;
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    content-visibility 280ms allow-discrete;
+}
+[data-exp="details-anim"] .dt[open]::details-content { block-size: auto; }

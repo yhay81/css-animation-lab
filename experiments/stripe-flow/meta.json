@@ -1,0 +1,19 @@
+{
+  "id": "stripe-flow",
+  "n": 205,
+  "title": "流れる縞",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "repeating-linear-gradient",
+      "background-position"
+    ],
+    "use": "進捗バー / 処理中"
+  },
+  "predicted": "uncertain",
+  "note": "繰り返しグラデーションの位置だけを動かす。縞の周期ぶん動かせば継ぎ目なく無限に流れる。",
+  "markup": "<div class=\"prog\"><div class=\"fill\"></div></div>"
+}

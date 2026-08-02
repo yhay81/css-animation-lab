@@ -1,0 +1,22 @@
+{
+  "id": "depth",
+  "n": 17,
+  "title": "奥行き回転",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "rotate",
+      "perspective"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "親の perspective が必須という依存関係を持つ点が他の原子と異なる。複合時に親側の準備が要る＝合成コストが高い。"
+}

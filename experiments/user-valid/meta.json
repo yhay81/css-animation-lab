@@ -1,0 +1,20 @@
+{
+  "id": "user-valid",
+  "n": 709,
+  "title": "入力の妥当性で反応する",
+  "layer": "T",
+  "mode": "interactive",
+  "axes": {
+    "driver": [
+      "操作"
+    ],
+    "technique": [
+      ":user-valid",
+      ":user-invalid"
+    ],
+    "use": "フォームの検証"
+  },
+  "predicted": "uncertain",
+  "note": "メールアドレスを入力してみる。:invalid と違い、利用者が触った後にしか反応しないので、初期表示でいきなり赤くならない。検証の演出から JS が消える。",
+  "markup": "<form class=\"uv\"><input type=\"email\" placeholder=\"mail@example.com\" required><span class=\"msg\"></span></form>"
+}

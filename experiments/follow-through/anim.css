@@ -1,0 +1,22 @@
+@keyframes exp-follow-through {
+  0%, 100% { translate: -30px 0; }
+  50%      { translate: 30px 0; }
+}
+
+[data-exp="follow-through"] .ft {
+  display: grid;
+  place-items: center;
+}
+[data-exp="follow-through"] .ft span {
+  grid-area: 1 / 1;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: color-mix(in oklch, #7dd3fc calc(sibling-index() * 16%), #a855f7);
+  scale: calc(1 - sibling-index() * 0.1);
+  animation-name: exp-follow-through;
+  /* 先端ほど遅れる。差が一定なので、しなりが自然な弧になる。 */
+  animation-delay: calc((sibling-index() - 1) * -52ms);
+  animation-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
+  animation-iteration-count: infinite;
+}

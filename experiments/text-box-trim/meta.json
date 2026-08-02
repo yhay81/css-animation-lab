@@ -1,0 +1,19 @@
+{
+  "id": "text-box-trim",
+  "n": 715,
+  "title": "文字の余白を削って合わせる",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "text-box-trim",
+      "text-box-edge"
+    ],
+    "use": "見出しと箱の位置合わせ"
+  },
+  "predicted": "uncertain",
+  "note": "文字の上下には行の高さぶんの余白が付く。それを削ると、箱の縁と文字の縁が実際に揃う。動く箱に文字を載せるとき、余白のぶんだけ中心がずれる問題が消える。",
+  "markup": "<div class=\"tb\"><div class=\"row raw\"><span>Raw</span></div><div class=\"row trim\"><span>Trim</span></div></div>"
+}

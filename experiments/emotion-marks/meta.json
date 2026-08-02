@@ -1,0 +1,20 @@
+{
+  "id": "emotion-marks",
+  "n": 1003,
+  "title": "感情の記号が飛ぶ",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "漫画",
+    "technique": [
+      "擬似要素の記号",
+      "押しつぶしと伸び"
+    ],
+    "use": "エラー / 待機 / 反応"
+  },
+  "predicted": "uncertain",
+  "note": "怒りマークや汗は、日本の漫画が発明した記号表現。表情を描かずに感情を伝えられる。飛び出す瞬間に横へ潰し、戻すときに縦へ伸ばすと生き物らしくなる。",
+  "markup": "<div class=\"em\"><span class=\"face\"></span><span class=\"mk anger\"></span><span class=\"mk sweat\"></span></div>"
+}

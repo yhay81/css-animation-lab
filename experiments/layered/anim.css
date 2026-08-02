@@ -1,0 +1,8 @@
+@keyframes exp-layered-move  { from { translate: 0 26px; } to { translate: 0 0; } }
+@keyframes exp-layered-scale { from { scale: 0.86; }      to { scale: 1; } }
+@keyframes exp-layered-fade  { from { opacity: 0; }       to { opacity: 1; } }
+
+[data-exp="layered"] .subject {
+  animation-name: exp-layered-move, exp-layered-scale, exp-layered-fade;
+  animation-duration: 700ms, 900ms, 400ms;
+}

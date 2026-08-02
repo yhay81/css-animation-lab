@@ -1,0 +1,14 @@
+@keyframes exp-corner-shape {
+  0%, 100% { corner-shape: superellipse(0.6); }
+  35%      { corner-shape: superellipse(2); }
+  70%      { corner-shape: superellipse(8); }
+}
+
+[data-exp="corner-shape"] .cs {
+  width: 96px;
+  height: 96px;
+  border-radius: 34px;
+  background: linear-gradient(135deg, #7dd3fc, #6366f1);
+  animation-name: exp-corner-shape;
+  animation-iteration-count: infinite;
+}

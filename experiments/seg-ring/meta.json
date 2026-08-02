@@ -1,0 +1,19 @@
+{
+  "id": "seg-ring",
+  "n": 509,
+  "title": "目盛りのあるリング",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "repeating-conic-gradient",
+      "mask"
+    ],
+    "use": "読み込み / 計器"
+  },
+  "predicted": "uncertain",
+  "note": "目盛りを 1 本ずつ要素にせず、繰り返しの円錐グラデーションで描く。本数を変えるのが数値ひとつで済む。",
+  "markup": "<div class=\"sr\"></div>"
+}

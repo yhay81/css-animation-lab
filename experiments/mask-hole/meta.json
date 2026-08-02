@@ -1,0 +1,19 @@
+{
+  "id": "mask-hole",
+  "n": 301,
+  "title": "覆いに開いた穴が動く",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "mask",
+      "@property <percentage>"
+    ],
+    "use": "機能紹介の順次ハイライト / 覆いの部分開示"
+  },
+  "predicted": "uncertain",
+  "note": "覆いの側に穴を開けて動かす。下に中身があると分かる絵を敷かないと、ただ丸が動いているようにしか見えない。覆いにも模様を入れて板であることを示す。",
+  "markup": "<div class=\"hole\"><div class=\"under\"><div class=\"tile\">1</div><div class=\"tile\">2</div><div class=\"tile\">3</div><div class=\"tile\">4</div><div class=\"tile\">5</div><div class=\"tile\">6</div></div><div class=\"cover\"></div></div>"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "scroll-progress",
+  "n": 410,
+  "title": "スクロール量が進捗になる",
+  "layer": "T",
+  "mode": "scroll",
+  "axes": {
+    "driver": [
+      "scroll-timeline"
+    ],
+    "technique": [
+      "animation-timeline: scroll()"
+    ],
+    "use": "読み進み / 目次"
+  },
+  "predicted": "uncertain",
+  "note": "セル内をスクロールすると動く。スクロール位置そのものが時間軸になるので、位置の取得も再生の制御も要らない。",
+  "markup": "<div class=\"sp\"><div class=\"track\"><div class=\"bar\"></div></div><div class=\"body\"><div class=\"ln\">1</div><div class=\"ln\">2</div><div class=\"ln\">3</div><div class=\"ln\">4</div><div class=\"ln\">5</div><div class=\"ln\">6</div><div class=\"ln\">7</div><div class=\"ln\">8</div><div class=\"ln\">9</div></div></div>"
+}

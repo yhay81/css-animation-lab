@@ -1,0 +1,21 @@
+@property --ring-w {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 8px;
+}
+
+@keyframes exp-mask-ring {
+  0%, 100% { --ring-w: 5px; }
+  50%      { --ring-w: 24px; }
+}
+
+[data-exp="mask-ring"] .ring {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background: conic-gradient(#7dd3fc, #a855f7, #f472b6, #7dd3fc);
+  /* 外側から --ring-w だけ残して内側を抜く。 */
+  mask: radial-gradient(farthest-side,
+    transparent calc(100% - var(--ring-w)), #000 calc(100% - var(--ring-w)));
+  animation-name: exp-mask-ring;
+}

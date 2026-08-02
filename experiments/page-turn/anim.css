@@ -1,0 +1,92 @@
+/*
+ * ページは綴じ側を軸にして、反対側から手前へ回る。
+ *
+ * 葉と「現れるページ」を同じ側に置くと、めくった葉がそのページを覆ってしまう。
+ * 現れるページは葉の下、めくり終わった葉が乗るのは反対側。
+ * つまり見開きの左右それぞれに紙があり、その上を 1 枚が渡っていく。
+ *
+ * 回すだけでは紙に見えない。角度に合わせて綴じ側の陰が濃くなり、
+ * 途中で裏面が現れることで厚みが出る。
+ */
+@keyframes exp-pt-leaf {
+  0%, 12%   { transform: rotateY(0deg); }
+  76%, 100% { transform: rotateY(-172deg); }
+}
+@keyframes exp-pt-shade {
+  0%, 12%   { opacity: 0; }
+  44%       { opacity: 0.6; }
+  76%, 100% { opacity: 0; }
+}
+
+[data-exp="page-turn"] .pt {
+  position: absolute;
+  inset: 0;
+  perspective: 700px;
+}
+[data-exp="page-turn"] .prev,
+[data-exp="page-turn"] .next,
+[data-exp="page-turn"] .leaf {
+  position: absolute;
+  top: 50%;
+  width: 64px;
+  height: 88px;
+  margin-top: -44px;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+/* 綴じの左側。めくり終わった葉が乗る面。 */
+[data-exp="page-turn"] .prev {
+  left: calc(50% - 64px);
+  border-radius: 8px 4px 4px 8px;
+  background: #aab6c6;
+}
+/* 綴じの右側。葉が去ると現れる面。 */
+[data-exp="page-turn"] .next {
+  left: 50%;
+  border-radius: 4px 8px 8px 4px;
+  background: #cbd5e1;
+  color: #334155;
+}
+
+[data-exp="page-turn"] .leaf {
+  left: 50%;
+  /* 綴じ側（左端）を軸にする。 */
+  transform-origin: 0 50%;
+  transform-style: preserve-3d;
+  animation-name: exp-pt-leaf;
+  animation-iteration-count: infinite;
+}
+[data-exp="page-turn"] .front,
+[data-exp="page-turn"] .back,
+[data-exp="page-turn"] .shade {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 4px 8px 8px 4px;
+  backface-visibility: hidden;
+}
+[data-exp="page-turn"] .front {
+  background: #f4f6ff;
+  color: #111827;
+}
+/*
+ * 裏面は rotateY(180deg) で左右が反転する。角丸をそのまま書くと、
+ * 表から裏へ切り替わる瞬間に丸みが反対側へ飛ぶ。
+ * あらかじめ反転させた値を書くことで、画面上では綴じ側が小さく外側が大きいまま保たれる。
+ */
+[data-exp="page-turn"] .back {
+  background: #e2e8f0;
+  /* 反転済み。画面では綴じ側 4px・外側 8px として見える。 */
+  border-radius: 8px 4px 4px 8px;
+  transform: rotateY(180deg);
+}
+/* 綴じ側が濃くなる陰。葉と一緒に回るので、めくれ具合に追従する。 */
+[data-exp="page-turn"] .shade {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.65), transparent 58%);
+  animation-name: exp-pt-shade;
+  animation-iteration-count: infinite;
+}

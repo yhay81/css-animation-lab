@@ -1,0 +1,26 @@
+@property --gr-a {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes exp-gradient-ring { to { --gr-a: 360deg; } }
+
+[data-exp="gradient-ring"] .gr {
+  display: grid;
+  place-items: center;
+  width: 104px;
+  height: 104px;
+  padding: 3px;
+  border-radius: 18px;
+  background: conic-gradient(from var(--gr-a), #22d3ee, #a855f7, #f472b6, #22d3ee);
+  color: #8b93b5;
+  font-weight: 700;
+  font-size: 13px;
+  /* 全体から内側（content-box）を引くと、角丸に沿った枠だけが残る。 */
+  mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  mask-clip: content-box, border-box;
+  mask-composite: exclude;
+  animation-name: exp-gradient-ring;
+  animation-iteration-count: infinite;
+}

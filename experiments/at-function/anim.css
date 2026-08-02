@@ -1,0 +1,21 @@
+@function --lift(--n <number>) returns <length> {
+  result: calc(var(--n) * -7px);
+}
+
+@keyframes exp-at-function {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 var(--up); }
+}
+
+[data-exp="at-function"] .af { display: flex; gap: 14px; align-items: center; }
+[data-exp="at-function"] .af span {
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #7dd3fc, #6366f1);
+  animation-name: exp-at-function;
+  animation-iteration-count: infinite;
+}
+[data-exp="at-function"] .a { --up: --lift(1); }
+[data-exp="at-function"] .b { --up: --lift(3); }
+[data-exp="at-function"] .c { --up: --lift(5); }

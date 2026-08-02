@@ -1,0 +1,20 @@
+{
+  "id": "segment",
+  "n": 381,
+  "title": "円形の進捗",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "conic-gradient",
+      "mask",
+      "@property <percentage>"
+    ],
+    "use": "進捗 / 達成率"
+  },
+  "predicted": "uncertain",
+  "note": "SVG を使わずに円形の進捗を作る。conic の停止位置を型付きプロパティにすることで補間でき、マスクで中を抜いてリングにする。",
+  "markup": "<div class=\"sg\"></div>"
+}

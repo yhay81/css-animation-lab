@@ -1,0 +1,18 @@
+{
+  "id": "drop-shadow-chain",
+  "n": 503,
+  "title": "形に沿って光る",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "filter: drop-shadow の多段"
+    ],
+    "use": "アイコン / 強調"
+  },
+  "predicted": "uncertain",
+  "note": "box-shadow は矩形の外周に付くが、drop-shadow は実際の不透明な形に沿う。clip-path で切った形でも輪郭どおりに光る。多段に重ねると減衰が作れる。",
+  "markup": "<div class=\"ds\"></div>"
+}

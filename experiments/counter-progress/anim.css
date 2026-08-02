@@ -1,0 +1,38 @@
+@property --pct {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@keyframes exp-counter-progress { to { --pct: 86; } }
+
+[data-exp="counter-progress"] .cp {
+  display: grid;
+  gap: 10px;
+  width: 148px;
+  animation-name: exp-counter-progress;
+  animation-duration: 900ms;
+}
+[data-exp="counter-progress"] .track {
+  height: 12px;
+  border-radius: 6px;
+  background: #26304f;
+  overflow: hidden;
+}
+[data-exp="counter-progress"] .fill {
+  /* 棒の長さも */
+  width: calc(1% * var(--pct));
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #7dd3fc, #a855f7);
+}
+[data-exp="counter-progress"] .pct {
+  counter-reset: pct var(--pct);
+  color: #e6e9f5;
+  font-size: 22px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+/* 数字も、同じ 1 つの値から。 */
+[data-exp="counter-progress"] .pct::after { content: counter(pct) "%"; }

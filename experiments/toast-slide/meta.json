@@ -1,0 +1,24 @@
+{
+  "id": "toast-slide",
+  "n": 110,
+  "title": "トースト｜横から滑り込み",
+  "layer": "L4",
+  "mode": "state",
+  "axes": {
+    "driver": [
+      "transition"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "固定"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "画面外から滑り込む。減速のみで行き過ぎない。",
+  "markup": "<div class=\"scene\"><div class=\"toast panel\"><div class=\"bar\"></div><div class=\"line s\"></div></div></div>"
+}

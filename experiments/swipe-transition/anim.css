@@ -1,0 +1,52 @@
+@keyframes exp-sw-a {
+  0%, 18%   { translate: 0 0; }
+  62%, 100% { translate: -100% 0; }
+}
+@keyframes exp-sw-b {
+  0%, 18%   { translate: 100% 0; }
+  62%, 100% { translate: 0 0; }
+}
+/*
+ * 縁は幅 5px しかないので、translate の % は 5px の何割かにしかならない。
+ * 舞台を横切らせたいなら、包む要素の幅を基準にする left を動かす。
+ */
+/*
+ * 縁は幅 5px しかないので、translate の % は 5px の何割かにしかならない。
+ * 舞台を横切らせたいなら、包む要素の幅を基準にする left を動かす。
+ * 先行させるのは「押している」印象のためだが、4% 先行させると 22px 離れて浮く。
+ * 1% にとどめると境目に貼り付いたまま少し先を行く。
+ */
+@keyframes exp-sw-edge {
+  0%, 17%   { left: 100%; }
+  61%, 100% { left: -1%; }
+}
+
+[data-exp="swipe-transition"] .sw {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+[data-exp="swipe-transition"] .a,
+[data-exp="swipe-transition"] .b {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 34px;
+  font-weight: 900;
+  animation-iteration-count: infinite;
+}
+[data-exp="swipe-transition"] .a { background: linear-gradient(135deg, #6366f1, #a855f7); animation-name: exp-sw-a; }
+[data-exp="swipe-transition"] .b { background: linear-gradient(135deg, #0ea5e9, #34d399); animation-name: exp-sw-b; }
+/* 面より少し早く着く縁。これが「押している」印象を作る。 */
+[data-exp="swipe-transition"] .edge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: 5px;
+  background: #fbbf24;
+  animation-name: exp-sw-edge;
+  animation-iteration-count: infinite;
+}

@@ -1,0 +1,16 @@
+[data-exp="field-grow"] .fg { display: grid; place-items: center; }
+[data-exp="field-grow"] input {
+  /* 内容に合わせて自分で伸びる。計測用の隠し要素が要らない。 */
+  field-sizing: content;
+  min-width: 44px;
+  max-width: 170px;
+  padding: 8px 10px;
+  border: 1px solid #3d4a78;
+  border-radius: 8px;
+  background: #151a2e;
+  color: #e6e9f5;
+  font: inherit;
+  font-size: 13px;
+  transition: width 220ms cubic-bezier(0.22, 1, 0.36, 1), border-color 200ms;
+}
+[data-exp="field-grow"] input:focus { outline: none; border-color: #7dd3fc; }

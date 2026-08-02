@@ -1,0 +1,19 @@
+{
+  "id": "blob",
+  "n": 208,
+  "title": "輪郭のゆらぎ",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "border-radius 8値",
+      "非一様 scale"
+    ],
+    "use": "装飾 / 空状態のイラスト代わり"
+  },
+  "predicted": "uncertain",
+  "note": "border-radius の 8 つの値を別々に動かす。回転を混ぜると中身ごと回って固体に見えるため、回さずに輪郭だけを変形させる。ただしこれ単体では「柔らかい塊」止まりで、液体には見えない。液体感には gooey の融合が要る。",
+  "markup": "<div class=\"blob\"></div>"
+}

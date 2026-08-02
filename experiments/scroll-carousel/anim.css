@@ -1,0 +1,44 @@
+[data-exp="scroll-carousel"] .car {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  gap: 10px;
+  padding: 14px 14px 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  /* 位置の印をまとめて後ろに出す。 */
+  scroll-marker-group: after;
+}
+[data-exp="scroll-carousel"] .it {
+  flex: 0 0 72%;
+  display: grid;
+  place-items: center;
+  height: 84px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7dd3fc, #6366f1);
+  color: #fff;
+  font-weight: 800;
+  scroll-snap-align: center;
+}
+
+[data-exp="scroll-carousel"] .car::scroll-marker-group {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 0;
+}
+[data-exp="scroll-carousel"] .it::scroll-marker {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: #33406e;
+  transition: width 240ms cubic-bezier(0.22, 1, 0.36, 1), background 240ms;
+}
+/* 今見ているものだけが伸びる。 */
+[data-exp="scroll-carousel"] .it::scroll-marker:target-current {
+  width: 22px;
+  background: #7dd3fc;
+}

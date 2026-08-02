@@ -1,0 +1,65 @@
+/*
+ * 線と点を別の座標系に置くと必ずずれる。同じ SVG の中に入れて 1 つにする。
+ * 伸縮（preserveAspectRatio: none）も要らなくなるので、線の太さも揃う。
+ *
+ * pathLength での正規化は non-scaling-stroke と併用すると効かない。
+ * 破線の長さがデバイス座標で解釈され、実長さ 153・画面上 296px に対して
+ * dasharray 100px となり、線の 3 分の 1 しか描けなくなっていた。
+ *
+ * 遅らせる動きは、最後の変化を早く終わらせないと 1 周に収まらない。
+ * 40% で「通過済み」に落ち着かせ、以後は動かさない。最も遅い点でも 300 + 400 = 700ms。
+ * 線が 360ms で引き終わり、最後の点が光り始めるのが 380ms。この前後関係が崩れると視線が飛ぶ。
+ */
+@keyframes exp-ep-line {
+  0%        { stroke-dashoffset: 100; }
+  36%, 100% { stroke-dashoffset: 0; }
+}
+@keyframes exp-ep-pt {
+  0%        { scale: 0.8;  fill: #26304f; }
+  8%, 26%   { scale: 1.25; fill: #7dd3fc; }
+  40%, 100% { scale: 0.9;  fill: #33406e; }
+}
+@keyframes exp-ep-tx {
+  0%        { fill: #8b93b5; }
+  8%, 26%   { fill: #0b1020; }
+  40%, 100% { fill: #cbd5e1; }
+}
+
+[data-exp="eye-path"] .ep {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+[data-exp="eye-path"] svg {
+  width: 100%;
+  height: 100%;
+}
+[data-exp="eye-path"] .ln {
+  fill: none;
+  stroke: #7dd3fc;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  animation-name: exp-ep-line;
+  animation-iteration-count: infinite;
+}
+[data-exp="eye-path"] .pt circle {
+  /* 拡縮の中心を点そのものに置く。既定では viewBox の原点が中心になる。 */
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-name: exp-ep-pt;
+  animation-iteration-count: infinite;
+}
+[data-exp="eye-path"] .pt text {
+  text-anchor: middle;
+  font-size: 9px;
+  font-weight: 800;
+  animation-name: exp-ep-tx;
+  animation-iteration-count: infinite;
+}
+[data-exp="eye-path"] .p1 * { animation-delay: 0ms; }
+[data-exp="eye-path"] .p2 * { animation-delay: 100ms; }
+[data-exp="eye-path"] .p3 * { animation-delay: 200ms; }
+[data-exp="eye-path"] .p4 * { animation-delay: 300ms; }

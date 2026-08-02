@@ -1,0 +1,23 @@
+{
+  "id": "list-grid",
+  "n": 120,
+  "title": "リスト追加｜grid で高さを開く",
+  "layer": "L4",
+  "mode": "state",
+  "axes": {
+    "driver": [
+      "transition"
+    ],
+    "target": [
+      "grid-template-rows"
+    ],
+    "timing": [
+      "固定"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "good",
+  "note": "高さ auto へは遷移できないという長年の制約を、grid-template-rows の 0fr → 1fr で回避する型。対応範囲が広い。",
+  "markup": "<div class=\"scene list\"><div class=\"row\"><div class=\"line\"></div></div><div class=\"ins\"><div class=\"inner\"><div class=\"line hi\"></div></div></div><div class=\"row\"><div class=\"line\"></div></div></div>"
+}

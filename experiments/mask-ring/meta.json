@@ -1,0 +1,20 @@
+{
+  "id": "mask-ring",
+  "n": 300,
+  "title": "輪の太さを動かす",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "mask",
+      "radial-gradient",
+      "@property <length>"
+    ],
+    "use": "進捗リング / 呼吸するインジケータ"
+  },
+  "predicted": "uncertain",
+  "note": "border を使わずにマスクで輪を切り出す。太さが数値なので補間でき、内側の余白も自動で追従する。border-width では色の下地が別扱いになるためこうはいかない。",
+  "markup": "<div class=\"ring\"></div>"
+}

@@ -1,0 +1,8 @@
+@keyframes exp-stagger-index { from { opacity: 0; translate: 0 20px; } to { opacity: 1; translate: 0 0; } }
+
+/* 対応していない環境では calc() 全体が無効になり、遅延なし（＝全部同時）になる。 */
+[data-exp="stagger-index"] .subject {
+  animation-name: exp-stagger-index;
+  animation-duration: 520ms;
+  animation-delay: calc((sibling-index() - 1) * 110ms);
+}

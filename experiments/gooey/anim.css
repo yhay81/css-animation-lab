@@ -1,0 +1,30 @@
+@keyframes exp-gooey {
+  0%   { translate: 0 0; }
+  25%  { translate: 40px -16px; }
+  50%  { translate: 0 -32px; }
+  75%  { translate: -40px -16px; }
+  100% { translate: 0 0; }
+}
+
+[data-exp="gooey"] .goo {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #0e132a;
+  /* ぼかし → 高コントラスト。この2段でしきい値処理になり、境界が融合する。 */
+  filter: blur(9px) contrast(24);
+}
+[data-exp="gooey"] .goo span {
+  grid-area: 1 / 1;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #7dd3fc;
+  animation-name: exp-gooey;
+  /* 負の遅延で位相だけをずらす。要素ごとに書かず sibling-index() で済ませる。 */
+  animation-delay: calc((sibling-index() - 1) * -333ms);
+  /* 負の遅延で位相をずらす場合、繰り返しが 1 回だと先行した要素から順に終端で止まり、
+     閉じた動きでは全員が同じ位置へ溜まってしまう。位相を回し続けるには infinite が要る。 */
+  animation-iteration-count: infinite;
+}

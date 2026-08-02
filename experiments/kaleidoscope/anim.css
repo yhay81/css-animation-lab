@@ -1,0 +1,55 @@
+@keyframes exp-kaleidoscope {
+  0%, 100% { rotate: 0deg;  background-position: 0 0; }
+  50%      { rotate: 30deg; background-position: 26px 14px; }
+}
+
+[data-exp="kaleidoscope"] .kl {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #05070f;
+}
+[data-exp="kaleidoscope"] .kl span {
+  clip-path: polygon(50% 50%, 50.0% -40.0%, 73.3% -36.9%, 95.0% -27.9%);
+  /* 入れ物より大きいので place-items: center は効かない（F029）。
+     負の margin で中心を出す。translate は使わない。 */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 190px;
+  height: 190px;
+  margin: -95px 0 0 -95px;
+  /* 透明の多い模様だけだと、区画のほとんどが下地の黒に沈む。
+     最後に不透明な層を敷いて、どの区画も必ず色を持つようにする。 */
+  background:
+    radial-gradient(circle at 30% 24%, #f472b6 0 12%, transparent 14%),
+    radial-gradient(circle at 62% 44%, #22d3ee 0 9%, transparent 11%),
+    linear-gradient(118deg, #6366f1 0 26%, transparent 26% 54%, #fbbf24 54% 66%, transparent 66%),
+    linear-gradient(58deg, #1e1b4b 0 38%, #312e81 38% 72%, #4c1d95 72%);
+  background-size: 96px 96px;
+  animation-name: exp-kaleidoscope;
+  animation-iteration-count: infinite;
+}
+/*
+ * 楔形は全員共通。区画の角度は transform で与える。
+ *
+ * 個別プロパティの rotate はキーフレームが動かしているため、そちらに静的な角度を
+ * 書くと毎回上書きされて 0deg になる。transform は別枠なので共存できる。
+ *
+ * 反転した楔は局所で [-30deg, 0] を占めるので、1 区画ぶん余計に回して隣へ送る。
+ * transform 関数は右から適用されるため、鏡映してから回す順で書く。
+ */
+[data-exp="kaleidoscope"] .kl span:nth-child(1) { transform: rotate(0deg); }
+[data-exp="kaleidoscope"] .kl span:nth-child(2) { transform: rotate(60deg) scaleX(-1); }
+[data-exp="kaleidoscope"] .kl span:nth-child(3) { transform: rotate(60deg); }
+[data-exp="kaleidoscope"] .kl span:nth-child(4) { transform: rotate(120deg) scaleX(-1); }
+[data-exp="kaleidoscope"] .kl span:nth-child(5) { transform: rotate(120deg); }
+[data-exp="kaleidoscope"] .kl span:nth-child(6) { transform: rotate(180deg) scaleX(-1); }
+[data-exp="kaleidoscope"] .kl span:nth-child(7) { transform: rotate(180deg); }
+[data-exp="kaleidoscope"] .kl span:nth-child(8) { transform: rotate(240deg) scaleX(-1); }
+[data-exp="kaleidoscope"] .kl span:nth-child(9) { transform: rotate(240deg); }
+[data-exp="kaleidoscope"] .kl span:nth-child(10) { transform: rotate(300deg) scaleX(-1); }
+[data-exp="kaleidoscope"] .kl span:nth-child(11) { transform: rotate(300deg); }
+[data-exp="kaleidoscope"] .kl span:nth-child(12) { transform: rotate(360deg) scaleX(-1); }

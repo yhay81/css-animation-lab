@@ -1,0 +1,19 @@
+{
+  "id": "field-grow",
+  "n": 710,
+  "title": "入力欄が内容に合わせて伸びる",
+  "layer": "T",
+  "mode": "interactive",
+  "axes": {
+    "driver": [
+      "操作"
+    ],
+    "technique": [
+      "field-sizing: content"
+    ],
+    "use": "タグ入力 / 検索"
+  },
+  "predicted": "uncertain",
+  "note": "文字を打つと幅が変わる。これまで幅の追従は隠し要素で計測するしかなかった。遷移を付けると伸縮が滑らかになるかも確かめる。",
+  "markup": "<div class=\"fg\"><input type=\"text\" value=\"入力\" size=\"1\"></div>"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "marker-anim",
+  "n": 606,
+  "title": "::marker は動かせない（回避あり）",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "::marker",
+      "::before での置き換え",
+      "sibling-index()"
+    ],
+    "use": "リストの読み込み / 手順"
+  },
+  "predicted": "bad",
+  "note": "左は ::marker に animation-name を当てたもの。計算値としては適用されるのにアニメーションは生成されず、色は止まったまま。右は list-style: none にして ::before を自前で置いたもので、こちらは動く。標準のマーカーを動かしたいなら置き換えるしかない、という記録。",
+  "markup": "<div class=\"mk\"><ul class=\"native\"><li>::marker</li><li>を</li><li>動かす</li></ul><ul class=\"pseudo\"><li>::before</li><li>で</li><li>置き換え</li></ul></div>"
+}

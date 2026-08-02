@@ -1,0 +1,19 @@
+{
+  "id": "flip-3d",
+  "n": 207,
+  "title": "カードの裏返し",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "preserve-3d",
+      "backface-visibility"
+    ],
+    "use": "統計の切り替え / 表裏のある情報"
+  },
+  "predicted": "uncertain",
+  "note": "裏面を非表示にした 2 枚を背中合わせにして親を回す。1 要素では作れない、構造で作る動き。",
+  "markup": "<div class=\"flip\"><div class=\"face front\">表</div><div class=\"face back\">裏</div></div>"
+}

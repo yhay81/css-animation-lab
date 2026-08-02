@@ -1,0 +1,20 @@
+{
+  "id": "has-toggle",
+  "n": 403,
+  "title": ":has() で親ごと切り替える",
+  "layer": "T",
+  "mode": "interactive",
+  "axes": {
+    "driver": [
+      "操作"
+    ],
+    "technique": [
+      ":has()",
+      "transition"
+    ],
+    "use": "設定カード / 選択状態"
+  },
+  "predicted": "uncertain",
+  "note": "クリックして切り替える。子の状態を親が拾えるので、JS なしでカード全体の見た目を変えられる。:has() 以前は親を変えるのに必ずスクリプトが要った。",
+  "markup": "<div class=\"card\"><label class=\"sw\"><input type=\"checkbox\"><span class=\"track\"><span class=\"knob\"></span></span></label><div class=\"ln\"></div><div class=\"ln s\"></div></div>"
+}

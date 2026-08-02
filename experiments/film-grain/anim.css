@@ -1,0 +1,50 @@
+@keyframes exp-fg-grain {
+  0%   { translate: 0 0; }
+  20%  { translate: -7px 4px; }
+  40%  { translate: 5px -6px; }
+  60%  { translate: -4px -3px; }
+  80%  { translate: 6px 5px; }
+  100% { translate: 0 0; }
+}
+@keyframes exp-fg-flick {
+  0%, 100% { opacity: 0.06; }
+  30%      { opacity: 0.16; }
+  55%      { opacity: 0.03; }
+  75%      { opacity: 0.12; }
+}
+
+[data-exp="film-grain"] .fg {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: linear-gradient(150deg, #44403c, #1c1917);
+}
+[data-exp="film-grain"] .pic {
+  color: #e7e5e4;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+[data-exp="film-grain"] .grain {
+  position: absolute;
+  /* 動かすぶんだけ外へ広げておく。 */
+  inset: -12px;
+  /* feTurbulence の出力は色つきの雑音なので、灰色に落としてから重ねる。
+     overlay だと中間調どうしで相殺されて粒が見えない。 */
+  filter: url(#fg-n) grayscale(1) contrast(2.2);
+  opacity: 0.5;
+  mix-blend-mode: screen;
+  animation-name: exp-fg-grain;
+  animation-timing-function: steps(1, end);
+  animation-iteration-count: infinite;
+}
+[data-exp="film-grain"] .flick {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  animation-name: exp-fg-flick;
+  animation-timing-function: steps(1, end);
+  animation-iteration-count: infinite;
+}

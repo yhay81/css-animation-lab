@@ -1,0 +1,19 @@
+{
+  "id": "dot-wave",
+  "n": 432,
+  "title": "格子を渡る波",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "sibling-index()",
+      "負の遅延"
+    ],
+    "use": "待機中 / 装飾"
+  },
+  "predicted": "uncertain",
+  "note": "36 個の遅延を並び順から作ると、行をまたいで斜めの波になる。遅延の係数を変えるだけで波の向きと細かさが変わる。",
+  "markup": "<div class=\"dw\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+}

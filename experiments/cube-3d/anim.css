@@ -1,0 +1,31 @@
+@keyframes exp-cube-3d {
+  from { transform: rotateX(-22deg) rotateY(0deg); }
+  to   { transform: rotateX(-22deg) rotateY(360deg); }
+}
+
+[data-exp="cube-3d"] .stage { perspective: 620px; }
+
+[data-exp="cube-3d"] .cube {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  transform-style: preserve-3d;
+  animation-name: exp-cube-3d;
+  animation-iteration-count: infinite;
+}
+[data-exp="cube-3d"] .f {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+}
+[data-exp="cube-3d"] .f:nth-child(1) { transform: translateZ(34px);                background: rgba(125, 211, 252, 0.8); }
+[data-exp="cube-3d"] .f:nth-child(2) { transform: rotateY(90deg) translateZ(34px);  background: rgba(99, 102, 241, 0.8); }
+[data-exp="cube-3d"] .f:nth-child(3) { transform: rotateY(180deg) translateZ(34px); background: rgba(168, 85, 247, 0.8); }
+[data-exp="cube-3d"] .f:nth-child(4) { transform: rotateY(-90deg) translateZ(34px); background: rgba(244, 114, 182, 0.8); }
+[data-exp="cube-3d"] .f:nth-child(5) { transform: rotateX(90deg) translateZ(34px);  background: rgba(34, 211, 238, 0.8); }
+[data-exp="cube-3d"] .f:nth-child(6) { transform: rotateX(-90deg) translateZ(34px); background: rgba(56, 189, 248, 0.8); }

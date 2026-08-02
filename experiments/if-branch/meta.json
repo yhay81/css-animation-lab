@@ -1,0 +1,20 @@
+{
+  "id": "if-branch",
+  "n": 704,
+  "title": "条件で値を切り替える",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "if()",
+      "@property <integer>",
+      "steps"
+    ],
+    "use": "状態に応じた見た目"
+  },
+  "predicted": "uncertain",
+  "note": "型付きプロパティを steps で刻んで動かし、その値で分岐する。キーフレームに色を並べる代わりに、値の意味と見た目の対応を 1 か所にまとめられる。",
+  "markup": "<div class=\"ib\"></div>"
+}

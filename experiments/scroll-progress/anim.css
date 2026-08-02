@@ -1,0 +1,39 @@
+@keyframes exp-scroll-progress {
+  from { scale: 0 1; }
+  to   { scale: 1 1; }
+}
+
+[data-exp="scroll-progress"] .sp {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+[data-exp="scroll-progress"] .track {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  height: 6px;
+  background: #26304f;
+}
+[data-exp="scroll-progress"] .bar {
+  height: 100%;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, #7dd3fc, #a855f7);
+  animation-name: exp-scroll-progress;
+  /* 最も近いスクロール領域の進み具合が、そのまま時間軸になる。 */
+  animation-timeline: scroll(nearest);
+  animation-duration: auto;
+  animation-play-state: running;
+}
+[data-exp="scroll-progress"] .body { padding: 10px 18px 20px; }
+[data-exp="scroll-progress"] .ln {
+  display: grid;
+  place-items: center;
+  height: 34px;
+  margin-top: 8px;
+  border-radius: 8px;
+  background: #26304f;
+  color: #8b93b5;
+  font-size: 12px;
+}

@@ -1,0 +1,22 @@
+/*
+ * 複製 4 枚に対して 1 枚ぶん（= 25%）動かす。
+ * 枚数が足りないと、1 周期動いた時点で末尾が表示窓に届かず右端に空白が出る。
+ * 必要条件は「複製の総幅 − 1 周期 ≧ コンテナ幅」。2 枚では満たせない。
+ */
+@keyframes exp-marquee { to { translate: -25% 0; } }
+
+[data-exp="marquee"] .mq {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  overflow: hidden;
+}
+[data-exp="marquee"] .mq-in {
+  display: flex;
+  width: max-content;
+  font-size: 15px;
+  font-weight: 700;
+  color: #7dd3fc;
+  animation-name: exp-marquee;
+}

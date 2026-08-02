@@ -1,0 +1,19 @@
+{
+  "id": "checker-flip",
+  "n": 435,
+  "title": "面が順に裏返る",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "preserve-3d",
+      "sibling-index()"
+    ],
+    "use": "切替 / 読み込み完了"
+  },
+  "predicted": "uncertain",
+  "note": "16 枚のタイルを並び順の遅延で裏返す。裏面を別の色にしておくと、面が波のように入れ替わって見える。",
+  "markup": "<div class=\"cf\"><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span></div>"
+}

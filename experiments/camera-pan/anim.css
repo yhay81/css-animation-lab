@@ -1,0 +1,57 @@
+@keyframes exp-camera-pan {
+  0%, 10%   { translate: 0 0; }
+  26%, 38%  { translate: -76px 0; }
+  54%, 66%  { translate: -152px 0; }
+  82%, 94%  { translate: -228px 0; }
+  100%      { translate: 0 0; }
+}
+
+[data-exp="camera-pan"] .cp {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+[data-exp="camera-pan"] .world {
+  /*
+   * 帯は舞台より広いので、格子の中央寄せは効かず左端に張り付く（F029）。
+   * 1 面目が枠の中心に来る位置に絶対配置してから送る。
+   */
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 30px);
+  /*
+   * 縦の中央寄せに translate を使うと、キーフレームが translate を占有するため無視される。
+   * 動かすプロパティと配置のプロパティは分ける。半分ぶんの負の margin なら衝突しない。
+   */
+  margin-top: -30px;
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation-name: exp-camera-pan;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+  animation-iteration-count: infinite;
+}
+[data-exp="camera-pan"] .s {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 800;
+}
+[data-exp="camera-pan"] .s1 { background: linear-gradient(135deg, #7dd3fc, #6366f1); }
+[data-exp="camera-pan"] .s2 { background: linear-gradient(135deg, #f472b6, #a855f7); }
+[data-exp="camera-pan"] .s3 { background: linear-gradient(135deg, #fbbf24, #f43f5e); }
+[data-exp="camera-pan"] .s4 { background: linear-gradient(135deg, #34d399, #0ea5e9); }
+[data-exp="camera-pan"] .frame {
+  position: absolute;
+  width: 68px;
+  height: 68px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 14px;
+  pointer-events: none;
+}

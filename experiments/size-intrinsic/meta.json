@@ -1,0 +1,19 @@
+{
+  "id": "size-intrinsic",
+  "n": 714,
+  "title": "内容の幅へ遷移する",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "interpolate-size",
+      "max-content"
+    ],
+    "use": "チップ / 折りたたみラベル"
+  },
+  "predicted": "uncertain",
+  "note": "幅を max-content へ遷移させる。中身の量に合わせて開く動きが、文字数を測らずに書ける。閉じた状態は 0 ではなく丸のまま残す。",
+  "markup": "<div class=\"si\"><span class=\"chip\"><b>●</b><i>詳しく見る</i></span></div>"
+}

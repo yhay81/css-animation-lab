@@ -1,0 +1,29 @@
+@keyframes exp-screentone {
+  0%, 100% { background-size: 7px 7px;  opacity: 0.5; }
+  50%      { background-size: 13px 13px; opacity: 1; }
+}
+
+[data-exp="screentone"] .sc {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #f4f6ff;
+}
+[data-exp="screentone"] .tone {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 50% 50%, #111827 0 42%, transparent 44%);
+  animation-name: exp-screentone;
+  animation-iteration-count: infinite;
+}
+[data-exp="screentone"] .txt {
+  position: relative;
+  color: #111827;
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  mix-blend-mode: difference;
+  filter: invert(1);
+}

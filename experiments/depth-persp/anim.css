@@ -1,0 +1,12 @@
+@keyframes exp-depth-persp-out {
+  from { translate: 0 34px; rotate: x -14deg; }
+  to   { translate: 0 0;    rotate: x 0deg; }
+}
+@keyframes exp-depth-persp-in { from { translate: 0 -16px; } to { translate: 0 0; } }
+
+[data-exp="depth-persp"] .stage { perspective: 620px; }
+[data-exp="depth-persp"] .subject { animation-name: exp-depth-persp-out; }
+[data-exp="depth-persp"] .label {
+  display: inline-block;
+  animation-name: exp-depth-persp-in;
+}

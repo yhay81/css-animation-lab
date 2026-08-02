@@ -1,0 +1,16 @@
+@keyframes exp-svg-draw {
+  0%        { stroke-dashoffset: 100; }
+  70%, 100% { stroke-dashoffset: 0; }
+}
+
+[data-exp="svg-draw"] .dr { width: 132px; }
+[data-exp="svg-draw"] path {
+  fill: none;
+  stroke: #7dd3fc;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* pathLength で正規化してあるので 100 が全長になる。 */
+  stroke-dasharray: 100;
+  animation-name: exp-svg-draw;
+}

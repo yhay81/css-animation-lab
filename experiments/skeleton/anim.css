@@ -1,0 +1,20 @@
+@keyframes exp-skeleton { to { background-position: -160% 0; } }
+
+[data-exp="skeleton"] .sk {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 24px;
+}
+[data-exp="skeleton"] .ln {
+  height: 11px;
+  border-radius: 6px;
+  background: linear-gradient(100deg, #232c4f 0 40%, #46538a 50%, #232c4f 60% 100%);
+  background-size: 260% 100%;
+  background-position: 100% 0;
+  animation-name: exp-skeleton;
+}
+[data-exp="skeleton"] .ln.s { width: 58%; }

@@ -1,0 +1,20 @@
+{
+  "id": "tilt-shift",
+  "n": 1209,
+  "title": "ミニチュアに見せる",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "実写",
+    "technique": [
+      "帯状のマスク",
+      "ぼかした複製の重ね"
+    ],
+    "use": "俯瞰の図 / 地図"
+  },
+  "predicted": "uncertain",
+  "note": "実物大の風景でも、ピントの合う範囲を細い帯に狭めると模型に見える。人の目は「被写界深度が浅い＝対象が小さい」と解釈するため。帯を動かすと、どこが模型の主役かが変わる。",
+  "markup": "<div class=\"ts\"><div class=\"scene\"><span class=\"b b1\"></span><span class=\"b b2\"></span><span class=\"b b3\"></span><span class=\"b b4\"></span><span class=\"b b5\"></span><span class=\"b b6\"></span><span class=\"b b7\"></span><span class=\"b b8\"></span><span class=\"b b9\"></span></div><div class=\"scene blur\"><span class=\"b b1\"></span><span class=\"b b2\"></span><span class=\"b b3\"></span><span class=\"b b4\"></span><span class=\"b b5\"></span><span class=\"b b6\"></span><span class=\"b b7\"></span><span class=\"b b8\"></span><span class=\"b b9\"></span></div></div>"
+}

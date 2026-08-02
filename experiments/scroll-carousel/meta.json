@@ -1,0 +1,21 @@
+{
+  "id": "scroll-carousel",
+  "n": 800,
+  "title": "CSS だけのカルーセル",
+  "layer": "T",
+  "mode": "scroll",
+  "axes": {
+    "driver": [
+      "scroll-timeline"
+    ],
+    "technique": [
+      "::scroll-marker",
+      "::scroll-button()",
+      ":target-current"
+    ],
+    "use": "画像 / 商品の横送り"
+  },
+  "predicted": "uncertain",
+  "note": "横にスクロールする。現在位置の印も送りボタンも、要素を置かずに擬似要素として出てくる。今どれを見ているかを :target-current が知っているので、状態管理が要らない。",
+  "markup": "<div class=\"car\"><div class=\"it\">1</div><div class=\"it\">2</div><div class=\"it\">3</div><div class=\"it\">4</div><div class=\"it\">5</div></div>"
+}

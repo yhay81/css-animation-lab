@@ -1,0 +1,19 @@
+{
+  "id": "map-zoom",
+  "n": 1110,
+  "title": "寄ると細部が出る",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "モーショングラフィックス",
+    "technique": [
+      "尺度に連動した表示切替"
+    ],
+    "use": "地図 / 図解 / 階層のある情報"
+  },
+  "predicted": "uncertain",
+  "note": "地図の拡大では、寄ったときに情報が増える。ただ大きくするだけでは引き伸ばした絵にしかならない。尺度に応じて別の層が現れることで、初めて「近づいた」になる。",
+  "markup": "<div class=\"mz\"><span class=\"grid\"></span><span class=\"road\"></span><span class=\"pin\"></span><span class=\"label\">中央区</span></div>"
+}

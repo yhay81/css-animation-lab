@@ -1,0 +1,34 @@
+[data-exp="popover-anim"] .pw { display: grid; place-items: center; }
+[data-exp="popover-anim"] button {
+  anchor-name: --pa-btn;
+  padding: 7px 14px;
+  border: 1px solid #3d4a78;
+  border-radius: 8px;
+  background: #26304f;
+  color: #e6e9f5;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+[data-exp="popover-anim"] [popover] {
+  position-anchor: --pa-btn;
+  position-area: block-end;
+  margin: 8px 0 0;
+  width: 140px;
+  padding: 12px;
+  border: 1px solid #3d4a78;
+  border-radius: 10px;
+  background: #1b2340;
+  opacity: 0;
+  scale: 0.92;
+  /* display だけでなく overlay も繋がないと、閉じるときに即座に消える。 */
+  transition:
+    opacity 200ms,
+    scale 200ms,
+    display 200ms allow-discrete,
+    overlay 200ms allow-discrete;
+}
+[data-exp="popover-anim"] [popover]:popover-open { opacity: 1; scale: 1; }
+@starting-style {
+  [data-exp="popover-anim"] [popover]:popover-open { opacity: 0; scale: 0.92; }
+}

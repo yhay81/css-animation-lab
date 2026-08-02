@@ -1,0 +1,35 @@
+@keyframes exp-bloom {
+  0%, 100% { opacity: 0.35; scale: 1;    filter: blur(7px); }
+  50%      { opacity: 0.95; scale: 1.08; filter: blur(13px); }
+}
+@keyframes exp-bloom-src {
+  0%, 100% { color: #bae6fd; }
+  50%      { color: #ffffff; }
+}
+
+[data-exp="bloom"] .bl {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #05070f;
+  isolation: isolate;
+}
+[data-exp="bloom"] .src,
+[data-exp="bloom"] .halo {
+  grid-area: 1 / 1;
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  animation-iteration-count: infinite;
+}
+[data-exp="bloom"] .src {
+  color: #bae6fd;
+  animation-name: exp-bloom-src;
+}
+/* ぼかすのは複製のほう。元の字形は保たれる。 */
+[data-exp="bloom"] .halo {
+  color: #38bdf8;
+  mix-blend-mode: plus-lighter;
+  animation-name: exp-bloom;
+}

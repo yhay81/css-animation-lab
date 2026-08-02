@@ -1,0 +1,18 @@
+{
+  "id": "shadow-dots",
+  "n": 332,
+  "title": "1 要素から 5 つの点",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "多重 box-shadow"
+    ],
+    "use": "ローディング / 装飾"
+  },
+  "predicted": "uncertain",
+  "note": "影は要素の一部なので、親を回せば影も一緒に回る。5 個の点を 1 要素で作れるうえ、まとめて変形できる。",
+  "markup": "<div class=\"sd\"></div>"
+}

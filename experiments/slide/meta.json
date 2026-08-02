@@ -1,0 +1,21 @@
+{
+  "id": "slide",
+  "n": 3,
+  "title": "横から",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "translate"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "good",
+  "note": "rise との違いは軸だけ。方向が意味を持つ場面（ナビ、カルーセル）専用と考えるべきか要検証。"
+}

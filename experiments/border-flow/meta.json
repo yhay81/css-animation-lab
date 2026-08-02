@@ -1,0 +1,19 @@
+{
+  "id": "border-flow",
+  "n": 433,
+  "title": "縁が流れる（border-image）",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "border-image",
+      "conic-gradient"
+    ],
+    "use": "強調 / 処理中"
+  },
+  "predicted": "uncertain",
+  "note": "border-image にグラデーションを流す書き方。ただし border-image は border-radius を無視するため角が立つ。角丸で同じことをしたいなら padding と背景で作る conic-ring の方式になる。制約が選択を決める例。",
+  "markup": "<div class=\"bf\">Aa</div>"
+}

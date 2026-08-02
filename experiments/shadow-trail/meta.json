@@ -1,0 +1,17 @@
+{
+  "id": "shadow-trail",
+  "n": 204,
+  "title": "影で作る残像",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "多重 box-shadow"
+    ],
+    "use": "素早い移動の強調 / ドラッグ"
+  },
+  "predicted": "uncertain",
+  "note": "要素は 1 つのまま、影を複数重ねて進行方向の反対側に置く。追加要素なしで残像が出る。"
+}

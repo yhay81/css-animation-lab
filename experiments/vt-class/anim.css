@@ -1,0 +1,35 @@
+[data-exp="vt-class"] .vc {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+[data-exp="vt-class"] .t {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #7dd3fc, #6366f1);
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  /* 名前は個別。規則はクラスで共有。 */
+  view-transition-class: vtc;
+}
+[data-exp="vt-class"] .t1 { view-transition-name: vtc-1; }
+[data-exp="vt-class"] .t2 { view-transition-name: vtc-2; }
+[data-exp="vt-class"] .t3 { view-transition-name: vtc-3; }
+[data-exp="vt-class"] .t4 { view-transition-name: vtc-4; }
+
+[data-exp="vt-class"][data-open="true"] .vc { flex-direction: row-reverse; }
+[data-exp="vt-class"][data-open="true"] .t2 { width: 58px; }
+[data-exp="vt-class"][data-open="true"] .t4 { width: 58px; }
+
+::view-transition-group(.vtc) {
+  animation-duration: 420ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}

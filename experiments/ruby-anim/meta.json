@@ -1,0 +1,19 @@
+{
+  "id": "ruby-anim",
+  "n": 807,
+  "title": "ふりがなが遅れて出る",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "ruby",
+      "sibling-index()"
+    ],
+    "use": "日本語の読み補助"
+  },
+  "predicted": "uncertain",
+  "note": "ふりがなを本文より遅らせて出す。本文は最初から読めるので読み始めを妨げず、読みが必要な人には後から届く。ルビを動かした例をほとんど見ない。",
+  "markup": "<div class=\"rb\"><ruby>漢<rt>かん</rt></ruby><ruby>字<rt>じ</rt></ruby><ruby>練<rt>れん</rt></ruby><ruby>習<rt>しゅう</rt></ruby></div>"
+}

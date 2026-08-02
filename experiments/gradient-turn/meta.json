@@ -1,0 +1,22 @@
+{
+  "id": "gradient-turn",
+  "n": 12,
+  "title": "グラデ回転",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "background",
+      "@property"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "@property で <angle> を補間。CSS だけで動く背景が作れる代表例。ただし常時再描画なので負荷は高いはず。"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "offset-rotate",
+  "n": 504,
+  "title": "進行方向を向くかどうか",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "offset-rotate"
+    ],
+    "use": "軌道上のアイコン / 矢印"
+  },
+  "predicted": "uncertain",
+  "note": "上は offset-rotate: auto で経路の接線を向き、下は 0deg で向きを保つ。同じ経路でも意味が変わる。乗り物なら auto、ラベルなら固定。",
+  "markup": "<div class=\"or\"><span class=\"auto\">▲</span><span class=\"fixed\">▲</span></div>"
+}

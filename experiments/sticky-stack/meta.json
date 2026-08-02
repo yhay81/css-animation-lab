@@ -1,0 +1,21 @@
+{
+  "id": "sticky-stack",
+  "n": 808,
+  "title": "見出しが積み上がる",
+  "layer": "T",
+  "mode": "scroll",
+  "axes": {
+    "driver": [
+      "scroll-timeline"
+    ],
+    "technique": [
+      "複数の sticky",
+      "共通の親",
+      "scroll-state(stuck)"
+    ],
+    "use": "長い文書 / 表"
+  },
+  "predicted": "uncertain",
+  "note": "それぞれの見出しが順に上へ貼り付いて重なる。見出しを節ごとの入れ物に入れると、その節が過ぎた時点で一緒に流れ去ってしまい積み上がらない。スクロール領域の直下に並べて初めて全部が残る。",
+  "markup": "<div class=\"st\"><div class=\"hd\"><div class=\"in\">節 1</div></div><div class=\"ln\">1-1</div><div class=\"ln\">1-2</div><div class=\"ln\">1-3</div><div class=\"hd\"><div class=\"in\">節 2</div></div><div class=\"ln\">2-1</div><div class=\"ln\">2-2</div><div class=\"ln\">2-3</div><div class=\"hd\"><div class=\"in\">節 3</div></div><div class=\"ln\">3-1</div><div class=\"ln\">3-2</div><div class=\"ln\">3-3</div></div>"
+}

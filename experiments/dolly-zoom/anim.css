@@ -1,0 +1,40 @@
+@keyframes exp-dolly-bg {
+  0%, 100% { scale: 1;    filter: brightness(1); }
+  50%      { scale: 2.05; filter: brightness(0.72); }
+}
+@keyframes exp-dolly-sub {
+  0%, 100% { scale: 1; }
+  50%      { scale: 1.02; }
+}
+
+[data-exp="dolly-zoom"] .dz {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #0b1020;
+}
+[data-exp="dolly-zoom"] .bg {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(90deg, #1e3a8a 0 14px, #0b1020 14px 28px),
+    radial-gradient(circle at 50% 50%, #6366f1 0 20%, transparent 62%);
+  animation-name: exp-dolly-bg;
+  animation-iteration-count: infinite;
+}
+[data-exp="dolly-zoom"] .sub {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #fbbf24;
+  color: #0b1020;
+  font-size: 26px;
+  font-weight: 900;
+  animation-name: exp-dolly-sub;
+  animation-iteration-count: infinite;
+}

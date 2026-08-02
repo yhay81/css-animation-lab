@@ -1,0 +1,21 @@
+{
+  "id": "shrink",
+  "n": 5,
+  "title": "縮小登場",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "scale"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "1.25→1。pop の逆。「近づいてくる」ではなく「落ち着く」印象になるはず。どちらが上品か判定してほしい。"
+}

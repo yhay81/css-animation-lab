@@ -1,0 +1,24 @@
+{
+  "id": "counter",
+  "n": 25,
+  "title": "親子逆方向",
+  "layer": "L2",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": [
+      "親子"
+    ]
+  },
+  "predicted": "uncertain",
+  "note": "親が上がり、中身が逆に下がる。視差の最小形。奥行きの錯覚が出るか、単にずれて見えるだけかを判定してほしい。"
+}

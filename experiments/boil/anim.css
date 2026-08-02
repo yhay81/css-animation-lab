@@ -1,0 +1,53 @@
+/*
+ * 手描きアニメで、静止しているはずの線が小刻みに震える現象。
+ * 同じ絵を 3 枚描くと線が完全には一致しないために起きる。
+ *
+ * 円の輪郭だけでは揺れが読み取れない。内側にも線を置くと「描き直している」と分かる。
+ * 外形の大きさごと変えると震えではなく脈動になるので、端点は固定して曲がり方だけをずらす。
+ * 速さも質感のうちで、毎秒 3 回では変形に見える。1 周を 1/3 秒にして 9 回にする。
+ *
+ * なお CSS の d は path にしか効かない。circle に指定しても計算値には現れるが描画は変わらない。
+ */
+@keyframes exp-boil-outline {
+  0%, 33% {
+    d: path("M 14 48 C 14 27, 28 14, 48 14 C 69 14, 82 28, 82 48 C 82 69, 68 82, 48 82 C 27 82, 14 68, 14 48 Z");
+  }
+  34%, 66% {
+    d: path("M 14 48 C 15 20, 36 14, 48 14 C 78 15, 82 36, 82 48 C 81 76, 60 82, 48 82 C 18 81, 14 60, 14 48 Z");
+  }
+  67%, 100% {
+    d: path("M 14 48 C 13 34, 20 13, 48 14 C 62 15, 83 20, 82 48 C 83 62, 76 83, 48 82 C 34 81, 13 76, 14 48 Z");
+  }
+}
+@keyframes exp-boil-mouth {
+  0%, 33%   { d: path("M 32 56 C 40 66, 56 66, 64 56"); }
+  34%, 66%  { d: path("M 31 55 C 41 69, 55 68, 65 57"); }
+  67%, 100% { d: path("M 33 57 C 39 64, 57 65, 63 55"); }
+}
+@keyframes exp-boil-eye1 {
+  0%, 33%   { d: path("M 36 40 L 36 44"); }
+  34%, 66%  { d: path("M 35 39 L 37 45"); }
+  67%, 100% { d: path("M 37 40 L 35 44"); }
+}
+@keyframes exp-boil-eye2 {
+  0%, 33%   { d: path("M 60 40 L 60 44"); }
+  34%, 66%  { d: path("M 61 39 L 59 45"); }
+  67%, 100% { d: path("M 59 40 L 61 44"); }
+}
+
+[data-exp="boil"] .bl { display: grid; place-items: center; }
+[data-exp="boil"] svg { width: 112px; height: 112px; }
+[data-exp="boil"] path {
+  fill: none;
+  stroke: #7dd3fc;
+  stroke-width: 3;
+  stroke-linecap: round;
+  /* 中割りを作らない。3 枚を切り替えるだけ。 */
+  animation-timing-function: steps(1, end);
+  animation-duration: 333ms;
+  animation-iteration-count: infinite;
+}
+[data-exp="boil"] .c  { animation-name: exp-boil-outline; }
+[data-exp="boil"] .m  { animation-name: exp-boil-mouth; }
+[data-exp="boil"] .e1 { animation-name: exp-boil-eye1; stroke-width: 4; }
+[data-exp="boil"] .e2 { animation-name: exp-boil-eye2; stroke-width: 4; }

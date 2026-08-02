@@ -1,0 +1,19 @@
+{
+  "id": "range-control",
+  "n": 514,
+  "title": "動く区間を変える",
+  "layer": "T",
+  "mode": "scroll",
+  "axes": {
+    "driver": [
+      "scroll-timeline"
+    ],
+    "technique": [
+      "animation-range"
+    ],
+    "use": "スクロール演出の詰め"
+  },
+  "predicted": "uncertain",
+  "note": "同じアニメーションでも、視界のどの区間に割り当てるかで印象が変わる。上から順に「入り始めてすぐ」「入りきる頃」「画面中央」。スクロールして比べる。",
+  "markup": "<div class=\"rc\"><div class=\"body\"><div class=\"it r1\"><span>range 1</span></div><div class=\"it r2\"><span>range 2</span></div><div class=\"it r3\"><span>range 3</span></div><div class=\"sp\"></div><div class=\"sp\"></div><div class=\"sp\"></div><div class=\"sp\"></div><div class=\"sp\"></div><div class=\"sp\"></div></div></div>"
+}

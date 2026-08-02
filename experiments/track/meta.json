@@ -1,0 +1,21 @@
+{
+  "id": "track",
+  "n": 18,
+  "title": "字間",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "letter-spacing"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "レイアウトを再計算させる典型例＝合成レイヤに乗らない。それでも表現価値が上回るかを判定してほしい。"
+}

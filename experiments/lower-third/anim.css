@@ -1,0 +1,56 @@
+@keyframes exp-lt-bar {
+  0%, 6%    { scale: 0 1; }
+  30%, 100% { scale: 1 1; }
+}
+@keyframes exp-lt-name {
+  0%, 26%   { opacity: 0; translate: -12px 0; }
+  46%, 100% { opacity: 1; translate: 0 0; }
+}
+@keyframes exp-lt-rule {
+  0%, 40%   { scale: 0 1; }
+  62%, 100% { scale: 1 1; }
+}
+@keyframes exp-lt-sub {
+  0%, 52%   { opacity: 0; translate: -8px 0; }
+  74%, 100% { opacity: 1; translate: 0 0; }
+}
+
+[data-exp="lower-third"] .lt {
+  position: absolute;
+  left: 18px;
+  bottom: 26px;
+  display: grid;
+  justify-items: start;
+  gap: 5px;
+}
+[data-exp="lower-third"] .bar {
+  display: grid;
+  align-items: center;
+  padding: 6px 12px;
+  background: linear-gradient(90deg, #6366f1, #a855f7);
+  transform-origin: 0 50%;
+  animation-name: exp-lt-bar;
+  animation-iteration-count: infinite;
+}
+[data-exp="lower-third"] .nm {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  white-space: nowrap;
+  animation-name: exp-lt-name;
+  animation-iteration-count: infinite;
+}
+[data-exp="lower-third"] .rule {
+  width: 96px;
+  height: 2px;
+  background: #7dd3fc;
+  transform-origin: 0 50%;
+  animation-name: exp-lt-rule;
+  animation-iteration-count: infinite;
+}
+[data-exp="lower-third"] .sub {
+  color: #8b93b5;
+  font-size: 11px;
+  animation-name: exp-lt-sub;
+  animation-iteration-count: infinite;
+}

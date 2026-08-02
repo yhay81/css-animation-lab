@@ -1,0 +1,21 @@
+{
+  "id": "details-anim",
+  "n": 705,
+  "title": "JS なしのアコーディオン",
+  "layer": "T",
+  "mode": "interactive",
+  "axes": {
+    "driver": [
+      "操作"
+    ],
+    "technique": [
+      "::details-content",
+      "interpolate-size",
+      "allow-discrete"
+    ],
+    "use": "FAQ / 折りたたみ"
+  },
+  "predicted": "uncertain",
+  "note": "クリックして開閉する。開閉そのものはブラウザが持っているので、高さの遷移を書くだけで成立する。content-visibility を allow-discrete で繋がないと、閉じるときに中身が即座に消える。",
+  "markup": "<details class=\"dt\"><summary>開く</summary><div class=\"in\"><div class=\"line\"></div><div class=\"line s\"></div></div></details>"
+}

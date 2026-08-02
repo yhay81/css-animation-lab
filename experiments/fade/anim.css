@@ -1,0 +1,5 @@
+@keyframes exp-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+[data-exp="fade"] .subject { animation-name: exp-fade; }

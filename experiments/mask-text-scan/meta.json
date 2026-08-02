@@ -1,0 +1,18 @@
+{
+  "id": "mask-text-scan",
+  "n": 513,
+  "title": "文字を走査する",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "mask + background-clip: text の併用"
+    ],
+    "use": "読み込み中の見出し"
+  },
+  "predicted": "uncertain",
+  "note": "塗りは background-clip: text、露出は mask と、切り抜きを 2 系統同時に使う。片方だけでは「色が流れる」か「現れる」かのどちらかにしかならない。",
+  "markup": "<div class=\"mt\">SCANNING</div>"
+}

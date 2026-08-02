@@ -1,0 +1,23 @@
+@keyframes exp-smoke {
+  0%   { translate: 0 22px;  scale: 0.4; opacity: 0;   filter: blur(3px); }
+  16%  { opacity: 0.55; }
+  100% { translate: var(--sx) -52px; scale: 2.1; opacity: 0; filter: blur(13px); }
+}
+
+[data-exp="smoke"] .sm {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+[data-exp="smoke"] .sm span {
+  grid-area: 1 / 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  --sx: calc((mod(sibling-index(), 3) - 1) * 18px);
+  animation-name: exp-smoke;
+  animation-delay: calc((sibling-index() - 1) * -200ms);
+  animation-iteration-count: infinite;
+}

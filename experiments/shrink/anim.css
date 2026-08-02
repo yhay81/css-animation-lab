@@ -1,0 +1,5 @@
+@keyframes exp-shrink {
+  from { scale: 1.25; }
+  to   { scale: 1; }
+}
+[data-exp="shrink"] .subject { animation-name: exp-shrink; }

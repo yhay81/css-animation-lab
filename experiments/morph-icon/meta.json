@@ -1,0 +1,19 @@
+{
+  "id": "morph-icon",
+  "n": 321,
+  "title": "ハンバーガー → ×",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "個別 transform",
+      "nth-child"
+    ],
+    "use": "ナビゲーションの開閉"
+  },
+  "predicted": "uncertain",
+  "note": "3 本の線のうち中央を消し、上下を寄せて回す。要素を差し替えず同じ 3 本のまま形が変わるので、途中で止めても破綻しない。",
+  "markup": "<div class=\"ic\"><span class=\"\"></span><span class=\"\"></span><span class=\"\"></span></div>"
+}

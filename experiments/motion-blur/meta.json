@@ -1,0 +1,20 @@
+{
+  "id": "motion-blur",
+  "n": 1009,
+  "title": "ぶれの向き",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "CG / 実写",
+    "technique": [
+      "filter: blur()",
+      "feGaussianBlur の軸指定"
+    ],
+    "use": "速さの表現"
+  },
+  "predicted": "uncertain",
+  "note": "実際のぶれは進行方向にだけ伸びる。CSS の blur は全方向に等しくかかるので、速い動きに使うと「ぼやけた球」にしかならない。SVG のぼかしは軸ごとに量を指定できるので、横方向だけをぼかせる。上が CSS、下が SVG。",
+  "markup": "<div class=\"mb\"><div class=\"row\"><span class=\"lb\">CSS</span><span class=\"b iso\"></span></div><div class=\"row\"><span class=\"lb\">SVG</span><span class=\"b dir\"></span></div><svg width=\"0\" height=\"0\" aria-hidden=\"true\"><filter id=\"mb-x\"><feGaussianBlur stdDeviation=\"9 0\"/></filter></svg></div>"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "tab-machine",
+  "n": 511,
+  "title": "CSS だけの状態機械",
+  "layer": "T",
+  "mode": "interactive",
+  "axes": {
+    "driver": [
+      "操作"
+    ],
+    "technique": [
+      ":checked",
+      "兄弟結合子"
+    ],
+    "use": "タブ / 切替"
+  },
+  "predicted": "uncertain",
+  "note": "タブを押して切り替えられる。ラジオの状態を兄弟結合子で拾うだけで、JS なしに状態と遷移が成立する。下線が滑るのも CSS だけ。",
+  "markup": "<div class=\"tm\"><input type=\"radio\" name=\"tm\" id=\"tm-1\" checked><input type=\"radio\" name=\"tm\" id=\"tm-2\"><input type=\"radio\" name=\"tm\" id=\"tm-3\"><div class=\"tabs\"><label for=\"tm-1\">1</label><label for=\"tm-2\">2</label><label for=\"tm-3\">3</label></div><div class=\"panes\"><div class=\"pane\">1</div><div class=\"pane\">2</div><div class=\"pane\">3</div></div></div>"
+}

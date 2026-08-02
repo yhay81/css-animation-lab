@@ -1,0 +1,21 @@
+@keyframes exp-trail-text {
+  0%, 100% {
+    translate: -30px 0;
+    text-shadow: 10px 0 rgba(125, 211, 252, 0.5), 20px 0 rgba(125, 211, 252, 0.28),
+                 30px 0 rgba(125, 211, 252, 0.12);
+  }
+  50% {
+    translate: 30px 0;
+    text-shadow: -10px 0 rgba(125, 211, 252, 0.5), -20px 0 rgba(125, 211, 252, 0.28),
+                 -30px 0 rgba(125, 211, 252, 0.12);
+  }
+}
+
+[data-exp="trail-text"] .tt {
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  color: #e6e9f5;
+  animation-name: exp-trail-text;
+  animation-iteration-count: infinite;
+}

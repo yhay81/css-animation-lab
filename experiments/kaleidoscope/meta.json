@@ -1,0 +1,20 @@
+{
+  "id": "kaleidoscope",
+  "n": 1208,
+  "title": "万華鏡",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "光学",
+    "technique": [
+      "楔形の切り抜き",
+      "交互の鏡映"
+    ],
+    "use": "装飾 / 背景"
+  },
+  "predicted": "uncertain",
+  "note": "同じ絵を楔形に切って円周に並べ、一つおきに左右反転させる。回転だけでは風車になり、反転を混ぜて初めて鏡の対称になる。中身が単純でも、対称が複雑さを作る。",
+  "markup": "<div class=\"kl\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+}

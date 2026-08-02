@@ -1,0 +1,21 @@
+{
+  "id": "shatter",
+  "n": 903,
+  "title": "破片が飛び散る",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "CG",
+    "technique": [
+      "clip-path 楔形",
+      "sibling-index()",
+      "cos() / sin()"
+    ],
+    "use": "削除 / 破棄 / 演出"
+  },
+  "predicted": "uncertain",
+  "note": "同じ絵を楔形に切った層を重ね、それぞれを外向きに飛ばす。破片ごとの方向は三角関数で並び順から出すので、枚数を変えても指定は 1 本のまま。物理演算なしで破砕に見える。",
+  "markup": "<div class=\"sh\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+}

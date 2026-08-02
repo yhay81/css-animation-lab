@@ -1,0 +1,19 @@
+{
+  "id": "elastic-grid",
+  "n": 810,
+  "title": "間隔と比率が同時に動く",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "gap の補間",
+      "grid-template の補間"
+    ],
+    "use": "一覧の切り替え"
+  },
+  "predicted": "uncertain",
+  "note": "間隔と列の比率を同時に動かすと、要素そのものは何も指定していないのに配置だけが弾む。位置を計算して動かすのと違い、中身の折り返しが常に正しい。",
+  "markup": "<div class=\"eg\"><span></span><span></span><span></span></div>"
+}

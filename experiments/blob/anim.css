@@ -1,0 +1,33 @@
+/*
+ * 回転させると中身ごと回るため、柔らかい塊ではなく回転する固体に見えてしまう。
+ * 回さずに 8 つの角丸を別々に動かし、わずかな縦横比の変化を足して輪郭だけを揺らす。
+ */
+@keyframes exp-blob {
+  0% {
+    border-radius: 62% 38% 44% 56% / 52% 44% 56% 48%;
+    scale: 1 1;
+  }
+  25% {
+    border-radius: 42% 58% 62% 38% / 38% 62% 38% 62%;
+    scale: 1.05 0.95;
+  }
+  50% {
+    border-radius: 38% 62% 36% 64% / 62% 36% 64% 38%;
+    scale: 0.96 1.04;
+  }
+  75% {
+    border-radius: 58% 42% 64% 36% / 44% 58% 42% 56%;
+    scale: 1.04 0.97;
+  }
+  100% {
+    border-radius: 62% 38% 44% 56% / 52% 44% 56% 48%;
+    scale: 1 1;
+  }
+}
+
+[data-exp="blob"] .blob {
+  width: 96px;
+  height: 96px;
+  background: linear-gradient(135deg, #22d3ee, #6366f1);
+  animation-name: exp-blob;
+}

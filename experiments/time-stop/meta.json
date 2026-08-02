@@ -1,0 +1,30 @@
+{
+  "id": "time-stop",
+  "n": 1002,
+  "title": "時間が止まる",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "アニメ",
+    "technique": [
+      "止まる側の keyframes",
+      "振れ幅で個体差を作る",
+      "彩度の一括変化"
+    ],
+    "use": "注目の集中 / 決定的瞬間"
+  },
+  "predicted": "uncertain",
+  "note": "周囲が静止して一人だけ動く演出。CSS には「他を止める」指定がないので、止まる側のキーフレームに同じ値を並べて動きを殺す。ここで負の遅延を使うと位相がずれ、停止区間も要素ごとに別の時刻へ動くため、全員が同じ瞬間に止まらなくなる。個々の違いは遅延ではなく振れ幅で作り、時間軸は全員で共有する。彩度を落とす filter は子孫すべてに効くので、止める側だけを包む。",
+  "markup": "<div class=\"tsp\"><div class=\"field\"><div class=\"others\"><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span></div><span class=\"hero\"></span></div></div>",
+  "expect": [
+    {
+      "still": ".d",
+      "between": [
+        "42%",
+        "72%"
+      ]
+    }
+  ]
+}

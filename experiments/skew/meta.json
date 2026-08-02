@@ -1,0 +1,21 @@
+{
+  "id": "skew",
+  "n": 7,
+  "title": "せん断",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "transform"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "bad",
+  "note": "個別プロパティが存在しないため transform を占有する＝他の変形と合成できない。この構造上の制約自体が知見。"
+}

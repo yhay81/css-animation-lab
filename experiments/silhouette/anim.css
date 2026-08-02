@@ -1,0 +1,43 @@
+@keyframes exp-sil-sun {
+  0%, 100% { translate: -46px 6px; }
+  50%      { translate: 46px -10px; }
+}
+@keyframes exp-sil-rim {
+  0%, 100% { background: linear-gradient(100deg, rgba(253, 224, 71, 0.95), transparent 42%); }
+  50%      { background: linear-gradient(260deg, rgba(253, 224, 71, 0.95), transparent 42%); }
+}
+
+[data-exp="silhouette"] .sil {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 44%, #7c2d12, #0b1020 72%);
+}
+[data-exp="silhouette"] .sun {
+  position: absolute;
+  top: 34px;
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fef08a 0 32%, rgba(253, 224, 71, 0.5) 52%, transparent 74%);
+  animation-name: exp-sil-sun;
+  animation-iteration-count: infinite;
+}
+[data-exp="silhouette"] .fig,
+[data-exp="silhouette"] .rim {
+  position: absolute;
+  top: 42px;
+  width: 46px;
+  height: 68px;
+  border-radius: 23px 23px 8px 8px;
+}
+[data-exp="silhouette"] .fig { background: #05070f; }
+/* 輪郭光。影の上に細く重ねる。 */
+[data-exp="silhouette"] .rim {
+  mask: linear-gradient(#000 0 0) padding-box;
+  padding: 2px;
+  animation-name: exp-sil-rim;
+  animation-iteration-count: infinite;
+}

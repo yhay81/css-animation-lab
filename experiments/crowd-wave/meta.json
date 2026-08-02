@@ -1,0 +1,20 @@
+{
+  "id": "crowd-wave",
+  "n": 1106,
+  "title": "群衆を渡る波",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "アニメ / 演出",
+    "technique": [
+      "hypot() による距離",
+      "mod() と round() で行列を求める"
+    ],
+    "use": "一覧の出現 / 反応の伝播"
+  },
+  "predicted": "uncertain",
+  "note": "並び順で遅らせると波は一方向にしか進まない。中心からの距離で遅らせると、点を落としたように同心円状へ広がる。行と列は並び順から割り出せるので、座標を書かずに距離が出せる。",
+  "markup": "<div class=\"cw\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+}

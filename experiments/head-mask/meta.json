@@ -1,0 +1,23 @@
+{
+  "id": "head-mask",
+  "n": 130,
+  "title": "見出し｜マスクで露出",
+  "layer": "L4",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "mask-image",
+      "@property"
+    ],
+    "timing": [
+      "固定"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "文字を動かさず、覆いを外して現す。要素が移動しないので落ち着いて見えるはず。",
+  "markup": "<div class=\"head\">Motion</div>"
+}

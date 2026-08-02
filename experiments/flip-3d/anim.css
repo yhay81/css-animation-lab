@@ -1,0 +1,26 @@
+@keyframes exp-flip-3d {
+  0%, 40%   { rotate: y 0deg; }
+  60%, 100% { rotate: y 180deg; }
+}
+
+[data-exp="flip-3d"] .stage { perspective: 700px; }
+
+[data-exp="flip-3d"] .flip {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  transform-style: preserve-3d;
+  animation-name: exp-flip-3d;
+}
+[data-exp="flip-3d"] .face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  font-weight: 700;
+  color: #fff;
+  backface-visibility: hidden;
+}
+[data-exp="flip-3d"] .front { background: linear-gradient(135deg, #7dd3fc, #6366f1); }
+[data-exp="flip-3d"] .back  { background: linear-gradient(135deg, #f472b6, #a855f7); rotate: y 180deg; }

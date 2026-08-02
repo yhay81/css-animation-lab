@@ -1,0 +1,5 @@
+@keyframes exp-morph {
+  from { border-radius: 50%; }
+  to   { border-radius: 14px; }
+}
+[data-exp="morph"] .subject { animation-name: exp-morph; }

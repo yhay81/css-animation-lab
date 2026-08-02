@@ -1,0 +1,18 @@
+{
+  "id": "at-function",
+  "n": 703,
+  "title": "CSS の関数を自分で定義する",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "@function"
+    ],
+    "use": "式の共通化"
+  },
+  "predicted": "uncertain",
+  "note": "同じ計算式を何度も書かずに済む。値の作り方に名前が付くので、意図が式ではなく名前で読める。カスタムプロパティでは持てなかった「引数を取る」がここで入る。",
+  "markup": "<div class=\"af\"><span class=\"a\"></span><span class=\"b\"></span><span class=\"c\"></span></div>"
+}

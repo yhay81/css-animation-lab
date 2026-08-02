@@ -1,0 +1,7 @@
+@keyframes exp-gap-40 { from { opacity: 0; translate: 0 20px; } to { opacity: 1; translate: 0 0; } }
+
+[data-exp="gap-40"] .subject {
+  animation-name: exp-gap-40;
+  animation-duration: 400ms;
+  animation-delay: calc((sibling-index() - 1) * 40ms);
+}

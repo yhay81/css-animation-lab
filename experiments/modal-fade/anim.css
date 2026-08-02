@@ -1,0 +1,32 @@
+[data-exp="modal-fade"] .backdrop {
+  opacity: 0;
+  transition: opacity 220ms;
+}
+[data-exp="modal-fade"][data-open="true"] .backdrop { opacity: 1; }
+
+[data-exp="modal-fade"] .dialog {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 136px;
+}
+
+[data-exp="modal-fade"] .dialog {
+  translate: -50% -50%;
+  scale: 0.94;
+  opacity: 0;
+  display: none;
+  transition: opacity 200ms, scale 200ms, display 200ms allow-discrete;
+}
+[data-exp="modal-fade"][data-open="true"] .dialog {
+  scale: 1;
+  opacity: 1;
+  display: block;
+}
+/* 開いた瞬間の初期値。これがないと出現時にトランジションが起きない。 */
+@starting-style {
+  [data-exp="modal-fade"][data-open="true"] .dialog {
+    scale: 0.94;
+    opacity: 0;
+  }
+}

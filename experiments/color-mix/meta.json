@@ -1,0 +1,19 @@
+{
+  "id": "color-mix",
+  "n": 404,
+  "title": "色の経路（oklch と srgb）",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "color-mix()",
+      "@property <percentage>"
+    ],
+    "use": "状態遷移 / テーマ切替"
+  },
+  "predicted": "uncertain",
+  "note": "同じ 2 色を混ぜても、経路が違えば途中の色が違う。srgb は中間で濁り、oklch は明度を保ったまま回る。混合比を型付きプロパティにすると補間できる。",
+  "markup": "<div class=\"cm\"><div class=\"sw ok\"><span>oklch</span></div><div class=\"sw sr\"><span>srgb</span></div></div>"
+}

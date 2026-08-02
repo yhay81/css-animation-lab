@@ -1,0 +1,60 @@
+/*
+ * 掃き出しと光沢は「順に」起きないと仕上がって見えない。
+ * 区間が重なると、まだ現れていない文字の上を光沢が通ってしまう。
+ * 現す 0〜42%、間を置いて光沢 50〜84%、と分ける。
+ *
+ * 光沢の移動量は px で書くと文字の長さに追従しない。
+ * 位置指定にして 0% から 100% へ動かせば、幅が変わっても端から端まで通る。
+ */
+@property --lr-p {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+/*
+ * 光沢が通り過ぎたあと何も起きない時間が続くと、繰り返しの頭で急に消えて見える。
+ * 最後にひと呼吸おいてから引くと、一巡が「現す → 光る → 引く」で閉じる。
+ */
+@keyframes exp-lr-mask {
+  0%       { --lr-p: 0%; }
+  42%, 92% { --lr-p: 118%; }
+  100%     { --lr-p: 118%; }
+}
+@keyframes exp-lr-out {
+  0%, 90%  { opacity: 1; }
+  100%     { opacity: 0; }
+}
+@keyframes exp-lr-sheen {
+  0%, 50%   { left: -18%; opacity: 0; }
+  56%       { opacity: 1; }
+  78%       { opacity: 1; }
+  84%, 100% { left: 104%; opacity: 0; }
+}
+
+[data-exp="logo-reveal"] .lr {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 8px 6px;
+}
+[data-exp="logo-reveal"] .tx {
+  grid-area: 1 / 1;
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  color: #e6e9f5;
+  mask-image: linear-gradient(90deg, #000 0 var(--lr-p), transparent var(--lr-p));
+  animation-name: exp-lr-mask, exp-lr-out;
+  animation-iteration-count: infinite;
+}
+[data-exp="logo-reveal"] .sheen {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 26%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+  animation-name: exp-lr-sheen;
+  animation-iteration-count: infinite;
+}

@@ -1,0 +1,28 @@
+{
+  "id": "swipe-transition",
+  "n": 1108,
+  "title": "押し出して入れ替える",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "モーショングラフィックス",
+    "technique": [
+      "先行する縁",
+      "押し出し"
+    ],
+    "use": "画面転換 / 手順の進行"
+  },
+  "predicted": "uncertain",
+  "note": "新しい面が古い面を押し出す。境目に一本の縁を先行させると、面が滑るのではなく「押している」ように見える。縁が無いと二枚の板が重なっただけに見える。",
+  "markup": "<div class=\"sw\"><span class=\"a\">A</span><span class=\"b\">B</span><span class=\"edge\"></span></div>",
+  "expect": [
+    {
+      "at": "40%",
+      "of": ".edge",
+      "side": "left",
+      "from": ".b"
+    }
+  ]
+}

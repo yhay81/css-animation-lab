@@ -1,0 +1,11 @@
+@keyframes exp-depth-shadow-out {
+  from { translate: 0 34px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); }
+  to   { translate: 0 0;    box-shadow: 0 22px 34px -10px rgba(0, 0, 0, 0.85); }
+}
+@keyframes exp-depth-shadow-in { from { translate: 0 -16px; } to { translate: 0 0; } }
+
+[data-exp="depth-shadow"] .subject { animation-name: exp-depth-shadow-out; }
+[data-exp="depth-shadow"] .label {
+  display: inline-block;
+  animation-name: exp-depth-shadow-in;
+}

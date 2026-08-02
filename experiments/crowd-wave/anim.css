@@ -1,0 +1,36 @@
+/*
+ * 行・列・距離を未登録のカスタムプロパティで持つと、値ではなくトークン列のまま
+ * 多段で差し込まれ、式全体が無効になって遅延が 0 に落ちる。
+ * @property で型を付けると、宣言した時点で数値に確定する。
+ */
+@property --col  { syntax: "<number>"; inherits: false; initial-value: 0; }
+@property --row  { syntax: "<number>"; inherits: false; initial-value: 0; }
+@property --dist { syntax: "<number>"; inherits: false; initial-value: 0; }
+
+@keyframes exp-crowd-wave {
+  0%, 100% { translate: 0 0;    scale: 0.72; opacity: 0.4; }
+  22%      { translate: 0 -9px; scale: 1.15; opacity: 1; }
+  46%      { translate: 0 0;    scale: 0.72; opacity: 0.4; }
+}
+
+[data-exp="crowd-wave"] .cw {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 7px;
+}
+[data-exp="crowd-wave"] .cw span {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: #7dd3fc;
+
+  /* 並び順から行と列を割り出す。 */
+  --col: calc(mod(sibling-index() - 1, 7));
+  --row: calc(round(down, (sibling-index() - 1) / 7, 1));
+  /* 中心（3, 2）からの距離。 */
+  --dist: calc(hypot(var(--col) - 3, var(--row) - 2));
+
+  animation-name: exp-crowd-wave;
+  animation-delay: calc(var(--dist) * -120ms);
+  animation-iteration-count: infinite;
+}

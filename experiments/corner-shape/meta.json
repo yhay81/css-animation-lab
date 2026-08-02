@@ -1,0 +1,18 @@
+{
+  "id": "corner-shape",
+  "n": 611,
+  "title": "角の形そのものを変える",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "corner-shape: superellipse()"
+    ],
+    "use": "質感の切り替え / 強調"
+  },
+  "predicted": "uncertain",
+  "note": "角丸の「丸さの種類」を指数で指定する。数値なので補間でき、四角と円の間だけでなく、内側にえぐれた形まで連続的に動かせる。border-radius だけでは出せない形。",
+  "markup": "<div class=\"cs\"></div>"
+}

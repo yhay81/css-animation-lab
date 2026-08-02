@@ -1,0 +1,16 @@
+@keyframes exp-elastic-grid {
+  0%, 100% { gap: 5px;  grid-template-columns: 1fr 1fr 1fr; }
+  50%      { gap: 18px; grid-template-columns: 2.2fr 1fr 2.2fr; }
+}
+
+[data-exp="elastic-grid"] .eg {
+  display: grid;
+  width: 150px;
+  height: 54px;
+  animation-name: exp-elastic-grid;
+  animation-iteration-count: infinite;
+}
+[data-exp="elastic-grid"] .eg span {
+  border-radius: 8px;
+  background: linear-gradient(135deg, #7dd3fc, #6366f1);
+}

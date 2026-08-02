@@ -1,0 +1,19 @@
+{
+  "id": "counter-roll",
+  "n": 203,
+  "title": "数字が回る",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "@property <integer>",
+      "counter()"
+    ],
+    "use": "統計 / 価格 / スコア"
+  },
+  "predicted": "uncertain",
+  "note": "整数として型を付けたカスタムプロパティを counter() で文字にする。JS なしで数値がカウントアップする。ほとんど知られていない。",
+  "markup": "<div class=\"num\"></div>"
+}

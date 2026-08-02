@@ -1,0 +1,21 @@
+[data-exp="list-size"] .scene {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 18px;
+}
+[data-exp="list-size"] .row { padding: 7px 0; }
+
+/* このキーワード指定があって初めて auto への補間が有効になる。 */
+[data-exp="list-size"] .ins {
+  interpolate-size: allow-keywords;
+  height: 0;
+  overflow: hidden;
+  transition: height 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-exp="list-size"][data-open="true"] .ins { height: auto; }
+
+[data-exp="list-size"] .hi {
+  margin: 7px 0;
+  background: linear-gradient(90deg, #7dd3fc, #6366f1);
+}

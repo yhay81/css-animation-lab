@@ -1,0 +1,19 @@
+{
+  "id": "ripple",
+  "n": 210,
+  "title": "広がる波紋",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "多重 box-shadow",
+      "負の遅延"
+    ],
+    "use": "押した手応え / 通知の呼びかけ"
+  },
+  "predicted": "uncertain",
+  "note": "同じ動きに負の遅延を段階的に与えると、要素を増やすだけで連続した波になる。遅延は sibling-index() から作る。",
+  "markup": "<div class=\"rip\"><span class=\"w\"></span><span class=\"w\"></span><span class=\"w\"></span><div class=\"core\"></div></div>"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "perspective-move",
+  "n": 515,
+  "title": "視点そのものを動かす",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "perspective-origin"
+    ],
+    "use": "空間の演出"
+  },
+  "predicted": "uncertain",
+  "note": "物ではなく見る位置を動かす。並んだ層はそのままなのに、視差が生まれて空間として読める。要素ごとに移動量を計算する必要がない。",
+  "markup": "<div class=\"pv\"><span class=\"p1\"></span><span class=\"p2\"></span><span class=\"p3\"></span><span class=\"p4\"></span><span class=\"p5\"></span></div>"
+}

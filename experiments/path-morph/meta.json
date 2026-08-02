@@ -1,0 +1,18 @@
+{
+  "id": "path-morph",
+  "n": 510,
+  "title": "パスの補間",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "clip-path: path()"
+    ],
+    "use": "状態の変化 / 装飾"
+  },
+  "predicted": "uncertain",
+  "note": "コマンドの並びが同じパス同士は補間できる。polygon より曲線を扱えるが、命令の順序と個数を揃える制約は同じ。",
+  "markup": "<div class=\"pm\"></div>"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "diagram-build",
+  "n": 910,
+  "title": "図解が組み上がる",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "モーショングラフィックス",
+    "technique": [
+      "stroke-dashoffset",
+      "SVG 内で座標系を統一",
+      "順序をキーフレームで表現"
+    ],
+    "use": "説明 / 資料 / 導線の提示"
+  },
+  "predicted": "uncertain",
+  "note": "箱が出て、線が伸びて繋がり、次の箱が出る。線を SVG、箱を通常の要素で書くと座標系が 2 つになり必ずずれる。さらに pathLength は non-scaling-stroke と併用すると効かず、破線の計算がデバイス座標に落ちて線が途中で切れる。全部を SVG の中に入れれば両方とも起きない。順序は遅延ではなくキーフレームの位置で表す。",
+  "markup": "<div class=\"db\"><svg viewBox=\"0 0 100 100\"><path class=\"ln l1\" pathLength=\"100\" d=\"M31 24 H65\"/><path class=\"ln l2\" pathLength=\"100\" d=\"M20 35 V63\"/><path class=\"ln l3\" pathLength=\"100\" d=\"M31 74 H76 V35\"/><g class=\"bx b1\"><rect x=\"9\" y=\"13\" width=\"22\" height=\"22\" rx=\"5\"/><text x=\"20\" y=\"24\" dy=\"3.4\">A</text></g><g class=\"bx b2\"><rect x=\"65\" y=\"13\" width=\"22\" height=\"22\" rx=\"5\"/><text x=\"76\" y=\"24\" dy=\"3.4\">B</text></g><g class=\"bx b3\"><rect x=\"9\" y=\"63\" width=\"22\" height=\"22\" rx=\"5\"/><text x=\"20\" y=\"74\" dy=\"3.4\">C</text></g></svg></div>",
+  "expect": [
+    {
+      "inside": ".b3",
+      "at": "80%"
+    }
+  ]
+}

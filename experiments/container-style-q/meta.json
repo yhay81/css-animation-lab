@@ -1,0 +1,19 @@
+{
+  "id": "container-style-q",
+  "n": 802,
+  "title": "親の値を子が問い合わせる",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "@container style()",
+      "@property <integer>"
+    ],
+    "use": "テーマ / 状態の伝播"
+  },
+  "predicted": "uncertain",
+  "note": "親が持つ 1 つの値を動かすと、子がそれを条件として読む。if() が「その要素の中で分岐する」のに対し、こちらは「祖先の状態で子孫全体が切り替わる」。",
+  "markup": "<div class=\"cq\"><span></span><span></span><span></span><span></span></div>"
+}

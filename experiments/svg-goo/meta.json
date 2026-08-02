@@ -1,0 +1,19 @@
+{
+  "id": "svg-goo",
+  "n": 402,
+  "title": "SVG フィルタで融合する",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "filter: url()",
+      "feColorMatrix"
+    ],
+    "use": "ローディング / 展開メニュー"
+  },
+  "predicted": "uncertain",
+  "note": "blur + contrast の CSS 版と違い、しきい値を掛けるのがアルファだけなので色が濁らない。背景が透明でも成立する点も CSS 版と違う。同じ見た目を 2 通りで作れる例。",
+  "markup": "<div class=\"sg\"><span></span><span></span><span></span><svg width=\"0\" height=\"0\" aria-hidden=\"true\"><filter id=\"goo-svg\"><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"8\" result=\"b\"/><feColorMatrix in=\"b\" type=\"matrix\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -10\"/></filter></svg></div>"
+}

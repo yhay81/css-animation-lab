@@ -1,0 +1,39 @@
+@property --sh-d {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@keyframes exp-shatter {
+  0%, 26%   { --sh-d: 0px;  opacity: 1; rotate: 0deg;  scale: 1; }
+  100%      { --sh-d: 74px; opacity: 0; rotate: 46deg; scale: 0.72; }
+}
+
+[data-exp="shatter"] .sh {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+[data-exp="shatter"] .sh span {
+  grid-area: 1 / 1;
+  width: 104px;
+  height: 104px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #a5f3fc, #6366f1 55%, #a855f7);
+  /* 破片ごとの飛ぶ向き。並び順から角度を作る。 */
+  --a: calc((sibling-index() - 0.5) * 36deg - 90deg);
+  translate: calc(cos(var(--a)) * var(--sh-d)) calc(sin(var(--a)) * var(--sh-d));
+  animation-name: exp-shatter;
+  animation-iteration-count: infinite;
+}
+[data-exp="shatter"] .sh span:nth-child(1) { clip-path: polygon(50% 50%, 50.0% -40.0%, 77.8% -35.6%, 102.9% -22.8%); }
+[data-exp="shatter"] .sh span:nth-child(2) { clip-path: polygon(50% 50%, 102.9% -22.8%, 122.8% -2.9%, 135.6% 22.2%); }
+[data-exp="shatter"] .sh span:nth-child(3) { clip-path: polygon(50% 50%, 135.6% 22.2%, 140.0% 50.0%, 135.6% 77.8%); }
+[data-exp="shatter"] .sh span:nth-child(4) { clip-path: polygon(50% 50%, 135.6% 77.8%, 122.8% 102.9%, 102.9% 122.8%); }
+[data-exp="shatter"] .sh span:nth-child(5) { clip-path: polygon(50% 50%, 102.9% 122.8%, 77.8% 135.6%, 50.0% 140.0%); }
+[data-exp="shatter"] .sh span:nth-child(6) { clip-path: polygon(50% 50%, 50.0% 140.0%, 22.2% 135.6%, -2.9% 122.8%); }
+[data-exp="shatter"] .sh span:nth-child(7) { clip-path: polygon(50% 50%, -2.9% 122.8%, -22.8% 102.9%, -35.6% 77.8%); }
+[data-exp="shatter"] .sh span:nth-child(8) { clip-path: polygon(50% 50%, -35.6% 77.8%, -40.0% 50.0%, -35.6% 22.2%); }
+[data-exp="shatter"] .sh span:nth-child(9) { clip-path: polygon(50% 50%, -35.6% 22.2%, -22.8% -2.9%, -2.9% -22.8%); }
+[data-exp="shatter"] .sh span:nth-child(10) { clip-path: polygon(50% 50%, -2.9% -22.8%, 22.2% -35.6%, 50.0% -40.0%); }

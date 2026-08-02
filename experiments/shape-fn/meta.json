@@ -1,0 +1,18 @@
+{
+  "id": "shape-fn",
+  "n": 615,
+  "title": "割合で書けるパス",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "clip-path: shape()"
+    ],
+    "use": "波形の仕切り / 装飾"
+  },
+  "predicted": "uncertain",
+  "note": "path() は絶対座標なので箱の大きさに追従しなかった（F003）。shape() は % で書けるため、同じ形を大きさの違う場所で使い回せる。曲線を含む形が初めて可変幅で成立する。",
+  "markup": "<div class=\"sf\"></div>"
+}

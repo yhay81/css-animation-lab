@@ -1,0 +1,29 @@
+@keyframes exp-depth-card-out { from { translate: 0 34px; }  to { translate: 0 0; } }
+@keyframes exp-depth-card-in  { from { translate: 0 -18px; } to { translate: 0 0; } }
+
+[data-exp="depth-card"] .subject {
+  width: 136px;
+  height: 96px;
+  display: block;
+  padding: 13px;
+  overflow: hidden;
+  border: 1px solid #3d4a78;
+  border-radius: 12px;
+  background: linear-gradient(160deg, #202c52, #151d38);
+  box-shadow: 0 14px 28px -12px rgba(0, 0, 0, 0.85);
+  animation-name: exp-depth-card-out;
+}
+[data-exp="depth-card"] .inner { animation-name: exp-depth-card-in; }
+[data-exp="depth-card"] .bar {
+  height: 11px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #7dd3fc, #6366f1);
+}
+[data-exp="depth-card"] .line {
+  height: 7px;
+  margin-bottom: 7px;
+  border-radius: 3px;
+  background: #3d4a78;
+}
+[data-exp="depth-card"] .line.s { width: 58%; }

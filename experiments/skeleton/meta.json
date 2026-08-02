@@ -1,0 +1,18 @@
+{
+  "id": "skeleton",
+  "n": 382,
+  "title": "スケルトンの光沢",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "background-size + position"
+    ],
+    "use": "読み込み中のプレースホルダ"
+  },
+  "predicted": "uncertain",
+  "note": "要素を動かさず背景だけを流す。行が増えても同じ 1 本の指定で済み、レイアウトも動かないので読み込み後のずれが起きない。",
+  "markup": "<div class=\"sk\"><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln s\"></div></div>"
+}

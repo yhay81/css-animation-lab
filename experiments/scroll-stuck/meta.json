@@ -1,0 +1,21 @@
+{
+  "id": "scroll-stuck",
+  "n": 603,
+  "title": "貼り付いた瞬間に変わる見出し",
+  "layer": "T",
+  "mode": "scroll",
+  "axes": {
+    "driver": [
+      "scroll-timeline"
+    ],
+    "technique": [
+      "animation-timeline: scroll()",
+      "animation-range",
+      "container-type: scroll-state（不活性）"
+    ],
+    "use": "ヘッダー / 節見出し"
+  },
+  "predicted": "uncertain",
+  "note": "スクロールして見出しが上に貼り付くと、高さが半分になり色が変わり「貼り付き中」の印が出る。貼り付きを直接問う @container scroll-state(stuck) は構文が通るのに評価されないため（F030）、スクロール量そのものを時間軸にして同じ見た目を作っている。貼り付くまでの余白ぶんを変化の区間に割り当てるのが要点。",
+  "markup": "<div class=\"ss\"><div class=\"hd\"><div class=\"hd-in\"><span class=\"ttl\">HEADER</span><span class=\"tag\">貼り付き中</span></div></div><div class=\"body\"><div class=\"ln\">1</div><div class=\"ln\">2</div><div class=\"ln\">3</div><div class=\"ln\">4</div><div class=\"ln\">5</div><div class=\"ln\">6</div><div class=\"ln\">7</div><div class=\"ln\">8</div></div></div>"
+}

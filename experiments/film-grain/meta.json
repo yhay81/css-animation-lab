@@ -1,0 +1,21 @@
+{
+  "id": "film-grain",
+  "n": 1205,
+  "title": "フィルムの粒子",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "実写",
+    "technique": [
+      "feTurbulence",
+      "位置の離散送り",
+      "明滅"
+    ],
+    "use": "記録映像風 / 質感"
+  },
+  "predicted": "uncertain",
+  "note": "ノイズ自体は CSS から動かせない。粒の面をひとまわり大きく作り、位置を毎コマ飛ばすと、粒が入れ替わって見える。滑らかに動かすと粒ではなく雲になるので、必ず離散で送る。",
+  "markup": "<div class=\"fg\"><span class=\"pic\">1975</span><span class=\"grain\"></span><span class=\"flick\"></span><svg width=\"0\" height=\"0\" aria-hidden=\"true\"><filter id=\"fg-n\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.9\" numOctaves=\"3\" stitchTiles=\"stitch\"/></filter></svg></div>"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "charge-up",
+  "n": 1104,
+  "title": "力を溜めて放つ",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "アニメ",
+    "technique": [
+      "内向きの収束",
+      "蓄積と解放"
+    ],
+    "use": "長押し / 生成中 → 完了"
+  },
+  "predicted": "uncertain",
+  "note": "粒が外から中心へ吸い込まれ、核が膨らみ、限界で弾ける。放射（burst）の逆再生ではなく、吸い込みと解放で速さが違うのが要点。溜めは遅く、解放は一瞬。",
+  "markup": "<div class=\"cu\"><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"core\"></span><span class=\"burst\"></span></div>"
+}

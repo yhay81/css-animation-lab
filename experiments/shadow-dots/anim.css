@@ -1,0 +1,21 @@
+@keyframes exp-shadow-dots {
+  0% {
+    rotate: 0deg;
+    box-shadow: 26px 0 #a855f7, -26px 0 #f472b6, 0 26px #22d3ee, 0 -26px #fbbf24;
+  }
+  50% {
+    box-shadow: 40px 0 #a855f7, -40px 0 #f472b6, 0 40px #22d3ee, 0 -40px #fbbf24;
+  }
+  100% {
+    rotate: 360deg;
+    box-shadow: 26px 0 #a855f7, -26px 0 #f472b6, 0 26px #22d3ee, 0 -26px #fbbf24;
+  }
+}
+
+[data-exp="shadow-dots"] .sd {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #7dd3fc;
+  animation-name: exp-shadow-dots;
+}

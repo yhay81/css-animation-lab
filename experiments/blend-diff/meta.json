@@ -1,0 +1,18 @@
+{
+  "id": "blend-diff",
+  "n": 310,
+  "title": "帯が通ると文字が反転する",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "mix-blend-mode: difference"
+    ],
+    "use": "見出し / 切り替えの演出"
+  },
+  "predicted": "uncertain",
+  "note": "白い帯を difference で重ねると、重なった部分だけ色が反転する。文字を 2 枚用意する必要がない。",
+  "markup": "<div class=\"wrap\"><div class=\"tx\">INVERT</div><div class=\"band\"></div></div>"
+}

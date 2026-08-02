@@ -1,0 +1,21 @@
+{
+  "id": "reflection",
+  "n": 1203,
+  "title": "水面に映る",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "CG",
+    "technique": [
+      "反転した複製",
+      "減衰マスク",
+      "横のゆらぎ"
+    ],
+    "use": "ヒーロー / 製品"
+  },
+  "predicted": "uncertain",
+  "note": "反転した複製を下に置き、遠ざかるほど薄くする。静止した鏡像は硬いので、横方向にわずかに揺らすと水面になる。揺らしすぎると別物になるため、振幅は文字の太さ以下に収める。",
+  "markup": "<div class=\"rf\"><span class=\"obj\">A</span><span class=\"mir\">A</span></div>"
+}

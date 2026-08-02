@@ -1,0 +1,43 @@
+/*
+ * ::first-letter に animation-name を当てても、計算値が none になり指定自体が残らない。
+ * ::marker が「指定は通るが動かない」だったのに対し、こちらは「指定が消える」。
+ * 頭文字を動かしたいなら要素で包むしかない。見た目の指定だけなら ::first-letter で足りる。
+ */
+@keyframes exp-first-letter {
+  0%, 100% { color: #7dd3fc; }
+  50%      { color: #f472b6; }
+}
+
+[data-exp="first-letter"] .fw {
+  display: grid;
+  gap: 10px;
+  width: 176px;
+  color: #8b93b5;
+  font-size: 10.5px;
+  line-height: 1.9;
+}
+[data-exp="first-letter"] p { margin: 0; }
+
+/* 上：擬似要素に直接当てる。動かない。 */
+[data-exp="first-letter"] .fl::first-letter {
+  float: left;
+  margin-right: 4px;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 0.95;
+  color: #7dd3fc;
+  animation-name: exp-first-letter;
+  animation-iteration-count: infinite;
+}
+
+/* 下：要素で包む。こちらは動く。 */
+[data-exp="first-letter"] .cap {
+  float: left;
+  margin-right: 4px;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 0.95;
+  color: #7dd3fc;
+  animation-name: exp-first-letter;
+  animation-iteration-count: infinite;
+}

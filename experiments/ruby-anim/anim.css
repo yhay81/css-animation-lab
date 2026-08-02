@@ -1,0 +1,18 @@
+@keyframes exp-ruby-anim {
+  0%, 30%   { opacity: 0; translate: 0 4px; }
+  55%, 100% { opacity: 1; translate: 0 0; }
+}
+
+[data-exp="ruby-anim"] .rb {
+  display: flex;
+  font-size: 24px;
+  font-weight: 700;
+  color: #e6e9f5;
+  ruby-align: center;
+}
+[data-exp="ruby-anim"] rt {
+  color: #7dd3fc;
+  font-size: 0.42em;
+  animation-name: exp-ruby-anim;
+  animation-delay: calc((sibling-index() - 1) * 140ms);
+}

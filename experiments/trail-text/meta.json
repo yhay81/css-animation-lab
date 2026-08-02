@@ -1,0 +1,19 @@
+{
+  "id": "trail-text",
+  "n": 613,
+  "title": "文字が尾を引く",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "多重 text-shadow",
+      "進行方向と逆向きの減衰"
+    ],
+    "use": "演出 / 速さの表現"
+  },
+  "predicted": "uncertain",
+  "note": "影を進行方向の反対側へ段階的に薄く置く。要素は 1 つのまま残像になる。向きを反転させる瞬間に影の並びも反転させないと、尾が前に出てしまう。",
+  "markup": "<div class=\"tt\">RUSH</div>"
+}

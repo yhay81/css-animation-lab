@@ -1,0 +1,19 @@
+{
+  "id": "mask-subtract",
+  "n": 602,
+  "title": "マスクを引いて穴を開ける",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "mask-composite: subtract",
+      "@property"
+    ],
+    "use": "注目箇所の切り抜き / 装飾"
+  },
+  "predicted": "uncertain",
+  "note": "面から円を引き算する。radial-gradient の透明部分で抜くのと違い、抜く形と抜かれる面を別々に書けるので、穴の数を増やすのがレイヤーの追加だけで済む。",
+  "markup": "<div class=\"ms\"></div>"
+}

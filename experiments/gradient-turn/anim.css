@@ -1,0 +1,15 @@
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes exp-gradient-turn {
+  from { --angle: 0deg; }
+  to   { --angle: 360deg; }
+}
+
+[data-exp="gradient-turn"] .subject {
+  background: conic-gradient(from var(--angle), #6366f1, #22d3ee, #a855f7, #6366f1);
+  animation-name: exp-gradient-turn;
+}

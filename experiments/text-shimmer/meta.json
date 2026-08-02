@@ -1,0 +1,19 @@
+{
+  "id": "text-shimmer",
+  "n": 201,
+  "title": "文字を横切る光",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "background-clip: text",
+      "background-position"
+    ],
+    "use": "読み込み中の見出し / 強調"
+  },
+  "predicted": "uncertain",
+  "note": "文字を背景の切り抜きにして、背景だけを動かす。文字自体は動かないので読みやすさを損なわない。",
+  "markup": "<div class=\"tx\">GRADIENT</div>"
+}

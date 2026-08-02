@@ -1,0 +1,22 @@
+{
+  "id": "tint",
+  "n": 13,
+  "title": "色相移動",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "background-color",
+      "oklch"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "oklch 同士の補間は知覚的に均一な経路を通る。sRGB 補間との差が実際に見えるかを確認したい。"
+}

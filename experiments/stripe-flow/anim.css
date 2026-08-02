@@ -1,0 +1,17 @@
+@keyframes exp-stripe-flow { to { background-position: 34px 0; } }
+
+[data-exp="stripe-flow"] .prog {
+  width: 148px;
+  height: 16px;
+  border-radius: 8px;
+  background: #1b2340;
+  overflow: hidden;
+}
+[data-exp="stripe-flow"] .fill {
+  width: 72%;
+  height: 100%;
+  /* 縞の 1 周期は 34px。同じ量だけ動かすと継ぎ目が出ない。 */
+  background: repeating-linear-gradient(115deg,
+    #6366f1 0 12px, #7dd3fc 12px 17px, #6366f1 17px 34px);
+  animation-name: exp-stripe-flow;
+}

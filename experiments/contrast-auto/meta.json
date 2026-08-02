@@ -1,0 +1,19 @@
+{
+  "id": "contrast-auto",
+  "n": 713,
+  "title": "文字色が自動で反転する",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "contrast-color()",
+      "@property <color>"
+    ],
+    "use": "色が変わる面の上の文字"
+  },
+  "predicted": "uncertain",
+  "note": "背景と文字色を同じ 1 つの値から導く。背景が明るくなれば文字は黒へ、暗くなれば白へ自動で切り替わる。閾値を自分で持たなくてよくなる。",
+  "markup": "<div class=\"ca\">TEXT</div>"
+}

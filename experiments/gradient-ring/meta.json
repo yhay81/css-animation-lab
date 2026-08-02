@@ -1,0 +1,19 @@
+{
+  "id": "gradient-ring",
+  "n": 809,
+  "title": "角丸に沿ったグラデ枠",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "mask-composite: exclude",
+      "content-box マスク"
+    ],
+    "use": "強調 / 処理中"
+  },
+  "predicted": "uncertain",
+  "note": "border-image は角丸を無視する（border-flow の記録）。内側だけを抜いたマスクを重ねれば、角丸に沿った枠が作れる。同じ目的に対する正解側の書き方。",
+  "markup": "<div class=\"gr\">Aa</div>"
+}

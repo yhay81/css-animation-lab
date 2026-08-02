@@ -1,0 +1,24 @@
+@keyframes exp-plus-lighter-a { 0%, 100% { translate: -22px 12px; } 50% { translate: 22px -12px; } }
+@keyframes exp-plus-lighter-b { 0%, 100% { translate: 22px 12px; }  50% { translate: -22px -12px; } }
+@keyframes exp-plus-lighter-c { 0%, 100% { translate: 0 -20px; }    50% { translate: 0 20px; } }
+
+[data-exp="plus-lighter"] .pl {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #05070f;
+  isolation: isolate;
+}
+[data-exp="plus-lighter"] .pl span {
+  grid-area: 1 / 1;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  mix-blend-mode: plus-lighter;
+  filter: blur(6px);
+  animation-iteration-count: infinite;
+}
+[data-exp="plus-lighter"] .a { background: #f43f5e; animation-name: exp-plus-lighter-a; }
+[data-exp="plus-lighter"] .b { background: #22d3ee; animation-name: exp-plus-lighter-b; }
+[data-exp="plus-lighter"] .c { background: #84cc16; animation-name: exp-plus-lighter-c; }

@@ -1,0 +1,23 @@
+@keyframes exp-audio-bars {
+  0%, 100% { scale: 1 0.22; }
+  50%      { scale: 1 1; }
+}
+
+[data-exp="audio-bars"] .ab {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 76px;
+}
+[data-exp="audio-bars"] .ab span {
+  width: 7px;
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(#a5f3fc, #6366f1);
+  transform-origin: 50% 50%;
+  animation-name: exp-audio-bars;
+  /* 1 周 1000ms を 2〜6 回に分ける。いずれも約数なので継ぎ目が出ない。 */
+  animation-duration: calc(1000ms / (2 + mod(sibling-index(), 5)));
+  animation-delay: calc(mod(sibling-index(), 3) * -90ms);
+  animation-iteration-count: infinite;
+}

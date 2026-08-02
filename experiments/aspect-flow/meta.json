@@ -1,0 +1,18 @@
+{
+  "id": "aspect-flow",
+  "n": 811,
+  "title": "縦横比だけを動かす",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "aspect-ratio の補間"
+    ],
+    "use": "画像枠 / カードの切り替え"
+  },
+  "predicted": "uncertain",
+  "note": "幅も高さも指定せず、比率だけを動かす。中身の配置は入れ物側の規則で自動的に追従するので、両方の値を計算して合わせる必要がない。",
+  "markup": "<div class=\"af\"><div class=\"box\"></div></div>"
+}

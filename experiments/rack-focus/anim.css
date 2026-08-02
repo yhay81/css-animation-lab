@@ -1,0 +1,41 @@
+@keyframes exp-rack-near {
+  0%, 30%   { filter: blur(0px);   opacity: 1; }
+  70%, 100% { filter: blur(7px);   opacity: 0.55; }
+}
+@keyframes exp-rack-mid {
+  0%, 30%   { filter: blur(3px);   opacity: 0.7; }
+  70%, 100% { filter: blur(2px);   opacity: 0.8; }
+}
+@keyframes exp-rack-far {
+  0%, 30%   { filter: blur(8px);   opacity: 0.5; }
+  70%, 100% { filter: blur(0px);   opacity: 1; }
+}
+
+[data-exp="rack-focus"] .rf { position: absolute; inset: 0; }
+[data-exp="rack-focus"] .l {
+  position: absolute;
+  border-radius: 12px;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+[data-exp="rack-focus"] .far {
+  inset: 14px 14px auto auto;
+  width: 74px;
+  height: 74px;
+  background: linear-gradient(135deg, #f472b6, #a855f7);
+  animation-name: exp-rack-far;
+}
+[data-exp="rack-focus"] .mid {
+  inset: auto auto 40px 44px;
+  width: 52px;
+  height: 52px;
+  background: #6366f1;
+  animation-name: exp-rack-mid;
+}
+[data-exp="rack-focus"] .near {
+  inset: auto auto 14px 12px;
+  width: 62px;
+  height: 62px;
+  background: linear-gradient(135deg, #a5f3fc, #38bdf8);
+  animation-name: exp-rack-near;
+}

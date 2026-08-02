@@ -1,0 +1,20 @@
+{
+  "id": "silhouette",
+  "n": 1202,
+  "title": "逆光の影",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "アニメ / 実写",
+    "technique": [
+      "背後の光源移動",
+      "輪郭光"
+    ],
+    "use": "登場 / 正体不明"
+  },
+  "predicted": "uncertain",
+  "note": "光源が背後にあると、対象は黒く落ちて輪郭だけが光る。何であるかを見せずに存在だけを伝えられる。光源が動くと輪郭光の位置も動くので、立体であることが分かる。",
+  "markup": "<div class=\"sil\"><span class=\"sun\"></span><span class=\"fig\"></span><span class=\"rim\"></span></div>"
+}

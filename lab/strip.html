@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>css-animation-lab — フィルムストリップ</title>
+<link rel="stylesheet" href="/lab/common.css">
+<style>
+  /* 動きを静止画の連番に開く。人間には一望のため、私には「読める形」にするため。 */
+  .bar {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px; font-size: 12px;
+    background: rgba(11,16,32,.94); border-bottom: 1px solid var(--line);
+  }
+  .bar label { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+  select {
+    background: var(--panel); color: var(--fg);
+    border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; font: inherit;
+  }
+  .row { padding: 6px 14px 14px; border-bottom: 1px solid var(--line); }
+  .row h2 {
+    margin: 10px 0 8px; font-size: 13px; font-weight: 600;
+    display: flex; align-items: baseline; gap: 10px;
+  }
+  .row h2 code { color: var(--muted); font-size: 12px; }
+  .row h2 .note { color: var(--muted); font-size: 11px; font-weight: 400; }
+  .strip { display: flex; gap: 4px; overflow-x: auto; }
+  .strip .cell { flex: 0 0 118px; border-radius: 8px; }
+  .strip .stage { height: 118px; background-size: 20px 20px; }
+  .strip .subject { width: 66px; height: 66px; font-size: 10px; border-radius: 10px; }
+  /* 多要素の編成実験は 1 コマの幅に収まるまで縮める。 */
+  .strip .row5 { gap: 5px; }
+  .strip .row5 .subject { width: 15px; height: 40px; }
+  .strip figcaption {
+    justify-content: center; padding: 4px; font-size: 10px;
+    color: var(--muted); font-variant-numeric: tabular-nums;
+  }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <label>イージング <select id="ease"></select></label>
+  <label>コマ数 <select id="frames">
+    <option>5</option><option selected>9</option><option>13</option>
+  </select></label>
+  <label>サンプリング <select id="sampling">
+    <option value="front" selected>前半密</option>
+    <option value="even">均等</option>
+  </select></label>
+  <span id="status" style="color:var(--muted)"></span>
+</div>
+
+<div id="out"></div>
+
+<script>
+  // モジュールは絶対パスで読むため file:// では読み込み自体が失敗し、何も出ないまま黒画面になる。
+  if (location.protocol === 'file:') {
+    document.body.insertAdjacentHTML('beforeend',
+      '<div style="position:fixed;left:16px;right:16px;bottom:16px;padding:14px 16px;' +
+      'border:1px solid #f43f5e;border-radius:10px;background:#2a0f1c;color:#ffe4e6;' +
+      'font:13px/1.9 ui-sans-serif,system-ui,sans-serif">' +
+      'file:// では動きません。<br>ターミナルで <code>node lab/server.mjs</code> を起動し、' +
+      '<a href="http://localhost:5757/lab/strip.html" style="color:#7dd3fc">http://localhost:5757/lab/strip.html</a> から開いてください。</div>');
+  }
+</script>
+
+<script type="module">
+import { EASINGS, DUR, loadCatalog, injectStyles, setEasing, afterStyleResolution, reportFailures, SUBJECT, isCssAnimation } from '/lab/lab.js';
+
+reportFailures();
+
+const out = document.querySelector('#out');
+const params = new URLSearchParams(location.search);
+const only = params.get('ids')?.split(',').filter(Boolean);
+
+let items = await loadCatalog();
+if (only?.length) items = items.filter((it) => only.includes(it.id));
+// 時計で駆動できないもの（状態変化・スクロール・操作）は任意の時点に固定できず、静止画に開けない。
+const skipped = items.filter((it) => it.mode).length;
+items = items.filter((it) => !it.mode);
+await injectStyles(items);
+
+const easeSel = document.querySelector('#ease');
+easeSel.innerHTML = EASINGS.map((e, i) => `<option value="${i}">${e.label}</option>`).join('');
+// 既定は linear。イージングが付いていると、動きの形とイージングの形が混ざって読めなくなる。
+// 何を見ているかを確かめるときは、まず素で見る。
+easeSel.selectedIndex = Math.max(0, EASINGS.findIndex((e) => e.id === (params.get('ease') ?? 'linear')));
+
+const framesSel = document.querySelector('#frames');
+if (params.get('frames')) framesSel.value = params.get('frames');
+
+const samplingSel = document.querySelector('#sampling');
+if (params.get('sampling')) samplingSel.value = params.get('sampling');
+
+async function build() {
+  const n = Number(framesSel.value);
+  // ease-out 系は 3 割で動き終わるため、等間隔に採ると後半のコマがすべて同じ絵になる。
+  // 既定は前半に密なサンプリングにして、1 枚から読み取れる情報量を上げる。
+  const curve = samplingSel.value === 'front' ? 2.4 : 1;
+  const at = (i) => (i / (n - 1)) ** curve;
+
+  out.innerHTML = '';
+  for (const it of items) {
+    const sec = document.createElement('section');
+    sec.className = 'row';
+    sec.innerHTML = `
+      <h2><code>${it.id}</code>${it.title}<span class="note">${it.note ?? ''}</span></h2>
+      <div class="strip">${Array.from({ length: n }, (_, i) => {
+        const f = at(i);
+        return `<figure class="cell" data-exp="${it.id}" data-t="${f}">
+          <div class="stage">${it.markup ?? SUBJECT}</div>
+          <figcaption>${(f * 100).toFixed(f < 0.1 ? 1 : 0)}%</figcaption>
+        </figure>`;
+      }).join('')}</div>`;
+    out.append(sec);
+  }
+  await afterStyleResolution();
+  freeze();
+}
+
+/** 各コマを固有の進行度で止める。currentTime は要素ごとに独立して設定できる。 */
+function freeze() {
+  setEasing(document.documentElement, EASINGS[easeSel.selectedIndex].value);
+  let n = 0;
+  for (const cell of out.querySelectorAll('.cell')) {
+    const t = Number(cell.dataset.t) * DUR;
+    // 多要素の編成実験もあるため、セル配下すべてのアニメーションを対象にする。
+    for (const a of cell.getAnimations({ subtree: true })) {
+      if (!isCssAnimation(a)) continue; // 遷移は静止画に固定できない
+      a.currentTime = t;
+      n++;
+    }
+  }
+  document.querySelector('#status').textContent =
+    (n ? `${items.length} 実験 / ${n} コマ` : '⚠ アニメーションを駆動できていません') +
+    (skipped ? `（state 駆動 ${skipped} 件は静止画にできないため除外）` : '');
+}
+
+easeSel.addEventListener('change', freeze);
+framesSel.addEventListener('change', build);
+samplingSel.addEventListener('change', build);
+build();
+</script>
+</body>
+</html>

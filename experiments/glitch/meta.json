@@ -1,0 +1,20 @@
+{
+  "id": "glitch",
+  "n": 211,
+  "title": "グリッチ",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "擬似要素の複製",
+      "clip-path 帯",
+      "steps"
+    ],
+    "use": "エラー表示 / 演出"
+  },
+  "predicted": "uncertain",
+  "note": "同じ文字を擬似要素で 2 枚重ね、色をずらして帯状に切り抜く。attr() で本文を複製するので二重管理にならない。",
+  "markup": "<div class=\"gl\" data-tx=\"ERROR\">ERROR</div>"
+}

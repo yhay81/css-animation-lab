@@ -1,0 +1,18 @@
+{
+  "id": "iter-accumulate",
+  "n": 505,
+  "title": "繰り返しごとに積み上がるか（未対応）",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "animation-iteration-composite: accumulate"
+    ],
+    "use": "連続回転 / 積み上がる動き"
+  },
+  "predicted": "bad",
+  "note": "左は animation-iteration-composite: accumulate を指定して 90° を 4 回繰り返したもの。仕様どおりなら 360° 回るはずだが、この環境は未対応のため毎回 0° に戻って跳ねる。右は同じ見た目をキーフレームに 360° と書いたもの。速度と量を独立に決めたい場合の手段が今は無い、という記録。",
+  "markup": "<div class=\"ia\"><div class=\"col\"><span class=\"lb\">accumulate</span><div class=\"b acc\"></div></div><div class=\"col\"><span class=\"lb\">手書き 360°</span><div class=\"b full\"></div></div></div>"
+}

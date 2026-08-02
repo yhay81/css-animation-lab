@@ -1,0 +1,33 @@
+[data-exp="vt-swap"] .vt {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 22px;
+}
+[data-exp="vt-swap"] .slot { display: grid; place-items: center; }
+[data-exp="vt-swap"] .card {
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 800;
+}
+/* 名前を付けた要素だけが前後を繋がれる。 */
+[data-exp="vt-swap"] .x {
+  view-transition-name: vt-swap-x;
+  width: 62px;
+  height: 62px;
+  background: linear-gradient(135deg, #7dd3fc, #6366f1);
+}
+[data-exp="vt-swap"] .y {
+  view-transition-name: vt-swap-y;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #f472b6, #a855f7);
+}
+/* 開いた状態では大きさと配置を入れ替える。差分は仕組みが埋める。 */
+[data-exp="vt-swap"][data-open="true"] .x { width: 40px; height: 40px; order: 2; }
+[data-exp="vt-swap"][data-open="true"] .y { width: 62px; height: 62px; }
+[data-exp="vt-swap"][data-open="true"] .vt { grid-template-columns: 1fr 2fr; }

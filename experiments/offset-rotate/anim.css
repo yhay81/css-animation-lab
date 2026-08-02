@@ -1,0 +1,23 @@
+@keyframes exp-offset-rotate {
+  from { offset-distance: 0%; }
+  to   { offset-distance: 100%; }
+}
+
+[data-exp="offset-rotate"] .or { position: absolute; inset: 0; }
+[data-exp="offset-rotate"] .or span {
+  position: absolute;
+  font-size: 15px;
+  line-height: 1;
+  offset-path: ellipse(34% 26%);
+  animation-name: exp-offset-rotate;
+  animation-iteration-count: infinite;
+}
+[data-exp="offset-rotate"] .auto {
+  color: #7dd3fc;
+  offset-rotate: auto;
+}
+[data-exp="offset-rotate"] .fixed {
+  color: #f472b6;
+  offset-rotate: 0deg;
+  animation-delay: -500ms;
+}

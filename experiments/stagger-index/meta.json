@@ -1,0 +1,27 @@
+{
+  "id": "stagger-index",
+  "n": 34,
+  "title": "sibling-index() で遅延",
+  "layer": "L3",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [
+      "stagger"
+    ],
+    "structure": [
+      "sibling-index()"
+    ]
+  },
+  "predicted": "uncertain",
+  "note": "マークアップに番号を書かず CSS だけで順送りを作れるか。未対応なら遅延が 0 になり全部同時に出るので、その場で判別できる。",
+  "markup": "<div class=\"row5\"><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div></div>"
+}

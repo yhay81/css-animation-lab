@@ -1,0 +1,44 @@
+/*
+ * 穴を動かすには、下に「何かがある」と分かる絵と、上に「板である」と分かる面の両方が要る。
+ * 下地を無地にすると、覆いを抜いているのではなく丸が動いているようにしか見えない。
+ */
+@property --hx {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
+@keyframes exp-mask-hole {
+  0%, 100% { --hx: 18%; }
+  50%      { --hx: 82%; }
+}
+
+[data-exp="mask-hole"] .hole { position: absolute; inset: 0; }
+
+[data-exp="mask-hole"] .under {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 16px;
+  background: linear-gradient(115deg, #f472b6, #6366f1 45%, #22d3ee);
+}
+[data-exp="mask-hole"] .tile {
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.24);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+[data-exp="mask-hole"] .cover {
+  position: absolute;
+  inset: 0;
+  /* 覆いにも目地を入れて、無地の背景ではなく板として読ませる。 */
+  background: repeating-linear-gradient(135deg, #171d36 0 9px, #1b2240 9px 18px);
+  mask: radial-gradient(circle 30px at var(--hx) 50%, transparent 0 100%, #000 0);
+  animation-name: exp-mask-hole;
+}

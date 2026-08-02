@@ -1,0 +1,18 @@
+{
+  "id": "container-anim",
+  "n": 506,
+  "title": "幅で動きを切り替える",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "@container"
+    ],
+    "use": "同じ部品を狭い場所と広い場所に置く"
+  },
+  "predicted": "uncertain",
+  "note": "画面幅ではなく置かれた入れ物の幅で分岐する。同じ部品が、狭い場所では控えめに、広い場所では大きく動く。メディアクエリでは書けない。",
+  "markup": "<div class=\"ca\"><div class=\"box narrow\"><span></span></div><div class=\"box wide\"><span></span></div></div>"
+}

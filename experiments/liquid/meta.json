@@ -1,0 +1,20 @@
+{
+  "id": "liquid",
+  "n": 380,
+  "title": "液面が揺れる",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "回転する角丸",
+      "overflow で切り抜き",
+      "逆位相の2層"
+    ],
+    "use": "残量 / 進捗"
+  },
+  "predicted": "uncertain",
+  "note": "角丸を一律にした正方形を回すと、丸い窓から見える縁が波になる。角丸を小さくし塊を窓に近い大きさにすると振幅が増す。逆回転の 2 層を重ねると干渉して単調さが消える。",
+  "markup": "<div class=\"lq\"><div class=\"lq-w a\"></div><div class=\"lq-w b\"></div></div>"
+}

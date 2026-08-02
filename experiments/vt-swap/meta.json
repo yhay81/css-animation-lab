@@ -1,0 +1,21 @@
+{
+  "id": "vt-swap",
+  "n": 500,
+  "title": "入れ替わりを自動で補間する",
+  "layer": "T",
+  "mode": "state",
+  "viewTransition": true,
+  "axes": {
+    "driver": [
+      "状態変化"
+    ],
+    "technique": [
+      "View Transitions",
+      "view-transition-name"
+    ],
+    "use": "並べ替え / 詳細への遷移"
+  },
+  "predicted": "uncertain",
+  "note": "DOM を入れ替えるだけで、位置も大きさも自動で補間される。名前を付けた要素の前後を撮って繋ぐ仕組みなので、移動量を自分で計算する必要がない。",
+  "markup": "<div class=\"vt\"><div class=\"slot a\"><div class=\"card x\">A</div></div><div class=\"slot b\"><div class=\"card y\">B</div></div></div>"
+}

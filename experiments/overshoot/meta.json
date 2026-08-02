@@ -1,0 +1,22 @@
+{
+  "id": "overshoot",
+  "n": 26,
+  "title": "行き過ぎをキーフレームで",
+  "layer": "L2",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "中間キーフレーム"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "back-out イージングではなく中間キーフレームで行き過ぎを作る。イージングで作る場合と違い、行き過ぎ量を明示的に決められる。どちらが制御しやすいかの比較材料。"
+}

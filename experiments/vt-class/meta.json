@@ -1,0 +1,21 @@
+{
+  "id": "vt-class",
+  "n": 805,
+  "title": "遷移の規則をまとめて当てる",
+  "layer": "T",
+  "mode": "state",
+  "viewTransition": true,
+  "axes": {
+    "driver": [
+      "状態変化"
+    ],
+    "technique": [
+      "view-transition-class",
+      "::view-transition-group()"
+    ],
+    "use": "一覧の並べ替え"
+  },
+  "predicted": "uncertain",
+  "note": "要素ごとに名前は要るが、遷移の指定はクラスで一括して書ける。要素が増えても規則は 1 本のまま。名前と規則を切り離せる。",
+  "markup": "<div class=\"vc\"><div class=\"t t1\">1</div><div class=\"t t2\">2</div><div class=\"t t3\">3</div><div class=\"t t4\">4</div></div>"
+}

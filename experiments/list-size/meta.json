@@ -1,0 +1,24 @@
+{
+  "id": "list-size",
+  "n": 121,
+  "title": "リスト追加｜height: auto へ遷移",
+  "layer": "L4",
+  "mode": "state",
+  "axes": {
+    "driver": [
+      "transition"
+    ],
+    "target": [
+      "height",
+      "interpolate-size"
+    ],
+    "timing": [
+      "固定"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "interpolate-size で height: auto への遷移を解禁する型。書き方は素直だが対応範囲が狭い。未対応なら高さが瞬間で切り替わる。",
+  "markup": "<div class=\"scene list\"><div class=\"row\"><div class=\"line\"></div></div><div class=\"ins\"><div class=\"inner\"><div class=\"line hi\"></div></div></div><div class=\"row\"><div class=\"line\"></div></div></div>"
+}

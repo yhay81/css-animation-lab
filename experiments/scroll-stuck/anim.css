@@ -1,0 +1,103 @@
+/*
+ * 「貼り付いた瞬間に変わる」を作る手段は 2 つある。
+ *
+ * 1. @container scroll-state(stuck: top)
+ *    意図をそのまま書けるが、この環境では条件を満たしても適用されない（F030）。
+ *    下に残してあるのは記録のため。効いていれば上の見出しも変わる。
+ *
+ * 2. スクロール量そのものを時間軸にする
+ *    貼り付きを直接は問えないが、「上端に達するまでのスクロール量」は分かる。
+ *    見出しが貼り付くのはスクロール量が余白ぶん進んだときなので、
+ *    その区間に変化を割り当てれば同じ見た目になる。こちらは今日から動く。
+ */
+@keyframes exp-scroll-stuck {
+  from {
+    height: 54px;
+    background: #26304f;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  to {
+    height: 28px;
+    background: linear-gradient(90deg, #7dd3fc, #a855f7);
+    box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.95);
+  }
+}
+@keyframes exp-scroll-stuck-ttl {
+  from { font-size: 17px; color: #e6e9f5; }
+  to   { font-size: 11px; color: #0b1020; }
+}
+@keyframes exp-scroll-stuck-tag {
+  0%, 60% { opacity: 0; scale: 0.8; }
+  100%    { opacity: 1; scale: 1; }
+}
+
+[data-exp="scroll-stuck"] .ss {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  /* 進行度の供給元を名前で示す。scroll(nearest) だと途中の切り抜きに横取りされる（F027）。 */
+  scroll-timeline: --ss block;
+}
+[data-exp="scroll-stuck"] .hd {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  /* 1 の書き方。構文は通るが、この環境では発火しない。 */
+  container-type: scroll-state;
+}
+[data-exp="scroll-stuck"] .hd-in,
+[data-exp="scroll-stuck"] .ttl,
+[data-exp="scroll-stuck"] .tag {
+  animation-timeline: --ss;
+  /* 貼り付くまでの余白ぶん。ここを過ぎたら以後は変化しない。 */
+  animation-range: 0 26px;
+  animation-duration: auto;
+  animation-fill-mode: both;
+  animation-play-state: running;
+}
+/* 基準値も持たせる。タイムラインが使えない環境でも形が崩れない。 */
+[data-exp="scroll-stuck"] .hd-in {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 54px;
+  background: #26304f;
+  animation-name: exp-scroll-stuck;
+}
+[data-exp="scroll-stuck"] .ttl {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #e6e9f5;
+  animation-name: exp-scroll-stuck-ttl;
+}
+[data-exp="scroll-stuck"] .tag {
+  padding: 2px 7px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.55);
+  color: #0b1020;
+  font-size: 9px;
+  font-weight: 800;
+  white-space: nowrap;
+  opacity: 0;
+  animation-name: exp-scroll-stuck-tag;
+}
+
+/* 1 の書き方。効いていればこちらが上書きする。 */
+@container scroll-state(stuck: top) {
+  .hd-in { outline: 2px solid #34d399; }
+}
+
+[data-exp="scroll-stuck"] .body { padding: 12px 18px 24px; }
+[data-exp="scroll-stuck"] .ln {
+  display: grid;
+  place-items: center;
+  height: 34px;
+  margin-top: 8px;
+  border-radius: 8px;
+  background: #26304f;
+  color: #8b93b5;
+  font-size: 12px;
+}

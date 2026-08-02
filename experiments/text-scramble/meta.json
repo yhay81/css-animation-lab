@@ -1,0 +1,20 @@
+{
+  "id": "text-scramble",
+  "n": 908,
+  "title": "文字が回って確定する",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "JS でやってきたもの",
+    "technique": [
+      "縦の字列を steps で送る",
+      "文字ごとの遅延"
+    ],
+    "use": "読み込み完了 / 暗号めいた演出"
+  },
+  "predicted": "uncertain",
+  "note": "候補の文字が高速で入れ替わり、順に確定していく演出。JS で 1 文字ずつ書き換えて作るのが普通だが、候補を縦に並べて steps で送れば CSS だけで書ける。ずらす番号は文字を包む側が持つ必要がある。送られる帯は唯一の子なので、そこで並び順を数えても常に 1 になってしまう。",
+  "markup": "<div class=\"ts\"><span class=\"c\"><span class=\"strip\"><i>◇</i><i>7</i><i>※</i><i>X</i><i>ネ</i><i>本</i></span></span><span class=\"c\"><span class=\"strip\"><i>8</i><i>◆</i><i>ル</i><i>%</i><i>下</i><i>命</i></span></span><span class=\"c\"><span class=\"strip\"><i>※</i><i>3</i><i>ヰ</i><i>#</i><i>石</i><i>確</i></span></span><span class=\"c\"><span class=\"strip\"><i>Z</i><i>◇</i><i>5</i><i>ヲ</i><i>疋</i><i>定</i></span></span></div>"
+}

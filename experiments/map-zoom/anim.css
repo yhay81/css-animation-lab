@@ -1,0 +1,55 @@
+@keyframes exp-mz-world {
+  0%, 8%    { scale: 1;   translate: 0 0; }
+  62%, 100% { scale: 2.6; translate: -14px -10px; }
+}
+@keyframes exp-mz-road {
+  0%, 26%   { opacity: 0; }
+  48%, 100% { opacity: 1; }
+}
+@keyframes exp-mz-label {
+  0%, 44%   { opacity: 0; scale: 0.6; }
+  62%, 100% { opacity: 1; scale: 1; }
+}
+
+[data-exp="map-zoom"] .mz {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #0f172a;
+}
+[data-exp="map-zoom"] .grid,
+[data-exp="map-zoom"] .road,
+[data-exp="map-zoom"] .pin {
+  position: absolute;
+  inset: 0;
+  animation-name: exp-mz-world;
+  animation-iteration-count: infinite;
+}
+[data-exp="map-zoom"] .grid {
+  background:
+    repeating-linear-gradient(0deg, #1e293b 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(90deg, #1e293b 0 1px, transparent 1px 22px);
+}
+/* 寄ってから出てくる層。 */
+[data-exp="map-zoom"] .road {
+  background:
+    linear-gradient(90deg, transparent 28%, #334155 28% 33%, transparent 33%),
+    linear-gradient(0deg, transparent 52%, #334155 52% 56%, transparent 56%);
+  animation-name: exp-mz-world, exp-mz-road;
+}
+[data-exp="map-zoom"] .pin {
+  background: radial-gradient(circle at 46% 44%, #f43f5e 0 4px, transparent 5px);
+}
+[data-exp="map-zoom"] .label {
+  position: absolute;
+  left: 42%;
+  top: 52%;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: #f4f6ff;
+  color: #0f172a;
+  font-size: 10px;
+  font-weight: 700;
+  animation-name: exp-mz-label;
+  animation-iteration-count: infinite;
+}

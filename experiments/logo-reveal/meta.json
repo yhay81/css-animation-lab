@@ -1,0 +1,20 @@
+{
+  "id": "logo-reveal",
+  "n": 913,
+  "title": "ロゴが書き出される",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "モーショングラフィックス",
+    "technique": [
+      "マスクの掃き出し",
+      "光沢の追い越し"
+    ],
+    "use": "ブランド / 導入 / 締め"
+  },
+  "predicted": "uncertain",
+  "note": "企業動画の締めで使われる型。マスクで左から現し、少し遅れて光沢が追い越していく。現すだけでは素っ気なく、光沢だけでは何も起きない。2 つの時間差が「仕上がった」感じを作る。",
+  "markup": "<div class=\"lr\"><span class=\"tx\">STUDIO</span><span class=\"sheen\"></span></div>"
+}

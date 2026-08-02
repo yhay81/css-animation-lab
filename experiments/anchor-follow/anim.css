@@ -1,0 +1,30 @@
+@keyframes exp-anchor-follow {
+  0%, 100% { left: 14%; }
+  50%      { left: 72%; }
+}
+
+[data-exp="anchor-follow"] .af { position: absolute; inset: 0; }
+[data-exp="anchor-follow"] .dot {
+  position: absolute;
+  top: 58%;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7dd3fc, #6366f1);
+  /* 追われる側は名前を付けるだけ。 */
+  anchor-name: --af-dot;
+  animation-name: exp-anchor-follow;
+  animation-iteration-count: infinite;
+}
+[data-exp="anchor-follow"] .tip {
+  position: absolute;
+  position-anchor: --af-dot;
+  position-area: block-start;
+  margin-bottom: 8px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #e6e9f5;
+  color: #151a2e;
+  font-size: 11px;
+  font-weight: 700;
+}

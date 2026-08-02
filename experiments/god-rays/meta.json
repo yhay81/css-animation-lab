@@ -1,0 +1,21 @@
+{
+  "id": "god-rays",
+  "n": 1008,
+  "title": "光が差す",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "CG",
+    "technique": [
+      "conic の光条",
+      "マスクによる減衰",
+      "plus-lighter"
+    ],
+    "use": "ヒーロー / 達成"
+  },
+  "predicted": "uncertain",
+  "note": "光源から伸びる筋。線を等間隔にすると人工的なので、太さの違う 2 枚を別々の速さで回して不揃いにする。減衰は放射状のマスクで作る。",
+  "markup": "<div class=\"gr\"><span class=\"rays\"></span><span class=\"core\"></span></div>"
+}

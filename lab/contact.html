@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>css-animation-lab — 一覧・評価</title>
+<link rel="stylesheet" href="/lab/common.css">
+<style>
+  .bar {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+    padding: 10px 14px;
+    background: rgba(11, 16, 32, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    font-size: 12px;
+  }
+  .bar label { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+  select, input[type=range] { accent-color: var(--accent); }
+  select {
+    background: var(--panel); color: var(--fg);
+    border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; font: inherit;
+  }
+  .spacer { flex: 1; }
+  .count { font-variant-numeric: tabular-nums; }
+  .count b { color: var(--fg); }
+  .count .todo { color: var(--accent); }
+  .saved { color: var(--muted); min-width: 5em; text-align: right; }
+
+  /* 拡大表示。判定に迷ったものだけ大きく見る。 */
+  .cell.zoom {
+    position: fixed; inset: 6vh 12vw; z-index: 50;
+    box-shadow: 0 40px 90px rgba(0,0,0,.7);
+  }
+  .cell.zoom .stage { height: calc(88vh - 120px); }
+  .cell.zoom .note { display: block; }
+  .note {
+    display: none; padding: 10px 14px 14px;
+    color: var(--muted); font-size: 12px; line-height: 1.7; border-top: 1px solid var(--line);
+  }
+  .veil { position: fixed; inset: 0; z-index: 40; background: rgba(4,7,16,.72); }
+  .veil[hidden] { display: none; }
+
+  kbd {
+    background: var(--panel); border: 1px solid var(--line); border-bottom-width: 2px;
+    border-radius: 4px; padding: 0 4px; font-family: ui-monospace, monospace; font-size: 11px;
+  }
+  .help { padding: 8px 14px 16px; color: var(--muted); font-size: 11.5px; line-height: 2; }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <label>イージング
+    <select id="ease"></select>
+  </label>
+  <label>被写体
+    <select id="substrate"></select>
+  </label>
+  <label>速さ
+    <input id="speed" type="range" min="300" max="3000" step="50" value="1000">
+    <span id="speed-out" style="font-variant-numeric:tabular-nums">×1.0</span>
+  </label>
+  <label>時刻
+    <input id="scrub" type="range" min="0" max="1000" step="1" value="0" style="width:200px">
+  </label>
+  <button id="play" style="background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:4px 10px;font:inherit;cursor:pointer">⏸</button>
+  <label title="1周の終わりに間を置く。到達した状態を眺めたいときだけ">
+    <input type="checkbox" id="hold"> 溜め
+  </label>
+  <span class="spacer"></span>
+  <span class="count">
+    <span class="todo">要判断 <b id="c-todo">0</b></span>　却下 <b id="c-veto">0</b>　気になる <b id="c-flag">0</b>　手本 <b id="c-star">0</b>
+  </span>
+  <span class="saved" id="saved"></span>
+</div>
+
+<div class="help">
+  <kbd>←↑↓→</kbd> 移動　<kbd>x</kbd> 却下　<kbd>f</kbd> 気になる　<kbd>s</kbd> 手本　<kbd>z</kbd> 取消
+  <kbd>n</kbd> 次の要判断へ　<kbd>Enter</kbd> 拡大　<kbd>Space</kbd> 再生／停止　<kbd>,</kbd> <kbd>.</kbd> コマ送り　<kbd>r</kbd> 頭出し　<kbd>e</kbd> イージング送り　<kbd>b</kbd> 被写体送り　<kbd>t</kbd> 既定を反転
+  <span id="mode"></span>
+</div>
+
+<div class="veil" id="veil" hidden></div>
+<div class="grid" id="grid"></div>
+
+<script>
+  // モジュールは絶対パスで読むため file:// では読み込み自体が失敗し、何も出ないまま黒画面になる。
+  // ここだけは素のスクリプトにして、先に理由を出す。
+  if (location.protocol === 'file:') {
+    document.body.insertAdjacentHTML('beforeend',
+      '<div style="position:fixed;left:16px;right:16px;bottom:16px;padding:14px 16px;' +
+      'border:1px solid #f43f5e;border-radius:10px;background:#2a0f1c;color:#ffe4e6;' +
+      'font:13px/1.9 ui-sans-serif,system-ui,sans-serif">' +
+      'file:// では動きません。<br>ターミナルで <code>node lab/server.mjs</code> を起動し、' +
+      '<a href="http://localhost:5757/lab/contact.html" style="color:#7dd3fc">http://localhost:5757/lab/contact.html</a> から開いてください。</div>');
+  }
+</script>
+
+<script type="module">
+import { EASINGS, SUBSTRATES, DUR, loadCatalog, injectStyles, buildCell, createClock, setEasing, reportFailures } from '/lab/lab.js';
+
+reportFailures();
+
+const grid = document.querySelector('#grid');
+const veil = document.querySelector('#veil');
+
+// --- 評価の状態 -------------------------------------------------------
+// marks には「明示的に押されたもの」だけを入れる。押されていないものは既定値に従う。
+// 既定値を反転できるので、バッチ全体がダメなときも操作は1回で済む。
+let defaultState = 'pass';
+let marks = {};
+
+const items = await loadCatalog();
+await injectStyles(items);
+
+const cells = new Map();
+for (const it of items) {
+  const cell = buildCell(it);
+  cell.querySelector('figcaption').insertAdjacentHTML('afterend',
+    `<div class="note">${it.note ?? ''}</div>`);
+  grid.append(cell);
+  cells.set(it.id, cell);
+}
+
+// --- 保存 -------------------------------------------------------------
+const savedEl = document.querySelector('#saved');
+let saveTimer;
+function save() {
+  clearTimeout(saveTimer);
+  savedEl.textContent = '…';
+  saveTimer = setTimeout(async () => {
+    await fetch('/api/verdicts', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ defaultState, marks, updatedAt: new Date().toISOString() }),
+    });
+    savedEl.textContent = '保存済み';
+  }, 400);
+}
+
+const stored = await (await fetch('/api/verdicts')).json();
+if (stored && typeof stored === 'object') {
+  defaultState = stored.defaultState ?? 'pass';
+  marks = stored.marks ?? {};
+}
+
+// --- 表示の更新 -------------------------------------------------------
+const MARK_CHAR = { pass: '', veto: '✕', flag: '★?', star: '◎' };
+
+function render() {
+  let todo = 0, veto = 0, flag = 0, star = 0;
+  for (const it of items) {
+    const state = marks[it.id] ?? defaultState;
+    const cell = cells.get(it.id);
+    cell.dataset.state = state;
+    cell.querySelector('.mark').textContent = MARK_CHAR[state];
+    if (it.predicted === 'uncertain' && !marks[it.id]) todo++;
+    if (state === 'veto') veto++;
+    if (state === 'flag') flag++;
+    if (state === 'star') star++;
+  }
+  document.querySelector('#c-todo').textContent = todo;
+  document.querySelector('#c-veto').textContent = veto;
+  document.querySelector('#c-flag').textContent = flag;
+  document.querySelector('#c-star').textContent = star;
+  document.querySelector('#mode').textContent =
+    defaultState === 'veto' ? '　／　既定＝却下（拾い上げモード）' : '';
+}
+
+function mark(cell, state) {
+  const id = cell.dataset.exp;
+  if (state === null || marks[id] === state) delete marks[id];
+  else marks[id] = state;
+  render();
+  save();
+}
+
+// --- 時計 -------------------------------------------------------------
+const scrub = document.querySelector('#scrub');
+const playBtn = document.querySelector('#play');
+let scrubbing = false;
+
+const clock = createClock({
+  onTick: (t) => { if (!scrubbing) scrub.value = Math.round(t); },
+});
+// 描画が止まる環境でも進行を確かめられるように外へ出しておく。
+window.__clock = clock;
+
+scrub.addEventListener('pointerdown', () => { scrubbing = true; clock.playing = false; });
+scrub.addEventListener('pointerup', () => { scrubbing = false; });
+scrub.addEventListener('input', () => clock.seek(Number(scrub.value)));
+document.querySelector('#speed').addEventListener('input', (e) => {
+  clock.cycleMs = Number(e.target.value);
+  // ×1.0 のとき、実験が書いた ms がそのまま実時間になる。
+  document.querySelector('#speed-out').textContent = `×${(clock.cycleMs / DUR).toFixed(1)}`;
+});
+playBtn.addEventListener('click', () => { clock.toggle(); playBtn.textContent = clock.playing ? '⏸' : '▶'; });
+
+// 溜め。既定は間なしで繰り返す。入れると 1 周の終わりで静止する。
+const hold = document.querySelector('#hold');
+hold.addEventListener('change', () => { clock.restMs = hold.checked ? 450 : 0; });
+
+// --- state 駆動の実験 -------------------------------------------------
+// transition や @starting-style は「状態が変わったこと」でしか動かないため currentTime では駆動できない。
+// 実時間で開閉を繰り返す。スクラブは効かないが、停止（Space）には追従させる。
+const stateItems = items.filter((it) => it.mode === 'state');
+for (const it of stateItems) cells.get(it.id).dataset.open = 'false';
+
+const flip = (it) => {
+  const c = cells.get(it.id);
+  c.dataset.open = c.dataset.open === 'true' ? 'false' : 'true';
+};
+
+setInterval(() => {
+  if (!clock.playing) return;
+  const vt = stateItems.filter((it) => it.viewTransition);
+  const plain = stateItems.filter((it) => !it.viewTransition);
+  for (const it of plain) flip(it);
+
+  // View Transitions は文書全体を捕捉するので、まとめて 1 回だけ走らせる。
+  if (!vt.length) return;
+  if (document.startViewTransition) document.startViewTransition(() => vt.forEach(flip));
+  else vt.forEach(flip);
+}, 1800);
+
+// --- イージング -------------------------------------------------------
+const easeSel = document.querySelector('#ease');
+easeSel.innerHTML = EASINGS.map((e, i) => `<option value="${i}">${e.label}</option>`).join('');
+// 既定は linear。イージングが付いていると、動きの形とイージングの形が混ざって読めなくなる。
+// 何を見ているかを確かめるときは、まず素で見る。
+easeSel.selectedIndex = 0;
+function applyEase() { setEasing(document.documentElement, EASINGS[easeSel.selectedIndex].value); }
+easeSel.addEventListener('change', applyEase);
+applyEase();
+
+// --- 被写体の下地 -----------------------------------------------------
+const subSel = document.querySelector('#substrate');
+subSel.innerHTML = SUBSTRATES.map((s) => `<option value="${s.id}">${s.label}</option>`).join('');
+function applySubstrate() { document.documentElement.dataset.substrate = subSel.value; }
+subSel.addEventListener('change', applySubstrate);
+applySubstrate();
+
+// --- キーボード -------------------------------------------------------
+let focusIdx = 0;
+function focusCell(i) {
+  focusIdx = Math.max(0, Math.min(items.length - 1, i));
+  const cell = cells.get(items[focusIdx].id);
+  cell.focus({ preventScroll: false });
+}
+
+function columns() {
+  const w = grid.clientWidth - 28;
+  return Math.max(1, Math.floor(w / (230 + 14)));
+}
+
+function zoomed() { return document.querySelector('.cell.zoom'); }
+function setZoom(cell) {
+  zoomed()?.classList.remove('zoom');
+  if (cell) cell.classList.add('zoom');
+  veil.hidden = !cell;
+}
+veil.addEventListener('click', () => setZoom(null));
+
+grid.addEventListener('focusin', (e) => {
+  const cell = e.target.closest('.cell');
+  if (cell) focusIdx = items.findIndex((it) => it.id === cell.dataset.exp);
+});
+
+addEventListener('keydown', (e) => {
+  if (e.target?.matches?.('input, select')) return;
+  const cell = cells.get(items[focusIdx].id);
+  const k = e.key;
+
+  if (k === 'ArrowRight') { focusCell(focusIdx + 1); }
+  else if (k === 'ArrowLeft') { focusCell(focusIdx - 1); }
+  else if (k === 'ArrowDown') { focusCell(focusIdx + columns()); }
+  else if (k === 'ArrowUp') { focusCell(focusIdx - columns()); }
+  else if (k === 'x') { mark(cell, 'veto'); }
+  else if (k === 'f') { mark(cell, 'flag'); }
+  else if (k === 's') { mark(cell, 'star'); }
+  else if (k === 'z') { mark(cell, null); }
+  else if (k === 't') { defaultState = defaultState === 'pass' ? 'veto' : 'pass'; render(); save(); }
+  else if (k === 'n') {
+    const next = items.findIndex((it, i) => i > focusIdx && it.predicted === 'uncertain' && !marks[it.id])
+      ?? -1;
+    const idx = next >= 0 ? next : items.findIndex((it) => it.predicted === 'uncertain' && !marks[it.id]);
+    if (idx >= 0) focusCell(idx);
+  }
+  else if (k === 'Enter') { setZoom(zoomed() ? null : cell); }
+  else if (k === 'Escape') { setZoom(null); }
+  else if (k === ' ') { clock.toggle(); playBtn.textContent = clock.playing ? '⏸' : '▶'; }
+  else if (k === ',') { clock.step(-DUR / 20); }
+  else if (k === '.') { clock.step(DUR / 20); }
+  else if (k === 'r') { clock.seek(0); }
+  else if (k === 'e') { easeSel.selectedIndex = (easeSel.selectedIndex + 1) % EASINGS.length; applyEase(); }
+  else if (k === 'b') { subSel.selectedIndex = (subSel.selectedIndex + 1) % SUBSTRATES.length; applySubstrate(); }
+  else return;
+
+  e.preventDefault();
+});
+
+render();
+focusCell(0);
+
+// アニメーションが1本も駆動できていない場合は黙って壊れるより気づけるようにする
+setTimeout(() => {
+  if (document.getAnimations().length === 0) {
+    savedEl.textContent = '⚠ 駆動失敗';
+  }
+}, 500);
+</script>
+</body>
+</html>

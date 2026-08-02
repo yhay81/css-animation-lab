@@ -1,0 +1,17 @@
+@keyframes exp-sibling-norm {
+  0%, 100% { translate: 0 -10px; }
+  50%      { translate: 0 10px; }
+}
+
+[data-exp="sibling-norm"] .sn { display: flex; gap: 7px; align-items: center; }
+[data-exp="sibling-norm"] .sn span {
+  /* 0 〜 1 の正規化位置。総数が変わっても意味が変わらない。 */
+  --t: calc((sibling-index() - 1) / (sibling-count() - 1));
+  width: 16px;
+  height: 40px;
+  border-radius: 5px;
+  background: color-mix(in oklch, #f472b6 calc(var(--t) * 100%), #22d3ee);
+  animation-name: exp-sibling-norm;
+  animation-delay: calc(var(--t) * -700ms);
+  animation-iteration-count: infinite;
+}

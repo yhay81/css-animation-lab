@@ -1,0 +1,18 @@
+@keyframes exp-drop-shadow-chain {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px #22d3ee) drop-shadow(0 0 7px rgba(14, 165, 233, 0.7));
+  }
+  50% {
+    filter: drop-shadow(0 0 9px #22d3ee) drop-shadow(0 0 22px rgba(14, 165, 233, 0.9));
+  }
+}
+
+[data-exp="drop-shadow-chain"] .ds {
+  width: 92px;
+  height: 92px;
+  background: linear-gradient(140deg, #a5f3fc, #38bdf8);
+  /* 矩形ではないので、box-shadow では輪郭が合わない。 */
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 92%, 50% 70%, 21% 92%, 32% 57%, 2% 35%, 39% 35%);
+  animation-name: exp-drop-shadow-chain;
+  animation-iteration-count: infinite;
+}

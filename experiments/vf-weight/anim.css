@@ -1,0 +1,18 @@
+@keyframes exp-vf-weight {
+  0%, 100% { font-weight: 200; }
+  50%      { font-weight: 900; }
+}
+
+[data-exp="vf-weight"] .head {
+  display: flex;
+  font-size: 26px;
+  color: #bae6fd;
+}
+[data-exp="vf-weight"] .head span {
+  display: inline-block;
+  width: 0.78em;
+  text-align: center;
+  animation-name: exp-vf-weight;
+  animation-delay: calc((sibling-index() - 1) * -110ms);
+  animation-iteration-count: infinite;
+}

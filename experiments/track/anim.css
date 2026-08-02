@@ -1,0 +1,26 @@
+/*
+ * letter-spacing は最後の文字の後ろにも余白を付ける。
+ * そのため中央寄せでは末尾側だけが押し出され、先頭の文字しか動かない。
+ * 同量の負のマージンで末尾の余白を打ち消すと、左右対称に開く。
+ * 打ち消す量を参照するために @property で <length> として型を付けている。
+ */
+@property --ls {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@keyframes exp-track {
+  from { --ls: 9px; }
+  to   { --ls: 0px; }
+}
+
+[data-exp="track"] .subject {
+  font-size: 15px;
+  letter-spacing: var(--ls);
+  animation-name: exp-track;
+}
+
+[data-exp="track"] .label {
+  margin-inline-end: calc(-1 * var(--ls));
+}

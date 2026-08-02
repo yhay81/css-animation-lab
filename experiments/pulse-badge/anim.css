@@ -1,0 +1,35 @@
+@keyframes exp-pulse-badge {
+  from { scale: 1;   opacity: 0.55; }
+  to   { scale: 2.6; opacity: 0; }
+}
+
+[data-exp="pulse-badge"] .bd {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+[data-exp="pulse-badge"] .halo {
+  grid-area: 1 / 1;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #f43f5e;
+  animation-name: exp-pulse-badge;
+  animation-delay: calc((sibling-index() - 1) * -500ms);
+  /* 負の遅延で位相をずらす場合、繰り返しが 1 回だと先行した要素から順に終端で止まり、
+     閉じた動きでは全員が同じ位置へ溜まってしまう。位相を回し続けるには infinite が要る。 */
+  animation-iteration-count: infinite;
+}
+[data-exp="pulse-badge"] .dot {
+  grid-area: 1 / 1;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #f43f5e;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}

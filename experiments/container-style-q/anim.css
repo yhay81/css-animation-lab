@@ -1,0 +1,28 @@
+@property --phase {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@keyframes exp-container-style-q { to { --phase: 3; } }
+
+[data-exp="container-style-q"] .cq {
+  display: flex;
+  gap: 9px;
+  padding: 14px;
+  border-radius: 12px;
+  container-type: normal;
+  animation-name: exp-container-style-q;
+  animation-timing-function: steps(3, end);
+  animation-iteration-count: infinite;
+}
+[data-exp="container-style-q"] .cq span {
+  width: 22px;
+  height: 42px;
+  border-radius: 6px;
+  background: #33406e;
+  transition: background 200ms, translate 200ms;
+}
+@container style(--phase: 1) { span:nth-child(-n+2) { background: #22d3ee; translate: 0 -8px; } }
+@container style(--phase: 2) { span { background: #a855f7; translate: 0 -4px; } }
+@container style(--phase: 3) { span:nth-child(n+3) { background: #f472b6; translate: 0 -8px; } }

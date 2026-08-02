@@ -1,0 +1,52 @@
+/*
+ * 角丸を一律にした正方形は 4 回対称なので、90° 回した時点で見た目が一致する。
+ * 1 周を 90° にすれば継ぎ目を保ったまま速さを 1/4 にできる。
+ *
+ * 振幅は 2 つで決まる。
+ *   - 角丸が小さいほど辺の直線部分が長くなり、回したときの高低差が大きくなる
+ *   - 塊が窓に対して小さいほど、見えている範囲での曲がりが強くなる
+ * さらに逆回転の 2 層を重ねると位相が干渉して、単調な上下動に見えなくなる。
+ */
+@keyframes exp-liquid-a {
+  0%   { rotate: 0deg;  translate: -50% 0; }
+  50%  { translate: -50% -9px; }
+  100% { rotate: 90deg; translate: -50% 0; }
+}
+
+@keyframes exp-liquid-b {
+  0%   { rotate: 0deg;   translate: -50% 0; }
+  50%  { translate: -50% 7px; }
+  100% { rotate: -90deg; translate: -50% 0; }
+}
+
+[data-exp="liquid"] .lq {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 2px solid #3d4a78;
+  background: #1b2340;
+  overflow: hidden;
+}
+
+[data-exp="liquid"] .lq-w {
+  position: absolute;
+  left: 50%;
+  top: 34%;
+}
+
+[data-exp="liquid"] .lq-w.a {
+  width: 132px;
+  height: 132px;
+  border-radius: 40%;
+  background: rgba(125, 211, 252, 0.85);
+  animation-name: exp-liquid-a;
+}
+
+[data-exp="liquid"] .lq-w.b {
+  width: 146px;
+  height: 146px;
+  border-radius: 43%;
+  background: rgba(99, 102, 241, 0.55);
+  animation-name: exp-liquid-b;
+}

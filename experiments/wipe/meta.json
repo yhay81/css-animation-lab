@@ -1,0 +1,21 @@
+{
+  "id": "wipe",
+  "n": 9,
+  "title": "ワイプ",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "clip-path"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "good",
+  "note": "下から刈り取る。要素自体は動かないので「現れる」ではなく「露出する」印象。テキスト見出しと相性が良いはず。"
+}

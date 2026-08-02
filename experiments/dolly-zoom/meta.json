@@ -1,0 +1,19 @@
+{
+  "id": "dolly-zoom",
+  "n": 906,
+  "title": "ドリーズーム",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "CG / 実写",
+    "technique": [
+      "perspective と translateZ の相殺"
+    ],
+    "use": "不安 / 気づきの瞬間"
+  },
+  "predicted": "uncertain",
+  "note": "カメラを引きながら画角を狭める撮影技法。主題の大きさは変わらないのに背景だけが伸縮するので、落ち着かない感じが出る。主題を保ったまま奥行きだけを変えるのが要点。",
+  "markup": "<div class=\"dz\"><div class=\"bg\"></div><div class=\"sub\">！</div></div>"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "onomatopoeia",
+  "n": 1000,
+  "title": "擬音が飛び出す",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "漫画",
+    "technique": [
+      "多重 text-shadow の縁取り",
+      "行き過ぎと戻り"
+    ],
+    "use": "成功 / 失敗 / 打鍵の手応え"
+  },
+  "predicted": "uncertain",
+  "note": "漫画の描き文字。文字自体が絵として振る舞う。HTML の text-stroke は線が字形を内側から食うので、影を放射状に多重で置いて縁を作る。飛び出しは行き過ぎてから戻すと勢いが出る。",
+  "markup": "<div class=\"on\"><span class=\"sfx\">ドカッ</span></div>"
+}

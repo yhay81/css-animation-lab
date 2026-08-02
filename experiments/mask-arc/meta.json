@@ -1,0 +1,19 @@
+{
+  "id": "mask-arc",
+  "n": 400,
+  "title": "弧をマスクの掛け合わせで切り出す",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "mask-composite: intersect",
+      "conic + radial"
+    ],
+    "use": "処理中 / 部分的な進捗"
+  },
+  "predicted": "uncertain",
+  "note": "リング形（radial）と扇形（conic）の 2 枚を intersect で掛け合わせると弧になる。1 枚のマスクでは作れない形が、合成なら作れる。",
+  "markup": "<div class=\"arc\"></div>"
+}

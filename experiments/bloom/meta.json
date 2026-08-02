@@ -1,0 +1,20 @@
+{
+  "id": "bloom",
+  "n": 1204,
+  "title": "光がにじむ",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "CG",
+    "technique": [
+      "複製をぼかして加算",
+      "plus-lighter"
+    ],
+    "use": "強調 / 達成"
+  },
+  "predicted": "uncertain",
+  "note": "明るい部分が周囲へあふれる光学現象。要素そのものをぼかすと文字が読めなくなるので、ぼかした複製を背後に置いて加算する。元は鮮明なまま、光だけがにじむ。",
+  "markup": "<div class=\"bl\"><span class=\"src\">GLOW</span><span class=\"halo\">GLOW</span></div>"
+}

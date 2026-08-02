@@ -1,0 +1,39 @@
+@property --ts-y {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
+@keyframes exp-tilt-shift {
+  0%, 100% { --ts-y: 26%; }
+  50%      { --ts-y: 74%; }
+}
+
+[data-exp="tilt-shift"] .ts { position: absolute; inset: 0; overflow: hidden; }
+[data-exp="tilt-shift"] .scene {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 14px;
+  background: #0f172a;
+}
+[data-exp="tilt-shift"] .b { border-radius: 6px; background: linear-gradient(140deg, #38bdf8, #6366f1); }
+[data-exp="tilt-shift"] .b2 { background: linear-gradient(140deg, #fbbf24, #f43f5e); }
+[data-exp="tilt-shift"] .b5 { background: linear-gradient(140deg, #34d399, #0ea5e9); }
+[data-exp="tilt-shift"] .b7 { background: linear-gradient(140deg, #f472b6, #a855f7); }
+
+/* ぼかした面を上に重ね、帯の部分だけ抜いて下の鮮明な面を見せる。 */
+[data-exp="tilt-shift"] .blur {
+  filter: blur(4px);
+  mask: linear-gradient(180deg,
+    #000 0,
+    #000 calc(var(--ts-y) - 22%),
+    transparent calc(var(--ts-y) - 6%),
+    transparent calc(var(--ts-y) + 6%),
+    #000 calc(var(--ts-y) + 22%),
+    #000 100%);
+  animation-name: exp-tilt-shift;
+  animation-iteration-count: infinite;
+}

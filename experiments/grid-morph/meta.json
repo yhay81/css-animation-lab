@@ -1,0 +1,18 @@
+{
+  "id": "grid-morph",
+  "n": 405,
+  "title": "レイアウトそのものを動かす",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "grid-template-columns の補間"
+    ],
+    "use": "サイドバーの開閉 / 強調の切替"
+  },
+  "predicted": "uncertain",
+  "note": "fr 値は補間できるので、要素を動かさずに枠の取り合いだけを変えられる。位置を計算して translate するのと違い、中身が正しく折り返される。",
+  "markup": "<div class=\"gm\"><div class=\"pane a\"></div><div class=\"pane b\"></div></div>"
+}

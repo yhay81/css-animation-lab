@@ -1,0 +1,19 @@
+{
+  "id": "typewriter",
+  "n": 384,
+  "title": "タイプライター",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "steps",
+      "ch 単位"
+    ],
+    "use": "オンボーディング / 演出"
+  },
+  "predicted": "uncertain",
+  "note": "幅を文字数ぶんの ch で刻む。等幅フォントであれば 1 文字ずつ確実に止まる。プロポーショナルだと文字ごとの幅が違うのでずれる。",
+  "markup": "<div class=\"tw\">HELLO CSS</div>"
+}

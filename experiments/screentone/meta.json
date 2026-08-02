@@ -1,0 +1,20 @@
+{
+  "id": "screentone",
+  "n": 1004,
+  "title": "トーンが貼り替わる",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "漫画",
+    "technique": [
+      "網点の背景",
+      "background-size の補間"
+    ],
+    "use": "雰囲気の切り替え"
+  },
+  "predicted": "uncertain",
+  "note": "漫画の陰影はグレーではなく網点で作られる。点の大きさと間隔を変えると濃度が変わる。連続的に変えられるので、印刷では不可能な「トーンが濃くなっていく」表現ができる。",
+  "markup": "<div class=\"sc\"><span class=\"tone\"></span><span class=\"txt\">TONE</span></div>"
+}

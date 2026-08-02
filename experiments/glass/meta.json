@@ -1,0 +1,18 @@
+{
+  "id": "glass",
+  "n": 360,
+  "title": "ガラス板が背景を渡る",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "backdrop-filter"
+    ],
+    "use": "オーバーレイ / ヘッダー"
+  },
+  "predicted": "uncertain",
+  "note": "要素そのものではなく背後をぼかす。板が動くと背後の絵が歪んで見えるので、板の存在が動きだけで伝わる。",
+  "markup": "<div class=\"gl\"><div class=\"under\"></div><div class=\"pane\"></div></div>"
+}

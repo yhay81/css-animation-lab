@@ -1,0 +1,25 @@
+{
+  "id": "lag",
+  "n": 21,
+  "title": "時差",
+  "layer": "L2",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [
+      "多重アニメーション",
+      "遅延"
+    ],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "不透明度が先に立ち上がり、位置が遅れて動く。到達の重さが変わるはず。sim と並べて差が読めるかを見たい。"
+}

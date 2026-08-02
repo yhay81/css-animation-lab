@@ -1,0 +1,19 @@
+{
+  "id": "conic-ring",
+  "n": 202,
+  "title": "縁を回る光",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "conic-gradient",
+      "@property <angle>"
+    ],
+    "use": "処理中のカード / 選択中の強調"
+  },
+  "predicted": "uncertain",
+  "note": "角度を型付きカスタムプロパティにすると conic-gradient を補間できる。要素は一切回転していないのに光が周回する。",
+  "markup": "<div class=\"ring\"><div class=\"ring-in\">Aa</div></div>"
+}

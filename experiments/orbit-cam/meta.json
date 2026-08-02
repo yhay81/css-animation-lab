@@ -1,0 +1,20 @@
+{
+  "id": "orbit-cam",
+  "n": 1211,
+  "title": "回り込んで見る",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "CG",
+    "technique": [
+      "preserve-3d",
+      "面の明暗の追従"
+    ],
+    "use": "製品 / 立体の紹介"
+  },
+  "predicted": "uncertain",
+  "note": "対象の周りを回ると、面の向きに応じて明るさが変わる。回転だけで明暗が固定だと、絵が回っているようにしか見えない。面ごとに明るさを持たせると立体になる。",
+  "markup": "<div class=\"oc\"><div class=\"box\"><span class=\"f f1\"></span><span class=\"f f2\"></span><span class=\"f f3\"></span><span class=\"f f4\"></span><span class=\"top\"></span></div></div>"
+}

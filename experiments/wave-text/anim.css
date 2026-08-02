@@ -1,0 +1,19 @@
+@keyframes exp-wave-text {
+  0%, 100% { translate: 0 -7px; }
+  50%      { translate: 0 7px; }
+}
+
+[data-exp="wave-text"] .head {
+  display: flex;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #bae6fd;
+}
+[data-exp="wave-text"] .head span {
+  animation-name: exp-wave-text;
+  animation-delay: calc((sibling-index() - 1) * -110ms);
+  /* 負の遅延で位相をずらす場合、繰り返しが 1 回だと先行した要素から順に終端で止まり、
+     閉じた動きでは全員が同じ位置へ溜まってしまう。位相を回し続けるには infinite が要る。 */
+  animation-iteration-count: infinite;
+}

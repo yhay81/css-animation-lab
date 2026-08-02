@@ -1,0 +1,5 @@
+@keyframes exp-iris {
+  from { clip-path: circle(0% at 50% 50%); }
+  to   { clip-path: circle(75% at 50% 50%); }
+}
+[data-exp="iris"] .subject { animation-name: exp-iris; }

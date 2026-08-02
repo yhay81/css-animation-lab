@@ -1,0 +1,34 @@
+@property --pg-t {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@keyframes exp-particles-gravity {
+  0%   { --pg-t: 0; opacity: 0; }
+  8%   { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { --pg-t: 1; opacity: 0; }
+}
+
+[data-exp="particles-gravity"] .pg {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+[data-exp="particles-gravity"] .pg span {
+  grid-area: 1 / 1;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  --a: calc(sibling-index() * 22.5deg);
+  /* 半径ごとに初速を変えて、同心円に見えないようにする。 */
+  --v: calc(58px + mod(sibling-index(), 3) * 16px);
+  background: color-mix(in oklch, #fbbf24 calc(mod(sibling-index(), 4) * 25%), #f43f5e);
+  translate:
+    calc(cos(var(--a)) * var(--v) * var(--pg-t))
+    calc(sin(var(--a)) * var(--v) * var(--pg-t) + var(--pg-t) * var(--pg-t) * 86px);
+  animation-name: exp-particles-gravity;
+  animation-iteration-count: infinite;
+}

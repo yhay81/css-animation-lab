@@ -1,0 +1,33 @@
+@keyframes exp-spring-compare {
+  0%, 8%    { translate: -52px 0; }
+  70%, 100% { translate: 52px 0; }
+}
+
+[data-exp="spring-compare"] .sc {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+[data-exp="spring-compare"] .row { display: flex; align-items: center; gap: 8px; }
+[data-exp="spring-compare"] .lb {
+  width: 54px;
+  color: #8b93b5;
+  font-size: 10px;
+  font-family: ui-monospace, monospace;
+}
+[data-exp="spring-compare"] .b {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #7dd3fc, #6366f1);
+  animation-name: exp-spring-compare;
+}
+[data-exp="spring-compare"] .sp {
+  animation-timing-function: linear(
+    0, 0.006, 0.026 2.7%, 0.106 5.5%, 0.427 13.5%, 0.559, 0.673, 0.771,
+    0.851 27.6%, 0.916, 0.968, 1.008, 1.036, 1.054, 1.062, 1.061 46.6%,
+    1.052, 1.03 55.2%, 1.014, 1.006 66.7%, 0.999, 0.998, 1);
+}
+[data-exp="spring-compare"] .eo {
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}

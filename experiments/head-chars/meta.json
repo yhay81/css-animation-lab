@@ -1,0 +1,27 @@
+{
+  "id": "head-chars",
+  "n": 131,
+  "title": "見出し｜文字ごとの順送り",
+  "layer": "L4",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "固定"
+    ],
+    "orchestration": [
+      "stagger"
+    ],
+    "structure": [
+      "sibling-index()"
+    ]
+  },
+  "predicted": "uncertain",
+  "note": "文字を1つずつ立ち上げる。sibling-index() で書けるので文字数に依存しない。間隔 60ms は「まとまり」の側（F010）。",
+  "markup": "<div class=\"head\"><span>M</span><span>o</span><span>t</span><span>i</span><span>o</span><span>n</span></div>"
+}

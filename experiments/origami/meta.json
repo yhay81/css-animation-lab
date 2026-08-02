@@ -1,0 +1,27 @@
+{
+  "id": "origami",
+  "n": 1207,
+  "title": "折りが開く",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "CG",
+    "technique": [
+      "preserve-3d",
+      "折りの入れ子",
+      "蝶番の位置"
+    ],
+    "use": "展開 / 詳細を開く"
+  },
+  "predicted": "uncertain",
+  "note": "四つ折りの紙が開く。畳んだ状態では 4 面すべてが 1 面の位置に重なっている必要があり、そのためには面を入れ子にして折りを積み上げる。角を折る面は 2 回折られているので、親が開いてから自分が開く。同じ色調で明度だけを変えると 1 枚の紙に見え、色を変えると別々の板に見える。",
+  "markup": "<div class=\"og\"><div class=\"fold\"><span class=\"q q1\"></span><span class=\"q q2\"></span><span class=\"q q3\"><span class=\"q q4\"></span></span></div></div>",
+  "expect": [
+    {
+      "inside": ".fold",
+      "at": "95%"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "handwriting",
+  "n": 1201,
+  "title": "手で書かれていく",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "モーショングラフィックス",
+    "technique": [
+      "stroke-dashoffset",
+      "offset-path でペンを追従"
+    ],
+    "use": "署名 / 導入 / 承認"
+  },
+  "predicted": "uncertain",
+  "note": "線が伸びるだけでは「描かれた」に見えない。書き手の位置を示す点を同じ経路の上に走らせると、手で書いている感じになる。ただし offset-path はパスの生の単位で動くため、SVG を拡大して描くとペンだけが取り残される。描画の単位をパスと 1:1 に揃え、拡大は入れ物ごと掛ける。",
+  "markup": "<div class=\"hw\"><div class=\"board\"><svg viewBox=\"0 0 120 70\"><path class=\"ink\" pathLength=\"100\" d=\"M 8 46 C 16 20, 26 18, 30 34 C 34 50, 26 58, 22 46 C 18 34, 30 22, 44 30 C 56 37, 50 54, 60 48 C 68 43, 66 26, 78 28 C 88 30, 92 40, 112 34\"/></svg><span class=\"pen\"></span></div></div>"
+}

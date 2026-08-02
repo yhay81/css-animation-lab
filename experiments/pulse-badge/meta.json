@@ -1,0 +1,19 @@
+{
+  "id": "pulse-badge",
+  "n": 383,
+  "title": "バッジの脈動",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "負の遅延",
+      "多層"
+    ],
+    "use": "未読 / 呼びかけ"
+  },
+  "predicted": "uncertain",
+  "note": "輪を 2 枚にして半周期ずらすと、途切れずに脈が続く。1 枚だと拍と拍の間が空いて呼びかけにならない。",
+  "markup": "<div class=\"bd\"><span class=\"halo\"></span><span class=\"halo\"></span><span class=\"dot\">3</span></div>"
+}

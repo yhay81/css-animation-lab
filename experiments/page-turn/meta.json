@@ -1,0 +1,28 @@
+{
+  "id": "page-turn",
+  "n": 1111,
+  "title": "ページがめくれる",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "CG",
+    "technique": [
+      "preserve-3d",
+      "陰影の追従"
+    ],
+    "use": "次へ / 履歴 / 読み物"
+  },
+  "predicted": "uncertain",
+  "note": "回すだけでは紙に見えない。めくれる角度に合わせて陰が動き、裏面が現れることで厚みのある紙になる。蝶番は綴じ側に置き、葉は綴じ側を軸にして反対側から手前へ回す。葉と現れるページを同じ側に置くと、めくった葉が現れるはずのページを覆ってしまう。",
+  "markup": "<div class=\"pt\"><span class=\"prev\"></span><span class=\"next\">2</span><span class=\"leaf\"><span class=\"front\">1</span><span class=\"back\"></span><span class=\"shade\"></span></span></div>",
+  "expect": [
+    {
+      "at": "95%",
+      "of": ".leaf",
+      "side": "left",
+      "from": ".next"
+    }
+  ]
+}

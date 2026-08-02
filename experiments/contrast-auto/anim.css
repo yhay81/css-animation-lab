@@ -1,0 +1,26 @@
+@property --ca-bg {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0f172a;
+}
+
+@keyframes exp-contrast-auto {
+  0%, 100% { --ca-bg: #0b1020; }
+  50%      { --ca-bg: #bae6fd; }
+}
+
+[data-exp="contrast-auto"] .ca {
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 96px;
+  border-radius: 14px;
+  background: var(--ca-bg);
+  /* 同じ値から、読める側の色を出す。 */
+  color: contrast-color(var(--ca-bg));
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  animation-name: exp-contrast-auto;
+  animation-iteration-count: infinite;
+}

@@ -1,0 +1,20 @@
+{
+  "id": "eye-shine",
+  "n": 1005,
+  "title": "きらり",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "アニメ",
+    "technique": [
+      "四芒星の clip-path",
+      "steps で瞬く"
+    ],
+    "use": "完了 / 獲得 / 強調"
+  },
+  "predicted": "uncertain",
+  "note": "光が反射した瞬間に走る四芒星。滑らかに拡大すると星に見えず、瞬間的に出して消すのが要点。大小をずらして 3 つ置くと、単発より豪華に見える。",
+  "markup": "<div class=\"es\"><span class=\"gem\"></span><span class=\"st s1\"></span><span class=\"st s2\"></span><span class=\"st s3\"></span></div>"
+}

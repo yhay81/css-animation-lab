@@ -1,0 +1,5 @@
+@keyframes exp-wipe {
+  from { clip-path: inset(100% 0 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+[data-exp="wipe"] .subject { animation-name: exp-wipe; }

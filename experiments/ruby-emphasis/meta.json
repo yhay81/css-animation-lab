@@ -1,0 +1,19 @@
+{
+  "id": "ruby-emphasis",
+  "n": 607,
+  "title": "圏点が順に点く",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "text-emphasis",
+      "sibling-index()"
+    ],
+    "use": "日本語の強調"
+  },
+  "predicted": "uncertain",
+  "note": "傍点は日本語組版の強調手段だが、動かした例をほとんど見ない。文字ごとに色を遅らせると、読ませたい順に点が灯る。文字自体は動かないので可読性を損なわない。",
+  "markup": "<div class=\"re\"><span>強</span><span>調</span><span>し</span><span>た</span><span>い</span></div>"
+}

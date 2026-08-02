@@ -1,0 +1,41 @@
+[data-exp="popover-backdrop"] .pb { display: grid; place-items: center; }
+[data-exp="popover-backdrop"] button {
+  anchor-name: --pb-btn;
+  padding: 7px 14px;
+  border: 1px solid #3d4a78;
+  border-radius: 8px;
+  background: #26304f;
+  color: #e6e9f5;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+[data-exp="popover-backdrop"] [popover] {
+  position-anchor: --pb-btn;
+  position-area: block-end;
+  margin: 8px 0 0;
+  width: 132px;
+  padding: 12px;
+  border: 1px solid #3d4a78;
+  border-radius: 10px;
+  background: #1b2340;
+  opacity: 0;
+  transition: opacity 220ms, display 220ms allow-discrete, overlay 220ms allow-discrete;
+}
+[data-exp="popover-backdrop"] [popover]:popover-open { opacity: 1; }
+@starting-style {
+  [data-exp="popover-backdrop"] [popover]:popover-open { opacity: 0; }
+}
+
+[data-exp="popover-backdrop"] [popover]::backdrop {
+  backdrop-filter: blur(0px) brightness(1);
+  transition: backdrop-filter 260ms, display 260ms allow-discrete, overlay 260ms allow-discrete;
+}
+[data-exp="popover-backdrop"] [popover]:popover-open::backdrop {
+  backdrop-filter: blur(4px) brightness(0.5);
+}
+@starting-style {
+  [data-exp="popover-backdrop"] [popover]:popover-open::backdrop {
+    backdrop-filter: blur(0px) brightness(1);
+  }
+}

@@ -1,0 +1,47 @@
+@keyframes exp-speed-lines {
+  0%   { scale: 1.9; opacity: 0; }
+  14%  { scale: 1;   opacity: 1; }
+  70%  { scale: 0.94; opacity: 1; }
+  100% { scale: 0.9;  opacity: 0; }
+}
+@keyframes exp-speed-lines-core {
+  0%   { scale: 0.4; opacity: 0; }
+  18%  { scale: 1.25; opacity: 1; }
+  30%  { scale: 1; }
+  85%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+[data-exp="speed-lines"] .sl {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #f4f6ff;
+}
+[data-exp="speed-lines"] .lines {
+  /* 入れ物より大きいので grid の中央寄せは効かない。負の margin で中心を出す。 */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 260px;
+  height: 260px;
+  margin: -130px 0 0 -130px;
+  background:
+    repeating-conic-gradient(#111827 0 0.9deg, transparent 0.9deg 4deg),
+    repeating-conic-gradient(from 2deg, #111827 0 0.4deg, transparent 0.4deg 6.5deg);
+  /* 中心を抜いて、外から内へ向かう線に見せる。 */
+  mask: radial-gradient(circle, transparent 26%, #000 60%);
+  animation-name: exp-speed-lines;
+  animation-timing-function: steps(6, end);
+  animation-iteration-count: infinite;
+}
+[data-exp="speed-lines"] .core {
+  grid-area: 1 / 1;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 900;
+  animation-name: exp-speed-lines-core;
+  animation-iteration-count: infinite;
+}

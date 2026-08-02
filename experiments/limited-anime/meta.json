@@ -1,0 +1,20 @@
+{
+  "id": "limited-anime",
+  "n": 900,
+  "title": "3コマ打ち",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "アニメ",
+    "technique": [
+      "steps()",
+      "同一運動の比較"
+    ],
+    "use": "キャラクター / 挿絵 / 遊びのある UI"
+  },
+  "predicted": "uncertain",
+  "note": "日本のアニメは毎秒24枚ではなく8枚前後で描かれることが多い。滑らかさをわざと捨てると、同じ動きでも手描きの質感が出る。CSS の既定は滑らかな補間なので、この質感は steps で刻まないと絶対に出てこない。上が滑らか、下が 8 コマ相当。",
+  "markup": "<div class=\"la\"><div class=\"row\"><span class=\"lb\">24</span><div class=\"b full\"></div></div><div class=\"row\"><span class=\"lb\">8</span><div class=\"b limited\"></div></div></div>"
+}

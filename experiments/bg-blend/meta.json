@@ -1,0 +1,19 @@
+{
+  "id": "bg-blend",
+  "n": 507,
+  "title": "背景同士を混ぜて動かす",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "background-blend-mode",
+      "多層背景"
+    ],
+    "use": "装飾 / ヒーロー"
+  },
+  "predicted": "uncertain",
+  "note": "要素を分けずに 1 つの背景の中で層を混ぜる。DOM が増えないので、装飾のためだけの要素を置かずに済む。",
+  "markup": "<div class=\"bb\"></div>"
+}

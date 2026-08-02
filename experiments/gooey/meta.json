@@ -1,0 +1,19 @@
+{
+  "id": "gooey",
+  "n": 200,
+  "title": "ゴーイー（メタボール合成）",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "filter合成",
+      "blur+contrast"
+    ],
+    "use": "ローディング / メニュー展開"
+  },
+  "predicted": "uncertain",
+  "note": "ぼかしてからコントラストを極端に上げると、離れた円が近づいたときだけ融合する。CSS だけで液体的な結合が作れる唯一の手段。",
+  "markup": "<div class=\"goo\"><span class=\"\"></span><span class=\"\"></span><span class=\"\"></span></div>"
+}

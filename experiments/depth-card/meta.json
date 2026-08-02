@@ -1,0 +1,24 @@
+{
+  "id": "depth-card",
+  "n": 54,
+  "title": "逆方向 ＋ カードの質感",
+  "layer": "L2",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "translate"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": [
+      "親子"
+    ]
+  },
+  "predicted": "uncertain",
+  "note": "面・縁・内容を持つカードにして中身を逆に動かす。「奥行きは質感の問題ではないか」という仮説の検証。",
+  "markup": "<div class=\"subject\"><div class=\"inner\"><div class=\"bar\"></div><div class=\"line\"></div><div class=\"line s\"></div></div></div>"
+}

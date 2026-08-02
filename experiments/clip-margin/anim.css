@@ -1,0 +1,32 @@
+@keyframes exp-clip-margin {
+  0%, 100% { translate: 0 0; scale: 1; }
+  50%      { translate: 6px -6px; scale: 1.25; }
+}
+
+[data-exp="clip-margin"] .cm { display: grid; place-items: center; }
+[data-exp="clip-margin"] .box {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #7dd3fc, #6366f1);
+  /* この距離までは外に出てよい。それを越えたら切る。 */
+  overflow: clip;
+  overflow-clip-margin: 18px;
+}
+[data-exp="clip-margin"] .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #f43f5e;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  animation-name: exp-clip-margin;
+  animation-iteration-count: infinite;
+}

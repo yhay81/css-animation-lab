@@ -1,0 +1,5 @@
+@keyframes exp-rise {
+  from { translate: 0 24px; }
+  to   { translate: 0 0; }
+}
+[data-exp="rise"] .subject { animation-name: exp-rise; }

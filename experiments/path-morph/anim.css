@@ -1,0 +1,12 @@
+@keyframes exp-path-morph {
+  0%, 100% { clip-path: path("M 50 6 C 84 6, 96 34, 96 52 C 96 76, 74 94, 50 94 C 26 94, 4 76, 4 52 C 4 34, 16 6, 50 6 Z"); }
+  50%      { clip-path: path("M 50 18 C 92 2, 98 46, 88 62 C 78 82, 62 98, 50 84 C 38 98, 22 82, 12 62 C 2 46, 8 2, 50 18 Z"); }
+}
+
+[data-exp="path-morph"] .pm {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(140deg, #f472b6, #a855f7);
+  animation-name: exp-path-morph;
+  animation-iteration-count: infinite;
+}

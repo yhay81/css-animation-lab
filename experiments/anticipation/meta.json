@@ -1,0 +1,20 @@
+{
+  "id": "anticipation",
+  "n": 1100,
+  "title": "溜めてから動く",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "アニメの原則",
+    "technique": [
+      "予備動作",
+      "反対方向への助走"
+    ],
+    "use": "ボタン / 発射 / 送信"
+  },
+  "predicted": "uncertain",
+  "note": "動く前に反対方向へ少し引く。アニメーションの十二原則の一つで、これが無いと動きが唐突になる。上が予備動作なし、下があり。同じ距離を同じ時間で移動しているのに、下のほうが速く見える。",
+  "markup": "<div class=\"an\"><div class=\"row\"><span class=\"lb\">なし</span><span class=\"b plain\"></span></div><div class=\"row\"><span class=\"lb\">あり</span><span class=\"b anti\"></span></div></div>"
+}

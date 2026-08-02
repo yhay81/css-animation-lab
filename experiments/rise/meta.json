@@ -1,0 +1,21 @@
+{
+  "id": "rise",
+  "n": 2,
+  "title": "下から上へ",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "translate"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "good",
+  "note": "transform 一括ではなく個別プロパティ translate を使用。複合時に他の変形と衝突しない点が重要。"
+}

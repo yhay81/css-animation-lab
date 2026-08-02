@@ -1,0 +1,39 @@
+@property --od-i {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@keyframes exp-odometer { to { translate: 0 -10em; } }
+
+[data-exp="odometer"] .od {
+  display: flex;
+  gap: 3px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #0b1020;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 27px;
+  font-weight: 700;
+  color: #7dd3fc;
+}
+[data-exp="odometer"] .dg {
+  --od-i: sibling-index();
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  line-height: 1;
+}
+[data-exp="odometer"] .strip {
+  display: block;
+  animation-name: exp-odometer;
+  /* 右の桁ほど速い。左端が 1 周、右端が 4 周。いずれも整数回なので継ぎ目は出ない。 */
+  animation-duration: calc(1000ms / var(--od-i));
+  animation-timing-function: steps(10, end);
+  animation-iteration-count: infinite;
+}
+[data-exp="odometer"] .strip i {
+  display: block;
+  height: 1em;
+  font-style: normal;
+}

@@ -1,0 +1,46 @@
+@keyframes exp-blend-sat {
+  0%, 100% { translate: -96px 0; }
+  50%      { translate: 96px 0; }
+}
+
+[data-exp="blend-sat"] .wrap {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+[data-exp="blend-sat"] .under {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 14px;
+  background: linear-gradient(120deg, #f43f5e, #a855f7 50%, #22d3ee);
+}
+[data-exp="blend-sat"] .t {
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+}
+[data-exp="blend-sat"] .band {
+  /* 舞台より高いので格子の中央寄せは効かない（F029）。上下いっぱいに張る。 */
+  position: absolute;
+  top: -20px;
+  bottom: -20px;
+  height: auto;
+  /* 左右は中央から動かす。 */
+  left: 50%;
+  width: 54px;
+  margin-left: -27px;
+  background: #808080;
+  mix-blend-mode: saturation;
+  animation-name: exp-blend-sat;
+  animation-iteration-count: infinite;
+}

@@ -1,0 +1,19 @@
+{
+  "id": "svg-draw",
+  "n": 601,
+  "title": "線が描かれていく",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "stroke-dasharray",
+      "pathLength"
+    ],
+    "use": "チェック / グラフ / 署名"
+  },
+  "predicted": "uncertain",
+  "note": "pathLength=\"100\" を付けると、実際の長さに関係なく破線の単位を 100 に正規化できる。長さを測って dasharray に書く手間がなくなり、パスを描き替えても指定を直さなくてよい。",
+  "markup": "<svg class=\"dr\" viewBox=\"0 0 120 78\"><path pathLength=\"100\" d=\"M10 54 L32 24 L56 46 L82 12 L110 38\"/></svg>"
+}

@@ -1,0 +1,18 @@
+@keyframes exp-shape-fn {
+  0%, 100% {
+    clip-path: shape(from 0% 42%, curve to 50% 42% with 25% 12%,
+      curve to 100% 42% with 75% 72%, line to 100% 100%, line to 0% 100%, close);
+  }
+  50% {
+    clip-path: shape(from 0% 42%, curve to 50% 42% with 25% 72%,
+      curve to 100% 42% with 75% 12%, line to 100% 100%, line to 0% 100%, close);
+  }
+}
+
+[data-exp="shape-fn"] .sf {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #22d3ee, #6366f1);
+  animation-name: exp-shape-fn;
+  animation-iteration-count: infinite;
+}

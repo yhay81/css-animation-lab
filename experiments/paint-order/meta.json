@@ -1,0 +1,19 @@
+{
+  "id": "paint-order",
+  "n": 502,
+  "title": "縁取りが文字を侵食しない",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "paint-order",
+      "SVG text"
+    ],
+    "use": "見出し / 図中のラベル"
+  },
+  "predicted": "uncertain",
+  "note": "上が既定、下が paint-order: stroke fill。線を太くしていくと、既定では字形が潰れるのに対し、順序を逆にした方は保たれる。太い縁取りを動かすときは順序の指定が要る。",
+  "markup": "<div class=\"po\"><svg viewBox=\"0 0 190 52\"><text class=\"bad\" x=\"95\" y=\"37\" text-anchor=\"middle\">EDGE</text></svg><svg viewBox=\"0 0 190 52\"><text class=\"good\" x=\"95\" y=\"37\" text-anchor=\"middle\">EDGE</text></svg></div>"
+}

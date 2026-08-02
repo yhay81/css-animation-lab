@@ -1,0 +1,19 @@
+{
+  "id": "text-stroke",
+  "n": 431,
+  "title": "縁取りが塗りで満たされる",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "-webkit-text-stroke",
+      "background-clip: text"
+    ],
+    "use": "見出し / 到達率"
+  },
+  "predicted": "uncertain",
+  "note": "文字を縁取りだけにして、背景の切り抜きで下から塗る。塗りの高さを型付きプロパティにすれば満たされていく量を補間できる。",
+  "markup": "<div class=\"ts\">FILL</div>"
+}

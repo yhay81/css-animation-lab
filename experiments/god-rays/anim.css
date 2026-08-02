@@ -1,0 +1,47 @@
+@keyframes exp-god-rays-a { to { rotate: 360deg; } }
+@keyframes exp-god-rays-b { to { rotate: -360deg; } }
+@keyframes exp-god-rays-core {
+  0%, 100% { scale: 1;    opacity: 0.85; }
+  50%      { scale: 1.14; opacity: 1; }
+}
+
+[data-exp="god-rays"] .gr {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #0b1020;
+  isolation: isolate;
+}
+[data-exp="god-rays"] .rays {
+  /* 入れ物より大きい要素は place-items: center が効かず始端に張り付く。
+     translate は動きに使うため、負の margin で中心を合わせる。 */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 260px;
+  height: 260px;
+  margin: -130px 0 0 -130px;
+  background:
+    repeating-conic-gradient(rgba(253, 224, 71, 0.55) 0 2deg, transparent 2deg 13deg),
+    repeating-conic-gradient(from 5deg, rgba(125, 211, 252, 0.4) 0 1deg, transparent 1deg 9deg);
+  mask: radial-gradient(circle, #000 8%, rgba(0, 0, 0, 0.5) 34%, transparent 68%);
+  mix-blend-mode: plus-lighter;
+  animation-name: exp-god-rays-a, exp-god-rays-b;
+  animation-duration: 1000ms, 1400ms;
+  animation-iteration-count: infinite;
+}
+[data-exp="god-rays"] .core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 42px;
+  height: 42px;
+  margin: -21px 0 0 -21px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0 30%, #fde047 55%, transparent 72%);
+  mix-blend-mode: plus-lighter;
+  animation-name: exp-god-rays-core;
+  animation-iteration-count: infinite;
+}

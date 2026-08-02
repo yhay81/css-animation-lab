@@ -1,0 +1,8 @@
+@keyframes exp-split-rise { from { translate: 0 24px; } to { translate: 0 0; } }
+@keyframes exp-split-fade { from { opacity: 0; }        to { opacity: 1; } }
+
+/* 第1のみ全体設定のイージングに従い、不透明度は常に等速にする。 */
+[data-exp="split-ease"] .subject {
+  animation-name: exp-split-rise, exp-split-fade;
+  animation-timing-function: var(--ease), linear;
+}

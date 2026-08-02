@@ -1,0 +1,39 @@
+@keyframes exp-scope-outer { 0%, 100% { translate: 0 -8px; } 50% { translate: 0 8px; } }
+@keyframes exp-scope-inner { 0%, 100% { rotate: 0deg; } 50% { rotate: 180deg; } }
+
+[data-exp="scope-nest"] .outer {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  padding: 14px;
+  border: 1px dashed #3d4a78;
+  border-radius: 12px;
+}
+[data-exp="scope-nest"] .inner {
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  border: 1px dashed #7dd3fc;
+  border-radius: 10px;
+}
+[data-exp="scope-nest"] .dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #7dd3fc, #6366f1);
+}
+
+/* .outer の中だが .inner の手前で止まる。ドーナツ状の適用範囲になる。 */
+@scope ([data-exp="scope-nest"] .outer) to (.inner) {
+  .dot {
+    animation-name: exp-scope-outer;
+    animation-iteration-count: infinite;
+  }
+}
+@scope ([data-exp="scope-nest"] .inner) {
+  .dot {
+    animation-name: exp-scope-inner;
+    animation-iteration-count: infinite;
+    background: linear-gradient(135deg, #f472b6, #a855f7);
+  }
+}

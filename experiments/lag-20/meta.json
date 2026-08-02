@@ -1,0 +1,25 @@
+{
+  "id": "lag-20",
+  "n": 70,
+  "title": "時差 20%",
+  "layer": "L2",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [
+      "多重アニメーション",
+      "遅延"
+    ],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "不透明度が立ち上がってから位置が動き出すまでの間を 20% にした場合。差が知覚できることは確認済みなので、既定値として妥当な量を決めたい。"
+}

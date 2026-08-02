@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>css-animation-lab — 検証</title>
+<link rel="stylesheet" href="/lab/common.css">
+<style>
+  .vbar {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
+    padding: 10px 14px; background: #0e132a; border-bottom: 1px solid #2a3150;
+    font-size: 12px;
+  }
+  .vbar b { font-size: 13px; }
+  .tally { display: flex; gap: 10px; }
+  .tally span { padding: 2px 9px; border-radius: 999px; font-weight: 700; }
+  .t-fail { background: #4c0519; color: #fecdd3; }
+  .t-warn { background: #422006; color: #fde68a; }
+  .t-ok   { background: #052e1a; color: #a7f3d0; }
+
+  .findings { padding: 14px; display: grid; gap: 8px; }
+  .f {
+    display: grid; grid-template-columns: 74px 130px 1fr; gap: 12px; align-items: start;
+    padding: 9px 12px; border: 1px solid #2a3150; border-radius: 9px; background: #151a2e;
+    font-size: 12px; line-height: 1.75;
+  }
+  .f.fail { border-color: #7f1d3a; }
+  .f.warn { border-color: #78350f; }
+  .f .sev { font-weight: 800; }
+  .f.fail .sev { color: #fb7185; }
+  .f.warn .sev { color: #fbbf24; }
+  .f .who { color: #8b93b5; font-family: ui-monospace, SFMono-Regular, monospace; }
+  .f .msg { color: #e6e9f5; }
+  .f .why { color: #8b93b5; }
+
+  /*
+   * 測定用の領域。
+   * 窓の幅に合わせると、窓が畳まれている環境では幅が 0 になって測定が総崩れになる。
+   * 大きさを固定すれば、窓の状態にも画面の広さにも左右されない。
+   * 同じ寸法で測れることは、あとで別の環境と結果を突き合わせる前提でもある。
+   */
+  .probe { padding: 0 14px 40px; }
+  .probe .sheet {
+    width: 1200px;
+    grid-template-columns: repeat(8, 140px);
+  }
+  .probe .stage { height: 110px; }
+</style>
+</head>
+<body>
+
+<div class="vbar">
+  <b>検証</b>
+  <span id="status">読み込み中…</span>
+  <div class="tally" id="tally"></div>
+  <label><input type="checkbox" id="showProbe"> 測定用の描画を見る</label>
+</div>
+
+<div class="findings" id="findings"></div>
+<div class="probe" id="probe" hidden><div class="sheet" id="sheet"></div></div>
+
+<script type="module">
+import {
+  DUR, loadCatalog, injectStyles, buildCell, afterStyleResolution,
+  isCssAnimation, reportFailures, showFatal,
+} from '/lab/lab.js';
+
+reportFailures();
+
+const findings = [];
+const add = (sev, id, rule, msg, why) => findings.push({ sev, id, rule, msg, why });
+
+/* ───────────────────────── 静的な検査 ───────────────────────── */
+
+/**
+ * 実験が名前を重ねてはいけないクラス。
+ *
+ * common.css の情景部品（.subject / .bar / .line / .scene など）は借りて使うためのもので、
+ * 名前が同じでも事故にならない。実験側で拡張するのが想定された使い方。
+ *
+ * 事故になるのは、ハーネス自身が枠組みに使っている名前と重なったとき。
+ * 判の .mark が figcaption の評価印と衝突し、margin-left: auto を食ったのがこれ。
+ */
+const CHROME = new Set(['cell', 'stage', 'sheet', 'id', 'title', 'mark']);
+function sharedClassNames() { return CHROME; }
+
+function staticChecks(item, css, shared) {
+  const markup = item.markup ?? '';
+
+  // S1 共有部品との名前衝突（stamp の .mark が margin-left: auto を食った）
+  //
+  // common.css の部品を意図して借りている場合は、実験側でその名前を書かない。
+  // 実験側にも同名の規則があるなら、独自の意味を持たせるつもりなので衝突になる。
+  const seen = new Set();
+  for (const m of markup.matchAll(/class="([^"]+)"/g)) {
+    for (const cls of m[1].split(/\s+/)) {
+      if (!shared.has(cls) || seen.has(cls)) continue;
+      seen.add(cls);
+      add('fail', item.id, '名前衝突',
+        `.${cls} はハーネス自身が使っている名前`,
+        '書いた覚えのない指定が当たる。枠組みの名前は実験で使わない。');
+    }
+  }
+
+  // S2 未登録の変数に sibling-index()
+  //
+  // 同じ要素の中で使うぶんには問題ない。差し込まれた先でも同じ要素なので同じ値になる。
+  // 壊れるのは要素をまたぐとき（text-scramble）と、別の変数を経由するとき（crowd-wave）。
+  // どちらも評価の場所が宣言した要素から動く。
+  // @keyframes の中身は要素ごとに評価されるので「別のセレクタ」には当たらない。
+  // 先に取り除かないと 0% { … } が別の規則として数えられ、誤検出になる。
+  const withoutKeyframes = css.replace(/@keyframes[^{]*\{[\s\S]*?\n\}/g, '');
+  const rules = [...withoutKeyframes.matchAll(/([^{}]+)\{([^{}]*)\}/g)]
+    .map((m) => ({ sel: m[1].trim(), body: m[2] }))
+    .filter((r) => !r.sel.startsWith('@'));
+
+  for (const r of rules) {
+    for (const m of r.body.matchAll(/(--[\w-]+)\s*:\s*([^;]*sibling-index\(\)[^;]*)/g)) {
+      const name = m[1];
+      if (new RegExp(`@property\\s+${name}\\b`).test(css)) continue;
+
+      const viaVar = rules.some((o) => new RegExp(`--[\\w-]+\\s*:[^;]*var\\(\\s*${name}\\b`).test(o.body));
+      const crossEl = rules.some((o) => o.sel !== r.sel && new RegExp(`var\\(\\s*${name}\\b`).test(o.body));
+      if (!viaVar && !crossEl) continue;
+
+      add('fail', item.id, '未登録の変数',
+        `${name} が sibling-index() を含み、${viaVar ? '別の変数を経由して' : '別のセレクタで'}使われている`,
+        '登録しない変数はトークン列のまま渡り、差し込まれた先で評価される。宣言した要素の値にならない。');
+    }
+  }
+
+  // S3 d は path にしか効かない（F028）
+  if (/(^|[{;\s])d\s*:/.test(css) && !/<path/.test(markup)) {
+    add('fail', item.id, 'd は path 限定',
+      'd を指定しているが markup に <path> が無い',
+      '計算値には現れるのに描画は変わらない。circle や rect では効かない。');
+  }
+
+  // S4 動かすプロパティを静的にも書いている（万華鏡の rotate）
+  //
+  // ファイル単位で見ると、別々の要素の指定を同じものと数えてしまう。
+  // 「同じ規則が animation-name とそのプロパティの両方を持つ」ときだけが実害。
+  const RISKY = ['rotate', 'scale', 'translate', 'transform', 'clip-path', 'offset-distance'];
+  const kfProps = new Set();
+  for (const m of css.matchAll(/@keyframes\s+([\w-]+)[^{]*\{([\s\S]*?)\n\}/g)) {
+    for (const prop of RISKY) {
+      if (new RegExp(`(^|[{;\\s])${prop}\\s*:`, 'm').test(m[2])) kfProps.add(`${m[1]}|${prop}`);
+    }
+  }
+  for (const r of rules) {
+    const named = r.body.match(/animation-name\s*:\s*([^;]+)/);
+    if (!named) continue;
+    const names = named[1].split(',').map((s) => s.trim());
+    for (const prop of RISKY) {
+      if (!new RegExp(`(^|[{;\\s])${prop}\\s*:`, 'm').test(r.body)) continue;
+      if (!names.some((n) => kfProps.has(`${n}|${prop}`))) continue;
+      add('fail', item.id, '静的な値が食われる',
+        `${r.sel.slice(0, 48)} が ${prop} を静的にも指定している`,
+        'アニメーションが値を占有するため静的な指定は無視される。配置と動きは別のプロパティに分ける。');
+    }
+  }
+
+  // S6 面積ゼロの多角形（panel-split の 4 枚目が頂点一直線で消えていた）
+  for (const m of css.matchAll(/clip-path:\s*polygon\(([^)]*)\)/g)) {
+    const pts = m[1].split(',').map((s) => s.trim().split(/\s+/).map(parseFloat));
+    if (pts.length < 3 || pts.some((p) => p.length < 2 || p.some(Number.isNaN))) continue;
+    // 靴紐公式。頂点が一直線に並ぶと 0 になる。
+    let area = 0;
+    for (let i = 0; i < pts.length; i++) {
+      const [x1, y1] = pts[i];
+      const [x2, y2] = pts[(i + 1) % pts.length];
+      area += x1 * y2 - x2 * y1;
+    }
+    if (Math.abs(area / 2) < 0.5) {
+      add('fail', item.id, '面積ゼロの切り抜き',
+        `polygon(${m[1].slice(0, 40)}…) の面積が 0`,
+        '頂点が一直線に並んでいる。エラーにはならず、その要素だけが黙って消える。');
+    }
+  }
+
+  // S7 pathLength と non-scaling-stroke の併用（eye-path の線が 3 分の 1 しか描けなかった）
+  if (/pathLength=/.test(markup) && /non-scaling-stroke/.test(markup)
+      && /stroke-das(harray|hoffset)/.test(css)) {
+    add('fail', item.id, '破線の座標系',
+      'pathLength と non-scaling-stroke を併用している',
+      '正規化が無効になり、破線の長さがデバイス座標で解釈される。書いた値と描画長が一致しない。');
+  }
+
+  // S8 裏返した面の非対称な指定（page-turn の角丸が反転していた）
+  //
+  // グラデーションの向きが裏で反転しても気づかれないことが多いので、
+  // 実際に食い違いが見える角丸だけを対象にする。
+  for (const r of rules) {
+    if (!/rotateY\(\s*180deg\s*\)|rotate:\s*y\s*180deg|scale:\s*-1\b/.test(r.body)) continue;
+    const hit = r.body.match(/border-radius:\s*([^;]+)/);
+    if (!hit) continue;
+    const corners = hit[1].trim().split(/\s+/);
+    if (new Set(corners).size <= 1) continue; // 一律なら反転しても同じ
+    // 反転を織り込み済みだと書いてあれば、指摘しない。
+    if (/反転済み/.test(r.body)) continue;
+    add('warn', item.id, '裏面の非対称な指定',
+      `${r.sel.replace(/\/\*[\s\S]*?\*\//g, '').trim().slice(0, 40)} が裏返しつつ角丸を持つ`,
+      '裏面は左右が反転する。画面で見たい形ではなく、反転された結果がその形になる値を書く。');
+  }
+
+  // S5 入れ子の同名要素を margin で離している（rig-chain の段が全部重なった）
+  for (const m of css.matchAll(/\.([\w-]+)\s+\.\1\s*\{([^}]*)\}/g)) {
+    if (/margin(-top|-block-start)?\s*:/.test(m[2])) {
+      add('fail', item.id, '余白の相殺',
+        `.${m[1]} .${m[1]} の間隔を margin で取っている`,
+        '境界も余白も無い入れ子では上下の余白が相殺され、子ではなく親ごと下がる。translate なら相殺されない。');
+    }
+  }
+}
+
+/* ───────────────────────── 実行時の検査 ───────────────────────── */
+
+/**
+ * 描画が止まっている環境では requestAnimationFrame が来ないので、
+ * アニメーションが生成されるまで時間で待つ。
+ */
+async function waitForAnimations(tries = 20) {
+  for (let i = 0; i < tries; i++) {
+    if (document.getAnimations().some(isCssAnimation)) return true;
+    await new Promise((r) => setTimeout(r, 100));
+  }
+  return false;
+}
+
+const yieldToPage = () => new Promise((r) => setTimeout(r, 0));
+
+/** 対象の実験だけを進める。文書全体を進めると件数の二乗になって終わらない。 */
+function seekOnly(list, t) {
+  for (const a of list) {
+    try { a.currentTime = t; } catch { /* 尺が auto のものは無視 */ }
+  }
+}
+
+/** 描画に効く値。ここに無い性質は「変わっていない」と誤判定される。 */
+const PAINTED = [
+  'opacity', 'backgroundColor', 'color', 'filter', 'clipPath', 'borderRadius',
+  'backgroundPosition', 'backgroundSize', 'backgroundImage', 'maskImage', 'maskPosition',
+  'boxShadow', 'textShadow', 'borderColor', 'borderImageSource', 'backdropFilter',
+  'strokeDashoffset', 'strokeWidth', 'stroke', 'fill', 'd',
+  'offsetDistance', 'offsetRotate', 'rotate', 'scale', 'translate', 'transform',
+  'fontWeight', 'fontVariationSettings', 'letterSpacing', 'textEmphasisColor',
+  'cornerShape', 'gridTemplateColumns', 'gridTemplateRows', 'gap', 'aspectRatio',
+  'width', 'height', 'visibility', 'contentVisibility',
+];
+
+function pushStyle(out, cs) {
+  for (const p of PAINTED) out.push(cs[p]);
+}
+
+/** 見た目の指紋。描画に効く値だけを拾う（計算値だけでは足りない ── F028）。 */
+function signature(cell) {
+  const stage = cell.querySelector('.stage');
+  const sr = stage.getBoundingClientRect();
+  const out = [];
+  for (const el of cell.querySelectorAll('.stage *')) {
+    const r = el.getBoundingClientRect();
+    out.push(
+      Math.round(r.left - sr.left), Math.round(r.top - sr.top),
+      Math.round(r.width), Math.round(r.height),
+    );
+    pushStyle(out, getComputedStyle(el));
+    // 擬似要素は DOM に無い。走査に含めないと glitch のような実験を見落とす。
+    pushStyle(out, getComputedStyle(el, '::before'));
+    pushStyle(out, getComputedStyle(el, '::after'));
+    if (typeof el.getBBox === 'function') {
+      try {
+        const b = el.getBBox();
+        out.push(Math.round(b.x * 10), Math.round(b.y * 10),
+          Math.round(b.width * 10), Math.round(b.height * 10));
+      } catch { /* 描画されていない図形 */ }
+    }
+  }
+  return out.join('|');
+}
+
+/**
+ * 標本を取る時点。等間隔だと、短い区間で起きる変化（neon の明滅など）を飛ばす。
+ * 各アニメーションのキーフレームが置かれている時点そのものを拾い、
+ * steps で保持される値も取れるように直後の点も足す。
+ */
+function samplePoints(list) {
+  const ts = new Set([0, DUR - 1]);
+  for (const a of list) {
+    const t = a.effect?.getComputedTiming?.();
+    if (!t) continue;
+    const dur = Number(t.duration) || DUR;
+    const delay = Number(t.delay) || 0;
+    for (const kf of a.effect.getKeyframes()) {
+      const at = delay + kf.computedOffset * dur;
+      for (const v of [at, at + 2, at - 2]) {
+        // 尺が 1 周より短いものは繰り返すので、剰余で 1 周内へ畳む。
+        const w = ((v % DUR) + DUR) % DUR;
+        ts.add(Math.round(w));
+      }
+    }
+  }
+  // 取りこぼし防止に等間隔も足す。多すぎると遅いので上限を置く。
+  for (let k = 0; k < 8; k++) ts.add(Math.round((DUR * k) / 8));
+
+  const all = [...ts].filter((t) => t >= 0 && t < DUR).sort((a, b) => a - b);
+  const MAX = 60;
+  if (all.length <= MAX) return all;
+  // 先頭から切ると 1 周の終わりが落ち、継ぎ目の測定が壊れる。両端を残して間引く。
+  const out = [];
+  for (let k = 0; k < MAX; k++) out.push(all[Math.round((k * (all.length - 1)) / (MAX - 1))]);
+  return [...new Set(out)];
+}
+
+/** 位置と不透明度だけの数値ベクトル。継ぎ目の大きさを測るのに使う。 */
+function vector(cell) {
+  const stage = cell.querySelector('.stage');
+  const sr = stage.getBoundingClientRect();
+  const v = [];
+  for (const el of cell.querySelectorAll('.stage *')) {
+    const r = el.getBoundingClientRect();
+    v.push(r.left - sr.left, r.top - sr.top, r.width, r.height,
+      Number(getComputedStyle(el).opacity) * 40);
+  }
+  return v;
+}
+
+const dist = (a, b) => {
+  if (a.length !== b.length) return Infinity;
+  let s = 0;
+  for (let i = 0; i < a.length; i++) s += Math.abs(a[i] - b[i]);
+  return s;
+};
+
+const median = (xs) => {
+  const s = [...xs].sort((x, y) => x - y);
+  return s[Math.floor(s.length / 2)] ?? 0;
+};
+
+/* ───────────────────────── 実行 ───────────────────────── */
+
+try {
+  const status = document.querySelector('#status');
+  const items = await loadCatalog();
+  status.textContent = `${items.length} 件を検査中…`;
+
+  const [commonCss, ...cssList] = await Promise.all([
+    fetch('/lab/common.css').then((r) => r.text()),
+    ...items.map((it) => fetch(`/experiments/${it.id}/anim.css`).then((r) => r.text()).catch(() => '')),
+  ]);
+  const shared = sharedClassNames(commonCss);
+
+  const cssOf = new Map(items.map((it, i) => [it.id, cssList[i]]));
+  items.forEach((it, i) => staticChecks(it, cssList[i], shared));
+
+  await injectStyles(items);
+  const sheet = document.querySelector('#sheet');
+  const cells = new Map();
+  for (const it of items) {
+    const cell = buildCell(it, { tabbable: false });
+    sheet.append(cell);
+    cells.set(it.id, cell);
+  }
+  document.querySelector('#probe').hidden = false;
+  await waitForAnimations();
+
+  /*
+   * 描画領域に幅が無いと、すべての要素が「入れ物より大きい」ことになり、
+   * 位置や大きさを見る判定が総崩れになる。測れないことを黙って通すと、
+   * 実験ではなく環境の問題を 100 件の指摘として報告してしまう。
+   */
+  // 窓が開くのが遅れることがある。一度きりの測定だと 0 を掴んで全判定が止まる。
+  let probeWidth = 0;
+  for (let i = 0; i < 20; i++) {
+    probeWidth = sheet.getBoundingClientRect().width;
+    if (probeWidth >= 80) break;
+    await new Promise((r) => setTimeout(r, 250));
+  }
+  const measurable = probeWidth >= 80;
+  if (!measurable) {
+    add('warn', '（環境）', '測定不能',
+      `描画領域の幅が ${Math.round(probeWidth)}px しかない`,
+      '位置と大きさを見る判定は行わない。窓を広げて開き直す。');
+  }
+
+  let done = 0;
+
+  for (const it of items) {
+    if (++done % 20 === 0) {
+      status.textContent = `${done} / ${items.length} 件`;
+      await yieldToPage();
+    }
+
+    const cell = cells.get(it.id);
+    const own = cell.getAnimations({ subtree: true }).filter(isCssAnimation);
+    const timed = own.filter((a) => a.timeline === document.timeline);
+
+    // この実験のぶんだけ標本を取る
+    const sig = [];
+    const vec = [];
+    if (timed.length) {
+      for (const t of samplePoints(timed)) {
+        seekOnly(timed, t);
+        sig.push(signature(cell));
+        vec.push(vector(cell));
+      }
+      seekOnly(timed, 0);
+    }
+
+    // R1 時計で駆動する実験なのにアニメーションが無い
+    if (!it.mode && timed.length === 0) {
+      add('fail', it.id, '動きが無い', 'アニメーションが 1 本も生成されていない',
+        '指定が通っていても生成されないことがある。擬似要素などは特に。');
+      continue;
+    }
+    if (it.mode) continue; // 状態・スクロール・操作で動くものは時計では測れない
+    if (!measurable) continue; // 幅が無い環境では、以下の判定はすべて意味を持たない
+
+    // R2 描画が変わらない
+    const uniq = new Set(sig).size;
+    if (uniq <= 1) {
+      add('fail', it.id, '見た目が変わらない', '24 点すべてで描画上の差が無い',
+        '計算値が変わっていても描画に届いていないことがある。形や位置で測る。');
+    }
+
+    // R3 繰り返しの継ぎ目
+    //
+    // 最初と最後のキーフレームが同じ値なら、作者は繋げるつもりで書いている。
+    // それでも飛ぶなら不具合。値が違うなら、頭から再生し直す設計なので飛んで当然。
+    // 1 本でも「頭から再生し直す」ものが混ざっていれば、飛ぶのは設計どおり。
+    const intendsSeamless = timed.length > 0 && timed.every((a) => {
+      const kfs = a.effect?.getKeyframes?.() ?? [];
+      if (kfs.length < 2) return false;
+      const first = kfs[0];
+      const last = kfs[kfs.length - 1];
+      const keys = Object.keys(first).filter((k) => k !== 'offset' && k !== 'computedOffset' && k !== 'easing' && k !== 'composite');
+      if (!keys.length) return false;
+      return keys.every((k) => first[k] === last[k]);
+    });
+    const loops = timed.some((a) => a.effect?.getComputedTiming?.().iterations === Infinity);
+
+    // getKeyframes() はカスタムプロパティを返さない。
+    // 動きの本体を変数に持たせている実験は、先頭と末尾の比較が当てにならない。
+    const hidesValues = /@keyframes[^{]*\{[^@]*?--[\w-]+\s*:/.test(cssOf.get(it.id) ?? '');
+    // steps で刻む動きは、最後のコマを 100% まで保持してから頭へ戻る。
+    // 飛ぶのは刻みの性質そのもので、繋ぎ方の誤りではない。
+    const stepped = timed.some((a) =>
+      /steps/.test(getComputedStyle(a.effect?.target ?? cell).animationTimingFunction));
+
+    if (loops && intendsSeamless && uniq > 1 && !hidesValues && !stepped) {
+      const vs = vec;
+      const steps = vs.slice(1).map((v, i) => dist(vs[i], v));
+      const wrap = dist(vs[vs.length - 1], vs[0]);
+      // steps で刻む動きは隣接標本の大半が同値になり、中央値が 0 に落ちる。
+      // それだと「どんな差も異常に大きい」と判定されるので、最大の一歩も基準に入れる。
+      const med = median(steps);
+      const peak = Math.max(0, ...steps);
+      if (wrap > Math.max(med * 4, peak * 1.5) + 8) {
+        add('warn', it.id, '継ぎ目', `1 周の終わりで飛ぶ（通常 ${med.toFixed(0)} に対し ${wrap.toFixed(0)}）`,
+          '繰り返す動きは最初と最後の見た目を一致させる。');
+      }
+    }
+
+    // R4 入れ物より大きい要素の中央寄せ（F029）
+    for (const el of cell.querySelectorAll('.stage *')) {
+      const parent = el.parentElement;
+      if (!parent) continue;
+      const ps = getComputedStyle(parent);
+      // 効かなくなるのは格子の中央寄せ。少しのはみ出しは意図的なことが多いので閾値を置く。
+      if (ps.display !== 'grid') continue;
+      if (!/center/.test(ps.justifyItems) && !/center/.test(ps.alignItems)) continue;
+      if (getComputedStyle(el).position === 'absolute') continue;
+      const OVER = 20;
+      if (el.offsetWidth > parent.clientWidth + OVER || el.offsetHeight > parent.clientHeight + OVER) {
+        // 4 回繰り返した罠なので注意ではなく要修正として扱う。
+        add('fail', it.id, 'はみ出しの中央寄せ',
+          `${el.className || el.tagName} が入れ物より大きい（${el.offsetWidth}×${el.offsetHeight} > ${parent.clientWidth}×${parent.clientHeight}）`,
+          '中央寄せは効かず始端に張り付く。負の margin で中心を出す。');
+        break;
+      }
+    }
+
+    // R8 実験が宣言した意図（meta.json の expect）
+    //
+    // 「動いているか」は測れても「意図どおりか」は測れない。
+    // 意図は書いてもらうしかないので、実際に踏んだ不具合から言い回しを 5 つに絞った。
+    for (const e of it.expect ?? []) {
+      const pct = (v) => (DUR * parseFloat(v)) / 100;
+      const seekTo = (v) => seekOnly(timed, pct(v));
+      const pick = (sel) => [...cell.querySelectorAll(`.stage ${sel}`)];
+      const box = (el) => el.getBoundingClientRect();
+      const ctr = (el) => { const r = box(el); return [r.left + r.width / 2, r.top + r.height / 2]; };
+      const label = JSON.stringify(e).slice(0, 60);
+
+      try {
+        if (e.still) {
+          // 指定した区間で完全に動かないこと。時間停止のような「同時性」の検査。
+          const [a, b] = e.between;
+          const shots = [0, 0.25, 0.5, 0.75, 1].map((k) => {
+            seekTo(`${parseFloat(a) + (parseFloat(b) - parseFloat(a)) * k}%`);
+            return pick(e.still).map((el) => { const r = box(el); return `${Math.round(r.left)},${Math.round(r.top)}`; }).join('|');
+          });
+          if (new Set(shots).size !== 1) {
+            add('fail', it.id, '意図（静止）', `${e.still} が ${a}〜${b} で動いている`, label);
+          }
+        } else if (e.side) {
+          seekTo(e.at);
+          const [a] = pick(e.of);
+          const [b] = pick(e.from);
+          if (!a || !b) throw new Error('要素が無い');
+          const [ax] = ctr(a), [bx] = ctr(b);
+          const [, ay] = ctr(a), [, by] = ctr(b);
+          const ok = { left: ax < bx, right: ax > bx, above: ay < by, below: ay > by }[e.side];
+          if (!ok) add('fail', it.id, '意図（位置関係）', `${e.at} で ${e.of} が ${e.from} の ${e.side} に無い`, label);
+        } else if (e.near) {
+          seekTo(e.at ?? '50%');
+          const [a] = pick(e.near[0]);
+          const [b] = pick(e.near[1]);
+          if (!a || !b) throw new Error('要素が無い');
+          const [ax, ay] = ctr(a), [bx, by] = ctr(b);
+          const d = Math.hypot(ax - bx, ay - by);
+          if (d > e.within) {
+            add('fail', it.id, '意図（近接）', `${e.near.join(' と ')} が ${d.toFixed(0)}px 離れている（許容 ${e.within}）`, label);
+          }
+        } else if (e.inside) {
+          seekTo(e.at ?? '50%');
+          const [a] = pick(e.inside);
+          const [c] = e.within_of ? pick(e.within_of) : [cell.querySelector('.stage')];
+          if (!a || !c) throw new Error('要素が無い');
+          const r = box(a), q = box(c), M = 2;
+          if (r.left < q.left - M || r.right > q.right + M || r.top < q.top - M || r.bottom > q.bottom + M) {
+            add('fail', it.id, '意図（収まり）', `${e.inside} が入れ物からはみ出している`, label);
+          }
+        } else if (e.ordered) {
+          seekTo(e.at ?? '50%');
+          const els = pick(e.ordered);
+          const key = e.by === 'left' ? 0 : 1;
+          const vs = els.map((el) => Math.round(box(el)[e.by === 'left' ? 'left' : 'top']));
+          const rising = vs.every((v, i) => i === 0 || v > vs[i - 1] + 1);
+          if (!rising) add('fail', it.id, '意図（並び）', `${e.ordered} が ${e.by ?? 'top'} 順に並んでいない（${vs.join(',')}）`, label);
+        }
+      } catch (err) {
+        add('warn', it.id, '意図（検査できず）', String(err.message), label);
+      }
+    }
+    seekOnly(timed, 0);
+
+    // R5 順序が 1 周に収まらない（diagram-build の組み上げが揃わなかった）
+    //
+    // 先頭と末尾が同値なら、位相をずらして流し続ける波。はみ出しても途切れない。
+    // 値が違うなら「始まって終わる」順序なので、1 周に収まらないと完了しない。
+    // 尺が 1 周と同じなら、遅延が少しでもあれば末尾は必ずはみ出す。
+    // それ自体は問題ではない。問題は「最後の要素が仕事を終える前に 1 周が尽きる」こと。
+    // 仕事の終わりは、値が最後に変わるキーフレームの位置で決まる。
+    if (!intendsSeamless) for (const a of timed) {
+      const t = a.effect?.getComputedTiming?.();
+      if (!t) continue;
+      const delay = Number(t.delay) || 0;
+      const dur = Number(t.duration) || 0;
+      if (delay <= 0 || !dur) continue;
+
+      const kfs = a.effect.getKeyframes();
+      const keys = Object.keys(kfs[0] ?? {})
+        .filter((k) => !['offset', 'computedOffset', 'easing', 'composite'].includes(k));
+      let lastChange = 0;
+      for (let i = 1; i < kfs.length; i++) {
+        if (keys.some((k) => kfs[i][k] !== kfs[i - 1][k])) lastChange = kfs[i].computedOffset;
+      }
+      const finishesAt = delay + lastChange * dur;
+      if (finishesAt > DUR + 1) {
+        add('fail', it.id, '1 周に収まらない',
+          `最後の変化が ${Math.round(finishesAt)}ms（1 周は ${DUR}ms）`,
+          '最後の要素が動き終える前に頭へ戻る。順序は遅延ではなくキーフレームの位置で表す。');
+        break;
+      }
+    }
+
+    // R6 経路をなぞる要素が線からずれている（handwriting のペン）
+    const paths = [...cell.querySelectorAll('path')];
+    for (const el of cell.querySelectorAll('.stage *')) {
+      const op = getComputedStyle(el).offsetPath;
+      if (!op || !op.startsWith('path(')) continue;
+      const svg = paths[0]?.ownerSVGElement;
+      if (!paths.length || !svg) continue;
+      const sr = svg.getBoundingClientRect();
+      const vb = svg.viewBox.baseVal;
+      if (!vb?.width || !sr.width) continue;
+      const scale = sr.width / vb.width;
+      const off = parseFloat(getComputedStyle(el).offsetDistance) / 100;
+      if (!Number.isFinite(off)) continue;
+      try {
+        const p = paths[0].getPointAtLength(paths[0].getTotalLength() * off);
+        const r = el.getBoundingClientRect();
+        const gap = Math.hypot(
+          r.left + r.width / 2 - (sr.left + p.x * scale),
+          r.top + r.height / 2 - (sr.top + p.y * scale),
+        );
+        if (gap > 8) {
+          add('fail', it.id, '経路からずれる',
+            `${el.className || el.tagName} が線から ${gap.toFixed(0)}px 離れている`,
+            'offset-path はパスの生の数値を px として進む。SVG を拡大して描くと追従する要素だけ取り残される。');
+        }
+      } catch { /* 経路を測れない図形 */ }
+      break;
+    }
+
+    // R7 入れ子の同名要素が重なっている（rig-chain の段が全部同じ位置だった）
+    const byClass = new Map();
+    for (const el of cell.querySelectorAll('.stage *')) {
+      const key = el.className;
+      if (!key || typeof key !== 'string') continue;
+      if (!el.parentElement?.className || el.parentElement.className !== key) continue;
+      (byClass.get(key) ?? byClass.set(key, []).get(key)).push(el);
+    }
+    for (const [key, els] of byClass) {
+      if (els.length < 2) continue;
+      const tops = els.map((e) => Math.round(e.getBoundingClientRect().top));
+      const lefts = els.map((e) => Math.round(e.getBoundingClientRect().left));
+      if (new Set(tops).size === 1 && new Set(lefts).size === 1) {
+        add('fail', it.id, '入れ子が重なる',
+          `.${key} の入れ子 ${els.length + 1} 段が同じ位置にある`,
+          '境界も余白も無い入れ子では margin が相殺され、子ではなく親ごと動く。translate なら相殺されない。');
+      }
+    }
+  }
+
+  /* ───── 表示 ───── */
+  const order = { fail: 0, warn: 1 };
+  findings.sort((a, b) => order[a.sev] - order[b.sev] || a.id.localeCompare(b.id));
+
+  const box = document.querySelector('#findings');
+  box.innerHTML = findings.map((f) => `
+    <div class="f ${f.sev}">
+      <span class="sev">${f.sev === 'fail' ? '要修正' : '注意'}</span>
+      <span class="who">${f.id}<br><span style="opacity:.7">${f.rule}</span></span>
+      <span><span class="msg">${f.msg}</span><br><span class="why">${f.why}</span></span>
+    </div>`).join('') || '<div class="f"><span class="sev">—</span><span></span><span>指摘なし</span></div>';
+
+  const nFail = findings.filter((f) => f.sev === 'fail').length;
+  const nWarn = findings.length - nFail;
+  document.querySelector('#tally').innerHTML =
+    `<span class="t-fail">要修正 ${nFail}</span>` +
+    `<span class="t-warn">注意 ${nWarn}</span>` +
+    `<span class="t-ok">問題なし ${items.length - new Set(findings.map((f) => f.id)).size}</span>`;
+  status.textContent = `${items.length} 件`;
+
+  document.querySelector('#showProbe').addEventListener('change', (e) => {
+    document.querySelector('#probe').style.display = e.target.checked ? '' : 'none';
+  });
+  document.querySelector('#probe').style.display = 'none';
+
+  window.__report = { total: items.length, findings, measurable, probeWidth: Math.round(probeWidth) };
+} catch (err) {
+  showFatal(err);
+}
+</script>
+</body>
+</html>

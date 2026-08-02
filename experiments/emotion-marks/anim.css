@@ -1,0 +1,53 @@
+@keyframes exp-em-anger {
+  0%, 18%  { scale: 0; rotate: -20deg; opacity: 0; }
+  26%      { scale: 1.4 0.7; opacity: 1; }
+  33%      { scale: 0.9 1.15; }
+  40%, 74% { scale: 1; rotate: 0deg; opacity: 1; }
+  86%, 100% { scale: 0.6; opacity: 0; }
+}
+@keyframes exp-em-sweat {
+  0%, 40%  { scale: 0; translate: 0 0; opacity: 0; }
+  50%      { scale: 1; translate: 0 0; opacity: 1; }
+  74%      { translate: 4px 16px; opacity: 1; }
+  88%, 100% { translate: 6px 26px; opacity: 0; }
+}
+@keyframes exp-em-face {
+  0%, 20%  { rotate: 0deg; }
+  27%      { rotate: -7deg; }
+  34%      { rotate: 5deg; }
+  44%, 100% { rotate: 0deg; }
+}
+
+[data-exp="emotion-marks"] .em { position: absolute; inset: 0; display: grid; place-items: center; }
+[data-exp="emotion-marks"] .face {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: #fbbf24;
+  animation-name: exp-em-face;
+  animation-iteration-count: infinite;
+}
+[data-exp="emotion-marks"] .mk { position: absolute; animation-iteration-count: infinite; }
+
+/* 怒りマーク。十字に交差する 2 本。 */
+[data-exp="emotion-marks"] .anger {
+  top: 34px;
+  left: 58%;
+  width: 22px;
+  height: 22px;
+  background:
+    linear-gradient(#f43f5e, #f43f5e) center / 100% 5px no-repeat,
+    linear-gradient(#f43f5e, #f43f5e) center / 5px 100% no-repeat;
+  /* rotate はキーフレームが占有するので、ここで書いても効かない。 */
+  animation-name: exp-em-anger;
+}
+/* 汗。しずく形。 */
+[data-exp="emotion-marks"] .sweat {
+  top: 44px;
+  right: 56%;
+  width: 15px;
+  height: 19px;
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+  background: #7dd3fc;
+  animation-name: exp-em-sweat;
+}

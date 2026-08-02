@@ -1,0 +1,8 @@
+@keyframes exp-lag-fade { from { opacity: 0; }         to { opacity: 1; } }
+@keyframes exp-lag-rise { from { translate: 0 28px; } to { translate: 0 0; } }
+
+[data-exp="lag"] .subject {
+  animation-name: exp-lag-fade, exp-lag-rise;
+  animation-duration: 450ms, 600ms;
+  animation-delay: 0ms, 400ms;
+}

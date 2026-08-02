@@ -1,0 +1,5 @@
+@keyframes exp-pop {
+  from { scale: 0.7; }
+  to   { scale: 1; }
+}
+[data-exp="pop"] .subject { animation-name: exp-pop; }

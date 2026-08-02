@@ -1,0 +1,19 @@
+{
+  "id": "clip-margin",
+  "n": 610,
+  "title": "はみ出しを一定量だけ許す",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "overflow: clip",
+      "overflow-clip-margin"
+    ],
+    "use": "バッジ / 影の付いた要素"
+  },
+  "predicted": "uncertain",
+  "note": "overflow: hidden では境界で完全に切れるが、clip なら余白を指定してその分だけはみ出させられる。バッジや影を出しつつ遠くのはみ出しは切る、が 1 行で書ける。スクロールも生まれない。",
+  "markup": "<div class=\"cm\"><div class=\"box\"><span class=\"badge\">9</span></div></div>"
+}

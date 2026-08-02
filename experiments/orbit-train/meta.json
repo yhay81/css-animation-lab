@@ -1,0 +1,20 @@
+{
+  "id": "orbit-train",
+  "n": 340,
+  "title": "経路を等間隔で流れる",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "offset-path",
+      "負の遅延",
+      "sibling-index()"
+    ],
+    "use": "ローディング / 循環の表現"
+  },
+  "predicted": "uncertain",
+  "note": "同じアニメーションに 1 周期を等分した負の遅延を与えると、要素が経路上に等間隔で並んだまま流れる。位置を個別に指定する必要がない。",
+  "markup": "<div class=\"tr\"><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span></div>"
+}

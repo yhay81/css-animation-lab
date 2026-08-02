@@ -1,0 +1,55 @@
+@keyframes exp-lw-blob {
+  0%   { translate: 0 130px; scale: 0.7; }
+  40%  { translate: 0 0;     scale: 1.5; }
+  60%  { translate: 0 0;     scale: 1.5; }
+  100% { translate: 0 -130px; scale: 0.7; }
+}
+@keyframes exp-lw-over {
+  0%, 46%   { opacity: 0; }
+  54%, 100% { opacity: 1; }
+}
+@keyframes exp-lw-under {
+  0%, 46%   { opacity: 1; }
+  54%, 100% { opacity: 0; }
+}
+
+[data-exp="liquid-wipe"] .lw {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #0e132a;
+}
+[data-exp="liquid-wipe"] .under,
+[data-exp="liquid-wipe"] .over {
+  grid-area: 1 / 1;
+  z-index: 2;
+  color: #e6e9f5;
+  font-size: 34px;
+  font-weight: 900;
+  animation-iteration-count: infinite;
+}
+[data-exp="liquid-wipe"] .under { animation-name: exp-lw-under; }
+[data-exp="liquid-wipe"] .over  { animation-name: exp-lw-over; }
+
+[data-exp="liquid-wipe"] .goo {
+  position: absolute;
+  inset: -20px;
+  display: grid;
+  place-items: center;
+  background: #0e132a;
+  filter: blur(11px) contrast(26);
+}
+[data-exp="liquid-wipe"] .goo span {
+  grid-area: 1 / 1;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: #6366f1;
+  /* 初期位置はキーフレームの 0% が持つ。ここで書いても占有されて効かない。 */
+  margin-left: calc((sibling-index() - 3) * 46px);
+  animation-name: exp-lw-blob;
+  animation-delay: calc(mod(sibling-index(), 3) * -70ms);
+  animation-iteration-count: infinite;
+}

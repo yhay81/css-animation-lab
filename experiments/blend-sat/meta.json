@@ -1,0 +1,18 @@
+{
+  "id": "blend-sat",
+  "n": 401,
+  "title": "色が抜ける帯",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "mix-blend-mode: saturation"
+    ],
+    "use": "無効状態 / 適用前後の対比"
+  },
+  "predicted": "uncertain",
+  "note": "彩度 0 の灰色を saturation で重ねると、下の彩度だけがその値に置き換わる。色相と明度はそのまま残るので、形は保ったまま色だけが抜ける。フィルタと違い一部だけに掛けられる。",
+  "markup": "<div class=\"wrap\"><div class=\"under\"><div class=\"t\">1</div><div class=\"t\">2</div><div class=\"t\">3</div><div class=\"t\">4</div><div class=\"t\">5</div><div class=\"t\">6</div></div><div class=\"band\"></div></div>"
+}

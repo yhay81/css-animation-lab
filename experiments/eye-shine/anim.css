@@ -1,0 +1,32 @@
+@keyframes exp-eye-shine {
+  0%, 10%  { scale: 0;   rotate: 0deg;  opacity: 0; }
+  16%      { scale: 1.1; opacity: 1; }
+  24%      { scale: 0.5; opacity: 1; }
+  32%, 100% { scale: 0;  rotate: 30deg; opacity: 0; }
+}
+@keyframes exp-eye-gem {
+  0%, 10%  { filter: brightness(1); }
+  18%      { filter: brightness(1.9); }
+  34%, 100% { filter: brightness(1); }
+}
+
+[data-exp="eye-shine"] .es { position: absolute; inset: 0; display: grid; place-items: center; }
+[data-exp="eye-shine"] .gem {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #a5f3fc, #38bdf8 60%, #6366f1);
+  animation-name: exp-eye-gem;
+  animation-iteration-count: infinite;
+}
+[data-exp="eye-shine"] .st {
+  position: absolute;
+  background: #fff;
+  /* 四芒星。辺を大きくえぐって尖らせる。 */
+  clip-path: polygon(50% 0%, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0% 50%, 42% 42%);
+  animation-name: exp-eye-shine;
+  animation-iteration-count: infinite;
+}
+[data-exp="eye-shine"] .s1 { width: 46px; height: 46px; top: 30px;  left: 54%; animation-delay: 0ms; }
+[data-exp="eye-shine"] .s2 { width: 26px; height: 26px; top: 74px;  left: 34%; animation-delay: 90ms; }
+[data-exp="eye-shine"] .s3 { width: 18px; height: 18px; top: 46px;  left: 30%; animation-delay: 170ms; }

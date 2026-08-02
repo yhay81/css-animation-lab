@@ -1,0 +1,20 @@
+{
+  "id": "lower-third",
+  "n": 909,
+  "title": "テロップ（下三分の一）",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "モーショングラフィックス",
+    "technique": [
+      "帯のワイプ",
+      "段階的な遅延"
+    ],
+    "use": "発言者名 / 見出しの提示"
+  },
+  "predicted": "uncertain",
+  "note": "放送で話者を示す定番の型。帯が横に開き、遅れて名前、さらに遅れて肩書きが出る。3 つの遅れが揃っていることが「作り込まれている」印象を生む。同時に出すと安く見える。",
+  "markup": "<div class=\"lt\"><div class=\"bar\"><span class=\"nm\">山田 太郎</span></div><div class=\"rule\"></div><div class=\"sub\">プロダクト設計</div></div>"
+}

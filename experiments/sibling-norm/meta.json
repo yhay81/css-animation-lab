@@ -1,0 +1,19 @@
+{
+  "id": "sibling-norm",
+  "n": 701,
+  "title": "個数に依存しない勾配",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "sibling-index()",
+      "sibling-count()"
+    ],
+    "use": "一覧の順次表示 / 色の段階"
+  },
+  "predicted": "uncertain",
+  "note": "並び順を総数で割ると 0 から 1 の位置になる。この正規化された値から遅延も色も出せば、要素数を変えても勾配の形が変わらない。個数を CSS に書かずに済む。",
+  "markup": "<div class=\"sn\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+}

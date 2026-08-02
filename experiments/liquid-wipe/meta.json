@@ -1,0 +1,20 @@
+{
+  "id": "liquid-wipe",
+  "n": 1112,
+  "title": "液体で覆って入れ替える",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "モーショングラフィックス",
+    "technique": [
+      "blur + contrast の融合",
+      "転換への応用"
+    ],
+    "use": "画面転換 / 読み込みの区切り"
+  },
+  "predicted": "uncertain",
+  "note": "ゴーイーの融合を、模様ではなく場面転換に使う。分かれていた塊が合流して画面を覆い、覆い切った瞬間に中身が入れ替わる。矩形のワイプより有機的で、切り替えの瞬間が隠れる。",
+  "markup": "<div class=\"lw\"><span class=\"under\">A</span><div class=\"goo\"><span></span><span></span><span></span><span></span><span></span></div><span class=\"over\">B</span></div>"
+}

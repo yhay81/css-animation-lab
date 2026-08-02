@@ -1,0 +1,77 @@
+/*
+ * CSS には「他の要素を止める」指定がない。
+ * 止まる側のキーフレームに同じ値を並べて、その区間だけ動きを殺す。
+ *
+ * ここで負の遅延を使ってはいけない。位相がずれると停止区間も要素ごとに別の時刻へ動き、
+ * 全員が同じ瞬間に止まらなくなる。「時間が止まる」はそれでは成立しない。
+ * 個々の違いは遅延ではなく振れ幅で作る。時間軸は全員で共有する。
+ *
+ * 彩度を落とす filter は子孫すべてに効くため、止める側だけを包む。
+ */
+@property --amp {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 14px;
+}
+
+@keyframes exp-ts-others {
+  0%       { translate: 0 calc(0px - var(--amp)); }
+  30%      { translate: 0 var(--amp); }
+  /* ここから同じ値。動かないのではなく、動きを殺している。 */
+  38%, 76% { translate: 0 var(--amp); }
+  100%     { translate: 0 calc(0px - var(--amp)); }
+}
+@keyframes exp-ts-hero {
+  0%   { translate: -78px 30px;  scale: 1; }
+  26%  { translate: -30px 26px;  scale: 1; }
+  /* 周りが止まっているあいだが主役の見せ場。大きく動かす。 */
+  46%  { translate: 34px -22px;  scale: 1.35; }
+  62%  { translate: 74px 12px;   scale: 1.2; }
+  76%  { translate: 20px 34px;   scale: 1.1; }
+  100% { translate: -78px 30px;  scale: 1; }
+}
+@keyframes exp-ts-drain {
+  0%, 32%   { filter: saturate(1) brightness(1); }
+  40%, 74%  { filter: saturate(0.08) brightness(0.55); }
+  84%, 100% { filter: saturate(1) brightness(1); }
+}
+
+[data-exp="time-stop"] .tsp { position: absolute; inset: 0; }
+[data-exp="time-stop"] .field { position: absolute; inset: 0; }
+
+/* 止まる側だけをここに入れる。主役はこの外。 */
+[data-exp="time-stop"] .others {
+  position: absolute;
+  inset: 0;
+  animation-name: exp-ts-drain;
+  animation-iteration-count: infinite;
+}
+
+[data-exp="time-stop"] .d {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  background: #7dd3fc;
+  /* 横に散らす。縦の振れ幅を 3 通りにして、揃って見えないようにする。 */
+  left: calc(14% + (sibling-index() - 1) * 18%);
+  --amp: calc(12px + mod(sibling-index(), 3) * 11px);
+  animation-name: exp-ts-others;
+  animation-iteration-count: infinite;
+}
+
+[data-exp="time-stop"] .hero {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  border-radius: 50%;
+  background: #f43f5e;
+  box-shadow: 0 0 18px rgba(244, 63, 94, 0.8);
+  animation-name: exp-ts-hero;
+  animation-iteration-count: infinite;
+}

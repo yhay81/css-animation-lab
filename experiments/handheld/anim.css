@@ -1,0 +1,41 @@
+@keyframes exp-handheld-x {
+  0% { translate: 0 0; }  16.6% { translate: 2.2px 0; }  33.3% { translate: -1.8px 0; }
+  50% { translate: 2px 0; } 66.6% { translate: -2.4px 0; } 83.3% { translate: 1.6px 0; }
+  100% { translate: 0 0; }
+}
+@keyframes exp-handheld-y {
+  0% { translate: 0 0; } 10% { translate: 0 -1.6px; } 30% { translate: 0 2px; }
+  50% { translate: 0 -2.2px; } 70% { translate: 0 1.4px; } 90% { translate: 0 -1.8px; }
+  100% { translate: 0 0; }
+}
+@keyframes exp-handheld-r {
+  0% { rotate: 0deg; } 14% { rotate: 0.5deg; } 28% { rotate: -0.4deg; }
+  42% { rotate: 0.6deg; } 57% { rotate: -0.55deg; } 71% { rotate: 0.35deg; }
+  85% { rotate: -0.45deg; } 100% { rotate: 0deg; }
+}
+
+[data-exp="handheld"] .hh { position: absolute; inset: 0; overflow: hidden; }
+[data-exp="handheld"] .scene {
+  position: absolute;
+  inset: -8px;
+  /* 3 本を加算する。1 本でも欠けると規則性が見えてしまう。 */
+  animation-name: exp-handheld-x, exp-handheld-y, exp-handheld-r;
+  animation-composition: add;
+  animation-iteration-count: infinite;
+}
+[data-exp="handheld"] .sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(#1e3a8a, #6366f1 60%, #a855f7);
+}
+[data-exp="handheld"] .obj {
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  width: 46px;
+  height: 46px;
+  translate: -50% -50%;
+  border-radius: 10px;
+  background: #fbbf24;
+  box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.8);
+}

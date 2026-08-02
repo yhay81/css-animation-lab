@@ -1,0 +1,19 @@
+{
+  "id": "distort",
+  "n": 609,
+  "title": "歪んだ面を横切る",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "feTurbulence",
+      "feDisplacementMap"
+    ],
+    "use": "水面 / ガラス / 演出"
+  },
+  "predicted": "uncertain",
+  "note": "ノイズの生成そのものは CSS から動かせない。代わりに歪みを固定して中身を動かすと、面を横切るたびに違う歪み方をする。フィルタ側を動かさずに変化を出す考え方。",
+  "markup": "<div class=\"ds\"><span class=\"b\"></span><svg width=\"0\" height=\"0\" aria-hidden=\"true\"><filter id=\"dist-f\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.022 0.055\" numOctaves=\"2\" seed=\"7\" result=\"n\"/><feDisplacementMap in=\"SourceGraphic\" in2=\"n\" scale=\"17\" xChannelSelector=\"R\" yChannelSelector=\"G\"/></filter></svg></div>"
+}

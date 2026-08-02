@@ -1,0 +1,21 @@
+{
+  "id": "lift",
+  "n": 14,
+  "title": "影の浮上",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "box-shadow"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "影だけで高さを表現。要素は1ピクセルも動かない。Material の言う elevation が単体で成立するかの検証。"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "stagger-center",
+  "n": 33,
+  "title": "中央から外へ",
+  "layer": "L3",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [
+      "stagger",
+      "距離関数"
+    ],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "遅延を中央からの距離で決める。順送りと違い方向を持たない。どちらがどの場面に合うかの型を出したい。",
+  "markup": "<div class=\"row5\"><div class=\"subject\" style=\"--i:2\"></div><div class=\"subject\" style=\"--i:1\"></div><div class=\"subject\" style=\"--i:0\"></div><div class=\"subject\" style=\"--i:1\"></div><div class=\"subject\" style=\"--i:2\"></div></div>"
+}

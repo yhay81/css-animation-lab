@@ -1,0 +1,26 @@
+{
+  "id": "modal-fade",
+  "n": 100,
+  "title": "モーダル｜その場で開く",
+  "layer": "L4",
+  "mode": "state",
+  "axes": {
+    "driver": [
+      "transition",
+      "@starting-style",
+      "allow-discrete"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "固定"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "位置を変えずに不透明度とわずかな拡大だけで開く。display を allow-discrete で繋いでいるので、閉じる側も最後まで見える。",
+  "markup": "<div class=\"scene\"><div class=\"backdrop\"></div><div class=\"dialog panel\"><div class=\"bar\"></div><div class=\"line\"></div><div class=\"line s\"></div></div></div>"
+}

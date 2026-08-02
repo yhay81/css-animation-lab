@@ -1,0 +1,21 @@
+{
+  "id": "particles-gravity",
+  "n": 1006,
+  "title": "打ち上がって落ちる",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "CG",
+    "technique": [
+      "@property <number>",
+      "二乗による落下",
+      "cos() / sin()"
+    ],
+    "use": "祝い / 達成"
+  },
+  "predicted": "uncertain",
+  "note": "放射状に飛ぶだけでは花火にならない。時間の二乗で下向きの成分を足すと、重力のある放物線になる。速度も向きも並び順から出しているので、粒の数を変えても指定は 1 本のまま。",
+  "markup": "<div class=\"pg\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+}

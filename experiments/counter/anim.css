@@ -1,0 +1,8 @@
+@keyframes exp-counter-out { from { translate: 0 34px; }  to { translate: 0 0; } }
+@keyframes exp-counter-in  { from { translate: 0 -16px; } to { translate: 0 0; } }
+
+[data-exp="counter"] .subject { animation-name: exp-counter-out; }
+[data-exp="counter"] .label {
+  display: inline-block;
+  animation-name: exp-counter-in;
+}

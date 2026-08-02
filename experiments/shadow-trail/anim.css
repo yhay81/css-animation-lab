@@ -1,0 +1,18 @@
+@keyframes exp-shadow-trail {
+  0%, 100% {
+    translate: -32px 0;
+    box-shadow: 14px 0 0 -3px rgba(125, 211, 252, 0.45),
+                26px 0 0 -8px rgba(125, 211, 252, 0.22);
+  }
+  50% {
+    translate: 32px 0;
+    box-shadow: -14px 0 0 -3px rgba(125, 211, 252, 0.45),
+                -26px 0 0 -8px rgba(125, 211, 252, 0.22);
+  }
+}
+
+[data-exp="shadow-trail"] .subject {
+  width: 54px;
+  height: 54px;
+  animation-name: exp-shadow-trail;
+}

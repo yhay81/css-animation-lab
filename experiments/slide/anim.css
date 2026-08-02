@@ -1,0 +1,5 @@
+@keyframes exp-slide {
+  from { translate: -32px 0; }
+  to   { translate: 0 0; }
+}
+[data-exp="slide"] .subject { animation-name: exp-slide; }

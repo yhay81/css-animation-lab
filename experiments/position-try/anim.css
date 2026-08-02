@@ -1,0 +1,35 @@
+@position-try --pt-flip {
+  position-area: block-end;
+  margin: 8px 0 0;
+}
+
+@keyframes exp-position-try {
+  0%, 100% { top: 6px; left: 12%; }
+  50%      { top: 6px; left: 66%; }
+}
+
+[data-exp="position-try"] .pt { position: absolute; inset: 0; overflow: hidden; }
+[data-exp="position-try"] .dot {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7dd3fc, #6366f1);
+  anchor-name: --pt-dot;
+  animation-name: exp-position-try;
+  animation-iteration-count: infinite;
+}
+[data-exp="position-try"] .tip {
+  position: absolute;
+  position-anchor: --pt-dot;
+  position-area: block-start;
+  margin-bottom: 8px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #e6e9f5;
+  color: #151a2e;
+  font-size: 11px;
+  font-weight: 700;
+  /* 収まらなくなったらこの候補を試す。 */
+  position-try-fallbacks: --pt-flip;
+}

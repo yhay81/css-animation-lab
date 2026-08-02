@@ -1,0 +1,20 @@
+{
+  "id": "scroll-marquee",
+  "n": 812,
+  "title": "スクロール量で横に流れる",
+  "layer": "T",
+  "mode": "scroll",
+  "axes": {
+    "driver": [
+      "scroll-timeline"
+    ],
+    "technique": [
+      "animation-timeline: scroll()",
+      "複製"
+    ],
+    "use": "見出しの帯 / 導入"
+  },
+  "predicted": "uncertain",
+  "note": "縦にスクロールすると帯が横に流れる。スクロールを止めれば帯も止まるので、動きが利用者の操作に紐づく。時間で流し続けるより主張が弱く、読みの邪魔になりにくい。",
+  "markup": "<div class=\"sm\"><div class=\"band\"><div class=\"in\"><span>SCROLL&nbsp;·&nbsp;</span><span>SCROLL&nbsp;·&nbsp;</span><span>SCROLL&nbsp;·&nbsp;</span><span>SCROLL&nbsp;·&nbsp;</span><span>SCROLL&nbsp;·&nbsp;</span><span>SCROLL&nbsp;·&nbsp;</span></div></div><div class=\"body\"><div class=\"ln\">1</div><div class=\"ln\">2</div><div class=\"ln\">3</div><div class=\"ln\">4</div><div class=\"ln\">5</div><div class=\"ln\">6</div><div class=\"ln\">7</div><div class=\"ln\">8</div></div></div>"
+}

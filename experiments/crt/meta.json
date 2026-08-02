@@ -1,0 +1,21 @@
+{
+  "id": "crt",
+  "n": 1210,
+  "title": "ブラウン管",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "実写 / レトロ",
+    "technique": [
+      "走査線",
+      "転がる帯",
+      "色ずれ"
+    ],
+    "use": "レトロ / 障害の表現"
+  },
+  "predicted": "uncertain",
+  "note": "走査線・上下に流れる帯・わずかな色ずれ。この 3 つが揃うとブラウン管に見える。走査線を止めたまま帯だけを流すのが要点で、走査線ごと動かすと画面全体が揺れているだけになる。",
+  "markup": "<div class=\"crt\"><span class=\"tx\">SIGNAL</span><span class=\"scan\"></span><span class=\"roll\"></span></div>"
+}

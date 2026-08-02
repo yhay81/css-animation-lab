@@ -1,0 +1,53 @@
+/*
+ * 尻尾を本体と別に置くと、本体が拡縮したときに離れて浮く。
+ * 同じ入れ物に入れて拡縮はその入れ物に掛け、尻尾は本体の下端に貼り付ける。
+ * 遅れて出るぶんだけ、尻尾は自分の拡大を別に持つ。
+ */
+@keyframes exp-sb-pop {
+  0%, 8%    { scale: 0.3;  opacity: 0; }
+  22%       { scale: 1.12; opacity: 1; }
+  30%       { scale: 0.97; }
+  38%, 82%  { scale: 1; }
+  100%      { scale: 0.86; opacity: 0; }
+}
+@keyframes exp-sb-tail {
+  0%, 24%   { scale: 0; }
+  38%, 100% { scale: 1; }
+}
+
+[data-exp="speech-balloon"] .sb {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+[data-exp="speech-balloon"] .grp {
+  position: relative;
+  display: inline-block;
+  /* 拡縮はここ。本体も尻尾も一緒に動く。 */
+  animation-name: exp-sb-pop;
+  animation-iteration-count: infinite;
+}
+[data-exp="speech-balloon"] .bal {
+  display: block;
+  padding: 12px 17px;
+  border-radius: 17px;
+  background: #f4f6ff;
+  color: #111827;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+[data-exp="speech-balloon"] .tail {
+  position: absolute;
+  /* 本体の下端に貼り付ける。1px 重ねて継ぎ目を消す。 */
+  top: calc(100% - 1px);
+  left: 22%;
+  width: 16px;
+  height: 14px;
+  background: #f4f6ff;
+  clip-path: polygon(0 0, 100% 0, 14% 100%);
+  transform-origin: 50% 0;
+  animation-name: exp-sb-tail;
+  animation-iteration-count: infinite;
+}

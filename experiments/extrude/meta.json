@@ -1,0 +1,18 @@
+{
+  "id": "extrude",
+  "n": 331,
+  "title": "押し出し文字の光源移動",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "多重 text-shadow"
+    ],
+    "use": "見出し / ロゴ"
+  },
+  "predicted": "uncertain",
+  "note": "影を 1px ずつずらして 8 段重ねると立体の側面になる。ずらす向きを動かせば、文字を回さずに光源だけが移動する。",
+  "markup": "<div class=\"ex\">SOLID</div>"
+}

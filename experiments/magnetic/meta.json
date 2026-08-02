@@ -1,0 +1,21 @@
+{
+  "id": "magnetic",
+  "n": 1011,
+  "title": "引き寄せられるボタン",
+  "layer": "E",
+  "mode": "interactive",
+  "axes": {
+    "driver": [
+      "操作"
+    ],
+    "origin": "JS でやってきたもの",
+    "technique": [
+      ":has()",
+      "当たり判定の分割"
+    ],
+    "use": "ボタン / 誘導"
+  },
+  "predicted": "uncertain",
+  "note": "カーソルに吸い寄せられるボタン。座標を読んで動かすので JS が要ると思われているが、当たり判定を格子に割って :has() で拾えば近似できる。分割数を上げるほど滑らかになる。",
+  "markup": "<div class=\"mg\"><span class=\"btn\">押す</span><i class=\"z z1\"></i><i class=\"z z2\"></i><i class=\"z z3\"></i><i class=\"z z4\"></i><i class=\"z z5\"></i><i class=\"z z6\"></i><i class=\"z z7\"></i><i class=\"z z8\"></i><i class=\"z z9\"></i></div>"
+}

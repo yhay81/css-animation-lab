@@ -1,0 +1,4 @@
+@keyframes exp-sim-rise { from { translate: 0 24px; } to { translate: 0 0; } }
+@keyframes exp-sim-fade { from { opacity: 0; }        to { opacity: 1; } }
+
+[data-exp="sim"] .subject { animation-name: exp-sim-rise, exp-sim-fade; }

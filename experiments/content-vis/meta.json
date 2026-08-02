@@ -1,0 +1,19 @@
+{
+  "id": "content-vis",
+  "n": 806,
+  "title": "描画を省いた要素の動き",
+  "layer": "T",
+  "mode": "scroll",
+  "axes": {
+    "driver": [
+      "scroll-timeline"
+    ],
+    "technique": [
+      "content-visibility: auto"
+    ],
+    "use": "長い一覧の軽量化"
+  },
+  "predicted": "uncertain",
+  "note": "奇数番は content-visibility: auto。画面外では描画が省かれるが、そのときアニメーションがどう扱われるかを見る。省略が動きに影響するなら、長い一覧での使い方に制約が出る。",
+  "markup": "<div class=\"cv\"><div class=\"it lazy\"><span></span>1</div><div class=\"it \"><span></span>2</div><div class=\"it lazy\"><span></span>3</div><div class=\"it \"><span></span>4</div><div class=\"it lazy\"><span></span>5</div><div class=\"it \"><span></span>6</div><div class=\"it lazy\"><span></span>7</div><div class=\"it \"><span></span>8</div><div class=\"it lazy\"><span></span>9</div><div class=\"it \"><span></span>10</div></div>"
+}

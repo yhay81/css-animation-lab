@@ -1,0 +1,20 @@
+{
+  "id": "water-ripple",
+  "n": 1010,
+  "title": "水面の波紋",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "CG",
+    "technique": [
+      "歪みフィルタ",
+      "同心円の拡大"
+    ],
+    "use": "接触 / 通知"
+  },
+  "predicted": "uncertain",
+  "note": "同心円が広がるだけでは電波のアイコンにしかならない。輪郭を歪ませて初めて水になる。歪みは静止したままでよく、動くのは輪のほう。",
+  "markup": "<div class=\"wr\"><span class=\"surface\"></span><span class=\"ring\"></span><span class=\"ring\"></span><span class=\"ring\"></span><svg width=\"0\" height=\"0\" aria-hidden=\"true\"><filter id=\"wr-d\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.03 0.07\" numOctaves=\"2\" seed=\"3\" result=\"n\"/><feDisplacementMap in=\"SourceGraphic\" in2=\"n\" scale=\"9\" xChannelSelector=\"R\" yChannelSelector=\"G\"/></filter></svg></div>"
+}

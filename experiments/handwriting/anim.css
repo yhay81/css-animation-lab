@@ -1,0 +1,65 @@
+/*
+ * offset-path はパスに書かれた生の数値をそのまま px として進む。
+ * SVG を viewBox より大きく描くと、線だけが拡大されてペンが取り残される。
+ * 実測で 172px 描画（1.43倍）のとき、ペンは線から (105, 74)px ずれていた。
+ *
+ * 描画の単位をパスと 1:1 にして、拡大は入れ物ごと掛ける。
+ * こうすれば線もペンも同じ倍率で運ばれるので、ずれようがない。
+ */
+@keyframes exp-hw-ink {
+  0%, 6%    { stroke-dashoffset: 100; }
+  74%, 100% { stroke-dashoffset: 0; }
+}
+@keyframes exp-hw-pen {
+  0%, 6%    { offset-distance: 0%;   opacity: 0; }
+  10%       { opacity: 1; }
+  74%       { offset-distance: 100%; opacity: 1; }
+  82%, 100% { offset-distance: 100%; opacity: 0; }
+}
+
+[data-exp="handwriting"] .hw {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+[data-exp="handwriting"] .board {
+  position: relative;
+  /* viewBox と同じ大きさ。ここが 1:1 の要。 */
+  width: 120px;
+  height: 70px;
+  scale: 1.35;
+}
+[data-exp="handwriting"] svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+[data-exp="handwriting"] .ink {
+  fill: none;
+  stroke: #7dd3fc;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  animation-name: exp-hw-ink;
+  animation-iteration-count: infinite;
+}
+[data-exp="handwriting"] .pen {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 7px;
+  height: 7px;
+  /* offset-path は既定で要素の中心を経路に乗せる。
+     中心合わせのつもりで margin をずらすと二重になる。 */
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 7px #7dd3fc;
+  /* 線とまったく同じ経路。単位が揃っているので座標も一致する。 */
+  offset-path: path("M 8 46 C 16 20, 26 18, 30 34 C 34 50, 26 58, 22 46 C 18 34, 30 22, 44 30 C 56 37, 50 54, 60 48 C 68 43, 66 26, 78 28 C 88 30, 92 40, 112 34");
+  offset-rotate: 0deg;
+  animation-name: exp-hw-pen;
+  animation-iteration-count: infinite;
+}

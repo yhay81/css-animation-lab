@@ -1,0 +1,13 @@
+[data-exp="toast-slide"] .toast {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 118px;
+  translate: 130% 0;
+  opacity: 0;
+  transition: translate 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 180ms;
+}
+[data-exp="toast-slide"][data-open="true"] .toast {
+  translate: 0 0;
+  opacity: 1;
+}

@@ -1,0 +1,30 @@
+@keyframes exp-water-ripple {
+  0%   { scale: 0.15; opacity: 0.9; border-width: 4px; }
+  100% { scale: 1.7;  opacity: 0;   border-width: 1px; }
+}
+
+[data-exp="water-ripple"] .wr {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 46%, #164e63, #0b1020 74%);
+}
+[data-exp="water-ripple"] .surface {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, rgba(125, 211, 252, 0.08) 0 2px, transparent 2px 9px);
+}
+[data-exp="water-ripple"] .ring {
+  grid-area: 1 / 1;
+  width: 108px;
+  height: 108px;
+  border: 3px solid #7dd3fc;
+  border-radius: 50%;
+  /* 歪みは固定。動くのは輪のほう。 */
+  filter: url(#wr-d);
+  animation-name: exp-water-ripple;
+  animation-delay: calc((sibling-index() - 2) * -333ms);
+  animation-iteration-count: infinite;
+}

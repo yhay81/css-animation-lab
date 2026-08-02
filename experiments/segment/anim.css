@@ -1,0 +1,17 @@
+@property --pg {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@keyframes exp-segment { to { --pg: 72%; } }
+
+[data-exp="segment"] .sg {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: conic-gradient(#7dd3fc var(--pg), #26304f 0);
+  mask: radial-gradient(farthest-side, transparent 66%, #000 66%);
+  animation-name: exp-segment;
+  animation-duration: 900ms;
+}

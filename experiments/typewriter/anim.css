@@ -1,0 +1,15 @@
+@keyframes exp-typewriter { from { width: 0ch; } to { width: 9ch; } }
+@keyframes exp-typewriter-caret { 50% { border-color: transparent; } }
+
+[data-exp="typewriter"] .tw {
+  width: 9ch;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #7dd3fc;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 18px;
+  color: #e6e9f5;
+  animation-name: exp-typewriter, exp-typewriter-caret;
+  animation-duration: 900ms, 640ms;
+  animation-timing-function: steps(9, end), steps(1, end);
+}

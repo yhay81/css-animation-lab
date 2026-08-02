@@ -1,0 +1,19 @@
+{
+  "id": "mixed-timelines",
+  "n": 707,
+  "title": "時間とスクロールを同時に持つ",
+  "layer": "T",
+  "mode": "scroll",
+  "axes": {
+    "driver": [
+      "scroll-timeline"
+    ],
+    "technique": [
+      "animation-timeline のリスト指定"
+    ],
+    "use": "常時の動き + 出現"
+  },
+  "predicted": "uncertain",
+  "note": "1 つの要素に、時間で進むものとスクロールで進むものを同時に持たせられる。常時ゆらいでいるものが、視界に入ったときだけ現れる、といった重ね方ができる。",
+  "markup": "<div class=\"mt\"><div class=\"pad\"></div><div class=\"it\">1</div><div class=\"it\">2</div><div class=\"it\">3</div><div class=\"it\">4</div><div class=\"pad\"></div></div>"
+}

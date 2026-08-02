@@ -1,0 +1,30 @@
+@keyframes exp-kt-fall {
+  0%, 10%   { translate: 0 -34px; opacity: 0; }
+  30%       { translate: 0 0;     opacity: 1; }
+  36%       { translate: 0 -5px; }
+  42%, 100% { translate: 0 0; }
+}
+@keyframes exp-kt-bounce {
+  0%, 26%   { scale: 0.2; opacity: 0; }
+  40%       { scale: 1.3; opacity: 1; }
+  48%       { scale: 0.9; }
+  56%, 100% { scale: 1; }
+}
+@keyframes exp-kt-vanish {
+  0%, 48%   { opacity: 0; letter-spacing: 0.5em; filter: blur(6px); }
+  66%       { opacity: 1; letter-spacing: 0.04em; filter: blur(0); }
+  88%       { opacity: 1; }
+  100%      { opacity: 0; letter-spacing: 0.3em; filter: blur(4px); }
+}
+
+[data-exp="kinetic-type"] .kt {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 19px;
+  font-weight: 800;
+}
+[data-exp="kinetic-type"] .w { animation-iteration-count: infinite; }
+[data-exp="kinetic-type"] .fall   { color: #7dd3fc; animation-name: exp-kt-fall; }
+[data-exp="kinetic-type"] .bounce { color: #fbbf24; animation-name: exp-kt-bounce; }
+[data-exp="kinetic-type"] .vanish { color: #f472b6; animation-name: exp-kt-vanish; }

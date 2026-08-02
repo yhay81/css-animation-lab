@@ -1,0 +1,15 @@
+@keyframes exp-add-idle {
+  0%, 100% { translate: 0 -5px; }
+  50%      { translate: 0 5px; }
+}
+@keyframes exp-add-kick {
+  0%, 52%  { translate: 0 0; }
+  68%      { translate: 0 -28px; }
+  100%     { translate: 0 0; }
+}
+
+[data-exp="add-layers"] .subject {
+  animation-name: exp-add-idle, exp-add-kick;
+  /* これを外すと exp-add-kick が translate を占有し、浮遊が消える。 */
+  animation-composition: add;
+}

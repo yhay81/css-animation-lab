@@ -1,0 +1,34 @@
+@keyframes exp-user-valid-shake {
+  0%, 100% { translate: 0 0; }
+  20%      { translate: -5px 0; }
+  40%      { translate: 5px 0; }
+  60%      { translate: -3px 0; }
+  80%      { translate: 3px 0; }
+}
+
+[data-exp="user-valid"] .uv { display: grid; gap: 8px; width: 168px; }
+[data-exp="user-valid"] input {
+  padding: 8px 10px;
+  border: 1px solid #3d4a78;
+  border-radius: 8px;
+  background: #151a2e;
+  color: #e6e9f5;
+  font: inherit;
+  font-size: 12px;
+  transition: border-color 200ms, box-shadow 200ms;
+}
+/* 触る前は静か。触った後だけ反応する。 */
+[data-exp="user-valid"] input:user-invalid {
+  border-color: #f43f5e;
+  box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.18);
+  animation-name: exp-user-valid-shake;
+  animation-duration: 380ms;
+  animation-play-state: running;
+}
+[data-exp="user-valid"] input:user-valid {
+  border-color: #34d399;
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.18);
+}
+[data-exp="user-valid"] .msg { color: #8b93b5; font-size: 10px; min-height: 12px; }
+[data-exp="user-valid"] input:user-invalid + .msg::after { content: "形式が違います"; color: #fb7185; }
+[data-exp="user-valid"] input:user-valid + .msg::after { content: "OK"; color: #34d399; }

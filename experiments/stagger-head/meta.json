@@ -1,0 +1,25 @@
+{
+  "id": "stagger-head",
+  "n": 30,
+  "title": "順送り（110ms）",
+  "layer": "L3",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "translate",
+      "opacity"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [
+      "stagger"
+    ],
+    "structure": []
+  },
+  "predicted": "good",
+  "note": "先頭から等間隔。間隔の基準線。以降の stagger はこれとの差で読む。",
+  "markup": "<div class=\"row5\"><div class=\"subject\" style=\"--i:0\"></div><div class=\"subject\" style=\"--i:1\"></div><div class=\"subject\" style=\"--i:2\"></div><div class=\"subject\" style=\"--i:3\"></div><div class=\"subject\" style=\"--i:4\"></div></div>"
+}

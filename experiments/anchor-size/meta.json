@@ -1,0 +1,18 @@
+{
+  "id": "anchor-size",
+  "n": 804,
+  "title": "対象の大きさに合わせる",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "anchor-size()"
+    ],
+    "use": "下線 / 枠 / 吹き出しの幅"
+  },
+  "predicted": "uncertain",
+  "note": "対象の幅が変われば下線の幅も変わる。値を渡す仕組みも計測も要らず、参照するだけで追従する。",
+  "markup": "<div class=\"as\"><span class=\"target\">対象</span><span class=\"under\"></span></div>"
+}

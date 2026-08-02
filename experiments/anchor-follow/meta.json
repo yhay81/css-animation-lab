@@ -1,0 +1,20 @@
+{
+  "id": "anchor-follow",
+  "n": 604,
+  "title": "注釈が対象を追いかける",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "anchor-name",
+      "position-anchor",
+      "position-area"
+    ],
+    "use": "ツールチップ / 吹き出し"
+  },
+  "predicted": "uncertain",
+  "note": "注釈側は「どこに付くか」しか書いていない。対象が動けば配置も追随する。座標の受け渡しが不要になるので、注釈を出す仕組みから位置計算が消える。",
+  "markup": "<div class=\"af\"><span class=\"dot\"></span><span class=\"tip\">ここ</span></div>"
+}

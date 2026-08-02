@@ -1,0 +1,5 @@
+@keyframes exp-tint {
+  from { background: oklch(72% 0.19 25); }
+  to   { background: oklch(72% 0.19 265); }
+}
+[data-exp="tint"] .subject { animation-name: exp-tint; }

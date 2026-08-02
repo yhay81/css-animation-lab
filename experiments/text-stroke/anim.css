@@ -1,0 +1,25 @@
+@property --fill {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@keyframes exp-text-stroke {
+  0%, 10%   { --fill: 0%; }
+  75%, 100% { --fill: 100%; }
+}
+
+[data-exp="text-stroke"] .ts {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #7dd3fc;
+  background-image: linear-gradient(#bae6fd, #6366f1);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% var(--fill);
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation-name: exp-text-stroke;
+}

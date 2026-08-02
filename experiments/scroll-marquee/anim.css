@@ -1,0 +1,47 @@
+@keyframes exp-scroll-marquee { to { translate: -50% 0; } }
+
+/*
+ * scroll(nearest) は「最も近いスクロール領域」を探すが、overflow: hidden もスクロール領域を作る。
+ * 帯の側に overflow: hidden を置くと、そこが最も近い領域として拾われてしまう。
+ * 帯は動かないので進行度が出ず、何も流れない。名前を付けて供給元を明示すれば取り違えが起きない。
+ */
+[data-exp="scroll-marquee"] .sm {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  /* 進行度の供給元はここだと明示する。 */
+  scroll-timeline: --smq block;
+}
+[data-exp="scroll-marquee"] .band {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  overflow: hidden;
+  padding: 7px 0;
+  background: #151a2e;
+  border-bottom: 1px solid #2a3150;
+}
+[data-exp="scroll-marquee"] .in {
+  display: flex;
+  width: max-content;
+  color: #7dd3fc;
+  font-size: 13px;
+  font-weight: 800;
+  animation-name: exp-scroll-marquee;
+  /* scroll(nearest) だと上の overflow: hidden に横取りされる。 */
+  animation-timeline: --smq;
+  animation-duration: auto;
+  animation-play-state: running;
+}
+[data-exp="scroll-marquee"] .body { padding: 10px 18px 22px; }
+[data-exp="scroll-marquee"] .ln {
+  display: grid;
+  place-items: center;
+  height: 34px;
+  margin-top: 8px;
+  border-radius: 8px;
+  background: #26304f;
+  color: #8b93b5;
+  font-size: 12px;
+}

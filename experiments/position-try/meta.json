@@ -1,0 +1,19 @@
+{
+  "id": "position-try",
+  "n": 803,
+  "title": "入りきらないと配置が切り替わる",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "@position-try",
+      "position-try-fallbacks"
+    ],
+    "use": "ツールチップ / メニュー"
+  },
+  "predicted": "uncertain",
+  "note": "対象が端へ寄って注釈が入らなくなると、別の配置へ自動で切り替わる。切り替わる条件も候補も CSS 側にあるので、画面外判定を書かなくてよい。",
+  "markup": "<div class=\"pt\"><span class=\"dot\"></span><span class=\"tip\">注釈</span></div>"
+}

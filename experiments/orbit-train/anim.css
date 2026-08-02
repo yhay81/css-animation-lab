@@ -1,0 +1,23 @@
+@keyframes exp-orbit-train {
+  from { offset-distance: 0%; }
+  to   { offset-distance: 100%; }
+}
+
+[data-exp="orbit-train"] .tr {
+  position: absolute;
+  inset: 0;
+}
+[data-exp="orbit-train"] .d {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #7dd3fc;
+  offset-path: ellipse(36% 30%);
+  /* 1 周 1000ms を 8 等分。125ms ずつずらすと等間隔になる。 */
+  animation-name: exp-orbit-train;
+  animation-delay: calc((sibling-index() - 1) * -125ms);
+  /* 負の遅延で位相をずらす場合、繰り返しが 1 回だと先行した要素から順に終端で止まり、
+     閉じた動きでは全員が同じ位置へ溜まってしまう。位相を回し続けるには infinite が要る。 */
+  animation-iteration-count: infinite;
+}

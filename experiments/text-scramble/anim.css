@@ -1,0 +1,52 @@
+/*
+ * 候補を縦に並べ、steps で送って最後の 1 つで止める。
+ *
+ * ずらす番号は「文字を包む側」が持つ必要がある。
+ * 送られる帯は包みの唯一の子なので、そこで並び順を数えても常に 1 になり、
+ * 全部の文字が同時に確定してしまう。
+ *
+ * ただし包み側で数えて変数に入れるだけでは足りない。
+ * 登録していないカスタムプロパティは値ではなくトークン列のまま渡るため、
+ * sibling-index() は受け取った側で評価されてしまい、やはり 1 になる。
+ * @property で型を付けると宣言した側で数値に確定し、その結果が継承される。
+ */
+@property --i {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@keyframes exp-text-scramble {
+  from { translate: 0 0; }
+  to   { translate: 0 -5em; }
+}
+
+[data-exp="text-scramble"] .ts {
+  display: flex;
+  gap: 3px;
+  font-size: 26px;
+  font-weight: 800;
+  color: #7dd3fc;
+}
+[data-exp="text-scramble"] .c {
+  /* 数えるのはここ。内側へは変数で渡す。 */
+  --i: sibling-index();
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  line-height: 1;
+}
+[data-exp="text-scramble"] .strip {
+  display: block;
+  /* 候補 5 個 + 確定 1 個。5 段送ると最後で止まる。 */
+  animation-name: exp-text-scramble;
+  animation-timing-function: steps(5, jump-none);
+  animation-duration: 540ms;
+  animation-delay: calc((var(--i) - 1) * 130ms);
+}
+[data-exp="text-scramble"] .strip i {
+  display: block;
+  height: 1em;
+  font-style: normal;
+}
+[data-exp="text-scramble"] .strip i:last-child { color: #e6e9f5; }

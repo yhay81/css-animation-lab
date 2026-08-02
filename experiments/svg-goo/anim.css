@@ -1,0 +1,26 @@
+@keyframes exp-svg-goo {
+  0%   { translate: 0 0; }
+  25%  { translate: 38px -16px; }
+  50%  { translate: 0 -32px; }
+  75%  { translate: -38px -16px; }
+  100% { translate: 0 0; }
+}
+
+[data-exp="svg-goo"] .sg {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  /* CSS の contrast() と違い背景の塗りつぶしが要らない。 */
+  filter: url(#goo-svg);
+}
+[data-exp="svg-goo"] .sg span {
+  grid-area: 1 / 1;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #a855f7;
+  animation-name: exp-svg-goo;
+  animation-delay: calc((sibling-index() - 1) * -333ms);
+  animation-iteration-count: infinite;
+}

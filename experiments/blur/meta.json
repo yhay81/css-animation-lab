@@ -1,0 +1,21 @@
+{
+  "id": "blur",
+  "n": 8,
+  "title": "ぼかし",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "filter"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "uncertain",
+  "note": "12px→0。質感は良いが合成レイヤに乗らず塗り直しが走る。広い面積では確実に重い。効果と負荷の交換比率を見たい。"
+}

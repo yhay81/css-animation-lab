@@ -1,0 +1,19 @@
+{
+  "id": "snap-focus",
+  "n": 801,
+  "title": "吸い付いた 1 枚だけ立つ",
+  "layer": "T",
+  "mode": "scroll",
+  "axes": {
+    "driver": [
+      "scroll-timeline"
+    ],
+    "technique": [
+      "@container scroll-state(snapped)"
+    ],
+    "use": "横送りの強調"
+  },
+  "predicted": "uncertain",
+  "note": "スクロールして止めると、吸い付いた 1 枚だけが持ち上がる。どれが選ばれているかを CSS が知れるので、位置の計算も監視も要らない。",
+  "markup": "<div class=\"sf\"><div class=\"it\"><div class=\"in\">1</div></div><div class=\"it\"><div class=\"in\">2</div></div><div class=\"it\"><div class=\"in\">3</div></div><div class=\"it\"><div class=\"in\">4</div></div><div class=\"it\"><div class=\"in\">5</div></div></div>"
+}

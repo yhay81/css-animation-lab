@@ -1,0 +1,21 @@
+{
+  "id": "orbit",
+  "n": 16,
+  "title": "パス移動",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "offset-path"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "good",
+  "note": "offset-path + offset-distance。直線でない移動を CSS だけで書ける唯一の手段。ほとんど使われていない。"
+}

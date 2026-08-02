@@ -1,0 +1,18 @@
+{
+  "id": "inherit-drive",
+  "n": 702,
+  "title": "親 1 本で子全体を動かす",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "@property inherits: true"
+    ],
+    "use": "多数要素の連動"
+  },
+  "predicted": "uncertain",
+  "note": "継承する型付きプロパティを親で 1 本だけ動かし、子はその値を各自の係数で読む。アニメーションの本数が要素数に比例しないので、数が増えても軽い。",
+  "markup": "<div class=\"idr\"><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+}

@@ -1,0 +1,20 @@
+@keyframes exp-glass {
+  0%, 100% { translate: -78px 0; }
+  50%      { translate: 78px 0; }
+}
+
+[data-exp="glass"] .gl { position: absolute; inset: 0; display: grid; place-items: center; overflow: hidden; }
+[data-exp="glass"] .under {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, #f472b6, #6366f1 42%, #22d3ee);
+}
+[data-exp="glass"] .pane {
+  width: 78px;
+  height: 78px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(7px) saturate(1.7);
+  animation-name: exp-glass;
+}

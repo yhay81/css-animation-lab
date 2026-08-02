@@ -1,0 +1,28 @@
+@keyframes exp-checker-flip {
+  0%, 12%   { rotate: y 0deg; }
+  62%, 100% { rotate: y 180deg; }
+}
+
+[data-exp="checker-flip"] .cf {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  perspective: 520px;
+}
+[data-exp="checker-flip"] .cf span {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  transform-style: preserve-3d;
+  animation-name: exp-checker-flip;
+  /* 16 枚ぶんの遅れが 1 周に収まるよう詰める。42ms だと最後の札が裏返り終わる前に 1 周が尽きる。 */
+  animation-delay: calc((sibling-index() - 1) * 20ms);
+}
+[data-exp="checker-flip"] .cf i {
+  position: absolute;
+  inset: 0;
+  border-radius: 5px;
+  backface-visibility: hidden;
+}
+[data-exp="checker-flip"] .cf i.a { background: #33406e; }
+[data-exp="checker-flip"] .cf i.b { background: linear-gradient(135deg, #7dd3fc, #6366f1); rotate: y 180deg; }

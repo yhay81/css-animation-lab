@@ -1,0 +1,21 @@
+{
+  "id": "squash-stretch",
+  "n": 1101,
+  "title": "潰れて伸びる",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "アニメの原則",
+    "technique": [
+      "接地での圧縮",
+      "滞空での伸長",
+      "体積の保存"
+    ],
+    "use": "通知 / 読み込み / 遊びのある UI"
+  },
+  "predicted": "uncertain",
+  "note": "落下中は進行方向へ伸び、接地の瞬間に潰れる。縦に潰したぶん横へ広げると体積が保たれ、硬い球ではなくゴムに見える。影の大きさを高さに連動させると、接地の位置がはっきりする。",
+  "markup": "<div class=\"sq\"><span class=\"ball\"></span><span class=\"shadow\"></span><span class=\"floor\"></span></div>"
+}

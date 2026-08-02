@@ -1,0 +1,17 @@
+@keyframes exp-grid-morph {
+  0%, 100% { grid-template-columns: 1fr 3.2fr; }
+  50%      { grid-template-columns: 3.2fr 1fr; }
+}
+
+[data-exp="grid-morph"] .gm {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  gap: 8px;
+  padding: 20px;
+  animation-name: exp-grid-morph;
+  animation-iteration-count: infinite;
+}
+[data-exp="grid-morph"] .pane { border-radius: 10px; }
+[data-exp="grid-morph"] .a { background: linear-gradient(140deg, #7dd3fc, #6366f1); }
+[data-exp="grid-morph"] .b { background: #26304f; }

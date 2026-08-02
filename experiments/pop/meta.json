@@ -1,0 +1,21 @@
+{
+  "id": "pop",
+  "n": 4,
+  "title": "拡大登場",
+  "layer": "L0",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "target": [
+      "scale"
+    ],
+    "timing": [
+      "global"
+    ],
+    "orchestration": [],
+    "structure": []
+  },
+  "predicted": "good",
+  "note": "0.7→1。小さいものが大きくなる＝注意を引く。単体だと安っぽく見えるのではという仮説。"
+}

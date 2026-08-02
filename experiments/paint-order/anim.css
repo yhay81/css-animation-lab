@@ -1,0 +1,19 @@
+@keyframes exp-paint-order {
+  0%, 100% { stroke-width: 1px; }
+  50%      { stroke-width: 10px; }
+}
+
+[data-exp="paint-order"] .po { display: grid; gap: 4px; width: 170px; }
+[data-exp="paint-order"] text {
+  font-size: 34px;
+  font-weight: 900;
+  font-family: inherit;
+  fill: #151a2e;
+  stroke: #7dd3fc;
+  animation-name: exp-paint-order;
+  animation-iteration-count: infinite;
+}
+/* 既定は塗り → 線の順で描かれるため、線が太いほど字形を食う。 */
+[data-exp="paint-order"] .bad { paint-order: normal; }
+/* 順序を逆にすると線が下に回り、字形が保たれる。 */
+[data-exp="paint-order"] .good { paint-order: stroke fill; }

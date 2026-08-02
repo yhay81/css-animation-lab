@@ -1,0 +1,19 @@
+{
+  "id": "spotlight",
+  "n": 209,
+  "title": "文字を照らす光",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "mix-blend-mode",
+      "radial-gradient"
+    ],
+    "use": "見出し / ヒーロー"
+  },
+  "predicted": "uncertain",
+  "note": "光の円を重ねてブレンドする。文字は動かず、当たっている場所だけが明るくなる。",
+  "markup": "<div class=\"sp\"><div class=\"sp-tx\">SPOTLIGHT</div><div class=\"sp-lite\"></div></div>"
+}

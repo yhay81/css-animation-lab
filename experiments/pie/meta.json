@@ -1,0 +1,19 @@
+{
+  "id": "pie",
+  "n": 612,
+  "title": "円グラフが伸びる",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "conic-gradient",
+      "@property <angle>"
+    ],
+    "use": "構成比 / 集計"
+  },
+  "predicted": "uncertain",
+  "note": "扇の境界を型付きの角度で持つと、区切りを別々に動かせる。SVG も要素の分割も要らず、1 要素で多色の円グラフになる。",
+  "markup": "<div class=\"pie\"></div>"
+}

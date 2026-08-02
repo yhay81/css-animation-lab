@@ -1,0 +1,49 @@
+/*
+ * sticky は自分の親の範囲でしか止まらない。
+ * 見出しを節ごとの入れ物に入れると、その節が過ぎた時点で一緒に流れ去り、積み上がらない。
+ * 全部を残すには、見出しがスクロール領域の直下に並んでいる必要がある。
+ * 上端の位置を段ごとにずらすと、先に貼り付いたものの下へ次が重なる。
+ */
+[data-exp="sticky-stack"] .st {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+[data-exp="sticky-stack"] .hd {
+  position: sticky;
+  z-index: 2;
+  container-type: scroll-state;
+}
+/*
+ * 何段目かは並び順から出す。nth-of-type は「同じ要素型の中で何番目か」を数えるため、
+ * 見出しと本文が同じ div だとクラスで絞れず当たらない。
+ * 見出しは 4 要素ごとに現れるので、位置を 4 で割れば段数になる。
+ */
+[data-exp="sticky-stack"] .hd {
+  top: calc((sibling-index() - 1) / 4 * 22px);
+}
+
+[data-exp="sticky-stack"] .in {
+  display: grid;
+  place-items: center;
+  height: 34px;
+  background: #2b3766;
+  color: #e6e9f5;
+  font-size: 12px;
+  font-weight: 700;
+  transition: height 200ms, background 200ms, font-size 200ms;
+}
+@container scroll-state(stuck: top) {
+  .in { height: 22px; font-size: 10px; background: #1b2340; }
+}
+[data-exp="sticky-stack"] .ln {
+  display: grid;
+  place-items: center;
+  height: 42px;
+  margin: 8px 16px;
+  border-radius: 8px;
+  background: #26304f;
+  color: #8b93b5;
+  font-size: 12px;
+}

@@ -1,0 +1,8 @@
+@keyframes exp-lag-20-fade { from { opacity: 0; }         to { opacity: 1; } }
+@keyframes exp-lag-20-rise { from { translate: 0 28px; } to { translate: 0 0; } }
+
+[data-exp="lag-20"] .subject {
+  animation-name: exp-lag-20-fade, exp-lag-20-rise;
+  animation-duration: 420ms, 800ms;
+  animation-delay: 0ms, 200ms;
+}

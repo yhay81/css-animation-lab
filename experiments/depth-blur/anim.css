@@ -1,0 +1,15 @@
+@keyframes exp-depth-blur-back  { from { translate: 0 -22px; } to { translate: 0 0; } }
+@keyframes exp-depth-blur-front { from { translate: 0 30px; }  to { translate: 0 0; } }
+
+[data-exp="depth-blur"] .layers { display: grid; place-items: center; }
+[data-exp="depth-blur"] .layers > * { grid-area: 1 / 1; }
+
+[data-exp="depth-blur"] .back {
+  width: 124px;
+  height: 124px;
+  opacity: 0.5;
+  filter: blur(4px);
+  background: linear-gradient(135deg, #a855f7, #4338ca);
+  animation-name: exp-depth-blur-back;
+}
+[data-exp="depth-blur"] .front { animation-name: exp-depth-blur-front; }

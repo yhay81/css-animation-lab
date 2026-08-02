@@ -1,0 +1,20 @@
+{
+  "id": "parallax",
+  "n": 411,
+  "title": "スクロールで層がずれる",
+  "layer": "T",
+  "mode": "scroll",
+  "axes": {
+    "driver": [
+      "scroll-timeline"
+    ],
+    "technique": [
+      "animation-timeline: scroll()",
+      "層ごとの速度差"
+    ],
+    "use": "ヒーロー / 記事の見出し"
+  },
+  "predicted": "uncertain",
+  "note": "同じスクロール量に対して層ごとに移動量を変えるだけで奥行きが出る。位置計算も JS も要らない。",
+  "markup": "<div class=\"px\"><div class=\"sky\"></div><div class=\"hill\"></div><div class=\"fore\"></div><div class=\"filler\"><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div></div></div>"
+}

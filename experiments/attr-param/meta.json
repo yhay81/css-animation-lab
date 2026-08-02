@@ -1,0 +1,18 @@
+{
+  "id": "attr-param",
+  "n": 700,
+  "title": "HTML から動きの量を渡す",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "attr() の型付き"
+    ],
+    "use": "同じ部品を違う強さで並べる"
+  },
+  "predicted": "uncertain",
+  "note": "振れ幅を属性で持たせる。インラインの style を書かずに要素ごとの値を渡せるので、CSS 側は 1 本のままで済む。生成側は属性を出すだけでよくなる。",
+  "markup": "<div class=\"ap\"><span data-d=\"6px\"></span><span data-d=\"18px\"></span><span data-d=\"32px\"></span></div>"
+}

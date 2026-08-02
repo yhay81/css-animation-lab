@@ -1,0 +1,18 @@
+{
+  "id": "add-layers",
+  "n": 350,
+  "title": "常時の揺れに単発の動きを足す",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "animation-composition: add"
+    ],
+    "use": "ボタンの手応え / 待機中のオブジェクト"
+  },
+  "predicted": "uncertain",
+  "note": "ここが加算合成の実用点。常時の浮遊と単発の跳ねを別々のアニメーションに分けても、後勝ちで浮遊が止まらない。add がないと跳ねている間だけ浮遊が消える。",
+  "markup": "<div class=\"subject\"><span class=\"label\">Aa</span></div>"
+}

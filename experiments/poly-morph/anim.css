@@ -1,0 +1,11 @@
+@keyframes exp-poly-morph {
+  0%, 100% { clip-path: polygon(50% 2%, 98% 36%, 80% 96%, 20% 96%, 2% 36%); }
+  50%      { clip-path: polygon(50% 22%, 78% 30%, 92% 78%, 8% 78%, 22% 30%); }
+}
+
+[data-exp="poly-morph"] .poly {
+  width: 104px;
+  height: 104px;
+  background: linear-gradient(140deg, #22d3ee, #a855f7);
+  animation-name: exp-poly-morph;
+}

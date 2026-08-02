@@ -1,0 +1,18 @@
+{
+  "id": "plus-lighter",
+  "n": 605,
+  "title": "光が足し合わさる",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "mix-blend-mode: plus-lighter"
+    ],
+    "use": "発光 / 交差の表現"
+  },
+  "predicted": "uncertain",
+  "note": "screen と違い、重なった値をそのまま加算する。三色が重なった中心が白に飛ぶ。光源が複数ある場面の表現に向く。",
+  "markup": "<div class=\"pl\"><span class=\"a\"></span><span class=\"b\"></span><span class=\"c\"></span></div>"
+}

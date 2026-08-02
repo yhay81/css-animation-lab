@@ -1,0 +1,18 @@
+{
+  "id": "scope-nest",
+  "n": 501,
+  "title": "入れ子に別々の動きを閉じ込める",
+  "layer": "T",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "technique": [
+      "@scope"
+    ],
+    "use": "入れ子になるコンポーネント"
+  },
+  "predicted": "uncertain",
+  "note": "@scope の下限を指定すると、そこから内側には届かなくなる。同じクラス名でも入れ子の階層ごとに別の動きを当てられる。命名規約で衝突を避ける必要がなくなる。",
+  "markup": "<div class=\"outer\"><span class=\"dot\"></span><div class=\"inner\"><span class=\"dot\"></span></div></div>"
+}

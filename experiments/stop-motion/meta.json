@@ -1,0 +1,20 @@
+{
+  "id": "stop-motion",
+  "n": 1200,
+  "title": "ストップモーション",
+  "layer": "E",
+  "axes": {
+    "driver": [
+      "keyframes"
+    ],
+    "origin": "アニメ",
+    "technique": [
+      "不揃いなコマ長",
+      "微小な位置ぶれ"
+    ],
+    "use": "手作り感 / 遊び"
+  },
+  "predicted": "uncertain",
+  "note": "コマ撮りは 1 枚ずつ手で動かすため、コマの長さも位置も揃わない。等間隔で刻むと機械的な低フレームレートにしかならず、長さを不揃いにして微小なぶれを足して初めて手作りに見える。",
+  "markup": "<div class=\"stm\"><span class=\"obj\"></span></div>"
+}
