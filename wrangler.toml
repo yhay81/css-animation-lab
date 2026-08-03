@@ -10,14 +10,18 @@
 name = "css-animation-lab"
 compatibility_date = "2026-01-01"
 
+# 配信元を 1 本にする。workers.dev の URL は生やさない。
+# 同じ中身が 2 つの URL で見えると、どちらが正なのか読む側が判断できなくなる。
+#
+# TOML では、テーブル見出しより後ろに書いた鍵はそのテーブルの中に入る。
+# [assets] の下に置くと assets の設定として読まれ、警告だけ出て無視される。
+# 最上位の鍵は必ずテーブル見出しより前に置く。
+workers_dev = false
+
 [assets]
 directory = "./dist/site"
 # 存在しないパスは 404.html を返す。既定のままだと素の 404 になる。
 not_found_handling = "404-page"
-
-# 配信元を 1 本にする。workers.dev の URL は生やさない。
-# 同じ中身が 2 つの URL で見えると、どちらが正なのか読む側が判断できなくなる。
-workers_dev = false
 
 # カスタムドメイン。deploy 時に DNS レコードも Cloudflare 側で作られる。
 [[routes]]
