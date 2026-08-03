@@ -18,7 +18,9 @@
       "structure": []
     },
     "predicted": "good",
-    "note": "最も基本。単体では退屈だが、ほぼ全ての複合の土台になる。合成レイヤに乗るので負荷は最小。"
+    "note": "最も基本。単体では退屈だが、ほぼ全ての複合の土台になる。合成レイヤに乗るので負荷は最小。",
+    "title_en": "Fade",
+    "note_en": "The most basic one. Dull on its own, but the foundation of nearly every composite. Rides the compositor, so the cost is minimal."
   },
   {
     "id": "rise",
@@ -39,7 +41,9 @@
       "structure": []
     },
     "predicted": "good",
-    "note": "transform 一括ではなく個別プロパティ translate を使用。複合時に他の変形と衝突しない点が重要。"
+    "note": "transform 一括ではなく個別プロパティ translate を使用。複合時に他の変形と衝突しない点が重要。",
+    "title_en": "Up from below",
+    "note_en": "Uses the individual property translate rather than the transform shorthand. What matters is that it does not collide with other transforms when composed."
   },
   {
     "id": "slide",
@@ -60,7 +64,9 @@
       "structure": []
     },
     "predicted": "good",
-    "note": "rise との違いは軸だけ。方向が意味を持つ場面（ナビ、カルーセル）専用と考えるべきか要検証。"
+    "note": "rise との違いは軸だけ。方向が意味を持つ場面（ナビ、カルーセル）専用と考えるべきか要検証。",
+    "title_en": "In from the side",
+    "note_en": "The only difference from rise is the axis. Whether it should be reserved for cases where direction carries meaning (nav, carousel) needs checking."
   },
   {
     "id": "pop",
@@ -81,7 +87,9 @@
       "structure": []
     },
     "predicted": "good",
-    "note": "0.7→1。小さいものが大きくなる＝注意を引く。単体だと安っぽく見えるのではという仮説。"
+    "note": "0.7→1。小さいものが大きくなる＝注意を引く。単体だと安っぽく見えるのではという仮説。",
+    "title_en": "Enter by scaling up",
+    "note_en": "0.7 to 1. Something small growing draws attention. Hypothesis: on its own it looks cheap."
   },
   {
     "id": "shrink",
@@ -102,7 +110,9 @@
       "structure": []
     },
     "predicted": "uncertain",
-    "note": "1.25→1。pop の逆。「近づいてくる」ではなく「落ち着く」印象になるはず。どちらが上品か判定してほしい。"
+    "note": "1.25→1。pop の逆。「近づいてくる」ではなく「落ち着く」印象になるはず。どちらが上品か判定してほしい。",
+    "title_en": "Enter by scaling down",
+    "note_en": "1.25 to 1. The inverse of pop. Should read as settling rather than approaching. Which is more refined needs a human verdict."
   },
   {
     "id": "spin",
@@ -123,7 +133,9 @@
       "structure": []
     },
     "predicted": "uncertain",
-    "note": "-90deg→0。単体では強すぎて実用に耐えない可能性が高い。微小角（-6deg程度）が正解かもしれない。"
+    "note": "-90deg→0。単体では強すぎて実用に耐えない可能性が高い。微小角（-6deg程度）が正解かもしれない。",
+    "title_en": "Rotation",
+    "note_en": "-90deg to 0. On its own this is very likely too strong to be usable. A small angle (around -6deg) may be the right answer."
   },
   {
     "id": "skew",
@@ -144,7 +156,9 @@
       "structure": []
     },
     "predicted": "bad",
-    "note": "個別プロパティが存在しないため transform を占有する＝他の変形と合成できない。この構造上の制約自体が知見。"
+    "note": "個別プロパティが存在しないため transform を占有する＝他の変形と合成できない。この構造上の制約自体が知見。",
+    "title_en": "Shear",
+    "note_en": "No individual property exists, so it occupies transform and cannot compose with other transforms. That structural constraint is itself the finding."
   },
   {
     "id": "blur",
@@ -165,7 +179,9 @@
       "structure": []
     },
     "predicted": "uncertain",
-    "note": "12px→0。質感は良いが合成レイヤに乗らず塗り直しが走る。広い面積では確実に重い。効果と負荷の交換比率を見たい。"
+    "note": "12px→0。質感は良いが合成レイヤに乗らず塗り直しが走る。広い面積では確実に重い。効果と負荷の交換比率を見たい。",
+    "title_en": "Blur",
+    "note_en": "12px to 0. The texture is good but it does not ride the compositor and forces repaint. Certainly expensive over a large area. The point is the exchange rate between effect and cost."
   },
   {
     "id": "wipe",
@@ -186,7 +202,9 @@
       "structure": []
     },
     "predicted": "good",
-    "note": "下から刈り取る。要素自体は動かないので「現れる」ではなく「露出する」印象。テキスト見出しと相性が良いはず。"
+    "note": "下から刈り取る。要素自体は動かないので「現れる」ではなく「露出する」印象。テキスト見出しと相性が良いはず。",
+    "title_en": "Wipe",
+    "note_en": "Mown away from below. The element itself does not move, so it reads as being exposed rather than arriving. Should suit text headings."
   },
   {
     "id": "iris",
@@ -207,7 +225,9 @@
       "structure": []
     },
     "predicted": "uncertain",
-    "note": "円で開く。中心が強調される。View Transitions の定番だが、汎用パーツとして使えるかは疑問。"
+    "note": "円で開く。中心が強調される。View Transitions の定番だが、汎用パーツとして使えるかは疑問。",
+    "title_en": "Circular open",
+    "note_en": "Opens as a circle, which emphasises the centre. A staple of View Transitions, but whether it works as a general-purpose part is doubtful."
   },
   {
     "id": "mask-sweep",
@@ -229,7 +249,9 @@
       "structure": []
     },
     "predicted": "good",
-    "note": "clip-path と違い境界をぼかせる。@property で型付けした percentage を補間している点が肝（型なしでは補間不可）。"
+    "note": "clip-path と違い境界をぼかせる。@property で型付けした percentage を補間している点が肝（型なしでは補間不可）。",
+    "title_en": "Mask sweep",
+    "note_en": "Unlike clip-path, the boundary can be softened. The key is interpolating a percentage typed with @property — without the type it cannot be interpolated."
   },
   {
     "id": "gradient-turn",
@@ -251,7 +273,9 @@
       "structure": []
     },
     "predicted": "uncertain",
-    "note": "@property で <angle> を補間。CSS だけで動く背景が作れる代表例。ただし常時再描画なので負荷は高いはず。"
+    "note": "@property で <angle> を補間。CSS だけで動く背景が作れる代表例。ただし常時再描画なので負荷は高いはず。",
+    "title_en": "Gradient rotation",
+    "note_en": "Interpolates an <angle> via @property. A canonical example of a moving background in pure CSS. But it repaints continuously, so it should be expensive."
   },
   {
     "id": "tint",
@@ -273,7 +297,9 @@
       "structure": []
     },
     "predicted": "uncertain",
-    "note": "oklch 同士の補間は知覚的に均一な経路を通る。sRGB 補間との差が実際に見えるかを確認したい。"
+    "note": "oklch 同士の補間は知覚的に均一な経路を通る。sRGB 補間との差が実際に見えるかを確認したい。",
+    "title_en": "Hue shift",
+    "note_en": "Interpolating between oklch values takes a perceptually uniform path. Whether the difference from sRGB interpolation is actually visible needs checking."
   },
   {
     "id": "lift",
@@ -294,7 +320,9 @@
       "structure": []
     },
     "predicted": "uncertain",
-    "note": "影だけで高さを表現。要素は1ピクセルも動かない。Material の言う elevation が単体で成立するかの検証。"
+    "note": "影だけで高さを表現。要素は1ピクセルも動かない。Material の言う elevation が単体で成立するかの検証。",
+    "title_en": "Rising shadow",
+    "note_en": "Height expressed by shadow alone. The element does not move by a single pixel. A test of whether Material's elevation stands up on its own."
   },
   {
     "id": "morph",
@@ -315,7 +343,9 @@
       "structure": []
     },
     "predicted": "bad",
-    "note": "円→角丸。形が変わるだけで位置も不透明度も変わらない。単体で意味を持つ場面は稀だと予想。"
+    "note": "円→角丸。形が変わるだけで位置も不透明度も変わらない。単体で意味を持つ場面は稀だと予想。",
+    "title_en": "Corner morph",
+    "note_en": "Circle to rounded rectangle. Only the shape changes — not position, not opacity. Predicted to be rarely meaningful on its own."
   },
   {
     "id": "orbit",
@@ -336,7 +366,9 @@
       "structure": []
     },
     "predicted": "good",
-    "note": "offset-path + offset-distance。直線でない移動を CSS だけで書ける唯一の手段。ほとんど使われていない。"
+    "note": "offset-path + offset-distance。直線でない移動を CSS だけで書ける唯一の手段。ほとんど使われていない。",
+    "title_en": "Path motion",
+    "note_en": "offset-path plus offset-distance. The only way to write non-linear movement in pure CSS. Almost nobody uses it."
   },
   {
     "id": "depth",
@@ -358,7 +390,9 @@
       "structure": []
     },
     "predicted": "uncertain",
-    "note": "親の perspective が必須という依存関係を持つ点が他の原子と異なる。複合時に親側の準備が要る＝合成コストが高い。"
+    "note": "親の perspective が必須という依存関係を持つ点が他の原子と異なる。複合時に親側の準備が要る＝合成コストが高い。",
+    "title_en": "Depth rotation",
+    "note_en": "Unlike the other atoms, it depends on the parent having perspective. Composition requires preparation on the parent side, so the composition cost is high."
   },
   {
     "id": "track",
@@ -379,7 +413,9 @@
       "structure": []
     },
     "predicted": "uncertain",
-    "note": "レイアウトを再計算させる典型例＝合成レイヤに乗らない。それでも表現価値が上回るかを判定してほしい。"
+    "note": "レイアウトを再計算させる典型例＝合成レイヤに乗らない。それでも表現価値が上回るかを判定してほしい。",
+    "title_en": "Letter spacing",
+    "note_en": "A textbook case of forcing layout recalculation — it does not ride the compositor. Whether the expressive value outweighs that needs a human verdict."
   },
   {
     "id": "sim",
@@ -403,7 +439,9 @@
       "structure": []
     },
     "predicted": "good",
-    "note": "位置と不透明度を同じ窓で動かす。あらゆる登場演出の基準線。以降はこれとの差分で読む。"
+    "note": "位置と不透明度を同じ窓で動かす。あらゆる登場演出の基準線。以降はこれとの差分で読む。",
+    "title_en": "Simultaneous",
+    "note_en": "Position and opacity move in the same window. The baseline for every entrance. Everything after this is read as a difference from it."
   },
   {
     "id": "lag",
@@ -428,7 +466,9 @@
       "structure": []
     },
     "predicted": "uncertain",
-    "note": "不透明度が先に立ち上がり、位置が遅れて動く。到達の重さが変わるはず。sim と並べて差が読めるかを見たい。"
+    "note": "不透明度が先に立ち上がり、位置が遅れて動く。到達の重さが変わるはず。sim と並べて差が読めるかを見たい。",
+    "title_en": "Lagged",
+    "note_en": "Opacity rises first, position follows late. The weight of arrival should change. The question is whether the difference from sim is legible side by side."
   },
   {
     "id": "split-ease",
@@ -450,7 +490,9 @@
       "structure": []
     },
     "predicted": "uncertain",
-    "note": "位置は減速、不透明度は等速。ほとんど知られていないが実務で効くはずの型。sim との差が知覚できるかが論点。"
+    "note": "位置は減速、不透明度は等速。ほとんど知られていないが実務で効くはずの型。sim との差が知覚できるかが論点。",
+    "title_en": "Split easing",
+    "note_en": "Position decelerates, opacity stays linear. Barely known, but should work in practice. The question is whether the difference from sim is perceptible."
   },
   {
     "id": "layered",
@@ -474,7 +516,9 @@
       "structure": []
     },
     "predicted": "uncertain",
-    "note": "位置・拡大・不透明度をそれぞれ違う長さで動かす。個別プロパティだから衝突せずに書ける（F006 の裏返し）。"
+    "note": "位置・拡大・不透明度をそれぞれ違う長さで動かす。個別プロパティだから衝突せずに書ける（F006 の裏返し）。",
+    "title_en": "Three layers, different lengths",
+    "note_en": "Position, scale and opacity each move over a different duration. Individual properties make this writable without collision — the flip side of F006."
   },
   {
     "id": "add",
@@ -498,7 +542,9 @@
       "structure": []
     },
     "predicted": "good",
-    "note": "同じ translate を2本のアニメーションで別々に動かし add で足す。通常は後勝ちで消えるところを合成できる。ほぼ使われていない機能。"
+    "note": "同じ translate を2本のアニメーションで別々に動かし add で足す。通常は後勝ちで消えるところを合成できる。ほぼ使われていない機能。",
+    "title_en": "Additive composition",
+    "note_en": "Two animations drive the same translate separately and add composes them. Normally the later one wins and the other vanishes. An almost unused feature."
   },
   {
     "id": "counter",
@@ -522,7 +568,9 @@
       ]
     },
     "predicted": "uncertain",
-    "note": "親が上がり、中身が逆に下がる。視差の最小形。奥行きの錯覚が出るか、単にずれて見えるだけかを判定してほしい。"
+    "note": "親が上がり、中身が逆に下がる。視差の最小形。奥行きの錯覚が出るか、単にずれて見えるだけかを判定してほしい。",
+    "title_en": "Parent and child opposed",
+    "note_en": "The parent rises while the contents move down. The minimal form of parallax. Whether it produces an illusion of depth or merely looks misaligned needs a verdict."
   },
   {
     "id": "overshoot",
@@ -544,7 +592,9 @@
       "structure": []
     },
     "predicted": "uncertain",
-    "note": "back-out イージングではなく中間キーフレームで行き過ぎを作る。イージングで作る場合と違い、行き過ぎ量を明示的に決められる。どちらが制御しやすいかの比較材料。"
+    "note": "back-out イージングではなく中間キーフレームで行き過ぎを作る。イージングで作る場合と違い、行き過ぎ量を明示的に決められる。どちらが制御しやすいかの比較材料。",
+    "title_en": "Overshoot via keyframes",
+    "note_en": "Overshoot built from an intermediate keyframe rather than back-out easing. Unlike easing, the amount of overshoot is stated explicitly. Material for comparing which is easier to control."
   },
   {
     "id": "stagger-head",
@@ -569,7 +619,9 @@
     },
     "predicted": "good",
     "note": "先頭から等間隔。間隔の基準線。以降の stagger はこれとの差で読む。",
-    "markup": "<div class=\"row5\"><div class=\"subject\" style=\"--i:0\"></div><div class=\"subject\" style=\"--i:1\"></div><div class=\"subject\" style=\"--i:2\"></div><div class=\"subject\" style=\"--i:3\"></div><div class=\"subject\" style=\"--i:4\"></div></div>"
+    "markup": "<div class=\"row5\"><div class=\"subject\" style=\"--i:0\"></div><div class=\"subject\" style=\"--i:1\"></div><div class=\"subject\" style=\"--i:2\"></div><div class=\"subject\" style=\"--i:3\"></div><div class=\"subject\" style=\"--i:4\"></div></div>",
+    "title_en": "Sequential, 110ms",
+    "note_en": "Evenly spaced from the front. The baseline interval. Every later stagger is read as a difference from this."
   },
   {
     "id": "stagger-dense",
@@ -594,7 +646,9 @@
     },
     "predicted": "uncertain",
     "note": "間隔が短く重なりが深い。ほぼ同時に見えるか、まとまりとして読めるか。stagger の下限を探る。",
-    "markup": "<div class=\"row5\"><div class=\"subject\" style=\"--i:0\"></div><div class=\"subject\" style=\"--i:1\"></div><div class=\"subject\" style=\"--i:2\"></div><div class=\"subject\" style=\"--i:3\"></div><div class=\"subject\" style=\"--i:4\"></div></div>"
+    "markup": "<div class=\"row5\"><div class=\"subject\" style=\"--i:0\"></div><div class=\"subject\" style=\"--i:1\"></div><div class=\"subject\" style=\"--i:2\"></div><div class=\"subject\" style=\"--i:3\"></div><div class=\"subject\" style=\"--i:4\"></div></div>",
+    "title_en": "Tight sequence, 45ms",
+    "note_en": "Short interval, deep overlap. Does it read as simultaneous, or as one mass? Probing the lower bound of stagger."
   },
   {
     "id": "stagger-sparse",
@@ -619,7 +673,9 @@
     },
     "predicted": "uncertain",
     "note": "間隔が長く重なりが浅い。個々が独立して見え始める境目のはず。stagger の上限を探る。",
-    "markup": "<div class=\"row5\"><div class=\"subject\" style=\"--i:0\"></div><div class=\"subject\" style=\"--i:1\"></div><div class=\"subject\" style=\"--i:2\"></div><div class=\"subject\" style=\"--i:3\"></div><div class=\"subject\" style=\"--i:4\"></div></div>"
+    "markup": "<div class=\"row5\"><div class=\"subject\" style=\"--i:0\"></div><div class=\"subject\" style=\"--i:1\"></div><div class=\"subject\" style=\"--i:2\"></div><div class=\"subject\" style=\"--i:3\"></div><div class=\"subject\" style=\"--i:4\"></div></div>",
+    "title_en": "Loose sequence, 150ms",
+    "note_en": "Long interval, shallow overlap. Should be the boundary where individuals start to read separately. Probing the upper bound of stagger."
   },
   {
     "id": "stagger-center",
@@ -645,7 +701,9 @@
     },
     "predicted": "uncertain",
     "note": "遅延を中央からの距離で決める。順送りと違い方向を持たない。どちらがどの場面に合うかの型を出したい。",
-    "markup": "<div class=\"row5\"><div class=\"subject\" style=\"--i:2\"></div><div class=\"subject\" style=\"--i:1\"></div><div class=\"subject\" style=\"--i:0\"></div><div class=\"subject\" style=\"--i:1\"></div><div class=\"subject\" style=\"--i:2\"></div></div>"
+    "markup": "<div class=\"row5\"><div class=\"subject\" style=\"--i:2\"></div><div class=\"subject\" style=\"--i:1\"></div><div class=\"subject\" style=\"--i:0\"></div><div class=\"subject\" style=\"--i:1\"></div><div class=\"subject\" style=\"--i:2\"></div></div>",
+    "title_en": "Outward from the centre",
+    "note_en": "Delay set by distance from the centre. Unlike a sequence, it carries no direction. The aim is to find which suits which situation."
   },
   {
     "id": "stagger-index",
@@ -672,7 +730,9 @@
     },
     "predicted": "uncertain",
     "note": "マークアップに番号を書かず CSS だけで順送りを作れるか。未対応なら遅延が 0 になり全部同時に出るので、その場で判別できる。",
-    "markup": "<div class=\"row5\"><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div></div>"
+    "markup": "<div class=\"row5\"><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div></div>",
+    "title_en": "Delay from sibling-index()",
+    "note_en": "Can a sequence be built in CSS alone, without numbering the markup? Where unsupported the delay falls to 0 and everything appears at once, so it is self-diagnosing."
   },
   {
     "id": "depth-none",
@@ -696,7 +756,9 @@
       ]
     },
     "predicted": "bad",
-    "note": "親子逆方向だけでは奥行きに見えないことが判明済み。比較の基準線として置く。"
+    "note": "親子逆方向だけでは奥行きに見えないことが判明済み。比較の基準線として置く。",
+    "title_en": "Opposed motion only (baseline)",
+    "note_en": "Already established that opposed motion alone does not read as depth. Placed here as the baseline for comparison."
   },
   {
     "id": "depth-shadow",
@@ -720,7 +782,9 @@
       ]
     },
     "predicted": "uncertain",
-    "note": "逆方向に影の成長を足す。影が地面を示すことで浮き上がりとして読めるか。"
+    "note": "逆方向に影の成長を足す。影が地面を示すことで浮き上がりとして読めるか。",
+    "title_en": "Opposed motion plus shadow",
+    "note_en": "Adds a growing shadow to the opposed motion. Whether the shadow, by indicating ground, makes it read as lifting."
   },
   {
     "id": "depth-persp",
@@ -745,7 +809,9 @@
       ]
     },
     "predicted": "uncertain",
-    "note": "親に perspective を置き、面をわずかに傾けながら起こす。幾何的な奥行き手がかりを足した場合。"
+    "note": "親に perspective を置き、面をわずかに傾けながら起こす。幾何的な奥行き手がかりを足した場合。",
+    "title_en": "Opposed motion plus perspective",
+    "note_en": "Perspective on the parent, the face tilting slightly as it rises. The case where a geometric depth cue is added."
   },
   {
     "id": "depth-blur",
@@ -770,7 +836,9 @@
     },
     "predicted": "uncertain",
     "note": "奥の層をぼかして手前と逆に動かす。写真的な奥行き手がかり。CSS だけで視差を成立させられるかの本命。",
-    "markup": "<div class=\"layers\"><div class=\"subject back\"></div><div class=\"subject front\"><span class=\"label\">Aa</span></div></div>"
+    "markup": "<div class=\"layers\"><div class=\"subject back\"></div><div class=\"subject front\"><span class=\"label\">Aa</span></div></div>",
+    "title_en": "Opposed motion plus depth of field",
+    "note_en": "The rear layer is blurred and moves opposite the front. A photographic depth cue. The main candidate for making parallax work in pure CSS."
   },
   {
     "id": "depth-card",
@@ -794,7 +862,9 @@
     },
     "predicted": "uncertain",
     "note": "面・縁・内容を持つカードにして中身を逆に動かす。「奥行きは質感の問題ではないか」という仮説の検証。",
-    "markup": "<div class=\"subject\"><div class=\"inner\"><div class=\"bar\"></div><div class=\"line\"></div><div class=\"line s\"></div></div></div>"
+    "markup": "<div class=\"subject\"><div class=\"inner\"><div class=\"bar\"></div><div class=\"line\"></div><div class=\"line s\"></div></div></div>",
+    "title_en": "Opposed motion plus card material",
+    "note_en": "Made into a card with a face, an edge and contents, with the contents moving opposite. Testing the hypothesis that depth is a question of material."
   },
   {
     "id": "gap-40",
@@ -819,7 +889,9 @@
     },
     "predicted": "uncertain",
     "note": "長さ 400ms 固定。ラウンド2は長さも一緒に動いていて境目を特定できなかったため、間隔だけを振り直す。",
-    "markup": "<div class=\"row5\"><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div></div>"
+    "markup": "<div class=\"row5\"><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div></div>",
+    "title_en": "Interval 40ms (overlap 0.10)",
+    "note_en": "Duration fixed at 400ms. Round 2 moved duration along with interval, so the boundary could not be located; here only the interval varies."
   },
   {
     "id": "gap-80",
@@ -844,7 +916,9 @@
     },
     "predicted": "uncertain",
     "note": "長さ 400ms 固定。ラウンド2は長さも一緒に動いていて境目を特定できなかったため、間隔だけを振り直す。",
-    "markup": "<div class=\"row5\"><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div></div>"
+    "markup": "<div class=\"row5\"><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div></div>",
+    "title_en": "Interval 80ms (overlap 0.20)",
+    "note_en": "Duration fixed at 400ms. Round 2 moved duration along with interval, so the boundary could not be located; here only the interval varies."
   },
   {
     "id": "gap-120",
@@ -869,7 +943,9 @@
     },
     "predicted": "uncertain",
     "note": "長さ 400ms 固定。ラウンド2は長さも一緒に動いていて境目を特定できなかったため、間隔だけを振り直す。",
-    "markup": "<div class=\"row5\"><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div></div>"
+    "markup": "<div class=\"row5\"><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div></div>",
+    "title_en": "Interval 120ms (overlap 0.30)",
+    "note_en": "Duration fixed at 400ms. Round 2 moved duration along with interval, so the boundary could not be located; here only the interval varies."
   },
   {
     "id": "gap-150",
@@ -894,7 +970,9 @@
     },
     "predicted": "uncertain",
     "note": "長さ 400ms 固定。ラウンド2は長さも一緒に動いていて境目を特定できなかったため、間隔だけを振り直す。",
-    "markup": "<div class=\"row5\"><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div></div>"
+    "markup": "<div class=\"row5\"><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div><div class=\"subject\"></div></div>",
+    "title_en": "Interval 150ms (overlap 0.38)",
+    "note_en": "Duration fixed at 400ms. Round 2 moved duration along with interval, so the boundary could not be located; here only the interval varies."
   },
   {
     "id": "lag-20",
@@ -919,7 +997,9 @@
       "structure": []
     },
     "predicted": "uncertain",
-    "note": "不透明度が立ち上がってから位置が動き出すまでの間を 20% にした場合。差が知覚できることは確認済みなので、既定値として妥当な量を決めたい。"
+    "note": "不透明度が立ち上がってから位置が動き出すまでの間を 20% にした場合。差が知覚できることは確認済みなので、既定値として妥当な量を決めたい。",
+    "title_en": "Lag 20%",
+    "note_en": "The gap between opacity rising and position starting to move, set to 20%. The difference is already known to be perceptible; the aim is to settle a sensible default."
   },
   {
     "id": "lag-40",
@@ -944,7 +1024,9 @@
       "structure": []
     },
     "predicted": "uncertain",
-    "note": "不透明度が立ち上がってから位置が動き出すまでの間を 40% にした場合。差が知覚できることは確認済みなので、既定値として妥当な量を決めたい。"
+    "note": "不透明度が立ち上がってから位置が動き出すまでの間を 40% にした場合。差が知覚できることは確認済みなので、既定値として妥当な量を決めたい。",
+    "title_en": "Lag 40%",
+    "note_en": "The gap between opacity rising and position starting to move, set to 40%. The difference is already known to be perceptible; the aim is to settle a sensible default."
   },
   {
     "id": "lag-60",
@@ -969,7 +1051,9 @@
       "structure": []
     },
     "predicted": "uncertain",
-    "note": "不透明度が立ち上がってから位置が動き出すまでの間を 60% にした場合。差が知覚できることは確認済みなので、既定値として妥当な量を決めたい。"
+    "note": "不透明度が立ち上がってから位置が動き出すまでの間を 60% にした場合。差が知覚できることは確認済みなので、既定値として妥当な量を決めたい。",
+    "title_en": "Lag 60%",
+    "note_en": "The gap between opacity rising and position starting to move, set to 60%. The difference is already known to be perceptible; the aim is to settle a sensible default."
   },
   {
     "id": "modal-fade",
@@ -995,7 +1079,9 @@
     },
     "predicted": "uncertain",
     "note": "位置を変えずに不透明度とわずかな拡大だけで開く。display を allow-discrete で繋いでいるので、閉じる側も最後まで見える。",
-    "markup": "<div class=\"scene\"><div class=\"backdrop\"></div><div class=\"dialog panel\"><div class=\"bar\"></div><div class=\"line\"></div><div class=\"line s\"></div></div></div>"
+    "markup": "<div class=\"scene\"><div class=\"backdrop\"></div><div class=\"dialog panel\"><div class=\"bar\"></div><div class=\"line\"></div><div class=\"line s\"></div></div></div>",
+    "title_en": "Modal — opens in place",
+    "note_en": "Opens with opacity and a slight scale, without moving. display is bridged with allow-discrete, so the closing side stays visible to the end."
   },
   {
     "id": "modal-rise",
@@ -1021,7 +1107,9 @@
     },
     "predicted": "uncertain",
     "note": "下から持ち上げて開く。方向を持つぶん「どこから来たか」が伝わるが、その場で開くより重い印象になるはず。",
-    "markup": "<div class=\"scene\"><div class=\"backdrop\"></div><div class=\"dialog panel\"><div class=\"bar\"></div><div class=\"line\"></div><div class=\"line s\"></div></div></div>"
+    "markup": "<div class=\"scene\"><div class=\"backdrop\"></div><div class=\"dialog panel\"><div class=\"bar\"></div><div class=\"line\"></div><div class=\"line s\"></div></div></div>",
+    "title_en": "Modal — lifted from below",
+    "note_en": "Opens by lifting from below. Having direction conveys where it came from, but it should read as heavier than opening in place."
   },
   {
     "id": "toast-slide",
@@ -1045,7 +1133,9 @@
     },
     "predicted": "uncertain",
     "note": "画面外から滑り込む。減速のみで行き過ぎない。",
-    "markup": "<div class=\"scene\"><div class=\"toast panel\"><div class=\"bar\"></div><div class=\"line s\"></div></div></div>"
+    "markup": "<div class=\"scene\"><div class=\"toast panel\"><div class=\"bar\"></div><div class=\"line s\"></div></div></div>",
+    "title_en": "Toast — slides in from the side",
+    "note_en": "Slides in from off-screen. Deceleration only, no overshoot."
   },
   {
     "id": "toast-pop",
@@ -1069,7 +1159,9 @@
     },
     "predicted": "uncertain",
     "note": "下から出て行き過ぎてから収まる。目を引くが、通知として過剰かどうかが論点。",
-    "markup": "<div class=\"scene\"><div class=\"toast panel\"><div class=\"bar\"></div><div class=\"line s\"></div></div></div>"
+    "markup": "<div class=\"scene\"><div class=\"toast panel\"><div class=\"bar\"></div><div class=\"line s\"></div></div></div>",
+    "title_en": "Toast — springs up from below",
+    "note_en": "Comes from below, overshoots, then settles. Eye-catching, but whether that is excessive for a notification is the question."
   },
   {
     "id": "list-grid",
@@ -1092,7 +1184,9 @@
     },
     "predicted": "good",
     "note": "高さ auto へは遷移できないという長年の制約を、grid-template-rows の 0fr → 1fr で回避する型。対応範囲が広い。",
-    "markup": "<div class=\"scene list\"><div class=\"row\"><div class=\"line\"></div></div><div class=\"ins\"><div class=\"inner\"><div class=\"line hi\"></div></div></div><div class=\"row\"><div class=\"line\"></div></div></div>"
+    "markup": "<div class=\"scene list\"><div class=\"row\"><div class=\"line\"></div></div><div class=\"ins\"><div class=\"inner\"><div class=\"line hi\"></div></div></div><div class=\"row\"><div class=\"line\"></div></div></div>",
+    "title_en": "List insert — opening height with grid",
+    "note_en": "Works around the long-standing inability to transition to height: auto, using grid-template-rows from 0fr to 1fr. Broad browser support."
   },
   {
     "id": "list-size",
@@ -1116,7 +1210,9 @@
     },
     "predicted": "uncertain",
     "note": "interpolate-size で height: auto への遷移を解禁する型。書き方は素直だが対応範囲が狭い。未対応なら高さが瞬間で切り替わる。",
-    "markup": "<div class=\"scene list\"><div class=\"row\"><div class=\"line\"></div></div><div class=\"ins\"><div class=\"inner\"><div class=\"line hi\"></div></div></div><div class=\"row\"><div class=\"line\"></div></div></div>"
+    "markup": "<div class=\"scene list\"><div class=\"row\"><div class=\"line\"></div></div><div class=\"ins\"><div class=\"inner\"><div class=\"line hi\"></div></div></div><div class=\"row\"><div class=\"line\"></div></div></div>",
+    "title_en": "List insert — transition to height: auto",
+    "note_en": "Uses interpolate-size to unlock transitions to height: auto. The code is straightforward but support is narrow. Where unsupported the height snaps instantly."
   },
   {
     "id": "head-mask",
@@ -1139,7 +1235,9 @@
     },
     "predicted": "uncertain",
     "note": "文字を動かさず、覆いを外して現す。要素が移動しないので落ち着いて見えるはず。",
-    "markup": "<div class=\"head\">Motion</div>"
+    "markup": "<div class=\"head\">Motion</div>",
+    "title_en": "Heading — revealed by mask",
+    "note_en": "The letters do not move; the cover is removed to reveal them. Nothing translates, so it should read as composed."
   },
   {
     "id": "head-chars",
@@ -1166,7 +1264,9 @@
     },
     "predicted": "uncertain",
     "note": "文字を1つずつ立ち上げる。sibling-index() で書けるので文字数に依存しない。間隔 60ms は「まとまり」の側（F010）。",
-    "markup": "<div class=\"head\"><span>M</span><span>o</span><span>t</span><span>i</span><span>o</span><span>n</span></div>"
+    "markup": "<div class=\"head\"><span>M</span><span>o</span><span>t</span><span>i</span><span>o</span><span>n</span></div>",
+    "title_en": "Heading — per-character sequence",
+    "note_en": "Letters rise one at a time. Written with sibling-index(), so it does not depend on the character count. The 60ms interval sits on the 'one mass' side (F010)."
   },
   {
     "id": "gooey",
@@ -1185,7 +1285,9 @@
     },
     "predicted": "uncertain",
     "note": "ぼかしてからコントラストを極端に上げると、離れた円が近づいたときだけ融合する。CSS だけで液体的な結合が作れる唯一の手段。",
-    "markup": "<div class=\"goo\"><span class=\"\"></span><span class=\"\"></span><span class=\"\"></span></div>"
+    "markup": "<div class=\"goo\"><span class=\"\"></span><span class=\"\"></span><span class=\"\"></span></div>",
+    "title_en": "Gooey (metaball composition)",
+    "note_en": "Blur, then push contrast to an extreme, and separated circles merge only when they come close. The only way to build a liquid-like join in pure CSS."
   },
   {
     "id": "text-shimmer",
@@ -1204,7 +1306,9 @@
     },
     "predicted": "uncertain",
     "note": "文字を背景の切り抜きにして、背景だけを動かす。文字自体は動かないので読みやすさを損なわない。",
-    "markup": "<div class=\"tx\">GRADIENT</div>"
+    "markup": "<div class=\"tx\">GRADIENT</div>",
+    "title_en": "Light crossing the letters",
+    "note_en": "The letters become a cutout of the background and only the background moves. The letters themselves stay still, so legibility is not harmed."
   },
   {
     "id": "conic-ring",
@@ -1223,7 +1327,9 @@
     },
     "predicted": "uncertain",
     "note": "角度を型付きカスタムプロパティにすると conic-gradient を補間できる。要素は一切回転していないのに光が周回する。",
-    "markup": "<div class=\"ring\"><div class=\"ring-in\">Aa</div></div>"
+    "markup": "<div class=\"ring\"><div class=\"ring-in\">Aa</div></div>",
+    "title_en": "Light travelling the rim",
+    "note_en": "Type the angle as a custom property and conic-gradient becomes interpolable. The element never rotates, yet the light circles it."
   },
   {
     "id": "counter-roll",
@@ -1242,7 +1348,9 @@
     },
     "predicted": "uncertain",
     "note": "整数として型を付けたカスタムプロパティを counter() で文字にする。JS なしで数値がカウントアップする。ほとんど知られていない。",
-    "markup": "<div class=\"num\"></div>"
+    "markup": "<div class=\"num\"></div>",
+    "title_en": "Rolling digits",
+    "note_en": "A custom property typed as an integer, rendered as text via counter(). Numbers count up with no JavaScript. Barely known."
   },
   {
     "id": "shadow-trail",
@@ -1259,7 +1367,9 @@
       "use": "素早い移動の強調 / ドラッグ"
     },
     "predicted": "uncertain",
-    "note": "要素は 1 つのまま、影を複数重ねて進行方向の反対側に置く。追加要素なしで残像が出る。"
+    "note": "要素は 1 つのまま、影を複数重ねて進行方向の反対側に置く。追加要素なしで残像が出る。",
+    "title_en": "Afterimage from shadows",
+    "note_en": "The element stays single; several shadows are stacked behind the direction of travel. An afterimage with no extra elements."
   },
   {
     "id": "stripe-flow",
@@ -1278,7 +1388,9 @@
     },
     "predicted": "uncertain",
     "note": "繰り返しグラデーションの位置だけを動かす。縞の周期ぶん動かせば継ぎ目なく無限に流れる。",
-    "markup": "<div class=\"prog\"><div class=\"fill\"></div></div>"
+    "markup": "<div class=\"prog\"><div class=\"fill\"></div></div>",
+    "title_en": "Flowing stripes",
+    "note_en": "Only the position of a repeating gradient moves. Shift it by exactly one stripe period and it flows seamlessly forever."
   },
   {
     "id": "burst",
@@ -1298,7 +1410,9 @@
     },
     "predicted": "uncertain",
     "note": "15 個の粒の角度と距離を CSS だけで決める。マークアップに番号を書かないので、粒の数を変えても CSS は変わらない。",
-    "markup": "<div class=\"burst\"><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span></div>"
+    "markup": "<div class=\"burst\"><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span></div>",
+    "title_en": "Radiating particles",
+    "note_en": "The angle and distance of 15 particles are decided in CSS alone. No numbering in the markup, so changing the particle count leaves the CSS untouched."
   },
   {
     "id": "flip-3d",
@@ -1317,7 +1431,9 @@
     },
     "predicted": "uncertain",
     "note": "裏面を非表示にした 2 枚を背中合わせにして親を回す。1 要素では作れない、構造で作る動き。",
-    "markup": "<div class=\"flip\"><div class=\"face front\">表</div><div class=\"face back\">裏</div></div>"
+    "markup": "<div class=\"flip\"><div class=\"face front\">表</div><div class=\"face back\">裏</div></div>",
+    "title_en": "Card flip",
+    "note_en": "Two faces with backface hidden, placed back to back, and the parent rotates. A motion that cannot be built from one element — it is built from structure."
   },
   {
     "id": "blob",
@@ -1336,7 +1452,9 @@
     },
     "predicted": "uncertain",
     "note": "border-radius の 8 つの値を別々に動かす。回転を混ぜると中身ごと回って固体に見えるため、回さずに輪郭だけを変形させる。ただしこれ単体では「柔らかい塊」止まりで、液体には見えない。液体感には gooey の融合が要る。",
-    "markup": "<div class=\"blob\"></div>"
+    "markup": "<div class=\"blob\"></div>",
+    "title_en": "Wobbling outline",
+    "note_en": "The eight border-radius values move independently. Mixing in rotation turns the contents too and it reads as a solid, so only the outline deforms. On its own this stops at 'soft mass' and does not read as liquid — that needs gooey's merging."
   },
   {
     "id": "spotlight",
@@ -1355,7 +1473,9 @@
     },
     "predicted": "uncertain",
     "note": "光の円を重ねてブレンドする。文字は動かず、当たっている場所だけが明るくなる。",
-    "markup": "<div class=\"sp\"><div class=\"sp-tx\">SPOTLIGHT</div><div class=\"sp-lite\"></div></div>"
+    "markup": "<div class=\"sp\"><div class=\"sp-tx\">SPOTLIGHT</div><div class=\"sp-lite\"></div></div>",
+    "title_en": "Light on the letters",
+    "note_en": "A circle of light is blended over the top. The letters do not move; only the lit region brightens."
   },
   {
     "id": "ripple",
@@ -1374,7 +1494,9 @@
     },
     "predicted": "uncertain",
     "note": "同じ動きに負の遅延を段階的に与えると、要素を増やすだけで連続した波になる。遅延は sibling-index() から作る。",
-    "markup": "<div class=\"rip\"><span class=\"w\"></span><span class=\"w\"></span><span class=\"w\"></span><div class=\"core\"></div></div>"
+    "markup": "<div class=\"rip\"><span class=\"w\"></span><span class=\"w\"></span><span class=\"w\"></span><div class=\"core\"></div></div>",
+    "title_en": "Spreading ripples",
+    "note_en": "Give the same animation progressively negative delays and adding elements alone produces a continuous wave. The delays come from sibling-index()."
   },
   {
     "id": "glitch",
@@ -1394,7 +1516,9 @@
     },
     "predicted": "uncertain",
     "note": "同じ文字を擬似要素で 2 枚重ね、色をずらして帯状に切り抜く。attr() で本文を複製するので二重管理にならない。",
-    "markup": "<div class=\"gl\" data-tx=\"ERROR\">ERROR</div>"
+    "markup": "<div class=\"gl\" data-tx=\"ERROR\">ERROR</div>",
+    "title_en": "Glitch",
+    "note_en": "The same text is stacked twice as pseudo-elements, colour-shifted and clipped into bands. attr() duplicates the body text, so there is nothing to keep in sync."
   },
   {
     "id": "mask-ring",
@@ -1414,7 +1538,9 @@
     },
     "predicted": "uncertain",
     "note": "border を使わずにマスクで輪を切り出す。太さが数値なので補間でき、内側の余白も自動で追従する。border-width では色の下地が別扱いになるためこうはいかない。",
-    "markup": "<div class=\"ring\"></div>"
+    "markup": "<div class=\"ring\"></div>",
+    "title_en": "Animating ring thickness",
+    "note_en": "The ring is cut with a mask rather than a border. Thickness is a number, so it interpolates, and the inner padding follows automatically. border-width cannot do this because the colour underneath is handled separately."
   },
   {
     "id": "mask-hole",
@@ -1433,7 +1559,9 @@
     },
     "predicted": "uncertain",
     "note": "覆いの側に穴を開けて動かす。下に中身があると分かる絵を敷かないと、ただ丸が動いているようにしか見えない。覆いにも模様を入れて板であることを示す。",
-    "markup": "<div class=\"hole\"><div class=\"under\"><div class=\"tile\">1</div><div class=\"tile\">2</div><div class=\"tile\">3</div><div class=\"tile\">4</div><div class=\"tile\">5</div><div class=\"tile\">6</div></div><div class=\"cover\"></div></div>"
+    "markup": "<div class=\"hole\"><div class=\"under\"><div class=\"tile\">1</div><div class=\"tile\">2</div><div class=\"tile\">3</div><div class=\"tile\">4</div><div class=\"tile\">5</div><div class=\"tile\">6</div></div><div class=\"cover\"></div></div>",
+    "title_en": "A moving hole in a cover",
+    "note_en": "The hole is cut in the cover and moves. Without something legible underneath it just looks like a moving circle, so the cover is patterned to show it is a sheet."
   },
   {
     "id": "blend-diff",
@@ -1451,7 +1579,9 @@
     },
     "predicted": "uncertain",
     "note": "白い帯を difference で重ねると、重なった部分だけ色が反転する。文字を 2 枚用意する必要がない。",
-    "markup": "<div class=\"wrap\"><div class=\"tx\">INVERT</div><div class=\"band\"></div></div>"
+    "markup": "<div class=\"wrap\"><div class=\"tx\">INVERT</div><div class=\"band\"></div></div>",
+    "title_en": "Text inverts as a band passes",
+    "note_en": "A white band composited with difference inverts only the overlapping region. No second copy of the text is needed."
   },
   {
     "id": "poly-morph",
@@ -1469,7 +1599,9 @@
     },
     "predicted": "uncertain",
     "note": "頂点の数が同じなら polygon 同士は補間できる。数が違うと切り替わってしまうので、頂点数を揃えるのが設計の要点。",
-    "markup": "<div class=\"poly\"></div>"
+    "markup": "<div class=\"poly\"></div>",
+    "title_en": "Polygon morph",
+    "note_en": "Polygons interpolate as long as the vertex count matches. Mismatched counts snap instead, so equalising the vertex count is the design point."
   },
   {
     "id": "morph-icon",
@@ -1488,7 +1620,9 @@
     },
     "predicted": "uncertain",
     "note": "3 本の線のうち中央を消し、上下を寄せて回す。要素を差し替えず同じ 3 本のまま形が変わるので、途中で止めても破綻しない。",
-    "markup": "<div class=\"ic\"><span class=\"\"></span><span class=\"\"></span><span class=\"\"></span></div>"
+    "markup": "<div class=\"ic\"><span class=\"\"></span><span class=\"\"></span><span class=\"\"></span></div>",
+    "title_en": "Hamburger to close",
+    "note_en": "Of three lines the middle disappears and the outer two converge and rotate. No element swap — the same three lines change shape, so stopping midway never breaks."
   },
   {
     "id": "neon",
@@ -1507,7 +1641,9 @@
     },
     "predicted": "uncertain",
     "note": "影を 4 段重ねて発光の減衰を作る。明滅は steps で刻む。滑らかに補間すると蛍光灯にならない。",
-    "markup": "<div class=\"ne\">NEON</div>"
+    "markup": "<div class=\"ne\">NEON</div>",
+    "title_en": "Flickering neon tube",
+    "note_en": "Four stacked shadows build the falloff of the glow. The flicker is stepped; interpolating it smoothly gives a fluorescent lamp instead."
   },
   {
     "id": "extrude",
@@ -1525,7 +1661,9 @@
     },
     "predicted": "uncertain",
     "note": "影を 1px ずつずらして 8 段重ねると立体の側面になる。ずらす向きを動かせば、文字を回さずに光源だけが移動する。",
-    "markup": "<div class=\"ex\">SOLID</div>"
+    "markup": "<div class=\"ex\">SOLID</div>",
+    "title_en": "Extruded text, moving light source",
+    "note_en": "Eight shadows offset 1px at a time form the side of a solid. Move the offset direction and the light source travels without the letters rotating."
   },
   {
     "id": "shadow-dots",
@@ -1543,7 +1681,9 @@
     },
     "predicted": "uncertain",
     "note": "影は要素の一部なので、親を回せば影も一緒に回る。5 個の点を 1 要素で作れるうえ、まとめて変形できる。",
-    "markup": "<div class=\"sd\"></div>"
+    "markup": "<div class=\"sd\"></div>",
+    "title_en": "Five dots from one element",
+    "note_en": "A shadow is part of the element, so rotating the parent rotates the shadows with it. Five dots from one element, transformable as a group."
   },
   {
     "id": "orbit-train",
@@ -1563,7 +1703,9 @@
     },
     "predicted": "uncertain",
     "note": "同じアニメーションに 1 周期を等分した負の遅延を与えると、要素が経路上に等間隔で並んだまま流れる。位置を個別に指定する必要がない。",
-    "markup": "<div class=\"tr\"><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span></div>"
+    "markup": "<div class=\"tr\"><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span><span class=\"d\"></span></div>",
+    "title_en": "Flowing evenly along a path",
+    "note_en": "Give one animation negative delays that divide the cycle evenly and the elements flow while staying evenly spaced along the path. No per-element positioning needed."
   },
   {
     "id": "add-layers",
@@ -1581,7 +1723,9 @@
     },
     "predicted": "uncertain",
     "note": "ここが加算合成の実用点。常時の浮遊と単発の跳ねを別々のアニメーションに分けても、後勝ちで浮遊が止まらない。add がないと跳ねている間だけ浮遊が消える。",
-    "markup": "<div class=\"subject\"><span class=\"label\">Aa</span></div>"
+    "markup": "<div class=\"subject\"><span class=\"label\">Aa</span></div>",
+    "title_en": "A one-off motion on top of a constant sway",
+    "note_en": "This is where additive composition earns its keep. Constant float and a single bounce stay in separate animations without the later one killing the float. Without add, the float disappears for the duration of the bounce."
   },
   {
     "id": "glass",
@@ -1599,7 +1743,9 @@
     },
     "predicted": "uncertain",
     "note": "要素そのものではなく背後をぼかす。板が動くと背後の絵が歪んで見えるので、板の存在が動きだけで伝わる。",
-    "markup": "<div class=\"gl\"><div class=\"under\"></div><div class=\"pane\"></div></div>"
+    "markup": "<div class=\"gl\"><div class=\"under\"></div><div class=\"pane\"></div></div>",
+    "title_en": "A glass pane crossing the background",
+    "note_en": "Blurs what is behind rather than the element itself. As the pane moves the picture behind distorts, so the pane's presence is conveyed by motion alone."
   },
   {
     "id": "marquee",
@@ -1617,7 +1763,9 @@
     },
     "predicted": "uncertain",
     "note": "同じ内容を並べて 1 周期ぶん動かす。枚数は「コンテナ幅 + 1 周期」を満たす必要があり、2 枚では 1 周期動いた時点で右端に空白が出る。4 枚にして -25%（＝1 周期）動かす。",
-    "markup": "<div class=\"mq\"><div class=\"mq-in\"><span>CSS ANIMATION LAB&nbsp;·&nbsp;</span><span>CSS ANIMATION LAB&nbsp;·&nbsp;</span><span>CSS ANIMATION LAB&nbsp;·&nbsp;</span><span>CSS ANIMATION LAB&nbsp;·&nbsp;</span></div></div>"
+    "markup": "<div class=\"mq\"><div class=\"mq-in\"><span>CSS ANIMATION LAB&nbsp;·&nbsp;</span><span>CSS ANIMATION LAB&nbsp;·&nbsp;</span><span>CSS ANIMATION LAB&nbsp;·&nbsp;</span><span>CSS ANIMATION LAB&nbsp;·&nbsp;</span></div></div>",
+    "title_en": "Seamless infinite flow",
+    "note_en": "The same content repeated and moved by exactly one period. The number of copies must satisfy 'container width plus one period' — with two copies a gap appears on the right after one period. Four copies moved -25% (one period)."
   },
   {
     "id": "wave-text",
@@ -1636,7 +1784,9 @@
     },
     "predicted": "uncertain",
     "note": "負の遅延を文字ごとにずらすと、同じ上下運動が波として伝わって見える。遅延を正にすると波ではなく順送りになる。この違いは負の遅延にしか出せない。",
-    "markup": "<div class=\"head\"><span class=\"\">W</span><span class=\"\">A</span><span class=\"\">V</span><span class=\"\">E</span></div>"
+    "markup": "<div class=\"head\"><span class=\"\">W</span><span class=\"\">A</span><span class=\"\">V</span><span class=\"\">E</span></div>",
+    "title_en": "A wave crossing the letters",
+    "note_en": "Stagger negative delays per character and the same up-down motion reads as a travelling wave. Positive delays give a sequence instead of a wave. Only negative delays produce this difference."
   },
   {
     "id": "liquid",
@@ -1656,7 +1806,9 @@
     },
     "predicted": "uncertain",
     "note": "角丸を一律にした正方形を回すと、丸い窓から見える縁が波になる。角丸を小さくし塊を窓に近い大きさにすると振幅が増す。逆回転の 2 層を重ねると干渉して単調さが消える。",
-    "markup": "<div class=\"lq\"><div class=\"lq-w a\"></div><div class=\"lq-w b\"></div></div>"
+    "markup": "<div class=\"lq\"><div class=\"lq-w a\"></div><div class=\"lq-w b\"></div></div>",
+    "title_en": "A wobbling liquid surface",
+    "note_en": "Rotating a square with uniform corner radius makes the edge seen through a round window into a wave. Smaller radius and a mass closer to the window size increases the amplitude. Two counter-rotating layers interfere and remove the monotony."
   },
   {
     "id": "segment",
@@ -1676,7 +1828,9 @@
     },
     "predicted": "uncertain",
     "note": "SVG を使わずに円形の進捗を作る。conic の停止位置を型付きプロパティにすることで補間でき、マスクで中を抜いてリングにする。",
-    "markup": "<div class=\"sg\"></div>"
+    "markup": "<div class=\"sg\"></div>",
+    "title_en": "Circular progress",
+    "note_en": "Circular progress without SVG. Typing the conic stop makes it interpolable, and a mask cuts out the middle to leave a ring."
   },
   {
     "id": "skeleton",
@@ -1694,7 +1848,9 @@
     },
     "predicted": "uncertain",
     "note": "要素を動かさず背景だけを流す。行が増えても同じ 1 本の指定で済み、レイアウトも動かないので読み込み後のずれが起きない。",
-    "markup": "<div class=\"sk\"><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln s\"></div></div>"
+    "markup": "<div class=\"sk\"><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln s\"></div></div>",
+    "title_en": "Skeleton shimmer",
+    "note_en": "The elements do not move; only the background flows. One declaration covers any number of rows, and nothing in layout moves, so nothing shifts once loading finishes."
   },
   {
     "id": "pulse-badge",
@@ -1713,7 +1869,9 @@
     },
     "predicted": "uncertain",
     "note": "輪を 2 枚にして半周期ずらすと、途切れずに脈が続く。1 枚だと拍と拍の間が空いて呼びかけにならない。",
-    "markup": "<div class=\"bd\"><span class=\"halo\"></span><span class=\"halo\"></span><span class=\"dot\">3</span></div>"
+    "markup": "<div class=\"bd\"><span class=\"halo\"></span><span class=\"halo\"></span><span class=\"dot\">3</span></div>",
+    "title_en": "Pulsing badge",
+    "note_en": "Two rings offset by half a period keep the pulse continuous. With one ring there is a gap between beats and it stops reading as a call for attention."
   },
   {
     "id": "typewriter",
@@ -1732,7 +1890,9 @@
     },
     "predicted": "uncertain",
     "note": "幅を文字数ぶんの ch で刻む。等幅フォントであれば 1 文字ずつ確実に止まる。プロポーショナルだと文字ごとの幅が違うのでずれる。",
-    "markup": "<div class=\"tw\">HELLO CSS</div>"
+    "markup": "<div class=\"tw\">HELLO CSS</div>",
+    "title_en": "Typewriter",
+    "note_en": "Width is stepped in ch units, one per character. With a monospaced font it lands exactly on each character. Proportional fonts have varying widths, so it drifts."
   },
   {
     "id": "scroll-reveal",
@@ -1752,7 +1912,9 @@
     },
     "predicted": "uncertain",
     "note": "セル内をスクロールすると動く。時間ではなく位置で進むので、時計では駆動できずフィルムストリップにも開けない。JS を一切使わずに出現アニメーションが書ける。",
-    "markup": "<div class=\"sc\"><div class=\"it\">1</div><div class=\"it\">2</div><div class=\"it\">3</div><div class=\"it\">4</div><div class=\"it\">5</div><div class=\"it\">6</div></div>"
+    "markup": "<div class=\"sc\"><div class=\"it\">1</div><div class=\"it\">2</div><div class=\"it\">3</div><div class=\"it\">4</div><div class=\"it\">5</div><div class=\"it\">6</div></div>",
+    "title_en": "Revealed by scrolling",
+    "note_en": "Driven by scrolling inside the cell. It advances by position rather than time, so the clock cannot drive it and it cannot be expanded into stills. An entrance animation with no JavaScript at all."
   },
   {
     "id": "mask-arc",
@@ -1771,7 +1933,9 @@
     },
     "predicted": "uncertain",
     "note": "リング形（radial）と扇形（conic）の 2 枚を intersect で掛け合わせると弧になる。1 枚のマスクでは作れない形が、合成なら作れる。",
-    "markup": "<div class=\"arc\"></div>"
+    "markup": "<div class=\"arc\"></div>",
+    "title_en": "An arc from intersecting masks",
+    "note_en": "A ring (radial) and a sector (conic) intersected produce an arc. A shape that one mask cannot make, composition can."
   },
   {
     "id": "blend-sat",
@@ -1789,7 +1953,9 @@
     },
     "predicted": "uncertain",
     "note": "彩度 0 の灰色を saturation で重ねると、下の彩度だけがその値に置き換わる。色相と明度はそのまま残るので、形は保ったまま色だけが抜ける。フィルタと違い一部だけに掛けられる。",
-    "markup": "<div class=\"wrap\"><div class=\"under\"><div class=\"t\">1</div><div class=\"t\">2</div><div class=\"t\">3</div><div class=\"t\">4</div><div class=\"t\">5</div><div class=\"t\">6</div></div><div class=\"band\"></div></div>"
+    "markup": "<div class=\"wrap\"><div class=\"under\"><div class=\"t\">1</div><div class=\"t\">2</div><div class=\"t\">3</div><div class=\"t\">4</div><div class=\"t\">5</div><div class=\"t\">6</div></div><div class=\"band\"></div></div>",
+    "title_en": "A band that drains colour",
+    "note_en": "Grey at zero saturation composited with the saturation mode replaces only the underlying saturation. Hue and lightness survive, so the shape stays while the colour drains. Unlike a filter, it can be applied to just a part."
   },
   {
     "id": "svg-goo",
@@ -1808,7 +1974,9 @@
     },
     "predicted": "uncertain",
     "note": "blur + contrast の CSS 版と違い、しきい値を掛けるのがアルファだけなので色が濁らない。背景が透明でも成立する点も CSS 版と違う。同じ見た目を 2 通りで作れる例。",
-    "markup": "<div class=\"sg\"><span></span><span></span><span></span><svg width=\"0\" height=\"0\" aria-hidden=\"true\"><filter id=\"goo-svg\"><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"8\" result=\"b\"/><feColorMatrix in=\"b\" type=\"matrix\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -10\"/></filter></svg></div>"
+    "markup": "<div class=\"sg\"><span></span><span></span><span></span><svg width=\"0\" height=\"0\" aria-hidden=\"true\"><filter id=\"goo-svg\"><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"8\" result=\"b\"/><feColorMatrix in=\"b\" type=\"matrix\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -10\"/></filter></svg></div>",
+    "title_en": "Merging with an SVG filter",
+    "note_en": "Unlike the CSS blur-plus-contrast version, the threshold applies only to alpha, so colours do not muddy. It also works on a transparent background, which the CSS version does not. An example of the same look built two ways."
   },
   {
     "id": "has-toggle",
@@ -1828,7 +1996,9 @@
     },
     "predicted": "uncertain",
     "note": "クリックして切り替える。子の状態を親が拾えるので、JS なしでカード全体の見た目を変えられる。:has() 以前は親を変えるのに必ずスクリプトが要った。",
-    "markup": "<div class=\"card\"><label class=\"sw\"><input type=\"checkbox\"><span class=\"track\"><span class=\"knob\"></span></span></label><div class=\"ln\"></div><div class=\"ln s\"></div></div>"
+    "markup": "<div class=\"card\"><label class=\"sw\"><input type=\"checkbox\"><span class=\"track\"><span class=\"knob\"></span></span></label><div class=\"ln\"></div><div class=\"ln s\"></div></div>",
+    "title_en": "Switching the parent with :has()",
+    "note_en": "Click to toggle. The parent can read the child's state, so the whole card's appearance changes with no JavaScript. Before :has(), changing a parent always required a script."
   },
   {
     "id": "color-mix",
@@ -1847,7 +2017,9 @@
     },
     "predicted": "uncertain",
     "note": "同じ 2 色を混ぜても、経路が違えば途中の色が違う。srgb は中間で濁り、oklch は明度を保ったまま回る。混合比を型付きプロパティにすると補間できる。",
-    "markup": "<div class=\"cm\"><div class=\"sw ok\"><span>oklch</span></div><div class=\"sw sr\"><span>srgb</span></div></div>"
+    "markup": "<div class=\"cm\"><div class=\"sw ok\"><span>oklch</span></div><div class=\"sw sr\"><span>srgb</span></div></div>",
+    "title_en": "Colour paths (oklch vs srgb)",
+    "note_en": "Mixing the same two colours gives different intermediate colours depending on the path. srgb muddies in the middle; oklch turns while keeping lightness. Typing the mix ratio makes it interpolable."
   },
   {
     "id": "grid-morph",
@@ -1865,7 +2037,9 @@
     },
     "predicted": "uncertain",
     "note": "fr 値は補間できるので、要素を動かさずに枠の取り合いだけを変えられる。位置を計算して translate するのと違い、中身が正しく折り返される。",
-    "markup": "<div class=\"gm\"><div class=\"pane a\"></div><div class=\"pane b\"></div></div>"
+    "markup": "<div class=\"gm\"><div class=\"pane a\"></div><div class=\"pane b\"></div></div>",
+    "title_en": "Animating the layout itself",
+    "note_en": "fr values interpolate, so the contest for space can change without moving elements. Unlike computing positions and translating, the contents rewrap correctly."
   },
   {
     "id": "scroll-progress",
@@ -1884,7 +2058,9 @@
     },
     "predicted": "uncertain",
     "note": "セル内をスクロールすると動く。スクロール位置そのものが時間軸になるので、位置の取得も再生の制御も要らない。",
-    "markup": "<div class=\"sp\"><div class=\"track\"><div class=\"bar\"></div></div><div class=\"body\"><div class=\"ln\">1</div><div class=\"ln\">2</div><div class=\"ln\">3</div><div class=\"ln\">4</div><div class=\"ln\">5</div><div class=\"ln\">6</div><div class=\"ln\">7</div><div class=\"ln\">8</div><div class=\"ln\">9</div></div></div>"
+    "markup": "<div class=\"sp\"><div class=\"track\"><div class=\"bar\"></div></div><div class=\"body\"><div class=\"ln\">1</div><div class=\"ln\">2</div><div class=\"ln\">3</div><div class=\"ln\">4</div><div class=\"ln\">5</div><div class=\"ln\">6</div><div class=\"ln\">7</div><div class=\"ln\">8</div><div class=\"ln\">9</div></div></div>",
+    "title_en": "Scroll amount as progress",
+    "note_en": "Driven by scrolling inside the cell. The scroll position is itself the time axis, so neither reading the position nor controlling playback is needed."
   },
   {
     "id": "parallax",
@@ -1904,7 +2080,9 @@
     },
     "predicted": "uncertain",
     "note": "同じスクロール量に対して層ごとに移動量を変えるだけで奥行きが出る。位置計算も JS も要らない。",
-    "markup": "<div class=\"px\"><div class=\"sky\"></div><div class=\"hill\"></div><div class=\"fore\"></div><div class=\"filler\"><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div></div></div>"
+    "markup": "<div class=\"px\"><div class=\"sky\"></div><div class=\"hill\"></div><div class=\"fore\"></div><div class=\"filler\"><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div><div class=\"ln\"></div></div></div>",
+    "title_en": "Layers offset by scrolling",
+    "note_en": "Depth appears simply by giving each layer a different travel for the same scroll amount. No position arithmetic, no JavaScript."
   },
   {
     "id": "cube-3d",
@@ -1923,7 +2101,9 @@
     },
     "predicted": "uncertain",
     "note": "6 枚を translateZ で押し出して箱にする。1 要素では作れず、面の枚数ぶんの要素と静的な変形が要る。動かすのは親だけ。",
-    "markup": "<div class=\"cube\"><div class=\"f\">1</div><div class=\"f\">2</div><div class=\"f\">3</div><div class=\"f\">4</div><div class=\"f\">5</div><div class=\"f\">6</div></div>"
+    "markup": "<div class=\"cube\"><div class=\"f\">1</div><div class=\"f\">2</div><div class=\"f\">3</div><div class=\"f\">4</div><div class=\"f\">5</div><div class=\"f\">6</div></div>",
+    "title_en": "Cube",
+    "note_en": "Six faces pushed out with translateZ. Impossible from one element — it needs one element per face plus static transforms. Only the parent animates."
   },
   {
     "id": "carousel-3d",
@@ -1942,7 +2122,9 @@
     },
     "predicted": "uncertain",
     "note": "各カードの角度を sibling-index() から出すので、枚数を変えても CSS を書き換えなくてよい。円周上への配置を手で書かずに済む。",
-    "markup": "<div class=\"ring\"><div class=\"c\">1</div><div class=\"c\">2</div><div class=\"c\">3</div><div class=\"c\">4</div><div class=\"c\">5</div><div class=\"c\">6</div><div class=\"c\">7</div><div class=\"c\">8</div></div>"
+    "markup": "<div class=\"ring\"><div class=\"c\">1</div><div class=\"c\">2</div><div class=\"c\">3</div><div class=\"c\">4</div><div class=\"c\">5</div><div class=\"c\">6</div><div class=\"c\">7</div><div class=\"c\">8</div></div>",
+    "title_en": "Cards around a circle",
+    "note_en": "Each card's angle comes from sibling-index(), so changing the count needs no CSS edit. The arrangement around the circle is never written by hand."
   },
   {
     "id": "vf-weight",
@@ -1961,7 +2143,9 @@
     },
     "predicted": "uncertain",
     "note": "可変フォントがあれば font-weight は連続的に補間される。文字ごとに位相をずらすと太さの波になる。可変でないフォントでは段階的に飛ぶので、環境依存が出る技法。",
-    "markup": "<div class=\"head\"><span>W</span><span>E</span><span>I</span><span>G</span><span>H</span><span>T</span></div>"
+    "markup": "<div class=\"head\"><span>W</span><span>E</span><span>I</span><span>G</span><span>H</span><span>T</span></div>",
+    "title_en": "A wave of weight",
+    "note_en": "With a variable font, font-weight interpolates continuously. Offsetting the phase per character produces a wave of weight. With a non-variable font it jumps in steps, so this technique is environment-dependent."
   },
   {
     "id": "text-stroke",
@@ -1980,7 +2164,9 @@
     },
     "predicted": "uncertain",
     "note": "文字を縁取りだけにして、背景の切り抜きで下から塗る。塗りの高さを型付きプロパティにすれば満たされていく量を補間できる。",
-    "markup": "<div class=\"ts\">FILL</div>"
+    "markup": "<div class=\"ts\">FILL</div>",
+    "title_en": "An outline filling with paint",
+    "note_en": "The letters are outline only, filled from below by a background cutout. Typing the fill height makes the amount filled interpolable."
   },
   {
     "id": "dot-wave",
@@ -1999,7 +2185,9 @@
     },
     "predicted": "uncertain",
     "note": "36 個の遅延を並び順から作ると、行をまたいで斜めの波になる。遅延の係数を変えるだけで波の向きと細かさが変わる。",
-    "markup": "<div class=\"dw\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+    "markup": "<div class=\"dw\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>",
+    "title_en": "A wave across a grid",
+    "note_en": "Deriving 36 delays from the ordinal position produces a diagonal wave across rows. Changing only the delay coefficient changes the wave's direction and fineness."
   },
   {
     "id": "border-flow",
@@ -2018,7 +2206,9 @@
     },
     "predicted": "uncertain",
     "note": "border-image にグラデーションを流す書き方。ただし border-image は border-radius を無視するため角が立つ。角丸で同じことをしたいなら padding と背景で作る conic-ring の方式になる。制約が選択を決める例。",
-    "markup": "<div class=\"bf\">Aa</div>"
+    "markup": "<div class=\"bf\">Aa</div>",
+    "title_en": "A flowing edge (border-image)",
+    "note_en": "Flowing a gradient through border-image. But border-image ignores border-radius, so the corners square off. For the same effect with rounded corners, use the conic-ring approach of padding plus background. A case where the constraint decides the choice."
   },
   {
     "id": "spring-compare",
@@ -2036,7 +2226,9 @@
     },
     "predicted": "uncertain",
     "note": "linear() に多数の点を並べるとバネの減衰を CSS だけで表せる。cubic-bezier は 1 回の行き過ぎしか作れず、揺り戻しは書けない。同じ移動を並べると差がはっきり出る。",
-    "markup": "<div class=\"sc\"><div class=\"row\"><span class=\"lb\">spring</span><div class=\"b sp\"></div></div><div class=\"row\"><span class=\"lb\">ease-out</span><div class=\"b eo\"></div></div></div>"
+    "markup": "<div class=\"sc\"><div class=\"row\"><span class=\"lb\">spring</span><div class=\"b sp\"></div></div><div class=\"row\"><span class=\"lb\">ease-out</span><div class=\"b eo\"></div></div></div>",
+    "title_en": "Spring versus deceleration",
+    "note_en": "Listing many points in linear() expresses spring damping in pure CSS. cubic-bezier can only overshoot once and cannot write the return swing. Side by side over the same travel the difference is obvious."
   },
   {
     "id": "checker-flip",
@@ -2055,7 +2247,9 @@
     },
     "predicted": "uncertain",
     "note": "16 枚のタイルを並び順の遅延で裏返す。裏面を別の色にしておくと、面が波のように入れ替わって見える。",
-    "markup": "<div class=\"cf\"><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span></div>"
+    "markup": "<div class=\"cf\"><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span><span><i class=\"a\"></i><i class=\"b\"></i></span></div>",
+    "title_en": "Faces flipping in sequence",
+    "note_en": "Sixteen tiles flipped with ordinal delays. Colour the back face differently and the surface appears to change like a wave."
   },
   {
     "id": "vt-swap",
@@ -2076,7 +2270,9 @@
     },
     "predicted": "uncertain",
     "note": "DOM を入れ替えるだけで、位置も大きさも自動で補間される。名前を付けた要素の前後を撮って繋ぐ仕組みなので、移動量を自分で計算する必要がない。",
-    "markup": "<div class=\"vt\"><div class=\"slot a\"><div class=\"card x\">A</div></div><div class=\"slot b\"><div class=\"card y\">B</div></div></div>"
+    "markup": "<div class=\"vt\"><div class=\"slot a\"><div class=\"card x\">A</div></div><div class=\"slot b\"><div class=\"card y\">B</div></div></div>",
+    "title_en": "Swaps interpolated automatically",
+    "note_en": "Just swap the DOM and both position and size interpolate automatically. It captures named elements before and after and joins them, so no travel distance needs computing."
   },
   {
     "id": "scope-nest",
@@ -2094,7 +2290,9 @@
     },
     "predicted": "uncertain",
     "note": "@scope の下限を指定すると、そこから内側には届かなくなる。同じクラス名でも入れ子の階層ごとに別の動きを当てられる。命名規約で衝突を避ける必要がなくなる。",
-    "markup": "<div class=\"outer\"><span class=\"dot\"></span><div class=\"inner\"><span class=\"dot\"></span></div></div>"
+    "markup": "<div class=\"outer\"><span class=\"dot\"></span><div class=\"inner\"><span class=\"dot\"></span></div></div>",
+    "title_en": "Different motion sealed into each nesting level",
+    "note_en": "Set the lower bound of @scope and it stops reaching further in. The same class name can carry different motion at each nesting level. Naming conventions to avoid collisions become unnecessary."
   },
   {
     "id": "paint-order",
@@ -2113,7 +2311,9 @@
     },
     "predicted": "uncertain",
     "note": "上が既定、下が paint-order: stroke fill。線を太くしていくと、既定では字形が潰れるのに対し、順序を逆にした方は保たれる。太い縁取りを動かすときは順序の指定が要る。",
-    "markup": "<div class=\"po\"><svg viewBox=\"0 0 190 52\"><text class=\"bad\" x=\"95\" y=\"37\" text-anchor=\"middle\">EDGE</text></svg><svg viewBox=\"0 0 190 52\"><text class=\"good\" x=\"95\" y=\"37\" text-anchor=\"middle\">EDGE</text></svg></div>"
+    "markup": "<div class=\"po\"><svg viewBox=\"0 0 190 52\"><text class=\"bad\" x=\"95\" y=\"37\" text-anchor=\"middle\">EDGE</text></svg><svg viewBox=\"0 0 190 52\"><text class=\"good\" x=\"95\" y=\"37\" text-anchor=\"middle\">EDGE</text></svg></div>",
+    "title_en": "An outline that does not eat the letters",
+    "note_en": "Top is the default, bottom is paint-order: stroke fill. As the stroke thickens the default collapses the letterforms while the reversed order preserves them. Animating a thick outline requires stating the order."
   },
   {
     "id": "drop-shadow-chain",
@@ -2131,7 +2331,9 @@
     },
     "predicted": "uncertain",
     "note": "box-shadow は矩形の外周に付くが、drop-shadow は実際の不透明な形に沿う。clip-path で切った形でも輪郭どおりに光る。多段に重ねると減衰が作れる。",
-    "markup": "<div class=\"ds\"></div>"
+    "markup": "<div class=\"ds\"></div>",
+    "title_en": "Glow that follows the shape",
+    "note_en": "box-shadow attaches to the rectangular bounding box; drop-shadow follows the actual opaque shape. Even a clip-path cutout glows along its outline. Stacking several builds a falloff."
   },
   {
     "id": "offset-rotate",
@@ -2149,7 +2351,9 @@
     },
     "predicted": "uncertain",
     "note": "上は offset-rotate: auto で経路の接線を向き、下は 0deg で向きを保つ。同じ経路でも意味が変わる。乗り物なら auto、ラベルなら固定。",
-    "markup": "<div class=\"or\"><span class=\"auto\">▲</span><span class=\"fixed\">▲</span></div>"
+    "markup": "<div class=\"or\"><span class=\"auto\">▲</span><span class=\"fixed\">▲</span></div>",
+    "title_en": "Whether to face the direction of travel",
+    "note_en": "The top uses offset-rotate: auto and faces the path tangent; the bottom uses 0deg and keeps its orientation. The same path means different things. auto for a vehicle, fixed for a label."
   },
   {
     "id": "iter-accumulate",
@@ -2167,7 +2371,9 @@
     },
     "predicted": "bad",
     "note": "左は animation-iteration-composite: accumulate を指定して 90° を 4 回繰り返したもの。仕様どおりなら 360° 回るはずだが、この環境は未対応のため毎回 0° に戻って跳ねる。右は同じ見た目をキーフレームに 360° と書いたもの。速度と量を独立に決めたい場合の手段が今は無い、という記録。",
-    "markup": "<div class=\"ia\"><div class=\"col\"><span class=\"lb\">accumulate</span><div class=\"b acc\"></div></div><div class=\"col\"><span class=\"lb\">手書き 360°</span><div class=\"b full\"></div></div></div>"
+    "markup": "<div class=\"ia\"><div class=\"col\"><span class=\"lb\">accumulate</span><div class=\"b acc\"></div></div><div class=\"col\"><span class=\"lb\">手書き 360°</span><div class=\"b full\"></div></div></div>",
+    "title_en": "Accumulating per iteration (unsupported)",
+    "note_en": "The left specifies animation-iteration-composite: accumulate and repeats 90 degrees four times. By spec it should turn 360 degrees, but this environment does not support it, so it snaps back to 0 each time. The right writes 360 degrees into the keyframes for the same look. A record that there is currently no way to decide speed and amount independently."
   },
   {
     "id": "container-anim",
@@ -2185,7 +2391,9 @@
     },
     "predicted": "uncertain",
     "note": "画面幅ではなく置かれた入れ物の幅で分岐する。同じ部品が、狭い場所では控えめに、広い場所では大きく動く。メディアクエリでは書けない。",
-    "markup": "<div class=\"ca\"><div class=\"box narrow\"><span></span></div><div class=\"box wide\"><span></span></div></div>"
+    "markup": "<div class=\"ca\"><div class=\"box narrow\"><span></span></div><div class=\"box wide\"><span></span></div></div>",
+    "title_en": "Switching motion by width",
+    "note_en": "Branches on the width of the container it sits in, not the viewport. The same part moves modestly in a narrow place and boldly in a wide one. Not expressible with media queries."
   },
   {
     "id": "bg-blend",
@@ -2204,7 +2412,9 @@
     },
     "predicted": "uncertain",
     "note": "要素を分けずに 1 つの背景の中で層を混ぜる。DOM が増えないので、装飾のためだけの要素を置かずに済む。",
-    "markup": "<div class=\"bb\"></div>"
+    "markup": "<div class=\"bb\"></div>",
+    "title_en": "Blending and animating backgrounds",
+    "note_en": "Layers are blended within a single background rather than split into elements. The DOM does not grow, so no element exists purely for decoration."
   },
   {
     "id": "dof-stack",
@@ -2224,7 +2434,9 @@
     },
     "predicted": "uncertain",
     "note": "奥行きに応じてぼかしを変えると、動かした瞬間に前後関係が読める。逆方向に動かすだけの視差（F011）が奥行きにならなかったのに対し、こちらは成立するかを見たい。",
-    "markup": "<div class=\"df\"><span class=\"l1\"></span><span class=\"l2\"></span><span class=\"l3\"></span></div>"
+    "markup": "<div class=\"df\"><span class=\"l1\"></span><span class=\"l2\"></span><span class=\"l3\"></span></div>",
+    "title_en": "Layers blurring with distance",
+    "note_en": "Vary blur with depth and the front-to-back order reads the instant it moves. Where parallax by opposed motion alone failed to read as depth (F011), the question is whether this succeeds."
   },
   {
     "id": "seg-ring",
@@ -2243,7 +2455,9 @@
     },
     "predicted": "uncertain",
     "note": "目盛りを 1 本ずつ要素にせず、繰り返しの円錐グラデーションで描く。本数を変えるのが数値ひとつで済む。",
-    "markup": "<div class=\"sr\"></div>"
+    "markup": "<div class=\"sr\"></div>",
+    "title_en": "A ring with tick marks",
+    "note_en": "The ticks are drawn with a repeating conic gradient rather than one element each. Changing the count is a single number."
   },
   {
     "id": "path-morph",
@@ -2261,7 +2475,9 @@
     },
     "predicted": "uncertain",
     "note": "コマンドの並びが同じパス同士は補間できる。polygon より曲線を扱えるが、命令の順序と個数を揃える制約は同じ。",
-    "markup": "<div class=\"pm\"></div>"
+    "markup": "<div class=\"pm\"></div>",
+    "title_en": "Path interpolation",
+    "note_en": "Paths interpolate as long as their command sequences match. It handles curves where polygon cannot, but the constraint of matching command order and count is the same."
   },
   {
     "id": "tab-machine",
@@ -2281,7 +2497,9 @@
     },
     "predicted": "uncertain",
     "note": "タブを押して切り替えられる。ラジオの状態を兄弟結合子で拾うだけで、JS なしに状態と遷移が成立する。下線が滑るのも CSS だけ。",
-    "markup": "<div class=\"tm\"><input type=\"radio\" name=\"tm\" id=\"tm-1\" checked><input type=\"radio\" name=\"tm\" id=\"tm-2\"><input type=\"radio\" name=\"tm\" id=\"tm-3\"><div class=\"tabs\"><label for=\"tm-1\">1</label><label for=\"tm-2\">2</label><label for=\"tm-3\">3</label></div><div class=\"panes\"><div class=\"pane\">1</div><div class=\"pane\">2</div><div class=\"pane\">3</div></div></div>"
+    "markup": "<div class=\"tm\"><input type=\"radio\" name=\"tm\" id=\"tm-1\" checked><input type=\"radio\" name=\"tm\" id=\"tm-2\"><input type=\"radio\" name=\"tm\" id=\"tm-3\"><div class=\"tabs\"><label for=\"tm-1\">1</label><label for=\"tm-2\">2</label><label for=\"tm-3\">3</label></div><div class=\"panes\"><div class=\"pane\">1</div><div class=\"pane\">2</div><div class=\"pane\">3</div></div></div>",
+    "title_en": "A state machine in pure CSS",
+    "note_en": "Press a tab to switch. Picking up a radio's state with a sibling combinator gives state and transitions with no JavaScript. The sliding underline is pure CSS too."
   },
   {
     "id": "flash",
@@ -2300,7 +2518,9 @@
     },
     "predicted": "uncertain",
     "note": "brightness と contrast を重ねて一瞬だけ飛ばす。色を変えずに強度だけを跳ね上げられるので、元の配色を壊さない。",
-    "markup": "<div class=\"fl\"><span class=\"l\"></span><span class=\"l s\"></span></div>"
+    "markup": "<div class=\"fl\"><span class=\"l\"></span><span class=\"l s\"></span></div>",
+    "title_en": "Flash",
+    "note_en": "brightness and contrast stacked to blow out for an instant. Intensity alone spikes without changing hue, so the original palette survives."
   },
   {
     "id": "mask-text-scan",
@@ -2318,7 +2538,9 @@
     },
     "predicted": "uncertain",
     "note": "塗りは background-clip: text、露出は mask と、切り抜きを 2 系統同時に使う。片方だけでは「色が流れる」か「現れる」かのどちらかにしかならない。",
-    "markup": "<div class=\"mt\">SCANNING</div>"
+    "markup": "<div class=\"mt\">SCANNING</div>",
+    "title_en": "Scanning across the letters",
+    "note_en": "The fill uses background-clip: text and the reveal uses a mask — two cutout systems at once. Either alone gives only 'colour flows' or 'it appears', not both."
   },
   {
     "id": "range-control",
@@ -2337,7 +2559,9 @@
     },
     "predicted": "uncertain",
     "note": "同じアニメーションでも、視界のどの区間に割り当てるかで印象が変わる。上から順に「入り始めてすぐ」「入りきる頃」「画面中央」。スクロールして比べる。",
-    "markup": "<div class=\"rc\"><div class=\"body\"><div class=\"it r1\"><span>range 1</span></div><div class=\"it r2\"><span>range 2</span></div><div class=\"it r3\"><span>range 3</span></div><div class=\"sp\"></div><div class=\"sp\"></div><div class=\"sp\"></div><div class=\"sp\"></div><div class=\"sp\"></div><div class=\"sp\"></div></div></div>"
+    "markup": "<div class=\"rc\"><div class=\"body\"><div class=\"it r1\"><span>range 1</span></div><div class=\"it r2\"><span>range 2</span></div><div class=\"it r3\"><span>range 3</span></div><div class=\"sp\"></div><div class=\"sp\"></div><div class=\"sp\"></div><div class=\"sp\"></div><div class=\"sp\"></div><div class=\"sp\"></div></div></div>",
+    "title_en": "Changing the active range",
+    "note_en": "The same animation reads differently depending on which part of the viewport range it is assigned to. Top to bottom: 'just entering', 'fully entered', 'screen centre'. Scroll to compare."
   },
   {
     "id": "perspective-move",
@@ -2355,7 +2579,9 @@
     },
     "predicted": "uncertain",
     "note": "物ではなく見る位置を動かす。並んだ層はそのままなのに、視差が生まれて空間として読める。要素ごとに移動量を計算する必要がない。",
-    "markup": "<div class=\"pv\"><span class=\"p1\"></span><span class=\"p2\"></span><span class=\"p3\"></span><span class=\"p4\"></span><span class=\"p5\"></span></div>"
+    "markup": "<div class=\"pv\"><span class=\"p1\"></span><span class=\"p2\"></span><span class=\"p3\"></span><span class=\"p4\"></span><span class=\"p5\"></span></div>",
+    "title_en": "Moving the viewpoint itself",
+    "note_en": "Moves the viewing position rather than the objects. The stacked layers stay put, yet parallax appears and it reads as space. No per-element travel arithmetic."
   },
   {
     "id": "popover-anim",
@@ -2377,7 +2603,9 @@
     },
     "predicted": "uncertain",
     "note": "ボタンを押して開閉する。閉じる側までアニメーションさせるには overlay も遷移対象に入れる必要がある。これが無いと最上位レイヤーから即座に外れ、出るときだけ動いて消えるときは瞬間になる。配置はアンカーで決めているので位置計算も要らない。",
-    "markup": "<div class=\"pw\"><button popovertarget=\"pa-sheet\">開く</button><div id=\"pa-sheet\" popover class=\"pop\"><div class=\"bar\"></div><div class=\"line\"></div><div class=\"line s\"></div></div></div>"
+    "markup": "<div class=\"pw\"><button popovertarget=\"pa-sheet\">開く</button><div id=\"pa-sheet\" popover class=\"pop\"><div class=\"bar\"></div><div class=\"line\"></div><div class=\"line s\"></div></div></div>",
+    "title_en": "Popover entry and exit",
+    "note_en": "Press the button to toggle. Animating the closing side requires putting overlay in the transition list too. Without it the element leaves the top layer immediately, so it animates in and vanishes instantly on the way out. Placement comes from an anchor, so there is no position arithmetic either."
   },
   {
     "id": "svg-draw",
@@ -2396,7 +2624,9 @@
     },
     "predicted": "uncertain",
     "note": "pathLength=\"100\" を付けると、実際の長さに関係なく破線の単位を 100 に正規化できる。長さを測って dasharray に書く手間がなくなり、パスを描き替えても指定を直さなくてよい。",
-    "markup": "<svg class=\"dr\" viewBox=\"0 0 120 78\"><path pathLength=\"100\" d=\"M10 54 L32 24 L56 46 L82 12 L110 38\"/></svg>"
+    "markup": "<svg class=\"dr\" viewBox=\"0 0 120 78\"><path pathLength=\"100\" d=\"M10 54 L32 24 L56 46 L82 12 L110 38\"/></svg>",
+    "title_en": "A line being drawn",
+    "note_en": "pathLength=\"100\" normalises the dash unit to 100 regardless of the real length. No measuring the path to write dasharray, and redrawing the path needs no edit to the declaration."
   },
   {
     "id": "mask-subtract",
@@ -2415,7 +2645,9 @@
     },
     "predicted": "uncertain",
     "note": "面から円を引き算する。radial-gradient の透明部分で抜くのと違い、抜く形と抜かれる面を別々に書けるので、穴の数を増やすのがレイヤーの追加だけで済む。",
-    "markup": "<div class=\"ms\"></div>"
+    "markup": "<div class=\"ms\"></div>",
+    "title_en": "Punching holes by subtracting masks",
+    "note_en": "Circles subtracted from a plane. Unlike punching through with a radial-gradient's transparent part, the cutting shape and the cut surface are written separately, so adding holes is just adding layers."
   },
   {
     "id": "scroll-stuck",
@@ -2436,7 +2668,9 @@
     },
     "predicted": "uncertain",
     "note": "スクロールして見出しが上に貼り付くと、高さが半分になり色が変わり「貼り付き中」の印が出る。貼り付きを直接問う @container scroll-state(stuck) は構文が通るのに評価されないため（F030）、スクロール量そのものを時間軸にして同じ見た目を作っている。貼り付くまでの余白ぶんを変化の区間に割り当てるのが要点。",
-    "markup": "<div class=\"ss\"><div class=\"hd\"><div class=\"hd-in\"><span class=\"ttl\">HEADER</span><span class=\"tag\">貼り付き中</span></div></div><div class=\"body\"><div class=\"ln\">1</div><div class=\"ln\">2</div><div class=\"ln\">3</div><div class=\"ln\">4</div><div class=\"ln\">5</div><div class=\"ln\">6</div><div class=\"ln\">7</div><div class=\"ln\">8</div></div></div>"
+    "markup": "<div class=\"ss\"><div class=\"hd\"><div class=\"hd-in\"><span class=\"ttl\">HEADER</span><span class=\"tag\">貼り付き中</span></div></div><div class=\"body\"><div class=\"ln\">1</div><div class=\"ln\">2</div><div class=\"ln\">3</div><div class=\"ln\">4</div><div class=\"ln\">5</div><div class=\"ln\">6</div><div class=\"ln\">7</div><div class=\"ln\">8</div></div></div>",
+    "title_en": "A heading that changes the moment it sticks",
+    "note_en": "Scroll until the heading sticks to the top and it halves in height, changes colour, and shows a 'stuck' marker. @container scroll-state(stuck), which asks about stickiness directly, parses but is never evaluated (F030), so the same look is built by using the scroll amount itself as the time axis. The key is assigning the change to the range covering the gap before it sticks."
   },
   {
     "id": "anchor-follow",
@@ -2456,7 +2690,9 @@
     },
     "predicted": "uncertain",
     "note": "注釈側は「どこに付くか」しか書いていない。対象が動けば配置も追随する。座標の受け渡しが不要になるので、注釈を出す仕組みから位置計算が消える。",
-    "markup": "<div class=\"af\"><span class=\"dot\"></span><span class=\"tip\">ここ</span></div>"
+    "markup": "<div class=\"af\"><span class=\"dot\"></span><span class=\"tip\">ここ</span></div>",
+    "title_en": "An annotation following its target",
+    "note_en": "The annotation only states what it attaches to. Move the target and the placement follows. No coordinates are passed around, so position arithmetic disappears from the annotation mechanism."
   },
   {
     "id": "plus-lighter",
@@ -2474,7 +2710,9 @@
     },
     "predicted": "uncertain",
     "note": "screen と違い、重なった値をそのまま加算する。三色が重なった中心が白に飛ぶ。光源が複数ある場面の表現に向く。",
-    "markup": "<div class=\"pl\"><span class=\"a\"></span><span class=\"b\"></span><span class=\"c\"></span></div>"
+    "markup": "<div class=\"pl\"><span class=\"a\"></span><span class=\"b\"></span><span class=\"c\"></span></div>",
+    "title_en": "Light adding up",
+    "note_en": "Unlike screen, it adds the overlapping values directly. Where all three colours meet, the centre blows out to white. Suited to scenes with multiple light sources."
   },
   {
     "id": "marker-anim",
@@ -2494,7 +2732,9 @@
     },
     "predicted": "bad",
     "note": "左は ::marker に animation-name を当てたもの。計算値としては適用されるのにアニメーションは生成されず、色は止まったまま。右は list-style: none にして ::before を自前で置いたもので、こちらは動く。標準のマーカーを動かしたいなら置き換えるしかない、という記録。",
-    "markup": "<div class=\"mk\"><ul class=\"native\"><li>::marker</li><li>を</li><li>動かす</li></ul><ul class=\"pseudo\"><li>::before</li><li>で</li><li>置き換え</li></ul></div>"
+    "markup": "<div class=\"mk\"><ul class=\"native\"><li>::marker</li><li>を</li><li>動かす</li></ul><ul class=\"pseudo\"><li>::before</li><li>で</li><li>置き換え</li></ul></div>",
+    "title_en": "::marker cannot be animated (with a workaround)",
+    "note_en": "The left applies animation-name to ::marker. It applies as a computed value but no animation is generated and the colour stays fixed. The right uses list-style: none with a hand-placed ::before, and that does animate. A record that animating the standard marker means replacing it."
   },
   {
     "id": "ruby-emphasis",
@@ -2513,7 +2753,9 @@
     },
     "predicted": "uncertain",
     "note": "傍点は日本語組版の強調手段だが、動かした例をほとんど見ない。文字ごとに色を遅らせると、読ませたい順に点が灯る。文字自体は動かないので可読性を損なわない。",
-    "markup": "<div class=\"re\"><span>強</span><span>調</span><span>し</span><span>た</span><span>い</span></div>"
+    "markup": "<div class=\"re\"><span>強</span><span>調</span><span>し</span><span>た</span><span>い</span></div>",
+    "title_en": "Emphasis dots lighting in sequence",
+    "note_en": "Emphasis marks are a Japanese typesetting device for stress, but animated examples are rare. Delay the colour per character and the dots light in reading order. The letters do not move, so legibility is untouched."
   },
   {
     "id": "counter-progress",
@@ -2532,7 +2774,9 @@
     },
     "predicted": "uncertain",
     "note": "割合を 1 つの型付きプロパティに持たせ、棒の長さと数字の両方をそこから導く。数値と表示がずれない。JS で 2 か所を更新する必要がなくなる。",
-    "markup": "<div class=\"cp\"><div class=\"track\"><div class=\"fill\"></div></div><div class=\"pct\"></div></div>"
+    "markup": "<div class=\"cp\"><div class=\"track\"><div class=\"fill\"></div></div><div class=\"pct\"></div></div>",
+    "title_en": "Number and length from one value",
+    "note_en": "The ratio lives in one typed property and both the bar length and the number derive from it. The value and its display cannot drift apart. No updating two places in JavaScript."
   },
   {
     "id": "distort",
@@ -2551,7 +2795,9 @@
     },
     "predicted": "uncertain",
     "note": "ノイズの生成そのものは CSS から動かせない。代わりに歪みを固定して中身を動かすと、面を横切るたびに違う歪み方をする。フィルタ側を動かさずに変化を出す考え方。",
-    "markup": "<div class=\"ds\"><span class=\"b\"></span><svg width=\"0\" height=\"0\" aria-hidden=\"true\"><filter id=\"dist-f\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.022 0.055\" numOctaves=\"2\" seed=\"7\" result=\"n\"/><feDisplacementMap in=\"SourceGraphic\" in2=\"n\" scale=\"17\" xChannelSelector=\"R\" yChannelSelector=\"G\"/></filter></svg></div>"
+    "markup": "<div class=\"ds\"><span class=\"b\"></span><svg width=\"0\" height=\"0\" aria-hidden=\"true\"><filter id=\"dist-f\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.022 0.055\" numOctaves=\"2\" seed=\"7\" result=\"n\"/><feDisplacementMap in=\"SourceGraphic\" in2=\"n\" scale=\"17\" xChannelSelector=\"R\" yChannelSelector=\"G\"/></filter></svg></div>",
+    "title_en": "Crossing a distorted surface",
+    "note_en": "Generating noise itself cannot be animated from CSS. Instead the distortion is fixed and the contents move, so each pass across the surface distorts differently. A way to produce change without animating the filter."
   },
   {
     "id": "clip-margin",
@@ -2570,7 +2816,9 @@
     },
     "predicted": "uncertain",
     "note": "overflow: hidden では境界で完全に切れるが、clip なら余白を指定してその分だけはみ出させられる。バッジや影を出しつつ遠くのはみ出しは切る、が 1 行で書ける。スクロールも生まれない。",
-    "markup": "<div class=\"cm\"><div class=\"box\"><span class=\"badge\">9</span></div></div>"
+    "markup": "<div class=\"cm\"><div class=\"box\"><span class=\"badge\">9</span></div></div>",
+    "title_en": "Allowing a fixed amount of overflow",
+    "note_en": "overflow: hidden cuts exactly at the boundary; clip takes a margin and lets that much through. 'Let badges and shadows out but cut distant overflow' becomes one line. It also creates no scroll container."
   },
   {
     "id": "corner-shape",
@@ -2588,7 +2836,9 @@
     },
     "predicted": "uncertain",
     "note": "角丸の「丸さの種類」を指数で指定する。数値なので補間でき、四角と円の間だけでなく、内側にえぐれた形まで連続的に動かせる。border-radius だけでは出せない形。",
-    "markup": "<div class=\"cs\"></div>"
+    "markup": "<div class=\"cs\"></div>",
+    "title_en": "Changing the shape of the corner itself",
+    "note_en": "Specifies the kind of roundness by exponent. Being a number it interpolates, and it moves continuously not only between square and circle but into inward-scooped shapes. Forms border-radius alone cannot produce."
   },
   {
     "id": "pie",
@@ -2607,7 +2857,9 @@
     },
     "predicted": "uncertain",
     "note": "扇の境界を型付きの角度で持つと、区切りを別々に動かせる。SVG も要素の分割も要らず、1 要素で多色の円グラフになる。",
-    "markup": "<div class=\"pie\"></div>"
+    "markup": "<div class=\"pie\"></div>",
+    "title_en": "A pie chart growing",
+    "note_en": "Hold the sector boundaries as typed angles and each division animates separately. No SVG and no splitting into elements — a multi-coloured pie chart from one element."
   },
   {
     "id": "trail-text",
@@ -2626,7 +2878,9 @@
     },
     "predicted": "uncertain",
     "note": "影を進行方向の反対側へ段階的に薄く置く。要素は 1 つのまま残像になる。向きを反転させる瞬間に影の並びも反転させないと、尾が前に出てしまう。",
-    "markup": "<div class=\"tt\">RUSH</div>"
+    "markup": "<div class=\"tt\">RUSH</div>",
+    "title_en": "Letters trailing a tail",
+    "note_en": "Shadows placed progressively fainter behind the direction of travel. The element stays single and becomes its own afterimage. The shadow order must flip at the moment direction reverses, or the tail leads instead of follows."
   },
   {
     "id": "backdrop-invert",
@@ -2644,7 +2898,9 @@
     },
     "predicted": "uncertain",
     "note": "backdrop-filter はぼかしだけではない。反転を掛けると、板の下だけが色も文字も反転する。ブレンドと違い板そのものには色が要らない。",
-    "markup": "<div class=\"bi\"><div class=\"under\"><div class=\"t\">1</div><div class=\"t\">2</div><div class=\"t\">3</div><div class=\"t\">4</div><div class=\"t\">5</div><div class=\"t\">6</div></div><div class=\"band\"></div></div>"
+    "markup": "<div class=\"bi\"><div class=\"under\"><div class=\"t\">1</div><div class=\"t\">2</div><div class=\"t\">3</div><div class=\"t\">4</div><div class=\"t\">5</div><div class=\"t\">6</div></div><div class=\"band\"></div></div>",
+    "title_en": "A band that inverts what is behind",
+    "note_en": "backdrop-filter is not only blur. Apply inversion and only what lies under the pane inverts, colour and text alike. Unlike blending, the pane itself needs no colour."
   },
   {
     "id": "shape-fn",
@@ -2662,7 +2918,9 @@
     },
     "predicted": "uncertain",
     "note": "path() は絶対座標なので箱の大きさに追従しなかった（F003）。shape() は % で書けるため、同じ形を大きさの違う場所で使い回せる。曲線を含む形が初めて可変幅で成立する。",
-    "markup": "<div class=\"sf\"></div>"
+    "markup": "<div class=\"sf\"></div>",
+    "title_en": "Paths writable in percentages",
+    "note_en": "path() uses absolute coordinates and did not follow the box size (F003). shape() can be written in %, so the same form is reusable at different sizes. Curved shapes finally work at variable width."
   },
   {
     "id": "attr-param",
@@ -2680,7 +2938,9 @@
     },
     "predicted": "uncertain",
     "note": "振れ幅を属性で持たせる。インラインの style を書かずに要素ごとの値を渡せるので、CSS 側は 1 本のままで済む。生成側は属性を出すだけでよくなる。",
-    "markup": "<div class=\"ap\"><span data-d=\"6px\"></span><span data-d=\"18px\"></span><span data-d=\"32px\"></span></div>"
+    "markup": "<div class=\"ap\"><span data-d=\"6px\"></span><span data-d=\"18px\"></span><span data-d=\"32px\"></span></div>",
+    "title_en": "Passing the amount of motion from HTML",
+    "note_en": "The amplitude lives in an attribute. Per-element values pass without inline style, so the CSS side stays a single declaration. The generating side only has to emit an attribute."
   },
   {
     "id": "sibling-norm",
@@ -2699,7 +2959,9 @@
     },
     "predicted": "uncertain",
     "note": "並び順を総数で割ると 0 から 1 の位置になる。この正規化された値から遅延も色も出せば、要素数を変えても勾配の形が変わらない。個数を CSS に書かずに済む。",
-    "markup": "<div class=\"sn\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+    "markup": "<div class=\"sn\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>",
+    "title_en": "A gradient independent of count",
+    "note_en": "Dividing the ordinal by the total gives a position from 0 to 1. Derive both delay and colour from that normalised value and the gradient keeps its shape whatever the element count. The count never appears in the CSS."
   },
   {
     "id": "inherit-drive",
@@ -2717,7 +2979,9 @@
     },
     "predicted": "uncertain",
     "note": "継承する型付きプロパティを親で 1 本だけ動かし、子はその値を各自の係数で読む。アニメーションの本数が要素数に比例しないので、数が増えても軽い。",
-    "markup": "<div class=\"idr\"><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+    "markup": "<div class=\"idr\"><span></span><span></span><span></span><span></span><span></span><span></span></div>",
+    "title_en": "One animation on the parent driving every child",
+    "note_en": "A single inherited typed property animates on the parent and each child reads it through its own coefficient. The number of animations does not scale with the element count, so it stays cheap as the count grows."
   },
   {
     "id": "at-function",
@@ -2735,7 +2999,9 @@
     },
     "predicted": "uncertain",
     "note": "同じ計算式を何度も書かずに済む。値の作り方に名前が付くので、意図が式ではなく名前で読める。カスタムプロパティでは持てなかった「引数を取る」がここで入る。",
-    "markup": "<div class=\"af\"><span class=\"a\"></span><span class=\"b\"></span><span class=\"c\"></span></div>"
+    "markup": "<div class=\"af\"><span class=\"a\"></span><span class=\"b\"></span><span class=\"c\"></span></div>",
+    "title_en": "Defining your own CSS function",
+    "note_en": "The same expression need not be written repeatedly. Naming how a value is produced means the intent reads as a name rather than a formula. Taking arguments — impossible with custom properties — arrives here."
   },
   {
     "id": "if-branch",
@@ -2755,7 +3021,9 @@
     },
     "predicted": "uncertain",
     "note": "型付きプロパティを steps で刻んで動かし、その値で分岐する。キーフレームに色を並べる代わりに、値の意味と見た目の対応を 1 か所にまとめられる。",
-    "markup": "<div class=\"ib\"></div>"
+    "markup": "<div class=\"ib\"></div>",
+    "title_en": "Switching values by condition",
+    "note_en": "A typed property is stepped and the value drives a branch. Instead of listing colours in keyframes, the correspondence between a value's meaning and its appearance lives in one place."
   },
   {
     "id": "details-anim",
@@ -2776,7 +3044,9 @@
     },
     "predicted": "uncertain",
     "note": "クリックして開閉する。開閉そのものはブラウザが持っているので、高さの遷移を書くだけで成立する。content-visibility を allow-discrete で繋がないと、閉じるときに中身が即座に消える。",
-    "markup": "<details class=\"dt\"><summary>開く</summary><div class=\"in\"><div class=\"line\"></div><div class=\"line s\"></div></div></details>"
+    "markup": "<details class=\"dt\"><summary>開く</summary><div class=\"in\"><div class=\"line\"></div><div class=\"line s\"></div></div></details>",
+    "title_en": "An accordion with no JavaScript",
+    "note_en": "Click to open and close. The browser owns the toggling itself, so writing the height transition is enough. Without bridging content-visibility with allow-discrete, the contents vanish instantly on close."
   },
   {
     "id": "timeline-scope",
@@ -2796,7 +3066,9 @@
     },
     "predicted": "uncertain",
     "note": "タイムラインに名前を付けて共有範囲を広げると、スクロール領域の外にある要素からも参照できる。進捗表示をスクロールの中に押し込まなくてよくなる。",
-    "markup": "<div class=\"tsw\"><div class=\"ind\"></div><div class=\"box\"><div class=\"ln\">1</div><div class=\"ln\">2</div><div class=\"ln\">3</div><div class=\"ln\">4</div><div class=\"ln\">5</div><div class=\"ln\">6</div><div class=\"ln\">7</div><div class=\"ln\">8</div></div></div>"
+    "markup": "<div class=\"tsw\"><div class=\"ind\"></div><div class=\"box\"><div class=\"ln\">1</div><div class=\"ln\">2</div><div class=\"ln\">3</div><div class=\"ln\">4</div><div class=\"ln\">5</div><div class=\"ln\">6</div><div class=\"ln\">7</div><div class=\"ln\">8</div></div></div>",
+    "title_en": "Driven by scrolling somewhere else",
+    "note_en": "Name the timeline and widen its sharing scope and elements outside the scroll container can reference it. Progress indicators no longer have to be pushed inside the scroll area."
   },
   {
     "id": "mixed-timelines",
@@ -2815,7 +3087,9 @@
     },
     "predicted": "uncertain",
     "note": "1 つの要素に、時間で進むものとスクロールで進むものを同時に持たせられる。常時ゆらいでいるものが、視界に入ったときだけ現れる、といった重ね方ができる。",
-    "markup": "<div class=\"mt\"><div class=\"pad\"></div><div class=\"it\">1</div><div class=\"it\">2</div><div class=\"it\">3</div><div class=\"it\">4</div><div class=\"pad\"></div></div>"
+    "markup": "<div class=\"mt\"><div class=\"pad\"></div><div class=\"it\">1</div><div class=\"it\">2</div><div class=\"it\">3</div><div class=\"it\">4</div><div class=\"pad\"></div></div>",
+    "title_en": "Time and scroll at once",
+    "note_en": "One element can carry something advancing by time and something advancing by scroll simultaneously. It allows layerings such as a constant sway that only appears once in view."
   },
   {
     "id": "view-inset",
@@ -2834,7 +3108,9 @@
     },
     "predicted": "uncertain",
     "note": "「視界に入った」と判定する縁を内側や外側へずらせる。同じ範囲指定でも、上から順に「早めに始まる」「標準」「遅れて始まる」になる。",
-    "markup": "<div class=\"vi\"><div class=\"pad\"></div><div class=\"it i1\">inset 1</div><div class=\"it i2\">inset 2</div><div class=\"it i3\">inset 3</div><div class=\"pad\"></div></div>"
+    "markup": "<div class=\"vi\"><div class=\"pad\"></div><div class=\"it i1\">inset 1</div><div class=\"it i2\">inset 2</div><div class=\"it i3\">inset 3</div><div class=\"pad\"></div></div>",
+    "title_en": "Shifting the detection boundary",
+    "note_en": "The edge at which something counts as 'in view' can be shifted inward or outward. With the same range specification, top to bottom gives 'starts early', 'standard', 'starts late'."
   },
   {
     "id": "user-valid",
@@ -2854,7 +3130,9 @@
     },
     "predicted": "uncertain",
     "note": "メールアドレスを入力してみる。:invalid と違い、利用者が触った後にしか反応しないので、初期表示でいきなり赤くならない。検証の演出から JS が消える。",
-    "markup": "<form class=\"uv\"><input type=\"email\" placeholder=\"mail@example.com\" required><span class=\"msg\"></span></form>"
+    "markup": "<form class=\"uv\"><input type=\"email\" placeholder=\"mail@example.com\" required><span class=\"msg\"></span></form>",
+    "title_en": "Reacting to input validity",
+    "note_en": "Try entering an email address. Unlike :invalid it only reacts after the user has interacted, so nothing turns red on first paint. JavaScript disappears from validation feedback."
   },
   {
     "id": "field-grow",
@@ -2873,7 +3151,9 @@
     },
     "predicted": "uncertain",
     "note": "文字を打つと幅が変わる。これまで幅の追従は隠し要素で計測するしかなかった。遷移を付けると伸縮が滑らかになるかも確かめる。",
-    "markup": "<div class=\"fg\"><input type=\"text\" value=\"入力\" size=\"1\"></div>"
+    "markup": "<div class=\"fg\"><input type=\"text\" value=\"入力\" size=\"1\"></div>",
+    "title_en": "A field growing to fit its contents",
+    "note_en": "Type and the width changes. Until now, width following content required measuring with a hidden element. Also checks whether adding a transition makes the resizing smooth."
   },
   {
     "id": "popover-backdrop",
@@ -2893,7 +3173,9 @@
     },
     "predicted": "uncertain",
     "note": "ボタンを押す。::backdrop は最上位レイヤーの裏側の面で、そこにぼかしを掛けると背後が沈む。要素を自分で敷く必要がなく、閉じたときに残らない。",
-    "markup": "<div class=\"pb\"><button popovertarget=\"pb-sheet\">開く</button><div id=\"pb-sheet\" popover class=\"pop\"><div class=\"bar\"></div><div class=\"line\"></div></div></div>"
+    "markup": "<div class=\"pb\"><button popovertarget=\"pb-sheet\">開く</button><div id=\"pb-sheet\" popover class=\"pop\"><div class=\"bar\"></div><div class=\"line\"></div></div></div>",
+    "title_en": "Sinking what is behind",
+    "note_en": "Press the button. ::backdrop is the surface behind the top layer; blurring it sinks everything behind. No element to lay down yourself, and nothing left over once closed."
   },
   {
     "id": "first-letter",
@@ -2913,7 +3195,9 @@
     },
     "predicted": "bad",
     "note": "上は ::first-letter に animation-name を当てたもので、計算値が none になり指定自体が受け付けられない。::marker が「指定は通るが動かない」だったのに対し、こちらは「指定が消える」。同じ意図でも失敗の仕方が違う。下は頭文字を要素で包んだもので、こちらは動く。",
-    "markup": "<div class=\"fw\"><p class=\"fl\">::first-letter に当てた場合。頭文字は大きくなるが動かない。</p><p class=\"fs\"><span class=\"cap\">回</span>避として要素で包んだ場合。こちらは動く。</p></div>"
+    "markup": "<div class=\"fw\"><p class=\"fl\">::first-letter に当てた場合。頭文字は大きくなるが動かない。</p><p class=\"fs\"><span class=\"cap\">回</span>避として要素で包んだ場合。こちらは動く。</p></div>",
+    "title_en": "::first-letter cannot be animated (with a workaround)",
+    "note_en": "The top applies animation-name to ::first-letter; the computed value becomes none and the declaration is not accepted at all. Where ::marker was 'accepted but inert', this one is 'erased'. The same intent fails in different ways. The bottom wraps the initial in an element, and that animates."
   },
   {
     "id": "contrast-auto",
@@ -2932,7 +3216,9 @@
     },
     "predicted": "uncertain",
     "note": "背景と文字色を同じ 1 つの値から導く。背景が明るくなれば文字は黒へ、暗くなれば白へ自動で切り替わる。閾値を自分で持たなくてよくなる。",
-    "markup": "<div class=\"ca\">TEXT</div>"
+    "markup": "<div class=\"ca\">TEXT</div>",
+    "title_en": "Text colour inverting automatically",
+    "note_en": "Background and text colour derive from the same single value. As the background brightens the text goes black, as it darkens the text goes white. No threshold to maintain yourself."
   },
   {
     "id": "size-intrinsic",
@@ -2951,7 +3237,9 @@
     },
     "predicted": "uncertain",
     "note": "幅を max-content へ遷移させる。中身の量に合わせて開く動きが、文字数を測らずに書ける。閉じた状態は 0 ではなく丸のまま残す。",
-    "markup": "<div class=\"si\"><span class=\"chip\"><b>●</b><i>詳しく見る</i></span></div>"
+    "markup": "<div class=\"si\"><span class=\"chip\"><b>●</b><i>詳しく見る</i></span></div>",
+    "title_en": "Transitioning to the content's width",
+    "note_en": "Transitions width to max-content. Opening to fit the amount of content is writable without measuring the text. The closed state stays a circle rather than zero."
   },
   {
     "id": "text-box-trim",
@@ -2970,7 +3258,9 @@
     },
     "predicted": "uncertain",
     "note": "文字の上下には行の高さぶんの余白が付く。それを削ると、箱の縁と文字の縁が実際に揃う。動く箱に文字を載せるとき、余白のぶんだけ中心がずれる問題が消える。",
-    "markup": "<div class=\"tb\"><div class=\"row raw\"><span>Raw</span></div><div class=\"row trim\"><span>Trim</span></div></div>"
+    "markup": "<div class=\"tb\"><div class=\"row raw\"><span>Raw</span></div><div class=\"row trim\"><span>Trim</span></div></div>",
+    "title_en": "Trimming type's leading to fit",
+    "note_en": "Text carries the line height's slack above and below. Trim it and the box edge actually aligns with the letter edge. Placing text on a moving box no longer shifts the centre by that slack."
   },
   {
     "id": "scroll-carousel",
@@ -2991,7 +3281,9 @@
     },
     "predicted": "uncertain",
     "note": "横にスクロールする。現在位置の印も送りボタンも、要素を置かずに擬似要素として出てくる。今どれを見ているかを :target-current が知っているので、状態管理が要らない。",
-    "markup": "<div class=\"car\"><div class=\"it\">1</div><div class=\"it\">2</div><div class=\"it\">3</div><div class=\"it\">4</div><div class=\"it\">5</div></div>"
+    "markup": "<div class=\"car\"><div class=\"it\">1</div><div class=\"it\">2</div><div class=\"it\">3</div><div class=\"it\">4</div><div class=\"it\">5</div></div>",
+    "title_en": "A carousel in pure CSS",
+    "note_en": "Scroll horizontally. Both the position indicator and the arrows appear as pseudo-elements, with no elements placed for them. :target-current knows which one is in view, so there is no state to manage."
   },
   {
     "id": "snap-focus",
@@ -3010,7 +3302,9 @@
     },
     "predicted": "uncertain",
     "note": "スクロールして止めると、吸い付いた 1 枚だけが持ち上がる。どれが選ばれているかを CSS が知れるので、位置の計算も監視も要らない。",
-    "markup": "<div class=\"sf\"><div class=\"it\"><div class=\"in\">1</div></div><div class=\"it\"><div class=\"in\">2</div></div><div class=\"it\"><div class=\"in\">3</div></div><div class=\"it\"><div class=\"in\">4</div></div><div class=\"it\"><div class=\"in\">5</div></div></div>"
+    "markup": "<div class=\"sf\"><div class=\"it\"><div class=\"in\">1</div></div><div class=\"it\"><div class=\"in\">2</div></div><div class=\"it\"><div class=\"in\">3</div></div><div class=\"it\"><div class=\"in\">4</div></div><div class=\"it\"><div class=\"in\">5</div></div></div>",
+    "title_en": "Only the snapped card stands up",
+    "note_en": "Scroll and stop, and only the snapped card lifts. CSS knows which one is selected, so there is no position arithmetic and nothing to observe."
   },
   {
     "id": "container-style-q",
@@ -3029,7 +3323,9 @@
     },
     "predicted": "uncertain",
     "note": "親が持つ 1 つの値を動かすと、子がそれを条件として読む。if() が「その要素の中で分岐する」のに対し、こちらは「祖先の状態で子孫全体が切り替わる」。",
-    "markup": "<div class=\"cq\"><span></span><span></span><span></span><span></span></div>"
+    "markup": "<div class=\"cq\"><span></span><span></span><span></span><span></span></div>",
+    "title_en": "Children querying the parent's value",
+    "note_en": "Animate one value on the parent and children read it as a condition. Where if() branches within the element, this switches an entire subtree based on an ancestor's state."
   },
   {
     "id": "position-try",
@@ -3048,7 +3344,9 @@
     },
     "predicted": "uncertain",
     "note": "対象が端へ寄って注釈が入らなくなると、別の配置へ自動で切り替わる。切り替わる条件も候補も CSS 側にあるので、画面外判定を書かなくてよい。",
-    "markup": "<div class=\"pt\"><span class=\"dot\"></span><span class=\"tip\">注釈</span></div>"
+    "markup": "<div class=\"pt\"><span class=\"dot\"></span><span class=\"tip\">注釈</span></div>",
+    "title_en": "Placement switching when it will not fit",
+    "note_en": "When the target nears an edge and the annotation no longer fits, it switches to another placement automatically. Both the trigger and the candidates live in CSS, so no off-screen detection to write."
   },
   {
     "id": "anchor-size",
@@ -3066,7 +3364,9 @@
     },
     "predicted": "uncertain",
     "note": "対象の幅が変われば下線の幅も変わる。値を渡す仕組みも計測も要らず、参照するだけで追従する。",
-    "markup": "<div class=\"as\"><span class=\"target\">対象</span><span class=\"under\"></span></div>"
+    "markup": "<div class=\"as\"><span class=\"target\">対象</span><span class=\"under\"></span></div>",
+    "title_en": "Matching the target's size",
+    "note_en": "Change the target's width and the underline's width changes with it. No mechanism to pass values, no measurement — referencing is enough to follow."
   },
   {
     "id": "vt-class",
@@ -3087,7 +3387,9 @@
     },
     "predicted": "uncertain",
     "note": "要素ごとに名前は要るが、遷移の指定はクラスで一括して書ける。要素が増えても規則は 1 本のまま。名前と規則を切り離せる。",
-    "markup": "<div class=\"vc\"><div class=\"t t1\">1</div><div class=\"t t2\">2</div><div class=\"t t3\">3</div><div class=\"t t4\">4</div></div>"
+    "markup": "<div class=\"vc\"><div class=\"t t1\">1</div><div class=\"t t2\">2</div><div class=\"t t3\">3</div><div class=\"t t4\">4</div></div>",
+    "title_en": "Applying transition rules in bulk",
+    "note_en": "Each element still needs a name, but the transition rules can be written once against a class. However many elements there are, the rule stays single. Names and rules come apart."
   },
   {
     "id": "content-vis",
@@ -3106,7 +3408,9 @@
     },
     "predicted": "uncertain",
     "note": "奇数番は content-visibility: auto。画面外では描画が省かれるが、そのときアニメーションがどう扱われるかを見る。省略が動きに影響するなら、長い一覧での使い方に制約が出る。",
-    "markup": "<div class=\"cv\"><div class=\"it lazy\"><span></span>1</div><div class=\"it \"><span></span>2</div><div class=\"it lazy\"><span></span>3</div><div class=\"it \"><span></span>4</div><div class=\"it lazy\"><span></span>5</div><div class=\"it \"><span></span>6</div><div class=\"it lazy\"><span></span>7</div><div class=\"it \"><span></span>8</div><div class=\"it lazy\"><span></span>9</div><div class=\"it \"><span></span>10</div></div>"
+    "markup": "<div class=\"cv\"><div class=\"it lazy\"><span></span>1</div><div class=\"it \"><span></span>2</div><div class=\"it lazy\"><span></span>3</div><div class=\"it \"><span></span>4</div><div class=\"it lazy\"><span></span>5</div><div class=\"it \"><span></span>6</div><div class=\"it lazy\"><span></span>7</div><div class=\"it \"><span></span>8</div><div class=\"it lazy\"><span></span>9</div><div class=\"it \"><span></span>10</div></div>",
+    "title_en": "Motion in elements whose rendering is skipped",
+    "note_en": "Odd-numbered cells use content-visibility: auto. Rendering is skipped off-screen; this looks at how animations are treated then. If skipping affects motion, that constrains its use in long lists."
   },
   {
     "id": "ruby-anim",
@@ -3125,7 +3429,9 @@
     },
     "predicted": "uncertain",
     "note": "ふりがなを本文より遅らせて出す。本文は最初から読めるので読み始めを妨げず、読みが必要な人には後から届く。ルビを動かした例をほとんど見ない。",
-    "markup": "<div class=\"rb\"><ruby>漢<rt>かん</rt></ruby><ruby>字<rt>じ</rt></ruby><ruby>練<rt>れん</rt></ruby><ruby>習<rt>しゅう</rt></ruby></div>"
+    "markup": "<div class=\"rb\"><ruby>漢<rt>かん</rt></ruby><ruby>字<rt>じ</rt></ruby><ruby>練<rt>れん</rt></ruby><ruby>習<rt>しゅう</rt></ruby></div>",
+    "title_en": "Ruby appearing late",
+    "note_en": "The reading appears later than the base text. The base text is readable from the start so nothing delays reading, and the reading arrives afterwards for those who need it. Animated ruby is almost unseen."
   },
   {
     "id": "sticky-stack",
@@ -3146,7 +3452,9 @@
     },
     "predicted": "uncertain",
     "note": "それぞれの見出しが順に上へ貼り付いて重なる。見出しを節ごとの入れ物に入れると、その節が過ぎた時点で一緒に流れ去ってしまい積み上がらない。スクロール領域の直下に並べて初めて全部が残る。",
-    "markup": "<div class=\"st\"><div class=\"hd\"><div class=\"in\">節 1</div></div><div class=\"ln\">1-1</div><div class=\"ln\">1-2</div><div class=\"ln\">1-3</div><div class=\"hd\"><div class=\"in\">節 2</div></div><div class=\"ln\">2-1</div><div class=\"ln\">2-2</div><div class=\"ln\">2-3</div><div class=\"hd\"><div class=\"in\">節 3</div></div><div class=\"ln\">3-1</div><div class=\"ln\">3-2</div><div class=\"ln\">3-3</div></div>"
+    "markup": "<div class=\"st\"><div class=\"hd\"><div class=\"in\">節 1</div></div><div class=\"ln\">1-1</div><div class=\"ln\">1-2</div><div class=\"ln\">1-3</div><div class=\"hd\"><div class=\"in\">節 2</div></div><div class=\"ln\">2-1</div><div class=\"ln\">2-2</div><div class=\"ln\">2-3</div><div class=\"hd\"><div class=\"in\">節 3</div></div><div class=\"ln\">3-1</div><div class=\"ln\">3-2</div><div class=\"ln\">3-3</div></div>",
+    "title_en": "Headings stacking up",
+    "note_en": "Each heading sticks to the top in turn and stacks. Putting each heading in a per-section container makes it flow away with its section instead of stacking. Only laying them directly under the scroll container keeps them all."
   },
   {
     "id": "gradient-ring",
@@ -3165,7 +3473,9 @@
     },
     "predicted": "uncertain",
     "note": "border-image は角丸を無視する（border-flow の記録）。内側だけを抜いたマスクを重ねれば、角丸に沿った枠が作れる。同じ目的に対する正解側の書き方。",
-    "markup": "<div class=\"gr\">Aa</div>"
+    "markup": "<div class=\"gr\">Aa</div>",
+    "title_en": "A gradient border following the corner radius",
+    "note_en": "border-image ignores corner radius (see border-flow). Overlaying a mask that cuts out only the inside produces a border that follows the radius. The correct way to write the same intent."
   },
   {
     "id": "elastic-grid",
@@ -3184,7 +3494,9 @@
     },
     "predicted": "uncertain",
     "note": "間隔と列の比率を同時に動かすと、要素そのものは何も指定していないのに配置だけが弾む。位置を計算して動かすのと違い、中身の折り返しが常に正しい。",
-    "markup": "<div class=\"eg\"><span></span><span></span><span></span></div>"
+    "markup": "<div class=\"eg\"><span></span><span></span><span></span></div>",
+    "title_en": "Gap and ratio moving together",
+    "note_en": "Animate the gap and the column ratio together and the arrangement alone springs, with nothing specified on the elements themselves. Unlike computing positions and translating, the contents always rewrap correctly."
   },
   {
     "id": "aspect-flow",
@@ -3202,7 +3514,9 @@
     },
     "predicted": "uncertain",
     "note": "幅も高さも指定せず、比率だけを動かす。中身の配置は入れ物側の規則で自動的に追従するので、両方の値を計算して合わせる必要がない。",
-    "markup": "<div class=\"af\"><div class=\"box\"></div></div>"
+    "markup": "<div class=\"af\"><div class=\"box\"></div></div>",
+    "title_en": "Animating only the aspect ratio",
+    "note_en": "Neither width nor height is stated; only the ratio moves. The contents follow automatically under the container's rules, so there is no need to compute and reconcile two values."
   },
   {
     "id": "scroll-marquee",
@@ -3222,7 +3536,9 @@
     },
     "predicted": "uncertain",
     "note": "縦にスクロールすると帯が横に流れる。スクロールを止めれば帯も止まるので、動きが利用者の操作に紐づく。時間で流し続けるより主張が弱く、読みの邪魔になりにくい。",
-    "markup": "<div class=\"sm\"><div class=\"band\"><div class=\"in\"><span>SCROLL&nbsp;·&nbsp;</span><span>SCROLL&nbsp;·&nbsp;</span><span>SCROLL&nbsp;·&nbsp;</span><span>SCROLL&nbsp;·&nbsp;</span><span>SCROLL&nbsp;·&nbsp;</span><span>SCROLL&nbsp;·&nbsp;</span></div></div><div class=\"body\"><div class=\"ln\">1</div><div class=\"ln\">2</div><div class=\"ln\">3</div><div class=\"ln\">4</div><div class=\"ln\">5</div><div class=\"ln\">6</div><div class=\"ln\">7</div><div class=\"ln\">8</div></div></div>"
+    "markup": "<div class=\"sm\"><div class=\"band\"><div class=\"in\"><span>SCROLL&nbsp;·&nbsp;</span><span>SCROLL&nbsp;·&nbsp;</span><span>SCROLL&nbsp;·&nbsp;</span><span>SCROLL&nbsp;·&nbsp;</span><span>SCROLL&nbsp;·&nbsp;</span><span>SCROLL&nbsp;·&nbsp;</span></div></div><div class=\"body\"><div class=\"ln\">1</div><div class=\"ln\">2</div><div class=\"ln\">3</div><div class=\"ln\">4</div><div class=\"ln\">5</div><div class=\"ln\">6</div><div class=\"ln\">7</div><div class=\"ln\">8</div></div></div>",
+    "title_en": "Flowing sideways by scroll amount",
+    "note_en": "Scroll vertically and the band flows horizontally. Stop scrolling and the band stops, so the motion is tied to the reader's action. Quieter than flowing on a timer, and less likely to disturb reading."
   },
   {
     "id": "limited-anime",
@@ -3242,7 +3558,9 @@
     },
     "predicted": "uncertain",
     "note": "日本のアニメは毎秒24枚ではなく8枚前後で描かれることが多い。滑らかさをわざと捨てると、同じ動きでも手描きの質感が出る。CSS の既定は滑らかな補間なので、この質感は steps で刻まないと絶対に出てこない。上が滑らか、下が 8 コマ相当。",
-    "markup": "<div class=\"la\"><div class=\"row\"><span class=\"lb\">24</span><div class=\"b full\"></div></div><div class=\"row\"><span class=\"lb\">8</span><div class=\"b limited\"></div></div></div>"
+    "markup": "<div class=\"la\"><div class=\"row\"><span class=\"lb\">24</span><div class=\"b full\"></div></div><div class=\"row\"><span class=\"lb\">8</span><div class=\"b limited\"></div></div></div>",
+    "title_en": "Shooting on threes",
+    "note_en": "Japanese animation is often drawn at around 8 frames per second rather than 24. Deliberately discarding smoothness gives the same motion a hand-drawn texture. CSS defaults to smooth interpolation, so this texture is unreachable without stepping. Top is smooth, bottom is 8 frames."
   },
   {
     "id": "speed-lines",
@@ -3263,7 +3581,9 @@
     },
     "predicted": "uncertain",
     "note": "漫画で驚きや衝撃を表す定番。中心へ収束する線を放射状に描く。線を 1 本ずつ要素にすると数十個になるが、繰り返しの円錐グラデーションなら 1 要素で済む。線の太さがランダムに見えるよう 2 枚重ねる。",
-    "markup": "<div class=\"sl\"><div class=\"lines\"></div><div class=\"core\">！</div></div>"
+    "markup": "<div class=\"sl\"><div class=\"lines\"></div><div class=\"core\">！</div></div>",
+    "title_en": "Speed lines",
+    "note_en": "A comics staple for surprise and impact — lines converging radially on a centre. One element per line would mean dozens; a repeating conic gradient does it in one. Two layers are stacked so the line widths look random."
   },
   {
     "id": "impact-frame",
@@ -3284,7 +3604,9 @@
     },
     "predicted": "uncertain",
     "note": "衝撃の瞬間は、拡大・白フラッシュ・振動・集中線が同時に起きる。どれか 1 つでは弱く、重ねて初めて「ドン」になる。フラッシュは補間せず 1 コマで消すのが要点で、滑らかにすると安っぽくなる。",
-    "markup": "<div class=\"im\"><div class=\"panel\"><span>決定</span></div><div class=\"flash\"></div><div class=\"shock\"></div></div>"
+    "markup": "<div class=\"im\"><div class=\"panel\"><span>決定</span></div><div class=\"flash\"></div><div class=\"shock\"></div></div>",
+    "title_en": "Impact frame",
+    "note_en": "At the moment of impact, scale-up, white flash, shake and speed lines all happen at once. Any one alone is weak; only together does it land. The key is that the flash is not interpolated but killed in a single frame — smoothing it makes it look cheap."
   },
   {
     "id": "shatter",
@@ -3305,7 +3627,9 @@
     },
     "predicted": "uncertain",
     "note": "同じ絵を楔形に切った層を重ね、それぞれを外向きに飛ばす。破片ごとの方向は三角関数で並び順から出すので、枚数を変えても指定は 1 本のまま。物理演算なしで破砕に見える。",
-    "markup": "<div class=\"sh\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+    "markup": "<div class=\"sh\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>",
+    "title_en": "Fragments flying apart",
+    "note_en": "Layers of the same image cut into wedges, each flung outward. Each fragment's direction comes from trigonometry on the ordinal position, so changing the count leaves the declaration single. It reads as shattering with no physics engine."
   },
   {
     "id": "handheld",
@@ -3325,7 +3649,9 @@
     },
     "predicted": "uncertain",
     "note": "三脚を使わない撮影の微細な揺れ。一定周期で揺らすと機械的に見えるので、互いに割り切れない回数の揺れを重ねて周期を隠す。ここでは 3 回・5 回・7 回を加算しており、合成周期は 1 周と一致するので繰り返しの継ぎ目も出ない。",
-    "markup": "<div class=\"hh\"><div class=\"scene\"><div class=\"sky\"></div><div class=\"obj\"></div></div></div>"
+    "markup": "<div class=\"hh\"><div class=\"scene\"><div class=\"sky\"></div><div class=\"obj\"></div></div></div>",
+    "title_en": "Handheld camera shake",
+    "note_en": "The fine tremor of shooting without a tripod. A single period looks mechanical, so shakes with mutually indivisible counts are layered to hide the period. Here 3, 5 and 7 are summed; the combined period equals one cycle, so there is no seam on repeat."
   },
   {
     "id": "rack-focus",
@@ -3344,7 +3670,9 @@
     },
     "predicted": "uncertain",
     "note": "撮影で被写体から背景へピントを移す技法。どこを見るべきかを、動かさずに指示できる。要素を動かさないので情報の位置が変わらず、読んでいる途中でも邪魔にならない。",
-    "markup": "<div class=\"rf\"><div class=\"l far\"></div><div class=\"l mid\"></div><div class=\"l near\"></div></div>"
+    "markup": "<div class=\"rf\"><div class=\"l far\"></div><div class=\"l mid\"></div><div class=\"l near\"></div></div>",
+    "title_en": "Rack focus",
+    "note_en": "The cinematographic technique of shifting focus from subject to background. It directs where to look without moving anything. Since no element moves, no information changes position and it does not interrupt mid-read."
   },
   {
     "id": "dolly-zoom",
@@ -3363,7 +3691,9 @@
     },
     "predicted": "uncertain",
     "note": "カメラを引きながら画角を狭める撮影技法。主題の大きさは変わらないのに背景だけが伸縮するので、落ち着かない感じが出る。主題を保ったまま奥行きだけを変えるのが要点。",
-    "markup": "<div class=\"dz\"><div class=\"bg\"></div><div class=\"sub\">！</div></div>"
+    "markup": "<div class=\"dz\"><div class=\"bg\"></div><div class=\"sub\">！</div></div>",
+    "title_en": "Dolly zoom",
+    "note_en": "Pulling the camera back while narrowing the angle of view. The subject's size stays constant while the background alone stretches, producing unease. The point is changing only the depth while preserving the subject."
   },
   {
     "id": "kinetic-type",
@@ -3382,7 +3712,9 @@
     },
     "predicted": "uncertain",
     "note": "語の意味と動きを一致させる。同じ入場効果を全部に当てるのではなく、語ごとに違う運動を与えることで、文字が意味を演じる。プレゼン動画の冒頭でよく使われる手法。",
-    "markup": "<div class=\"kt\"><span class=\"w fall\">落ちる</span><span class=\"w bounce\">弾む</span><span class=\"w vanish\">消える</span></div>"
+    "markup": "<div class=\"kt\"><span class=\"w fall\">落ちる</span><span class=\"w bounce\">弾む</span><span class=\"w vanish\">消える</span></div>",
+    "title_en": "Kinetic typography",
+    "note_en": "Matching motion to a word's meaning. Rather than one entrance applied to everything, giving each word its own motion makes the type perform its sense. Common at the opening of presentation videos."
   },
   {
     "id": "text-scramble",
@@ -3402,7 +3734,9 @@
     },
     "predicted": "uncertain",
     "note": "候補の文字が高速で入れ替わり、順に確定していく演出。JS で 1 文字ずつ書き換えて作るのが普通だが、候補を縦に並べて steps で送れば CSS だけで書ける。ずらす番号は文字を包む側が持つ必要がある。送られる帯は唯一の子なので、そこで並び順を数えても常に 1 になってしまう。",
-    "markup": "<div class=\"ts\"><span class=\"c\"><span class=\"strip\"><i>◇</i><i>7</i><i>※</i><i>X</i><i>ネ</i><i>本</i></span></span><span class=\"c\"><span class=\"strip\"><i>8</i><i>◆</i><i>ル</i><i>%</i><i>下</i><i>命</i></span></span><span class=\"c\"><span class=\"strip\"><i>※</i><i>3</i><i>ヰ</i><i>#</i><i>石</i><i>確</i></span></span><span class=\"c\"><span class=\"strip\"><i>Z</i><i>◇</i><i>5</i><i>ヲ</i><i>疋</i><i>定</i></span></span></div>"
+    "markup": "<div class=\"ts\"><span class=\"c\"><span class=\"strip\"><i>◇</i><i>7</i><i>※</i><i>X</i><i>ネ</i><i>本</i></span></span><span class=\"c\"><span class=\"strip\"><i>8</i><i>◆</i><i>ル</i><i>%</i><i>下</i><i>命</i></span></span><span class=\"c\"><span class=\"strip\"><i>※</i><i>3</i><i>ヰ</i><i>#</i><i>石</i><i>確</i></span></span><span class=\"c\"><span class=\"strip\"><i>Z</i><i>◇</i><i>5</i><i>ヲ</i><i>疋</i><i>定</i></span></span></div>",
+    "title_en": "Characters spinning then settling",
+    "note_en": "Candidate glyphs cycle rapidly and settle one by one. Normally built by rewriting characters in JavaScript, but stacking the candidates vertically and stepping through them works in pure CSS. The offset number must be held by the wrapping element: the stepped strip is an only child, so counting position there always yields 1."
   },
   {
     "id": "lower-third",
@@ -3422,7 +3756,9 @@
     },
     "predicted": "uncertain",
     "note": "放送で話者を示す定番の型。帯が横に開き、遅れて名前、さらに遅れて肩書きが出る。3 つの遅れが揃っていることが「作り込まれている」印象を生む。同時に出すと安く見える。",
-    "markup": "<div class=\"lt\"><div class=\"bar\"><span class=\"nm\">山田 太郎</span></div><div class=\"rule\"></div><div class=\"sub\">プロダクト設計</div></div>"
+    "markup": "<div class=\"lt\"><div class=\"bar\"><span class=\"nm\">山田 太郎</span></div><div class=\"rule\"></div><div class=\"sub\">プロダクト設計</div></div>",
+    "title_en": "Lower third",
+    "note_en": "The broadcast staple for identifying a speaker. The bar opens sideways, the name follows late, the title later still. Those three staggered delays are what read as 'produced'. Showing them together looks cheap."
   },
   {
     "id": "diagram-build",
@@ -3449,7 +3785,9 @@
         "inside": ".b3",
         "at": "80%"
       }
-    ]
+    ],
+    "title_en": "A diagram assembling itself",
+    "note_en": "A box appears, a line extends and connects, the next box appears. Drawing lines in SVG and boxes as ordinary elements gives two coordinate systems that will always drift. Worse, pathLength stops working alongside non-scaling-stroke, dropping the dash arithmetic into device coordinates and cutting the line short. Putting everything inside the SVG avoids both. Order is expressed by keyframe position, not by delay."
   },
   {
     "id": "follow-through",
@@ -3469,7 +3807,9 @@
     },
     "predicted": "uncertain",
     "note": "アニメーションの基本原則のひとつ。先端ほど遅れて追いつくと、硬い物体が柔らかく見える。遅延を等差で増やし、揺り戻しのあるイージングを当てるだけで、物理演算なしにしなりが出る。",
-    "markup": "<div class=\"ft\"><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+    "markup": "<div class=\"ft\"><span></span><span></span><span></span><span></span><span></span><span></span></div>",
+    "title_en": "Bending and following late",
+    "note_en": "One of the fundamental principles of animation. When the tip catches up last, a rigid object reads as soft. Increasing the delay arithmetically and applying an easing with a return swing produces the bend with no physics."
   },
   {
     "id": "boil",
@@ -3490,7 +3830,9 @@
     },
     "predicted": "uncertain",
     "note": "手描きアニメで、静止しているはずの線が小刻みに震える現象。同じ絵を 3 枚描くと線が完全には一致しないために起きる。輪郭だけの円では揺れが読み取れないので、内側にも線を置く。震えは輪郭の位置ではなく曲がり方に出るため、端点は固定して制御点だけをずらす。なお CSS の d は path にしか効かず、circle に指定しても計算値には現れるのに描画は変わらない。",
-    "markup": "<div class=\"bl\"><svg viewBox=\"0 0 96 96\"><path class=\"c\" d=\"M 14 48 C 14 27, 28 14, 48 14 C 69 14, 82 28, 82 48 C 82 69, 68 82, 48 82 C 27 82, 14 68, 14 48 Z\"/><path class=\"m\" d=\"M 32 56 C 40 66, 56 66, 64 56\"/><path class=\"e1\" d=\"M 36 40 L 36 44\"/><path class=\"e2\" d=\"M 60 40 L 60 44\"/></svg></div>"
+    "markup": "<div class=\"bl\"><svg viewBox=\"0 0 96 96\"><path class=\"c\" d=\"M 14 48 C 14 27, 28 14, 48 14 C 69 14, 82 28, 82 48 C 82 69, 68 82, 48 82 C 27 82, 14 68, 14 48 Z\"/><path class=\"m\" d=\"M 32 56 C 40 66, 56 66, 64 56\"/><path class=\"e1\" d=\"M 36 40 L 36 44\"/><path class=\"e2\" d=\"M 60 40 L 60 44\"/></svg></div>",
+    "title_en": "Hand-drawn boil",
+    "note_en": "In hand-drawn animation, lines that should be still tremble slightly — because three drawings of the same image never match exactly. On an outline-only circle the wobble is unreadable, so an inner line is added. The tremor shows in curvature rather than position, so the endpoints are pinned and only the control points move. Note that CSS d only works on path: specifying it on circle appears in the computed value but changes nothing on screen."
   },
   {
     "id": "logo-reveal",
@@ -3510,7 +3852,9 @@
     },
     "predicted": "uncertain",
     "note": "企業動画の締めで使われる型。マスクで左から現し、少し遅れて光沢が追い越していく。現すだけでは素っ気なく、光沢だけでは何も起きない。2 つの時間差が「仕上がった」感じを作る。",
-    "markup": "<div class=\"lr\"><span class=\"tx\">STUDIO</span><span class=\"sheen\"></span></div>"
+    "markup": "<div class=\"lr\"><span class=\"tx\">STUDIO</span><span class=\"sheen\"></span></div>",
+    "title_en": "A logo being written out",
+    "note_en": "The staple ending of a corporate video. A mask reveals from the left and a highlight overtakes it slightly later. Reveal alone is bland, highlight alone does nothing. The gap between the two is what reads as finished."
   },
   {
     "id": "onomatopoeia",
@@ -3530,7 +3874,9 @@
     },
     "predicted": "uncertain",
     "note": "漫画の描き文字。文字自体が絵として振る舞う。HTML の text-stroke は線が字形を内側から食うので、影を放射状に多重で置いて縁を作る。飛び出しは行き過ぎてから戻すと勢いが出る。",
-    "markup": "<div class=\"on\"><span class=\"sfx\">ドカッ</span></div>"
+    "markup": "<div class=\"on\"><span class=\"sfx\">ドカッ</span></div>",
+    "title_en": "Sound effects bursting out",
+    "note_en": "Drawn lettering from comics, where the type behaves as an image. HTML's text-stroke eats into the letterforms from inside, so the edge is built from many radially placed shadows instead. Overshooting and returning gives the burst its force."
   },
   {
     "id": "panel-split",
@@ -3550,7 +3896,9 @@
     },
     "predicted": "uncertain",
     "note": "1 枚の絵を斜めの線で断ち割り、断片が別々にずれる。漫画のコマ割りが崩れる表現。断ち方が垂直や水平だと事務的に見えるので、斜めに切るのが要点。",
-    "markup": "<div class=\"ps\"><span class=\"p p1\"></span><span class=\"p p2\"></span><span class=\"p p3\"></span><span class=\"p p4\"></span><span class=\"cap\">場面</span></div>"
+    "markup": "<div class=\"ps\"><span class=\"p p1\"></span><span class=\"p p2\"></span><span class=\"p p3\"></span><span class=\"p p4\"></span><span class=\"cap\">場面</span></div>",
+    "title_en": "A panel splitting",
+    "note_en": "One image cut apart along a diagonal, the fragments displacing separately — the breaking of comic panel structure. A vertical or horizontal cut looks clerical, so cutting diagonally is the point."
   },
   {
     "id": "time-stop",
@@ -3580,7 +3928,9 @@
           "72%"
         ]
       }
-    ]
+    ],
+    "title_en": "Time stopping",
+    "note_en": "Everything freezes while one thing keeps moving. CSS has no way to say 'stop the others', so the frozen ones get keyframes repeating the same value. Using negative delays here shifts the phase, moving each element's frozen interval to a different moment so they no longer stop together. Individual variation comes from amplitude, not delay; the time axis is shared. The desaturating filter affects all descendants, so only the frozen side is wrapped."
   },
   {
     "id": "emotion-marks",
@@ -3600,7 +3950,9 @@
     },
     "predicted": "uncertain",
     "note": "怒りマークや汗は、日本の漫画が発明した記号表現。表情を描かずに感情を伝えられる。飛び出す瞬間に横へ潰し、戻すときに縦へ伸ばすと生き物らしくなる。",
-    "markup": "<div class=\"em\"><span class=\"face\"></span><span class=\"mk anger\"></span><span class=\"mk sweat\"></span></div>"
+    "markup": "<div class=\"em\"><span class=\"face\"></span><span class=\"mk anger\"></span><span class=\"mk sweat\"></span></div>",
+    "title_en": "Emotion symbols popping out",
+    "note_en": "Anger marks and sweat drops are symbolic devices invented by Japanese comics. They convey feeling without drawing an expression. Squashing horizontally on emergence and stretching vertically on return makes them read as alive."
   },
   {
     "id": "screentone",
@@ -3620,7 +3972,9 @@
     },
     "predicted": "uncertain",
     "note": "漫画の陰影はグレーではなく網点で作られる。点の大きさと間隔を変えると濃度が変わる。連続的に変えられるので、印刷では不可能な「トーンが濃くなっていく」表現ができる。",
-    "markup": "<div class=\"sc\"><span class=\"tone\"></span><span class=\"txt\">TONE</span></div>"
+    "markup": "<div class=\"sc\"><span class=\"tone\"></span><span class=\"txt\">TONE</span></div>",
+    "title_en": "Screentone being replaced",
+    "note_en": "Comic shading is built from halftone dots, not grey. Changing dot size and spacing changes the density. Because it varies continuously, it produces a 'tone growing denser' effect that print cannot achieve."
   },
   {
     "id": "eye-shine",
@@ -3640,7 +3994,9 @@
     },
     "predicted": "uncertain",
     "note": "光が反射した瞬間に走る四芒星。滑らかに拡大すると星に見えず、瞬間的に出して消すのが要点。大小をずらして 3 つ置くと、単発より豪華に見える。",
-    "markup": "<div class=\"es\"><span class=\"gem\"></span><span class=\"st s1\"></span><span class=\"st s2\"></span><span class=\"st s3\"></span></div>"
+    "markup": "<div class=\"es\"><span class=\"gem\"></span><span class=\"st s1\"></span><span class=\"st s2\"></span><span class=\"st s3\"></span></div>",
+    "title_en": "Glint",
+    "note_en": "The four-pointed star that flashes at the moment light reflects. Scaling it smoothly does not read as a star; appearing and vanishing instantly is the point. Three of them at staggered sizes look richer than one."
   },
   {
     "id": "particles-gravity",
@@ -3661,7 +4017,9 @@
     },
     "predicted": "uncertain",
     "note": "放射状に飛ぶだけでは花火にならない。時間の二乗で下向きの成分を足すと、重力のある放物線になる。速度も向きも並び順から出しているので、粒の数を変えても指定は 1 本のまま。",
-    "markup": "<div class=\"pg\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+    "markup": "<div class=\"pg\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>",
+    "title_en": "Launched and falling",
+    "note_en": "Radial flight alone is not fireworks. Adding a downward component proportional to time squared gives a parabola under gravity. Speed and direction both come from the ordinal position, so changing the particle count leaves the declaration single."
   },
   {
     "id": "smoke",
@@ -3681,7 +4039,9 @@
     },
     "predicted": "uncertain",
     "note": "煙は上るだけでなく、上りながら広がり、広がりながら薄くなる。この 3 つが同時に起きないと蒸気に見えない。ぼかしを時間とともに強めるのが、拡散を表す一番安い方法。",
-    "markup": "<div class=\"sm\"><span></span><span></span><span></span><span></span><span></span></div>"
+    "markup": "<div class=\"sm\"><span></span><span></span><span></span><span></span><span></span></div>",
+    "title_en": "Rising smoke",
+    "note_en": "Smoke does not merely rise: it spreads as it rises and thins as it spreads. Without all three at once it reads as steam. Increasing blur over time is the cheapest way to express diffusion."
   },
   {
     "id": "god-rays",
@@ -3702,7 +4062,9 @@
     },
     "predicted": "uncertain",
     "note": "光源から伸びる筋。線を等間隔にすると人工的なので、太さの違う 2 枚を別々の速さで回して不揃いにする。減衰は放射状のマスクで作る。",
-    "markup": "<div class=\"gr\"><span class=\"rays\"></span><span class=\"core\"></span></div>"
+    "markup": "<div class=\"gr\"><span class=\"rays\"></span><span class=\"core\"></span></div>",
+    "title_en": "Light shafts",
+    "note_en": "Shafts extending from a light source. Evenly spaced lines look artificial, so two layers of differing thickness rotate at different speeds to break the regularity. The falloff comes from a radial mask."
   },
   {
     "id": "motion-blur",
@@ -3722,7 +4084,9 @@
     },
     "predicted": "uncertain",
     "note": "実際のぶれは進行方向にだけ伸びる。CSS の blur は全方向に等しくかかるので、速い動きに使うと「ぼやけた球」にしかならない。SVG のぼかしは軸ごとに量を指定できるので、横方向だけをぼかせる。上が CSS、下が SVG。",
-    "markup": "<div class=\"mb\"><div class=\"row\"><span class=\"lb\">CSS</span><span class=\"b iso\"></span></div><div class=\"row\"><span class=\"lb\">SVG</span><span class=\"b dir\"></span></div><svg width=\"0\" height=\"0\" aria-hidden=\"true\"><filter id=\"mb-x\"><feGaussianBlur stdDeviation=\"9 0\"/></filter></svg></div>"
+    "markup": "<div class=\"mb\"><div class=\"row\"><span class=\"lb\">CSS</span><span class=\"b iso\"></span></div><div class=\"row\"><span class=\"lb\">SVG</span><span class=\"b dir\"></span></div><svg width=\"0\" height=\"0\" aria-hidden=\"true\"><filter id=\"mb-x\"><feGaussianBlur stdDeviation=\"9 0\"/></filter></svg></div>",
+    "title_en": "The direction of blur",
+    "note_en": "Real blur extends only along the direction of travel. CSS blur applies equally in all directions, so on fast motion it gives only a fuzzy ball. SVG blur takes a per-axis amount, so it can blur horizontally alone. Top is CSS, bottom is SVG."
   },
   {
     "id": "water-ripple",
@@ -3742,7 +4106,9 @@
     },
     "predicted": "uncertain",
     "note": "同心円が広がるだけでは電波のアイコンにしかならない。輪郭を歪ませて初めて水になる。歪みは静止したままでよく、動くのは輪のほう。",
-    "markup": "<div class=\"wr\"><span class=\"surface\"></span><span class=\"ring\"></span><span class=\"ring\"></span><span class=\"ring\"></span><svg width=\"0\" height=\"0\" aria-hidden=\"true\"><filter id=\"wr-d\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.03 0.07\" numOctaves=\"2\" seed=\"3\" result=\"n\"/><feDisplacementMap in=\"SourceGraphic\" in2=\"n\" scale=\"9\" xChannelSelector=\"R\" yChannelSelector=\"G\"/></filter></svg></div>"
+    "markup": "<div class=\"wr\"><span class=\"surface\"></span><span class=\"ring\"></span><span class=\"ring\"></span><span class=\"ring\"></span><svg width=\"0\" height=\"0\" aria-hidden=\"true\"><filter id=\"wr-d\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.03 0.07\" numOctaves=\"2\" seed=\"3\" result=\"n\"/><feDisplacementMap in=\"SourceGraphic\" in2=\"n\" scale=\"9\" xChannelSelector=\"R\" yChannelSelector=\"G\"/></filter></svg></div>",
+    "title_en": "Ripples on water",
+    "note_en": "Expanding concentric circles alone give a wifi icon. Only distorting the outline makes it water. The distortion can stay still; it is the rings that move."
   },
   {
     "id": "magnetic",
@@ -3763,7 +4129,9 @@
     },
     "predicted": "uncertain",
     "note": "カーソルに吸い寄せられるボタン。座標を読んで動かすので JS が要ると思われているが、当たり判定を格子に割って :has() で拾えば近似できる。分割数を上げるほど滑らかになる。",
-    "markup": "<div class=\"mg\"><span class=\"btn\">押す</span><i class=\"z z1\"></i><i class=\"z z2\"></i><i class=\"z z3\"></i><i class=\"z z4\"></i><i class=\"z z5\"></i><i class=\"z z6\"></i><i class=\"z z7\"></i><i class=\"z z8\"></i><i class=\"z z9\"></i></div>"
+    "markup": "<div class=\"mg\"><span class=\"btn\">押す</span><i class=\"z z1\"></i><i class=\"z z2\"></i><i class=\"z z3\"></i><i class=\"z z4\"></i><i class=\"z z5\"></i><i class=\"z z6\"></i><i class=\"z z7\"></i><i class=\"z z8\"></i><i class=\"z z9\"></i></div>",
+    "title_en": "A button drawn to the cursor",
+    "note_en": "A button that is pulled toward the cursor. It is assumed to need JavaScript because it reads coordinates, but dividing the hit area into a grid and picking it up with :has() approximates it. More divisions, smoother result."
   },
   {
     "id": "rig-chain",
@@ -3790,7 +4158,9 @@
         "by": "top",
         "at": "50%"
       }
-    ]
+    ],
+    "title_en": "Linked joints swinging",
+    "note_en": "Nesting joints makes the parent's rotation accumulate into the children. Delaying each level alone propagates the swing from root to tip. Skeletal motion with no position arithmetic. Where follow-through is per-element delay, here the rotation accumulates."
   },
   {
     "id": "anticipation",
@@ -3810,7 +4180,9 @@
     },
     "predicted": "uncertain",
     "note": "動く前に反対方向へ少し引く。アニメーションの十二原則の一つで、これが無いと動きが唐突になる。上が予備動作なし、下があり。同じ距離を同じ時間で移動しているのに、下のほうが速く見える。",
-    "markup": "<div class=\"an\"><div class=\"row\"><span class=\"lb\">なし</span><span class=\"b plain\"></span></div><div class=\"row\"><span class=\"lb\">あり</span><span class=\"b anti\"></span></div></div>"
+    "markup": "<div class=\"an\"><div class=\"row\"><span class=\"lb\">なし</span><span class=\"b plain\"></span></div><div class=\"row\"><span class=\"lb\">あり</span><span class=\"b anti\"></span></div></div>",
+    "title_en": "Winding up before moving",
+    "note_en": "Pulling back slightly before moving. One of the twelve principles of animation; without it, motion feels abrupt. Top has no anticipation, bottom does. They travel the same distance in the same time, yet the bottom looks faster."
   },
   {
     "id": "squash-stretch",
@@ -3831,7 +4203,9 @@
     },
     "predicted": "uncertain",
     "note": "落下中は進行方向へ伸び、接地の瞬間に潰れる。縦に潰したぶん横へ広げると体積が保たれ、硬い球ではなくゴムに見える。影の大きさを高さに連動させると、接地の位置がはっきりする。",
-    "markup": "<div class=\"sq\"><span class=\"ball\"></span><span class=\"shadow\"></span><span class=\"floor\"></span></div>"
+    "markup": "<div class=\"sq\"><span class=\"ball\"></span><span class=\"shadow\"></span><span class=\"floor\"></span></div>",
+    "title_en": "Squash and stretch",
+    "note_en": "Stretches along the direction of fall and squashes on impact. Widening by as much as it flattens preserves volume, so it reads as rubber rather than a rigid ball. Tying the shadow's size to the height makes the point of contact unambiguous."
   },
   {
     "id": "speech-balloon",
@@ -3859,7 +4233,9 @@
         "side": "below",
         "from": ".bal"
       }
-    ]
+    ],
+    "title_en": "A speech balloon appearing",
+    "note_en": "The body appears, then the tail extends. Simultaneously it reads as a shape appearing; in sequence it becomes 'someone spoke'. Placing the tail outside the body makes it detach and float when the body scales, so both must sit in the same container and move together."
   },
   {
     "id": "bg-pan-run",
@@ -3879,7 +4255,9 @@
     },
     "predicted": "uncertain",
     "note": "アニメで走行を表すとき、動いているのは背景のほう。人物はその場で上下するだけで、前へ進んでいるように見える。背景は 1 周期ぶん動かして継ぎ目を消す。手前ほど速く送ると奥行きも出る。",
-    "markup": "<div class=\"bp\"><span class=\"ground\"></span><span class=\"hill\"></span><span class=\"runner\"></span></div>"
+    "markup": "<div class=\"bp\"><span class=\"ground\"></span><span class=\"hill\"></span><span class=\"runner\"></span></div>",
+    "title_en": "A running background",
+    "note_en": "When animation depicts running, it is the background that moves. The figure only bobs in place, yet reads as advancing. The background moves exactly one period to hide the seam. Sending nearer layers faster adds depth."
   },
   {
     "id": "charge-up",
@@ -3899,7 +4277,9 @@
     },
     "predicted": "uncertain",
     "note": "粒が外から中心へ吸い込まれ、核が膨らみ、限界で弾ける。放射（burst）の逆再生ではなく、吸い込みと解放で速さが違うのが要点。溜めは遅く、解放は一瞬。",
-    "markup": "<div class=\"cu\"><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"core\"></span><span class=\"burst\"></span></div>"
+    "markup": "<div class=\"cu\"><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"p\"></span><span class=\"core\"></span><span class=\"burst\"></span></div>",
+    "title_en": "Charging and releasing",
+    "note_en": "Particles are drawn inward to the centre, the core swells, and at the limit it bursts. Not a reversed burst — the point is that intake and release run at different speeds. The charge is slow, the release instant."
   },
   {
     "id": "camera-pan",
@@ -3929,7 +4309,9 @@
         ],
         "within": 26
       }
-    ]
+    ],
+    "title_en": "The camera panning",
+    "note_en": "It is the frame that moves, not the subject. Panning at constant speed looks mechanical, so it decelerates before each intended stop. A beat at every stop gives the viewer time to read what is there."
   },
   {
     "id": "crowd-wave",
@@ -3949,7 +4331,9 @@
     },
     "predicted": "uncertain",
     "note": "並び順で遅らせると波は一方向にしか進まない。中心からの距離で遅らせると、点を落としたように同心円状へ広がる。行と列は並び順から割り出せるので、座標を書かずに距離が出せる。",
-    "markup": "<div class=\"cw\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+    "markup": "<div class=\"cw\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>",
+    "title_en": "A wave crossing a crowd",
+    "note_en": "Delaying by ordinal position sends the wave in one direction only. Delaying by distance from the centre spreads it in concentric rings, like a dropped stone. Row and column derive from the ordinal position, so the distance comes out without writing coordinates."
   },
   {
     "id": "odometer",
@@ -3969,7 +4353,9 @@
     },
     "predicted": "uncertain",
     "note": "機械式の計器では、下の桁ほど速く回る。全部を同じ速さで送ると電光掲示板になってしまい、数が「積み上がった」感じが出ない。桁ごとに回転数を変えるだけで計器らしくなる。",
-    "markup": "<div class=\"od\"><span class=\"dg\"><span class=\"strip\"><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>0</i></span></span><span class=\"dg\"><span class=\"strip\"><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>0</i></span></span><span class=\"dg\"><span class=\"strip\"><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>0</i></span></span><span class=\"dg\"><span class=\"strip\"><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>0</i></span></span></div>"
+    "markup": "<div class=\"od\"><span class=\"dg\"><span class=\"strip\"><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>0</i></span></span><span class=\"dg\"><span class=\"strip\"><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>0</i></span></span><span class=\"dg\"><span class=\"strip\"><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>0</i></span></span><span class=\"dg\"><span class=\"strip\"><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>0</i></span></span></div>",
+    "title_en": "Digits rolling over",
+    "note_en": "In a mechanical counter the lower digits turn faster. Turning them all at the same speed gives a scoreboard and loses the sense of a number accumulating. Varying the rotation count per digit alone makes it read as an instrument."
   },
   {
     "id": "swipe-transition",
@@ -3997,7 +4383,9 @@
         "side": "left",
         "from": ".b"
       }
-    ]
+    ],
+    "title_en": "Pushing one panel out with another",
+    "note_en": "A new face pushes the old one out. Leading with a single edge line at the boundary makes it read as pushing rather than sliding. Without the edge it looks like two overlapping sheets."
   },
   {
     "id": "audio-bars",
@@ -4017,7 +4405,9 @@
     },
     "predicted": "uncertain",
     "note": "棒の高さを揃った周期で動かすと波打つ帯にしかならない。棒ごとに回数を変えると音に見える。1 周の約数だけを使えば、ばらばらでも繰り返しの継ぎ目が出ない。",
-    "markup": "<div class=\"ab\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+    "markup": "<div class=\"ab\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>",
+    "title_en": "Audio bars",
+    "note_en": "Moving the bar heights on a shared period gives only an undulating band. Varying the repeat count per bar makes it read as sound. Using only divisors of the cycle keeps it seamless on repeat despite the irregularity."
   },
   {
     "id": "map-zoom",
@@ -4036,7 +4426,9 @@
     },
     "predicted": "uncertain",
     "note": "地図の拡大では、寄ったときに情報が増える。ただ大きくするだけでは引き伸ばした絵にしかならない。尺度に応じて別の層が現れることで、初めて「近づいた」になる。",
-    "markup": "<div class=\"mz\"><span class=\"grid\"></span><span class=\"road\"></span><span class=\"pin\"></span><span class=\"label\">中央区</span></div>"
+    "markup": "<div class=\"mz\"><span class=\"grid\"></span><span class=\"road\"></span><span class=\"pin\"></span><span class=\"label\">中央区</span></div>",
+    "title_en": "Detail emerging as you zoom",
+    "note_en": "Zooming a map adds information as you approach. Merely enlarging gives a stretched picture. Only when different layers appear at different scales does it become 'getting closer'."
   },
   {
     "id": "page-turn",
@@ -4064,7 +4456,9 @@
         "side": "left",
         "from": ".next"
       }
-    ]
+    ],
+    "title_en": "A page turning",
+    "note_en": "Rotation alone does not read as paper. Shadow moving with the turn angle and the reverse side coming into view give it thickness. The hinge sits at the bound edge, and the leaf pivots on that edge, turning from the far side toward the viewer. Placing the leaf and the revealed page on the same side makes the turning leaf cover the page it should reveal."
   },
   {
     "id": "liquid-wipe",
@@ -4084,7 +4478,9 @@
     },
     "predicted": "uncertain",
     "note": "ゴーイーの融合を、模様ではなく場面転換に使う。分かれていた塊が合流して画面を覆い、覆い切った瞬間に中身が入れ替わる。矩形のワイプより有機的で、切り替えの瞬間が隠れる。",
-    "markup": "<div class=\"lw\"><span class=\"under\">A</span><div class=\"goo\"><span></span><span></span><span></span><span></span><span></span></div><span class=\"over\">B</span></div>"
+    "markup": "<div class=\"lw\"><span class=\"under\">A</span><div class=\"goo\"><span></span><span></span><span></span><span></span><span></span></div><span class=\"over\">B</span></div>",
+    "title_en": "A liquid wipe",
+    "note_en": "Gooey merging used for a scene change rather than decoration. Separate masses converge to cover the screen, and the contents swap at the moment of full cover. More organic than a rectangular wipe, and it hides the instant of the switch."
   },
   {
     "id": "stop-motion",
@@ -4104,7 +4500,9 @@
     },
     "predicted": "uncertain",
     "note": "コマ撮りは 1 枚ずつ手で動かすため、コマの長さも位置も揃わない。等間隔で刻むと機械的な低フレームレートにしかならず、長さを不揃いにして微小なぶれを足して初めて手作りに見える。",
-    "markup": "<div class=\"stm\"><span class=\"obj\"></span></div>"
+    "markup": "<div class=\"stm\"><span class=\"obj\"></span></div>",
+    "title_en": "Stop motion",
+    "note_en": "Frame-by-frame shooting is moved by hand, so neither frame length nor position is even. Stepping at regular intervals gives only a mechanical low frame rate; uneven lengths plus a fine jitter are what read as handmade."
   },
   {
     "id": "handwriting",
@@ -4124,7 +4522,9 @@
     },
     "predicted": "uncertain",
     "note": "線が伸びるだけでは「描かれた」に見えない。書き手の位置を示す点を同じ経路の上に走らせると、手で書いている感じになる。ただし offset-path はパスの生の単位で動くため、SVG を拡大して描くとペンだけが取り残される。描画の単位をパスと 1:1 に揃え、拡大は入れ物ごと掛ける。",
-    "markup": "<div class=\"hw\"><div class=\"board\"><svg viewBox=\"0 0 120 70\"><path class=\"ink\" pathLength=\"100\" d=\"M 8 46 C 16 20, 26 18, 30 34 C 34 50, 26 58, 22 46 C 18 34, 30 22, 44 30 C 56 37, 50 54, 60 48 C 68 43, 66 26, 78 28 C 88 30, 92 40, 112 34\"/></svg><span class=\"pen\"></span></div></div>"
+    "markup": "<div class=\"hw\"><div class=\"board\"><svg viewBox=\"0 0 120 70\"><path class=\"ink\" pathLength=\"100\" d=\"M 8 46 C 16 20, 26 18, 30 34 C 34 50, 26 58, 22 46 C 18 34, 30 22, 44 30 C 56 37, 50 54, 60 48 C 68 43, 66 26, 78 28 C 88 30, 92 40, 112 34\"/></svg><span class=\"pen\"></span></div></div>",
+    "title_en": "Being written by hand",
+    "note_en": "A line merely extending does not read as drawn. Running a dot along the same path to show the writer's position makes it feel handwritten. But offset-path advances in the path's raw units, so drawing the SVG at an enlarged scale leaves the pen behind. Keep the drawing units 1:1 with the path and apply the scaling to the container instead."
   },
   {
     "id": "silhouette",
@@ -4144,7 +4544,9 @@
     },
     "predicted": "uncertain",
     "note": "光源が背後にあると、対象は黒く落ちて輪郭だけが光る。何であるかを見せずに存在だけを伝えられる。光源が動くと輪郭光の位置も動くので、立体であることが分かる。",
-    "markup": "<div class=\"sil\"><span class=\"sun\"></span><span class=\"fig\"></span><span class=\"rim\"></span></div>"
+    "markup": "<div class=\"sil\"><span class=\"sun\"></span><span class=\"fig\"></span><span class=\"rim\"></span></div>",
+    "title_en": "Backlit silhouette",
+    "note_en": "With the light behind, the subject falls to black and only the outline glows. It conveys presence without revealing what the thing is. Moving the light source moves the rim light, which reveals that it is solid."
   },
   {
     "id": "reflection",
@@ -4165,7 +4567,9 @@
     },
     "predicted": "uncertain",
     "note": "反転した複製を下に置き、遠ざかるほど薄くする。静止した鏡像は硬いので、横方向にわずかに揺らすと水面になる。揺らしすぎると別物になるため、振幅は文字の太さ以下に収める。",
-    "markup": "<div class=\"rf\"><span class=\"obj\">A</span><span class=\"mir\">A</span></div>"
+    "markup": "<div class=\"rf\"><span class=\"obj\">A</span><span class=\"mir\">A</span></div>",
+    "title_en": "Reflected on water",
+    "note_en": "An inverted copy placed below, fading with distance. A static mirror image is rigid; a slight horizontal wobble makes it water. Too much wobble makes it something else, so the amplitude stays under the stroke weight of the type."
   },
   {
     "id": "bloom",
@@ -4185,7 +4589,9 @@
     },
     "predicted": "uncertain",
     "note": "明るい部分が周囲へあふれる光学現象。要素そのものをぼかすと文字が読めなくなるので、ぼかした複製を背後に置いて加算する。元は鮮明なまま、光だけがにじむ。",
-    "markup": "<div class=\"bl\"><span class=\"src\">GLOW</span><span class=\"halo\">GLOW</span></div>"
+    "markup": "<div class=\"bl\"><span class=\"src\">GLOW</span><span class=\"halo\">GLOW</span></div>",
+    "title_en": "Light bleeding",
+    "note_en": "The optical effect of bright areas spilling into their surroundings. Blurring the element itself makes the text unreadable, so a blurred copy is placed behind and added. The original stays sharp while only the light bleeds."
   },
   {
     "id": "film-grain",
@@ -4206,7 +4612,9 @@
     },
     "predicted": "uncertain",
     "note": "ノイズ自体は CSS から動かせない。粒の面をひとまわり大きく作り、位置を毎コマ飛ばすと、粒が入れ替わって見える。滑らかに動かすと粒ではなく雲になるので、必ず離散で送る。",
-    "markup": "<div class=\"fg\"><span class=\"pic\">1975</span><span class=\"grain\"></span><span class=\"flick\"></span><svg width=\"0\" height=\"0\" aria-hidden=\"true\"><filter id=\"fg-n\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.9\" numOctaves=\"3\" stitchTiles=\"stitch\"/></filter></svg></div>"
+    "markup": "<div class=\"fg\"><span class=\"pic\">1975</span><span class=\"grain\"></span><span class=\"flick\"></span><svg width=\"0\" height=\"0\" aria-hidden=\"true\"><filter id=\"fg-n\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.9\" numOctaves=\"3\" stitchTiles=\"stitch\"/></filter></svg></div>",
+    "title_en": "Film grain",
+    "note_en": "Noise itself cannot be animated from CSS. Making the grain surface slightly oversized and jumping its position every frame makes the grain appear to change. Moving it smoothly gives cloud rather than grain, so it must step discretely."
   },
   {
     "id": "stamp",
@@ -4237,7 +4645,9 @@
         ],
         "within": 8
       }
-    ]
+    ],
+    "title_en": "A stamp being pressed",
+    "note_en": "It falls, lands, the surroundings shake, and the ink spreads slightly. Squashing hard on the instant of contact and easing back gives it weight. The bleed must sit behind the impression, or it lands on the letters and destroys legibility."
   },
   {
     "id": "origami",
@@ -4264,7 +4674,9 @@
         "inside": ".fold",
         "at": "95%"
       }
-    ]
+    ],
+    "title_en": "A fold opening",
+    "note_en": "A paper folded in four opening out. In the folded state all four faces must coincide at the position of one, which requires nesting the faces so the folds stack. The corner face is folded twice, so it opens only after its parent does. Varying only lightness within one hue reads as one sheet; varying hue reads as separate boards."
   },
   {
     "id": "kaleidoscope",
@@ -4284,7 +4696,9 @@
     },
     "predicted": "uncertain",
     "note": "同じ絵を楔形に切って円周に並べ、一つおきに左右反転させる。回転だけでは風車になり、反転を混ぜて初めて鏡の対称になる。中身が単純でも、対称が複雑さを作る。",
-    "markup": "<div class=\"kl\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>"
+    "markup": "<div class=\"kl\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>",
+    "title_en": "Kaleidoscope",
+    "note_en": "The same image cut into wedges arranged around a circle, with every other one mirrored. Rotation alone gives a pinwheel; only adding the mirroring produces mirror symmetry. However simple the contents, symmetry manufactures complexity."
   },
   {
     "id": "tilt-shift",
@@ -4304,7 +4718,9 @@
     },
     "predicted": "uncertain",
     "note": "実物大の風景でも、ピントの合う範囲を細い帯に狭めると模型に見える。人の目は「被写界深度が浅い＝対象が小さい」と解釈するため。帯を動かすと、どこが模型の主役かが変わる。",
-    "markup": "<div class=\"ts\"><div class=\"scene\"><span class=\"b b1\"></span><span class=\"b b2\"></span><span class=\"b b3\"></span><span class=\"b b4\"></span><span class=\"b b5\"></span><span class=\"b b6\"></span><span class=\"b b7\"></span><span class=\"b b8\"></span><span class=\"b b9\"></span></div><div class=\"scene blur\"><span class=\"b b1\"></span><span class=\"b b2\"></span><span class=\"b b3\"></span><span class=\"b b4\"></span><span class=\"b b5\"></span><span class=\"b b6\"></span><span class=\"b b7\"></span><span class=\"b b8\"></span><span class=\"b b9\"></span></div></div>"
+    "markup": "<div class=\"ts\"><div class=\"scene\"><span class=\"b b1\"></span><span class=\"b b2\"></span><span class=\"b b3\"></span><span class=\"b b4\"></span><span class=\"b b5\"></span><span class=\"b b6\"></span><span class=\"b b7\"></span><span class=\"b b8\"></span><span class=\"b b9\"></span></div><div class=\"scene blur\"><span class=\"b b1\"></span><span class=\"b b2\"></span><span class=\"b b3\"></span><span class=\"b b4\"></span><span class=\"b b5\"></span><span class=\"b b6\"></span><span class=\"b b7\"></span><span class=\"b b8\"></span><span class=\"b b9\"></span></div></div>",
+    "title_en": "Making it look like a miniature",
+    "note_en": "Even a full-scale scene reads as a model once the plane of focus is narrowed to a thin band, because the eye reads shallow depth of field as 'the subject is small'. Moving the band changes which part is the model's subject."
   },
   {
     "id": "crt",
@@ -4325,7 +4741,9 @@
     },
     "predicted": "uncertain",
     "note": "走査線・上下に流れる帯・わずかな色ずれ。この 3 つが揃うとブラウン管に見える。走査線を止めたまま帯だけを流すのが要点で、走査線ごと動かすと画面全体が揺れているだけになる。",
-    "markup": "<div class=\"crt\"><span class=\"tx\">SIGNAL</span><span class=\"scan\"></span><span class=\"roll\"></span></div>"
+    "markup": "<div class=\"crt\"><span class=\"tx\">SIGNAL</span><span class=\"scan\"></span><span class=\"roll\"></span></div>",
+    "title_en": "CRT",
+    "note_en": "Scanlines, a band drifting vertically, and a slight colour fringe. Those three together read as a cathode-ray tube. The key is keeping the scanlines fixed while only the band drifts; moving the scanlines too makes the whole screen merely wobble."
   },
   {
     "id": "orbit-cam",
@@ -4345,7 +4763,9 @@
     },
     "predicted": "uncertain",
     "note": "対象の周りを回ると、面の向きに応じて明るさが変わる。回転だけで明暗が固定だと、絵が回っているようにしか見えない。面ごとに明るさを持たせると立体になる。",
-    "markup": "<div class=\"oc\"><div class=\"box\"><span class=\"f f1\"></span><span class=\"f f2\"></span><span class=\"f f3\"></span><span class=\"f f4\"></span><span class=\"top\"></span></div></div>"
+    "markup": "<div class=\"oc\"><div class=\"box\"><span class=\"f f1\"></span><span class=\"f f2\"></span><span class=\"f f3\"></span><span class=\"f f4\"></span><span class=\"top\"></span></div></div>",
+    "title_en": "Orbiting the subject",
+    "note_en": "Circling an object varies the brightness of each face by its orientation. Rotation with fixed shading looks like a picture turning. Giving each face its own brightness makes it solid."
   },
   {
     "id": "eye-path",
@@ -4372,6 +4792,8 @@
         "inside": ".p4",
         "at": "80%"
       }
-    ]
+    ],
+    "title_en": "A reading path for the eye",
+    "note_en": "Directing the order of looking through motion. Numbering alone does not convey a route; only drawing the line makes it a path. Placing the line and the dots in different coordinate systems (SVG versus percentage) guarantees drift, so both go inside the same SVG. That also removes the need for scaling, so the stroke widths match."
   }
 ]

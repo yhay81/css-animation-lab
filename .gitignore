@@ -1,3 +1,6 @@
 .DS_Store
 node_modules/
 *.log
+
+# 公開サイトはワークフローが組み立てる。生成物を持ち回らない。
+dist/site/

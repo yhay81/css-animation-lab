@@ -1,19 +1,90 @@
 # css-animation-lab
 
+[English](README.en.md) · **日本語**
+
 CSS アニメーションの表現範囲を、実験・機械検証・比較評価の反復で体系化する研究環境。
 依存パッケージやビルド工程を持たず、Node.js とブラウザだけで動く。
 
+**公開サイト → <https://yhay81.github.io/css-animation-lab/>**
+
+## この場所が扱っている問題
+
+CSS アニメーションは、生成するより**判断するほうが高くつく**。書けば動くが、
+動いたものが良いかどうかは見るまで分からない。しかも構文が正しく、レビューを通り、
+それでも**何も起きていない**ことがある。誤った `@keyframes` 名、描画に届かないプロパティ、
+頂点が一直線の `clip-path` — どれもエラーにならない。
+
+AI が大量に書けるようになったいま、詰まるのは生成側ではなく、
+人間が動きを見て判断する時間のほうになった。ここはそこを扱う。
+
 ## 成果物
 
-成果物は4つある。
-
-- [catalog.json](catalog.json) — 全211実験を軸で索引した機械可読カタログ
-- [FINDINGS.md](FINDINGS.md) — 効いたこと・効かなかったことの記録
-- [PATTERNS.md](PATTERNS.md) — 型ごとの性格（注意度・由来・反復耐性）
-- [dist/adopted.css](dist/adopted.css) — `star` 判定された実験から生成する採用CSS
+| 成果物 | 中身 |
+|---|---|
+| [catalog.json](catalog.json) | 全211実験を軸で索引した機械可読カタログ |
+| [FINDINGS.md](FINDINGS.md) | 効いたこと・効かなかったことの記録（34件、確度つき） |
+| [PATTERNS.md](PATTERNS.md) | 型ごとの性格（注意度・由来・反復耐性） |
+| `csslab` CLI | 任意の CSS を検査する道具（依存ゼロ） |
+| [mcp/server.mjs](mcp/server.mjs) | 同じ検査を AI から呼ぶための MCP サーバー |
+| [dist/adopted.css](dist/adopted.css) | `star` 判定された実験から生成する採用CSS |
+| [llms.txt](llms.txt) | AI に渡すための入口 |
 
 ブラウザ別の実測は [BROWSER_SUPPORT.md](BROWSER_SUPPORT.md) と
 [browser-support.json](browser-support.json) に保存する。
+
+## 自分の CSS を検査する
+
+```bash
+npx css-animation-lab check anim.css --runtime
+```
+
+`--runtime` は headless Chrome で実際に動かす。npm の依存は増えない（既にある Chrome を借りる。
+`CHROME_PATH` で指定もできる）。「要修正」が 1 件でもあれば終了コードは 1 になるので、
+CI にそのまま置ける。
+
+```
+anim.css
+  要修正  動きが無い
+          アニメーションが 1 本も生成されていない
+          → 指定が通っていても生成されないことがある。擬似要素などは特に。
+  負荷  layout（height, width）
+  1周   1000ms / アニメーション 1 本
+```
+
+他のコマンド:
+
+```bash
+csslab strip anim.css --frames 9      # 動きを静止画の連番に展開する
+csslab catalog "ローディング"          # 211件から用途・技法で引く
+csslab findings "offset-path"         # 知見を確度つきで引く
+csslab patterns                       # 型ごとの性格
+```
+
+プログラムからは:
+
+```js
+import { checkCss, searchCatalog, searchFindings } from 'css-animation-lab';
+const { findings, runtime } = await checkCss(css, { runtime: true });
+```
+
+## AI から使う
+
+MCP サーバーが `check_css` / `search_catalog` / `search_findings` / `get_patterns` を配る。
+SDK 依存は無い。
+
+```json
+{
+  "mcpServers": {
+    "css-animation-lab": {
+      "command": "npx",
+      "args": ["-y", "css-animation-lab", "--mcp"]
+    }
+  }
+}
+```
+
+Claude Code なら [.claude/skills/css-animation](.claude/skills/css-animation/SKILL.md) を
+自分のプロジェクトへ写せばそのまま使える。
 
 ## 現在地
 
@@ -25,12 +96,17 @@ CSS アニメーションの表現範囲を、実験・機械検証・比較評�
 | `scroll` 駆動 | 13 |
 | `interactive` 駆動 | 8 |
 | 知見 | 34 |
-| 要判断 | 194 |
+| 検査規則 | 静的8・実行時7 |
+| 人手判定済み | 0 |
 
 機械検証は Chromium 150 で、`keyframes` 駆動182件すべてに指摘なし。
 残り29件は状態・スクロール・操作が必要なため、「問題なし」ではなく**実行時未検証**として分けて表示する。
 
-## 起動
+**人手判定はまだ 0 件で、`dist/adopted.css` は空。** これは意図的に埋めていない。
+211 件を 1 人で見るのは無理で、仮に見切っても 1 人の好みにしかならないため、
+判定は分担して集める方向にしてある（[CONTRIBUTING.md](CONTRIBUTING.md)）。
+
+## 手元で起動する
 
 Node.js 22 以上を使う。
 
@@ -43,6 +119,7 @@ npm start
 - <http://127.0.0.1:5757/lab/verify.html> — 静的・実行時検証、負荷分類、ブラウザ機能表
 
 サーバーは既定で `127.0.0.1` にだけbindする。評価結果を書き込むため、公開用サーバーとしては使わない。
+公開サイトは同じ画面を読み取り専用で配信していて、判定はブラウザの中にだけ残る。
 
 ## 評価の考え方
 
@@ -90,8 +167,10 @@ npm start
 - ブラウザとviewport
 - 判定時刻
 
-保存は入力検証後に一時ファイルから原子的に置き換える。失敗時は評価画面に「保存失敗」と表示され、
-そのボタンから再試行できる。
+手元のサーバーでは、入力検証後に一時ファイルから原子的に置き換える。失敗時は評価画面に
+「保存失敗」と表示され、そのボタンから再試行できる。
+公開サイトでは書き戻せないため、判定は端末内にだけ保存され、書き出してPRで送る形になる。
+送られたものは [verdicts/](verdicts/) に置かれ、`dist/consensus.json` に集計される。
 
 ## 実験の階層
 
@@ -152,10 +231,18 @@ npm run validate
 - JSONと必須メタデータ
 - ID・番号の重複
 - `data-exp` のスコープ
-- 判定データの状態と参照ID
+- 判定データの状態と参照ID（`verdicts/` の送られたものも含む）
 
-ブラウザ側の `verify.html` は描画上の変化、継ぎ目、収まり、順序、経路、明示された意図を検査する。
-また、アニメーションしたプロパティを「合成候補」「paint候補」「layout候補」に分類する。
+検査規則そのものは [scripts/checks/](scripts/checks/) にあり、
+ブラウザ（[lab/verify.html](lab/verify.html)）・CLI・MCP の 3 経路が同じものを呼ぶ。
+静的検査は DOM を使わないので Node からも動く。
+
+| 種別 | 見るもの |
+|---|---|
+| 静的（8規則） | 名前衝突、未登録変数、`d`の適用先、静的値の食い合い、面積ゼロの切り抜き、破線の座標系、裏面の非対称、余白の相殺 |
+| 実行時（7規則） | 動きの有無、描画の変化、繰り返しの継ぎ目、はみ出しの中央寄せ、1周への収まり、経路からのずれ、入れ子の重なり |
+
+実行時検査は、アニメーションしたプロパティを「合成候補」「paint候補」「layout候補」に分類する。
 これはプロパティからの保守的な分類であり、DevToolsの実レイヤ割当を保証するものではない。
 
 ## export
@@ -169,14 +256,24 @@ npm run export
 - `catalog.json`
 - `dist/adopted.css`
 - `dist/manifest.json`
+- `dist/consensus.json`
 
 `dist/adopted.css` に入るのは、`verdicts.json` で明示的に `star` と判定された実験だけ。
-現在はまだ人手判定がないため0件で、判定が進むたびにexportする。
+多数決では決めない。平均的で無難なものだけが残るため。
 
-GitHub Actionsではテスト、検証、export後の差分有無まで確認する。
+GitHub Actionsではテスト、検証、export後の差分有無まで確認し、
+main への push で公開サイトを組み直す。
 
 ## 仕組み
 
-実験CSSはサーバーが1本へ束ねて配信する。各要素のCSSアニメーションは一時停止され、
+実験CSSはサーバーが1本へ束ねて配信する（公開サイトではビルド時に同じものを吐く）。
+各要素のCSSアニメーションは一時停止され、
 `document.getAnimations()` で得た `CSSAnimation` の `currentTime` を共通時計から更新する。
 これにより、同位相比較、任意時点への固定、フィルムストリップを同じ仕組みで実現している。
+
+CLI もこの仕組みをそのまま使う。headless Chrome を CDP で駆動し、
+任意の CSS をカタログと同じ土俵（`lab/common.css`）に載せて測る。
+
+## ライセンス
+
+MIT

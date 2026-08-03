@@ -1,0 +1,846 @@
+{
+  "fade": {
+    "title": "Fade",
+    "note": "The most basic one. Dull on its own, but the foundation of nearly every composite. Rides the compositor, so the cost is minimal."
+  },
+  "rise": {
+    "title": "Up from below",
+    "note": "Uses the individual property translate rather than the transform shorthand. What matters is that it does not collide with other transforms when composed."
+  },
+  "slide": {
+    "title": "In from the side",
+    "note": "The only difference from rise is the axis. Whether it should be reserved for cases where direction carries meaning (nav, carousel) needs checking."
+  },
+  "pop": {
+    "title": "Enter by scaling up",
+    "note": "0.7 to 1. Something small growing draws attention. Hypothesis: on its own it looks cheap."
+  },
+  "shrink": {
+    "title": "Enter by scaling down",
+    "note": "1.25 to 1. The inverse of pop. Should read as settling rather than approaching. Which is more refined needs a human verdict."
+  },
+  "spin": {
+    "title": "Rotation",
+    "note": "-90deg to 0. On its own this is very likely too strong to be usable. A small angle (around -6deg) may be the right answer."
+  },
+  "skew": {
+    "title": "Shear",
+    "note": "No individual property exists, so it occupies transform and cannot compose with other transforms. That structural constraint is itself the finding."
+  },
+  "blur": {
+    "title": "Blur",
+    "note": "12px to 0. The texture is good but it does not ride the compositor and forces repaint. Certainly expensive over a large area. The point is the exchange rate between effect and cost."
+  },
+  "wipe": {
+    "title": "Wipe",
+    "note": "Mown away from below. The element itself does not move, so it reads as being exposed rather than arriving. Should suit text headings."
+  },
+  "iris": {
+    "title": "Circular open",
+    "note": "Opens as a circle, which emphasises the centre. A staple of View Transitions, but whether it works as a general-purpose part is doubtful."
+  },
+  "mask-sweep": {
+    "title": "Mask sweep",
+    "note": "Unlike clip-path, the boundary can be softened. The key is interpolating a percentage typed with @property — without the type it cannot be interpolated."
+  },
+  "gradient-turn": {
+    "title": "Gradient rotation",
+    "note": "Interpolates an <angle> via @property. A canonical example of a moving background in pure CSS. But it repaints continuously, so it should be expensive."
+  },
+  "tint": {
+    "title": "Hue shift",
+    "note": "Interpolating between oklch values takes a perceptually uniform path. Whether the difference from sRGB interpolation is actually visible needs checking."
+  },
+  "lift": {
+    "title": "Rising shadow",
+    "note": "Height expressed by shadow alone. The element does not move by a single pixel. A test of whether Material's elevation stands up on its own."
+  },
+  "morph": {
+    "title": "Corner morph",
+    "note": "Circle to rounded rectangle. Only the shape changes — not position, not opacity. Predicted to be rarely meaningful on its own."
+  },
+  "orbit": {
+    "title": "Path motion",
+    "note": "offset-path plus offset-distance. The only way to write non-linear movement in pure CSS. Almost nobody uses it."
+  },
+  "depth": {
+    "title": "Depth rotation",
+    "note": "Unlike the other atoms, it depends on the parent having perspective. Composition requires preparation on the parent side, so the composition cost is high."
+  },
+  "track": {
+    "title": "Letter spacing",
+    "note": "A textbook case of forcing layout recalculation — it does not ride the compositor. Whether the expressive value outweighs that needs a human verdict."
+  },
+  "sim": {
+    "title": "Simultaneous",
+    "note": "Position and opacity move in the same window. The baseline for every entrance. Everything after this is read as a difference from it."
+  },
+  "lag": {
+    "title": "Lagged",
+    "note": "Opacity rises first, position follows late. The weight of arrival should change. The question is whether the difference from sim is legible side by side."
+  },
+  "split-ease": {
+    "title": "Split easing",
+    "note": "Position decelerates, opacity stays linear. Barely known, but should work in practice. The question is whether the difference from sim is perceptible."
+  },
+  "layered": {
+    "title": "Three layers, different lengths",
+    "note": "Position, scale and opacity each move over a different duration. Individual properties make this writable without collision — the flip side of F006."
+  },
+  "add": {
+    "title": "Additive composition",
+    "note": "Two animations drive the same translate separately and add composes them. Normally the later one wins and the other vanishes. An almost unused feature."
+  },
+  "counter": {
+    "title": "Parent and child opposed",
+    "note": "The parent rises while the contents move down. The minimal form of parallax. Whether it produces an illusion of depth or merely looks misaligned needs a verdict."
+  },
+  "overshoot": {
+    "title": "Overshoot via keyframes",
+    "note": "Overshoot built from an intermediate keyframe rather than back-out easing. Unlike easing, the amount of overshoot is stated explicitly. Material for comparing which is easier to control."
+  },
+  "stagger-head": {
+    "title": "Sequential, 110ms",
+    "note": "Evenly spaced from the front. The baseline interval. Every later stagger is read as a difference from this."
+  },
+  "stagger-dense": {
+    "title": "Tight sequence, 45ms",
+    "note": "Short interval, deep overlap. Does it read as simultaneous, or as one mass? Probing the lower bound of stagger."
+  },
+  "stagger-sparse": {
+    "title": "Loose sequence, 150ms",
+    "note": "Long interval, shallow overlap. Should be the boundary where individuals start to read separately. Probing the upper bound of stagger."
+  },
+  "stagger-center": {
+    "title": "Outward from the centre",
+    "note": "Delay set by distance from the centre. Unlike a sequence, it carries no direction. The aim is to find which suits which situation."
+  },
+  "stagger-index": {
+    "title": "Delay from sibling-index()",
+    "note": "Can a sequence be built in CSS alone, without numbering the markup? Where unsupported the delay falls to 0 and everything appears at once, so it is self-diagnosing."
+  },
+  "depth-none": {
+    "title": "Opposed motion only (baseline)",
+    "note": "Already established that opposed motion alone does not read as depth. Placed here as the baseline for comparison."
+  },
+  "depth-shadow": {
+    "title": "Opposed motion plus shadow",
+    "note": "Adds a growing shadow to the opposed motion. Whether the shadow, by indicating ground, makes it read as lifting."
+  },
+  "depth-persp": {
+    "title": "Opposed motion plus perspective",
+    "note": "Perspective on the parent, the face tilting slightly as it rises. The case where a geometric depth cue is added."
+  },
+  "depth-blur": {
+    "title": "Opposed motion plus depth of field",
+    "note": "The rear layer is blurred and moves opposite the front. A photographic depth cue. The main candidate for making parallax work in pure CSS."
+  },
+  "depth-card": {
+    "title": "Opposed motion plus card material",
+    "note": "Made into a card with a face, an edge and contents, with the contents moving opposite. Testing the hypothesis that depth is a question of material."
+  },
+  "gap-40": {
+    "title": "Interval 40ms (overlap 0.10)",
+    "note": "Duration fixed at 400ms. Round 2 moved duration along with interval, so the boundary could not be located; here only the interval varies."
+  },
+  "gap-80": {
+    "title": "Interval 80ms (overlap 0.20)",
+    "note": "Duration fixed at 400ms. Round 2 moved duration along with interval, so the boundary could not be located; here only the interval varies."
+  },
+  "gap-120": {
+    "title": "Interval 120ms (overlap 0.30)",
+    "note": "Duration fixed at 400ms. Round 2 moved duration along with interval, so the boundary could not be located; here only the interval varies."
+  },
+  "gap-150": {
+    "title": "Interval 150ms (overlap 0.38)",
+    "note": "Duration fixed at 400ms. Round 2 moved duration along with interval, so the boundary could not be located; here only the interval varies."
+  },
+  "lag-20": {
+    "title": "Lag 20%",
+    "note": "The gap between opacity rising and position starting to move, set to 20%. The difference is already known to be perceptible; the aim is to settle a sensible default."
+  },
+  "lag-40": {
+    "title": "Lag 40%",
+    "note": "The gap between opacity rising and position starting to move, set to 40%. The difference is already known to be perceptible; the aim is to settle a sensible default."
+  },
+  "lag-60": {
+    "title": "Lag 60%",
+    "note": "The gap between opacity rising and position starting to move, set to 60%. The difference is already known to be perceptible; the aim is to settle a sensible default."
+  },
+  "modal-fade": {
+    "title": "Modal — opens in place",
+    "note": "Opens with opacity and a slight scale, without moving. display is bridged with allow-discrete, so the closing side stays visible to the end."
+  },
+  "modal-rise": {
+    "title": "Modal — lifted from below",
+    "note": "Opens by lifting from below. Having direction conveys where it came from, but it should read as heavier than opening in place."
+  },
+  "toast-slide": {
+    "title": "Toast — slides in from the side",
+    "note": "Slides in from off-screen. Deceleration only, no overshoot."
+  },
+  "toast-pop": {
+    "title": "Toast — springs up from below",
+    "note": "Comes from below, overshoots, then settles. Eye-catching, but whether that is excessive for a notification is the question."
+  },
+  "list-grid": {
+    "title": "List insert — opening height with grid",
+    "note": "Works around the long-standing inability to transition to height: auto, using grid-template-rows from 0fr to 1fr. Broad browser support."
+  },
+  "list-size": {
+    "title": "List insert — transition to height: auto",
+    "note": "Uses interpolate-size to unlock transitions to height: auto. The code is straightforward but support is narrow. Where unsupported the height snaps instantly."
+  },
+  "head-mask": {
+    "title": "Heading — revealed by mask",
+    "note": "The letters do not move; the cover is removed to reveal them. Nothing translates, so it should read as composed."
+  },
+  "head-chars": {
+    "title": "Heading — per-character sequence",
+    "note": "Letters rise one at a time. Written with sibling-index(), so it does not depend on the character count. The 60ms interval sits on the 'one mass' side (F010)."
+  },
+  "gooey": {
+    "title": "Gooey (metaball composition)",
+    "note": "Blur, then push contrast to an extreme, and separated circles merge only when they come close. The only way to build a liquid-like join in pure CSS."
+  },
+  "text-shimmer": {
+    "title": "Light crossing the letters",
+    "note": "The letters become a cutout of the background and only the background moves. The letters themselves stay still, so legibility is not harmed."
+  },
+  "conic-ring": {
+    "title": "Light travelling the rim",
+    "note": "Type the angle as a custom property and conic-gradient becomes interpolable. The element never rotates, yet the light circles it."
+  },
+  "counter-roll": {
+    "title": "Rolling digits",
+    "note": "A custom property typed as an integer, rendered as text via counter(). Numbers count up with no JavaScript. Barely known."
+  },
+  "shadow-trail": {
+    "title": "Afterimage from shadows",
+    "note": "The element stays single; several shadows are stacked behind the direction of travel. An afterimage with no extra elements."
+  },
+  "stripe-flow": {
+    "title": "Flowing stripes",
+    "note": "Only the position of a repeating gradient moves. Shift it by exactly one stripe period and it flows seamlessly forever."
+  },
+  "burst": {
+    "title": "Radiating particles",
+    "note": "The angle and distance of 15 particles are decided in CSS alone. No numbering in the markup, so changing the particle count leaves the CSS untouched."
+  },
+  "flip-3d": {
+    "title": "Card flip",
+    "note": "Two faces with backface hidden, placed back to back, and the parent rotates. A motion that cannot be built from one element — it is built from structure."
+  },
+  "blob": {
+    "title": "Wobbling outline",
+    "note": "The eight border-radius values move independently. Mixing in rotation turns the contents too and it reads as a solid, so only the outline deforms. On its own this stops at 'soft mass' and does not read as liquid — that needs gooey's merging."
+  },
+  "spotlight": {
+    "title": "Light on the letters",
+    "note": "A circle of light is blended over the top. The letters do not move; only the lit region brightens."
+  },
+  "ripple": {
+    "title": "Spreading ripples",
+    "note": "Give the same animation progressively negative delays and adding elements alone produces a continuous wave. The delays come from sibling-index()."
+  },
+  "glitch": {
+    "title": "Glitch",
+    "note": "The same text is stacked twice as pseudo-elements, colour-shifted and clipped into bands. attr() duplicates the body text, so there is nothing to keep in sync."
+  },
+  "mask-ring": {
+    "title": "Animating ring thickness",
+    "note": "The ring is cut with a mask rather than a border. Thickness is a number, so it interpolates, and the inner padding follows automatically. border-width cannot do this because the colour underneath is handled separately."
+  },
+  "mask-hole": {
+    "title": "A moving hole in a cover",
+    "note": "The hole is cut in the cover and moves. Without something legible underneath it just looks like a moving circle, so the cover is patterned to show it is a sheet."
+  },
+  "blend-diff": {
+    "title": "Text inverts as a band passes",
+    "note": "A white band composited with difference inverts only the overlapping region. No second copy of the text is needed."
+  },
+  "poly-morph": {
+    "title": "Polygon morph",
+    "note": "Polygons interpolate as long as the vertex count matches. Mismatched counts snap instead, so equalising the vertex count is the design point."
+  },
+  "morph-icon": {
+    "title": "Hamburger to close",
+    "note": "Of three lines the middle disappears and the outer two converge and rotate. No element swap — the same three lines change shape, so stopping midway never breaks."
+  },
+  "neon": {
+    "title": "Flickering neon tube",
+    "note": "Four stacked shadows build the falloff of the glow. The flicker is stepped; interpolating it smoothly gives a fluorescent lamp instead."
+  },
+  "extrude": {
+    "title": "Extruded text, moving light source",
+    "note": "Eight shadows offset 1px at a time form the side of a solid. Move the offset direction and the light source travels without the letters rotating."
+  },
+  "shadow-dots": {
+    "title": "Five dots from one element",
+    "note": "A shadow is part of the element, so rotating the parent rotates the shadows with it. Five dots from one element, transformable as a group."
+  },
+  "orbit-train": {
+    "title": "Flowing evenly along a path",
+    "note": "Give one animation negative delays that divide the cycle evenly and the elements flow while staying evenly spaced along the path. No per-element positioning needed."
+  },
+  "add-layers": {
+    "title": "A one-off motion on top of a constant sway",
+    "note": "This is where additive composition earns its keep. Constant float and a single bounce stay in separate animations without the later one killing the float. Without add, the float disappears for the duration of the bounce."
+  },
+  "glass": {
+    "title": "A glass pane crossing the background",
+    "note": "Blurs what is behind rather than the element itself. As the pane moves the picture behind distorts, so the pane's presence is conveyed by motion alone."
+  },
+  "marquee": {
+    "title": "Seamless infinite flow",
+    "note": "The same content repeated and moved by exactly one period. The number of copies must satisfy 'container width plus one period' — with two copies a gap appears on the right after one period. Four copies moved -25% (one period)."
+  },
+  "wave-text": {
+    "title": "A wave crossing the letters",
+    "note": "Stagger negative delays per character and the same up-down motion reads as a travelling wave. Positive delays give a sequence instead of a wave. Only negative delays produce this difference."
+  },
+  "liquid": {
+    "title": "A wobbling liquid surface",
+    "note": "Rotating a square with uniform corner radius makes the edge seen through a round window into a wave. Smaller radius and a mass closer to the window size increases the amplitude. Two counter-rotating layers interfere and remove the monotony."
+  },
+  "segment": {
+    "title": "Circular progress",
+    "note": "Circular progress without SVG. Typing the conic stop makes it interpolable, and a mask cuts out the middle to leave a ring."
+  },
+  "skeleton": {
+    "title": "Skeleton shimmer",
+    "note": "The elements do not move; only the background flows. One declaration covers any number of rows, and nothing in layout moves, so nothing shifts once loading finishes."
+  },
+  "pulse-badge": {
+    "title": "Pulsing badge",
+    "note": "Two rings offset by half a period keep the pulse continuous. With one ring there is a gap between beats and it stops reading as a call for attention."
+  },
+  "typewriter": {
+    "title": "Typewriter",
+    "note": "Width is stepped in ch units, one per character. With a monospaced font it lands exactly on each character. Proportional fonts have varying widths, so it drifts."
+  },
+  "scroll-reveal": {
+    "title": "Revealed by scrolling",
+    "note": "Driven by scrolling inside the cell. It advances by position rather than time, so the clock cannot drive it and it cannot be expanded into stills. An entrance animation with no JavaScript at all."
+  },
+  "mask-arc": {
+    "title": "An arc from intersecting masks",
+    "note": "A ring (radial) and a sector (conic) intersected produce an arc. A shape that one mask cannot make, composition can."
+  },
+  "blend-sat": {
+    "title": "A band that drains colour",
+    "note": "Grey at zero saturation composited with the saturation mode replaces only the underlying saturation. Hue and lightness survive, so the shape stays while the colour drains. Unlike a filter, it can be applied to just a part."
+  },
+  "svg-goo": {
+    "title": "Merging with an SVG filter",
+    "note": "Unlike the CSS blur-plus-contrast version, the threshold applies only to alpha, so colours do not muddy. It also works on a transparent background, which the CSS version does not. An example of the same look built two ways."
+  },
+  "has-toggle": {
+    "title": "Switching the parent with :has()",
+    "note": "Click to toggle. The parent can read the child's state, so the whole card's appearance changes with no JavaScript. Before :has(), changing a parent always required a script."
+  },
+  "color-mix": {
+    "title": "Colour paths (oklch vs srgb)",
+    "note": "Mixing the same two colours gives different intermediate colours depending on the path. srgb muddies in the middle; oklch turns while keeping lightness. Typing the mix ratio makes it interpolable."
+  },
+  "grid-morph": {
+    "title": "Animating the layout itself",
+    "note": "fr values interpolate, so the contest for space can change without moving elements. Unlike computing positions and translating, the contents rewrap correctly."
+  },
+  "scroll-progress": {
+    "title": "Scroll amount as progress",
+    "note": "Driven by scrolling inside the cell. The scroll position is itself the time axis, so neither reading the position nor controlling playback is needed."
+  },
+  "parallax": {
+    "title": "Layers offset by scrolling",
+    "note": "Depth appears simply by giving each layer a different travel for the same scroll amount. No position arithmetic, no JavaScript."
+  },
+  "cube-3d": {
+    "title": "Cube",
+    "note": "Six faces pushed out with translateZ. Impossible from one element — it needs one element per face plus static transforms. Only the parent animates."
+  },
+  "carousel-3d": {
+    "title": "Cards around a circle",
+    "note": "Each card's angle comes from sibling-index(), so changing the count needs no CSS edit. The arrangement around the circle is never written by hand."
+  },
+  "vf-weight": {
+    "title": "A wave of weight",
+    "note": "With a variable font, font-weight interpolates continuously. Offsetting the phase per character produces a wave of weight. With a non-variable font it jumps in steps, so this technique is environment-dependent."
+  },
+  "text-stroke": {
+    "title": "An outline filling with paint",
+    "note": "The letters are outline only, filled from below by a background cutout. Typing the fill height makes the amount filled interpolable."
+  },
+  "dot-wave": {
+    "title": "A wave across a grid",
+    "note": "Deriving 36 delays from the ordinal position produces a diagonal wave across rows. Changing only the delay coefficient changes the wave's direction and fineness."
+  },
+  "border-flow": {
+    "title": "A flowing edge (border-image)",
+    "note": "Flowing a gradient through border-image. But border-image ignores border-radius, so the corners square off. For the same effect with rounded corners, use the conic-ring approach of padding plus background. A case where the constraint decides the choice."
+  },
+  "spring-compare": {
+    "title": "Spring versus deceleration",
+    "note": "Listing many points in linear() expresses spring damping in pure CSS. cubic-bezier can only overshoot once and cannot write the return swing. Side by side over the same travel the difference is obvious."
+  },
+  "checker-flip": {
+    "title": "Faces flipping in sequence",
+    "note": "Sixteen tiles flipped with ordinal delays. Colour the back face differently and the surface appears to change like a wave."
+  },
+  "vt-swap": {
+    "title": "Swaps interpolated automatically",
+    "note": "Just swap the DOM and both position and size interpolate automatically. It captures named elements before and after and joins them, so no travel distance needs computing."
+  },
+  "scope-nest": {
+    "title": "Different motion sealed into each nesting level",
+    "note": "Set the lower bound of @scope and it stops reaching further in. The same class name can carry different motion at each nesting level. Naming conventions to avoid collisions become unnecessary."
+  },
+  "paint-order": {
+    "title": "An outline that does not eat the letters",
+    "note": "Top is the default, bottom is paint-order: stroke fill. As the stroke thickens the default collapses the letterforms while the reversed order preserves them. Animating a thick outline requires stating the order."
+  },
+  "drop-shadow-chain": {
+    "title": "Glow that follows the shape",
+    "note": "box-shadow attaches to the rectangular bounding box; drop-shadow follows the actual opaque shape. Even a clip-path cutout glows along its outline. Stacking several builds a falloff."
+  },
+  "offset-rotate": {
+    "title": "Whether to face the direction of travel",
+    "note": "The top uses offset-rotate: auto and faces the path tangent; the bottom uses 0deg and keeps its orientation. The same path means different things. auto for a vehicle, fixed for a label."
+  },
+  "iter-accumulate": {
+    "title": "Accumulating per iteration (unsupported)",
+    "note": "The left specifies animation-iteration-composite: accumulate and repeats 90 degrees four times. By spec it should turn 360 degrees, but this environment does not support it, so it snaps back to 0 each time. The right writes 360 degrees into the keyframes for the same look. A record that there is currently no way to decide speed and amount independently."
+  },
+  "container-anim": {
+    "title": "Switching motion by width",
+    "note": "Branches on the width of the container it sits in, not the viewport. The same part moves modestly in a narrow place and boldly in a wide one. Not expressible with media queries."
+  },
+  "bg-blend": {
+    "title": "Blending and animating backgrounds",
+    "note": "Layers are blended within a single background rather than split into elements. The DOM does not grow, so no element exists purely for decoration."
+  },
+  "dof-stack": {
+    "title": "Layers blurring with distance",
+    "note": "Vary blur with depth and the front-to-back order reads the instant it moves. Where parallax by opposed motion alone failed to read as depth (F011), the question is whether this succeeds."
+  },
+  "seg-ring": {
+    "title": "A ring with tick marks",
+    "note": "The ticks are drawn with a repeating conic gradient rather than one element each. Changing the count is a single number."
+  },
+  "path-morph": {
+    "title": "Path interpolation",
+    "note": "Paths interpolate as long as their command sequences match. It handles curves where polygon cannot, but the constraint of matching command order and count is the same."
+  },
+  "tab-machine": {
+    "title": "A state machine in pure CSS",
+    "note": "Press a tab to switch. Picking up a radio's state with a sibling combinator gives state and transitions with no JavaScript. The sliding underline is pure CSS too."
+  },
+  "flash": {
+    "title": "Flash",
+    "note": "brightness and contrast stacked to blow out for an instant. Intensity alone spikes without changing hue, so the original palette survives."
+  },
+  "mask-text-scan": {
+    "title": "Scanning across the letters",
+    "note": "The fill uses background-clip: text and the reveal uses a mask — two cutout systems at once. Either alone gives only 'colour flows' or 'it appears', not both."
+  },
+  "range-control": {
+    "title": "Changing the active range",
+    "note": "The same animation reads differently depending on which part of the viewport range it is assigned to. Top to bottom: 'just entering', 'fully entered', 'screen centre'. Scroll to compare."
+  },
+  "perspective-move": {
+    "title": "Moving the viewpoint itself",
+    "note": "Moves the viewing position rather than the objects. The stacked layers stay put, yet parallax appears and it reads as space. No per-element travel arithmetic."
+  },
+  "popover-anim": {
+    "title": "Popover entry and exit",
+    "note": "Press the button to toggle. Animating the closing side requires putting overlay in the transition list too. Without it the element leaves the top layer immediately, so it animates in and vanishes instantly on the way out. Placement comes from an anchor, so there is no position arithmetic either."
+  },
+  "svg-draw": {
+    "title": "A line being drawn",
+    "note": "pathLength=\"100\" normalises the dash unit to 100 regardless of the real length. No measuring the path to write dasharray, and redrawing the path needs no edit to the declaration."
+  },
+  "mask-subtract": {
+    "title": "Punching holes by subtracting masks",
+    "note": "Circles subtracted from a plane. Unlike punching through with a radial-gradient's transparent part, the cutting shape and the cut surface are written separately, so adding holes is just adding layers."
+  },
+  "scroll-stuck": {
+    "title": "A heading that changes the moment it sticks",
+    "note": "Scroll until the heading sticks to the top and it halves in height, changes colour, and shows a 'stuck' marker. @container scroll-state(stuck), which asks about stickiness directly, parses but is never evaluated (F030), so the same look is built by using the scroll amount itself as the time axis. The key is assigning the change to the range covering the gap before it sticks."
+  },
+  "anchor-follow": {
+    "title": "An annotation following its target",
+    "note": "The annotation only states what it attaches to. Move the target and the placement follows. No coordinates are passed around, so position arithmetic disappears from the annotation mechanism."
+  },
+  "plus-lighter": {
+    "title": "Light adding up",
+    "note": "Unlike screen, it adds the overlapping values directly. Where all three colours meet, the centre blows out to white. Suited to scenes with multiple light sources."
+  },
+  "marker-anim": {
+    "title": "::marker cannot be animated (with a workaround)",
+    "note": "The left applies animation-name to ::marker. It applies as a computed value but no animation is generated and the colour stays fixed. The right uses list-style: none with a hand-placed ::before, and that does animate. A record that animating the standard marker means replacing it."
+  },
+  "ruby-emphasis": {
+    "title": "Emphasis dots lighting in sequence",
+    "note": "Emphasis marks are a Japanese typesetting device for stress, but animated examples are rare. Delay the colour per character and the dots light in reading order. The letters do not move, so legibility is untouched."
+  },
+  "counter-progress": {
+    "title": "Number and length from one value",
+    "note": "The ratio lives in one typed property and both the bar length and the number derive from it. The value and its display cannot drift apart. No updating two places in JavaScript."
+  },
+  "distort": {
+    "title": "Crossing a distorted surface",
+    "note": "Generating noise itself cannot be animated from CSS. Instead the distortion is fixed and the contents move, so each pass across the surface distorts differently. A way to produce change without animating the filter."
+  },
+  "clip-margin": {
+    "title": "Allowing a fixed amount of overflow",
+    "note": "overflow: hidden cuts exactly at the boundary; clip takes a margin and lets that much through. 'Let badges and shadows out but cut distant overflow' becomes one line. It also creates no scroll container."
+  },
+  "corner-shape": {
+    "title": "Changing the shape of the corner itself",
+    "note": "Specifies the kind of roundness by exponent. Being a number it interpolates, and it moves continuously not only between square and circle but into inward-scooped shapes. Forms border-radius alone cannot produce."
+  },
+  "pie": {
+    "title": "A pie chart growing",
+    "note": "Hold the sector boundaries as typed angles and each division animates separately. No SVG and no splitting into elements — a multi-coloured pie chart from one element."
+  },
+  "trail-text": {
+    "title": "Letters trailing a tail",
+    "note": "Shadows placed progressively fainter behind the direction of travel. The element stays single and becomes its own afterimage. The shadow order must flip at the moment direction reverses, or the tail leads instead of follows."
+  },
+  "backdrop-invert": {
+    "title": "A band that inverts what is behind",
+    "note": "backdrop-filter is not only blur. Apply inversion and only what lies under the pane inverts, colour and text alike. Unlike blending, the pane itself needs no colour."
+  },
+  "shape-fn": {
+    "title": "Paths writable in percentages",
+    "note": "path() uses absolute coordinates and did not follow the box size (F003). shape() can be written in %, so the same form is reusable at different sizes. Curved shapes finally work at variable width."
+  },
+  "attr-param": {
+    "title": "Passing the amount of motion from HTML",
+    "note": "The amplitude lives in an attribute. Per-element values pass without inline style, so the CSS side stays a single declaration. The generating side only has to emit an attribute."
+  },
+  "sibling-norm": {
+    "title": "A gradient independent of count",
+    "note": "Dividing the ordinal by the total gives a position from 0 to 1. Derive both delay and colour from that normalised value and the gradient keeps its shape whatever the element count. The count never appears in the CSS."
+  },
+  "inherit-drive": {
+    "title": "One animation on the parent driving every child",
+    "note": "A single inherited typed property animates on the parent and each child reads it through its own coefficient. The number of animations does not scale with the element count, so it stays cheap as the count grows."
+  },
+  "at-function": {
+    "title": "Defining your own CSS function",
+    "note": "The same expression need not be written repeatedly. Naming how a value is produced means the intent reads as a name rather than a formula. Taking arguments — impossible with custom properties — arrives here."
+  },
+  "if-branch": {
+    "title": "Switching values by condition",
+    "note": "A typed property is stepped and the value drives a branch. Instead of listing colours in keyframes, the correspondence between a value's meaning and its appearance lives in one place."
+  },
+  "details-anim": {
+    "title": "An accordion with no JavaScript",
+    "note": "Click to open and close. The browser owns the toggling itself, so writing the height transition is enough. Without bridging content-visibility with allow-discrete, the contents vanish instantly on close."
+  },
+  "timeline-scope": {
+    "title": "Driven by scrolling somewhere else",
+    "note": "Name the timeline and widen its sharing scope and elements outside the scroll container can reference it. Progress indicators no longer have to be pushed inside the scroll area."
+  },
+  "mixed-timelines": {
+    "title": "Time and scroll at once",
+    "note": "One element can carry something advancing by time and something advancing by scroll simultaneously. It allows layerings such as a constant sway that only appears once in view."
+  },
+  "view-inset": {
+    "title": "Shifting the detection boundary",
+    "note": "The edge at which something counts as 'in view' can be shifted inward or outward. With the same range specification, top to bottom gives 'starts early', 'standard', 'starts late'."
+  },
+  "user-valid": {
+    "title": "Reacting to input validity",
+    "note": "Try entering an email address. Unlike :invalid it only reacts after the user has interacted, so nothing turns red on first paint. JavaScript disappears from validation feedback."
+  },
+  "field-grow": {
+    "title": "A field growing to fit its contents",
+    "note": "Type and the width changes. Until now, width following content required measuring with a hidden element. Also checks whether adding a transition makes the resizing smooth."
+  },
+  "popover-backdrop": {
+    "title": "Sinking what is behind",
+    "note": "Press the button. ::backdrop is the surface behind the top layer; blurring it sinks everything behind. No element to lay down yourself, and nothing left over once closed."
+  },
+  "first-letter": {
+    "title": "::first-letter cannot be animated (with a workaround)",
+    "note": "The top applies animation-name to ::first-letter; the computed value becomes none and the declaration is not accepted at all. Where ::marker was 'accepted but inert', this one is 'erased'. The same intent fails in different ways. The bottom wraps the initial in an element, and that animates."
+  },
+  "contrast-auto": {
+    "title": "Text colour inverting automatically",
+    "note": "Background and text colour derive from the same single value. As the background brightens the text goes black, as it darkens the text goes white. No threshold to maintain yourself."
+  },
+  "size-intrinsic": {
+    "title": "Transitioning to the content's width",
+    "note": "Transitions width to max-content. Opening to fit the amount of content is writable without measuring the text. The closed state stays a circle rather than zero."
+  },
+  "text-box-trim": {
+    "title": "Trimming type's leading to fit",
+    "note": "Text carries the line height's slack above and below. Trim it and the box edge actually aligns with the letter edge. Placing text on a moving box no longer shifts the centre by that slack."
+  },
+  "scroll-carousel": {
+    "title": "A carousel in pure CSS",
+    "note": "Scroll horizontally. Both the position indicator and the arrows appear as pseudo-elements, with no elements placed for them. :target-current knows which one is in view, so there is no state to manage."
+  },
+  "snap-focus": {
+    "title": "Only the snapped card stands up",
+    "note": "Scroll and stop, and only the snapped card lifts. CSS knows which one is selected, so there is no position arithmetic and nothing to observe."
+  },
+  "container-style-q": {
+    "title": "Children querying the parent's value",
+    "note": "Animate one value on the parent and children read it as a condition. Where if() branches within the element, this switches an entire subtree based on an ancestor's state."
+  },
+  "position-try": {
+    "title": "Placement switching when it will not fit",
+    "note": "When the target nears an edge and the annotation no longer fits, it switches to another placement automatically. Both the trigger and the candidates live in CSS, so no off-screen detection to write."
+  },
+  "anchor-size": {
+    "title": "Matching the target's size",
+    "note": "Change the target's width and the underline's width changes with it. No mechanism to pass values, no measurement — referencing is enough to follow."
+  },
+  "vt-class": {
+    "title": "Applying transition rules in bulk",
+    "note": "Each element still needs a name, but the transition rules can be written once against a class. However many elements there are, the rule stays single. Names and rules come apart."
+  },
+  "content-vis": {
+    "title": "Motion in elements whose rendering is skipped",
+    "note": "Odd-numbered cells use content-visibility: auto. Rendering is skipped off-screen; this looks at how animations are treated then. If skipping affects motion, that constrains its use in long lists."
+  },
+  "ruby-anim": {
+    "title": "Ruby appearing late",
+    "note": "The reading appears later than the base text. The base text is readable from the start so nothing delays reading, and the reading arrives afterwards for those who need it. Animated ruby is almost unseen."
+  },
+  "sticky-stack": {
+    "title": "Headings stacking up",
+    "note": "Each heading sticks to the top in turn and stacks. Putting each heading in a per-section container makes it flow away with its section instead of stacking. Only laying them directly under the scroll container keeps them all."
+  },
+  "gradient-ring": {
+    "title": "A gradient border following the corner radius",
+    "note": "border-image ignores corner radius (see border-flow). Overlaying a mask that cuts out only the inside produces a border that follows the radius. The correct way to write the same intent."
+  },
+  "elastic-grid": {
+    "title": "Gap and ratio moving together",
+    "note": "Animate the gap and the column ratio together and the arrangement alone springs, with nothing specified on the elements themselves. Unlike computing positions and translating, the contents always rewrap correctly."
+  },
+  "aspect-flow": {
+    "title": "Animating only the aspect ratio",
+    "note": "Neither width nor height is stated; only the ratio moves. The contents follow automatically under the container's rules, so there is no need to compute and reconcile two values."
+  },
+  "scroll-marquee": {
+    "title": "Flowing sideways by scroll amount",
+    "note": "Scroll vertically and the band flows horizontally. Stop scrolling and the band stops, so the motion is tied to the reader's action. Quieter than flowing on a timer, and less likely to disturb reading."
+  },
+  "limited-anime": {
+    "title": "Shooting on threes",
+    "note": "Japanese animation is often drawn at around 8 frames per second rather than 24. Deliberately discarding smoothness gives the same motion a hand-drawn texture. CSS defaults to smooth interpolation, so this texture is unreachable without stepping. Top is smooth, bottom is 8 frames."
+  },
+  "speed-lines": {
+    "title": "Speed lines",
+    "note": "A comics staple for surprise and impact — lines converging radially on a centre. One element per line would mean dozens; a repeating conic gradient does it in one. Two layers are stacked so the line widths look random."
+  },
+  "impact-frame": {
+    "title": "Impact frame",
+    "note": "At the moment of impact, scale-up, white flash, shake and speed lines all happen at once. Any one alone is weak; only together does it land. The key is that the flash is not interpolated but killed in a single frame — smoothing it makes it look cheap."
+  },
+  "shatter": {
+    "title": "Fragments flying apart",
+    "note": "Layers of the same image cut into wedges, each flung outward. Each fragment's direction comes from trigonometry on the ordinal position, so changing the count leaves the declaration single. It reads as shattering with no physics engine."
+  },
+  "handheld": {
+    "title": "Handheld camera shake",
+    "note": "The fine tremor of shooting without a tripod. A single period looks mechanical, so shakes with mutually indivisible counts are layered to hide the period. Here 3, 5 and 7 are summed; the combined period equals one cycle, so there is no seam on repeat."
+  },
+  "rack-focus": {
+    "title": "Rack focus",
+    "note": "The cinematographic technique of shifting focus from subject to background. It directs where to look without moving anything. Since no element moves, no information changes position and it does not interrupt mid-read."
+  },
+  "dolly-zoom": {
+    "title": "Dolly zoom",
+    "note": "Pulling the camera back while narrowing the angle of view. The subject's size stays constant while the background alone stretches, producing unease. The point is changing only the depth while preserving the subject."
+  },
+  "kinetic-type": {
+    "title": "Kinetic typography",
+    "note": "Matching motion to a word's meaning. Rather than one entrance applied to everything, giving each word its own motion makes the type perform its sense. Common at the opening of presentation videos."
+  },
+  "text-scramble": {
+    "title": "Characters spinning then settling",
+    "note": "Candidate glyphs cycle rapidly and settle one by one. Normally built by rewriting characters in JavaScript, but stacking the candidates vertically and stepping through them works in pure CSS. The offset number must be held by the wrapping element: the stepped strip is an only child, so counting position there always yields 1."
+  },
+  "lower-third": {
+    "title": "Lower third",
+    "note": "The broadcast staple for identifying a speaker. The bar opens sideways, the name follows late, the title later still. Those three staggered delays are what read as 'produced'. Showing them together looks cheap."
+  },
+  "diagram-build": {
+    "title": "A diagram assembling itself",
+    "note": "A box appears, a line extends and connects, the next box appears. Drawing lines in SVG and boxes as ordinary elements gives two coordinate systems that will always drift. Worse, pathLength stops working alongside non-scaling-stroke, dropping the dash arithmetic into device coordinates and cutting the line short. Putting everything inside the SVG avoids both. Order is expressed by keyframe position, not by delay."
+  },
+  "follow-through": {
+    "title": "Bending and following late",
+    "note": "One of the fundamental principles of animation. When the tip catches up last, a rigid object reads as soft. Increasing the delay arithmetically and applying an easing with a return swing produces the bend with no physics."
+  },
+  "boil": {
+    "title": "Hand-drawn boil",
+    "note": "In hand-drawn animation, lines that should be still tremble slightly — because three drawings of the same image never match exactly. On an outline-only circle the wobble is unreadable, so an inner line is added. The tremor shows in curvature rather than position, so the endpoints are pinned and only the control points move. Note that CSS d only works on path: specifying it on circle appears in the computed value but changes nothing on screen."
+  },
+  "logo-reveal": {
+    "title": "A logo being written out",
+    "note": "The staple ending of a corporate video. A mask reveals from the left and a highlight overtakes it slightly later. Reveal alone is bland, highlight alone does nothing. The gap between the two is what reads as finished."
+  },
+  "onomatopoeia": {
+    "title": "Sound effects bursting out",
+    "note": "Drawn lettering from comics, where the type behaves as an image. HTML's text-stroke eats into the letterforms from inside, so the edge is built from many radially placed shadows instead. Overshooting and returning gives the burst its force."
+  },
+  "panel-split": {
+    "title": "A panel splitting",
+    "note": "One image cut apart along a diagonal, the fragments displacing separately — the breaking of comic panel structure. A vertical or horizontal cut looks clerical, so cutting diagonally is the point."
+  },
+  "time-stop": {
+    "title": "Time stopping",
+    "note": "Everything freezes while one thing keeps moving. CSS has no way to say 'stop the others', so the frozen ones get keyframes repeating the same value. Using negative delays here shifts the phase, moving each element's frozen interval to a different moment so they no longer stop together. Individual variation comes from amplitude, not delay; the time axis is shared. The desaturating filter affects all descendants, so only the frozen side is wrapped."
+  },
+  "emotion-marks": {
+    "title": "Emotion symbols popping out",
+    "note": "Anger marks and sweat drops are symbolic devices invented by Japanese comics. They convey feeling without drawing an expression. Squashing horizontally on emergence and stretching vertically on return makes them read as alive."
+  },
+  "screentone": {
+    "title": "Screentone being replaced",
+    "note": "Comic shading is built from halftone dots, not grey. Changing dot size and spacing changes the density. Because it varies continuously, it produces a 'tone growing denser' effect that print cannot achieve."
+  },
+  "eye-shine": {
+    "title": "Glint",
+    "note": "The four-pointed star that flashes at the moment light reflects. Scaling it smoothly does not read as a star; appearing and vanishing instantly is the point. Three of them at staggered sizes look richer than one."
+  },
+  "particles-gravity": {
+    "title": "Launched and falling",
+    "note": "Radial flight alone is not fireworks. Adding a downward component proportional to time squared gives a parabola under gravity. Speed and direction both come from the ordinal position, so changing the particle count leaves the declaration single."
+  },
+  "smoke": {
+    "title": "Rising smoke",
+    "note": "Smoke does not merely rise: it spreads as it rises and thins as it spreads. Without all three at once it reads as steam. Increasing blur over time is the cheapest way to express diffusion."
+  },
+  "god-rays": {
+    "title": "Light shafts",
+    "note": "Shafts extending from a light source. Evenly spaced lines look artificial, so two layers of differing thickness rotate at different speeds to break the regularity. The falloff comes from a radial mask."
+  },
+  "motion-blur": {
+    "title": "The direction of blur",
+    "note": "Real blur extends only along the direction of travel. CSS blur applies equally in all directions, so on fast motion it gives only a fuzzy ball. SVG blur takes a per-axis amount, so it can blur horizontally alone. Top is CSS, bottom is SVG."
+  },
+  "water-ripple": {
+    "title": "Ripples on water",
+    "note": "Expanding concentric circles alone give a wifi icon. Only distorting the outline makes it water. The distortion can stay still; it is the rings that move."
+  },
+  "magnetic": {
+    "title": "A button drawn to the cursor",
+    "note": "A button that is pulled toward the cursor. It is assumed to need JavaScript because it reads coordinates, but dividing the hit area into a grid and picking it up with :has() approximates it. More divisions, smoother result."
+  },
+  "rig-chain": {
+    "title": "Linked joints swinging",
+    "note": "Nesting joints makes the parent's rotation accumulate into the children. Delaying each level alone propagates the swing from root to tip. Skeletal motion with no position arithmetic. Where follow-through is per-element delay, here the rotation accumulates."
+  },
+  "anticipation": {
+    "title": "Winding up before moving",
+    "note": "Pulling back slightly before moving. One of the twelve principles of animation; without it, motion feels abrupt. Top has no anticipation, bottom does. They travel the same distance in the same time, yet the bottom looks faster."
+  },
+  "squash-stretch": {
+    "title": "Squash and stretch",
+    "note": "Stretches along the direction of fall and squashes on impact. Widening by as much as it flattens preserves volume, so it reads as rubber rather than a rigid ball. Tying the shadow's size to the height makes the point of contact unambiguous."
+  },
+  "speech-balloon": {
+    "title": "A speech balloon appearing",
+    "note": "The body appears, then the tail extends. Simultaneously it reads as a shape appearing; in sequence it becomes 'someone spoke'. Placing the tail outside the body makes it detach and float when the body scales, so both must sit in the same container and move together."
+  },
+  "bg-pan-run": {
+    "title": "A running background",
+    "note": "When animation depicts running, it is the background that moves. The figure only bobs in place, yet reads as advancing. The background moves exactly one period to hide the seam. Sending nearer layers faster adds depth."
+  },
+  "charge-up": {
+    "title": "Charging and releasing",
+    "note": "Particles are drawn inward to the centre, the core swells, and at the limit it bursts. Not a reversed burst — the point is that intake and release run at different speeds. The charge is slow, the release instant."
+  },
+  "camera-pan": {
+    "title": "The camera panning",
+    "note": "It is the frame that moves, not the subject. Panning at constant speed looks mechanical, so it decelerates before each intended stop. A beat at every stop gives the viewer time to read what is there."
+  },
+  "crowd-wave": {
+    "title": "A wave crossing a crowd",
+    "note": "Delaying by ordinal position sends the wave in one direction only. Delaying by distance from the centre spreads it in concentric rings, like a dropped stone. Row and column derive from the ordinal position, so the distance comes out without writing coordinates."
+  },
+  "odometer": {
+    "title": "Digits rolling over",
+    "note": "In a mechanical counter the lower digits turn faster. Turning them all at the same speed gives a scoreboard and loses the sense of a number accumulating. Varying the rotation count per digit alone makes it read as an instrument."
+  },
+  "swipe-transition": {
+    "title": "Pushing one panel out with another",
+    "note": "A new face pushes the old one out. Leading with a single edge line at the boundary makes it read as pushing rather than sliding. Without the edge it looks like two overlapping sheets."
+  },
+  "audio-bars": {
+    "title": "Audio bars",
+    "note": "Moving the bar heights on a shared period gives only an undulating band. Varying the repeat count per bar makes it read as sound. Using only divisors of the cycle keeps it seamless on repeat despite the irregularity."
+  },
+  "map-zoom": {
+    "title": "Detail emerging as you zoom",
+    "note": "Zooming a map adds information as you approach. Merely enlarging gives a stretched picture. Only when different layers appear at different scales does it become 'getting closer'."
+  },
+  "page-turn": {
+    "title": "A page turning",
+    "note": "Rotation alone does not read as paper. Shadow moving with the turn angle and the reverse side coming into view give it thickness. The hinge sits at the bound edge, and the leaf pivots on that edge, turning from the far side toward the viewer. Placing the leaf and the revealed page on the same side makes the turning leaf cover the page it should reveal."
+  },
+  "liquid-wipe": {
+    "title": "A liquid wipe",
+    "note": "Gooey merging used for a scene change rather than decoration. Separate masses converge to cover the screen, and the contents swap at the moment of full cover. More organic than a rectangular wipe, and it hides the instant of the switch."
+  },
+  "stop-motion": {
+    "title": "Stop motion",
+    "note": "Frame-by-frame shooting is moved by hand, so neither frame length nor position is even. Stepping at regular intervals gives only a mechanical low frame rate; uneven lengths plus a fine jitter are what read as handmade."
+  },
+  "handwriting": {
+    "title": "Being written by hand",
+    "note": "A line merely extending does not read as drawn. Running a dot along the same path to show the writer's position makes it feel handwritten. But offset-path advances in the path's raw units, so drawing the SVG at an enlarged scale leaves the pen behind. Keep the drawing units 1:1 with the path and apply the scaling to the container instead."
+  },
+  "silhouette": {
+    "title": "Backlit silhouette",
+    "note": "With the light behind, the subject falls to black and only the outline glows. It conveys presence without revealing what the thing is. Moving the light source moves the rim light, which reveals that it is solid."
+  },
+  "reflection": {
+    "title": "Reflected on water",
+    "note": "An inverted copy placed below, fading with distance. A static mirror image is rigid; a slight horizontal wobble makes it water. Too much wobble makes it something else, so the amplitude stays under the stroke weight of the type."
+  },
+  "bloom": {
+    "title": "Light bleeding",
+    "note": "The optical effect of bright areas spilling into their surroundings. Blurring the element itself makes the text unreadable, so a blurred copy is placed behind and added. The original stays sharp while only the light bleeds."
+  },
+  "film-grain": {
+    "title": "Film grain",
+    "note": "Noise itself cannot be animated from CSS. Making the grain surface slightly oversized and jumping its position every frame makes the grain appear to change. Moving it smoothly gives cloud rather than grain, so it must step discretely."
+  },
+  "stamp": {
+    "title": "A stamp being pressed",
+    "note": "It falls, lands, the surroundings shake, and the ink spreads slightly. Squashing hard on the instant of contact and easing back gives it weight. The bleed must sit behind the impression, or it lands on the letters and destroys legibility."
+  },
+  "origami": {
+    "title": "A fold opening",
+    "note": "A paper folded in four opening out. In the folded state all four faces must coincide at the position of one, which requires nesting the faces so the folds stack. The corner face is folded twice, so it opens only after its parent does. Varying only lightness within one hue reads as one sheet; varying hue reads as separate boards."
+  },
+  "kaleidoscope": {
+    "title": "Kaleidoscope",
+    "note": "The same image cut into wedges arranged around a circle, with every other one mirrored. Rotation alone gives a pinwheel; only adding the mirroring produces mirror symmetry. However simple the contents, symmetry manufactures complexity."
+  },
+  "tilt-shift": {
+    "title": "Making it look like a miniature",
+    "note": "Even a full-scale scene reads as a model once the plane of focus is narrowed to a thin band, because the eye reads shallow depth of field as 'the subject is small'. Moving the band changes which part is the model's subject."
+  },
+  "crt": {
+    "title": "CRT",
+    "note": "Scanlines, a band drifting vertically, and a slight colour fringe. Those three together read as a cathode-ray tube. The key is keeping the scanlines fixed while only the band drifts; moving the scanlines too makes the whole screen merely wobble."
+  },
+  "orbit-cam": {
+    "title": "Orbiting the subject",
+    "note": "Circling an object varies the brightness of each face by its orientation. Rotation with fixed shading looks like a picture turning. Giving each face its own brightness makes it solid."
+  },
+  "eye-path": {
+    "title": "A reading path for the eye",
+    "note": "Directing the order of looking through motion. Numbering alone does not convey a route; only drawing the line makes it a path. Placing the line and the dots in different coordinate systems (SVG versus percentage) guarantees drift, so both go inside the same SVG. That also removes the need for scaling, so the stroke widths match."
+  }
+}

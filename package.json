@@ -1,11 +1,64 @@
 {
   "name": "css-animation-lab",
-  "private": true,
+  "version": "0.1.0",
+  "description": "CSS アニメーションの実験カタログと検査器。211 件の実験、確度つきの知見、依存ゼロの検査 CLI。",
+  "keywords": [
+    "css",
+    "animation",
+    "keyframes",
+    "lint",
+    "verification",
+    "catalog",
+    "motion",
+    "llm"
+  ],
+  "license": "MIT",
+  "author": "Yusuke Hayashi",
+  "homepage": "https://yhay81.github.io/css-animation-lab/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yhay81/css-animation-lab.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yhay81/css-animation-lab/issues"
+  },
   "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "csslab": "./bin/csslab.mjs",
+    "css-animation-lab": "./bin/csslab.mjs"
+  },
+  "exports": {
+    ".": "./index.mjs",
+    "./catalog.json": "./catalog.json",
+    "./checks/static": "./scripts/checks/static.mjs",
+    "./checks/runtime": "./scripts/checks/runtime.mjs",
+    "./mcp": "./mcp/server.mjs"
+  },
+  "files": [
+    "bin/",
+    "mcp/",
+    "lab/common.css",
+    "scripts/checks/",
+    "scripts/chrome.mjs",
+    "scripts/harness.mjs",
+    "index.mjs",
+    "catalog.json",
+    "FINDINGS.md",
+    "PATTERNS.md",
+    "BROWSER_SUPPORT.md",
+    "browser-support.json",
+    "llms.txt"
+  ],
   "scripts": {
     "start": "node lab/server.mjs",
     "validate": "node scripts/validate.mjs",
     "export": "node scripts/export.mjs",
+    "build:site": "node scripts/build-site.mjs",
+    "check": "node bin/csslab.mjs",
+    "mcp": "node mcp/server.mjs",
     "test": "node --test"
   }
 }

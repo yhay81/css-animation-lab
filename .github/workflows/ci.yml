@@ -12,7 +12,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      # ubuntu-latest には Chrome が入っているので、実行時の検査まで通る。
+      # 無い環境ではその試験だけが飛ばされ、静的な部分は変わらず走る。
       - run: npm test
       - run: npm run validate
       - run: npm run export
+      # 生成物が手で触られていないことを確かめる。
       - run: git diff --exit-code -- catalog.json dist
+      # 公開サイトが組めることも見る。落ちるのを Pages のデプロイ時に知るのでは遅い。
+      - run: npm run build:site
+
+  # 自分の検査器を自分の実験に当てる。カタログが増えたときの見張りになる。
+  dogfood:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node bin/csslab.mjs check --runtime experiments/fade/anim.css experiments/gooey/anim.css

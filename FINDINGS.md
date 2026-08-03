@@ -1,5 +1,7 @@
 # 知見
 
+**日本語** · [English](FINDINGS.en.md)
+
 ブラウザ別の再現状況は [BROWSER_SUPPORT.md](BROWSER_SUPPORT.md) に分離して記録する。
 
 効いたことと同じだけ、効かなかったことを残す。ここが最終的にこのリポジトリの中身になる。

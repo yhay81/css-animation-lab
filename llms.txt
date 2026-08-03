@@ -1,0 +1,109 @@
+# css-animation-lab
+
+> A research environment for CSS animation: 211 catalogued experiments, 34 findings
+> recorded with explicit confidence levels, and a zero-dependency verifier that runs
+> the CSS in a real browser. The point is not generating CSS animation — models
+> already do that well. The point is **judging** it: telling whether the animation
+> actually does anything, whether it is expensive, and whether it seams when it loops.
+
+## What this is for
+
+Writing a CSS animation is cheap. Knowing whether it works is not. An animation can
+be syntactically perfect, pass every linter, and still produce **nothing at all** —
+a misspelled `@keyframes` name, a property that never reaches paint, a `clip-path`
+whose vertices are collinear. None of these raise an error. You only find out by
+watching it, which does not scale.
+
+This project moves that judgment to where it can be automated:
+
+| Layer | What it decides | Who does it |
+|---|---|---|
+| Machine verification | Does it animate at all? Does the render change? Is it layout-bound? Does it seam? | scripts / this package |
+| Filmstrip | Trajectory, overshoot, how early it arrives | read as still frames |
+| Taste | Whether it feels good, whether it fits the moment | humans only |
+
+Use the verifier before showing CSS animation to a user. A `fail`-level finding means
+the animation is broken in a way that is invisible in code review.
+
+## Verify CSS you wrote
+
+```bash
+npx css-animation-lab check anim.css --runtime
+```
+
+Exit code is 1 when any `fail`-level finding exists, so it drops into CI unchanged.
+`--runtime` launches headless Chrome (no npm dependency; it borrows an installed
+Chrome/Chromium, or the one at `$CHROME_PATH`). Without it, only static checks run.
+
+Add `--json` for machine-readable output. Programmatic use:
+
+```js
+import { checkCss } from 'css-animation-lab';
+const { findings, runtime } = await checkCss(css, { runtime: true });
+// findings: [{ sev: 'fail'|'warn', rule, msg, why }]
+// runtime:  { cost: 'compositor'|'paint'|'layout'|'unknown', properties, animationCount, cycleMs }
+```
+
+An MCP server exposing the same capability lives at `mcp/server.mjs`
+(stdio, no SDK dependency). Tools: `check_css`, `search_catalog`,
+`search_findings`, `get_patterns`.
+
+## What the checks catch
+
+Static (no browser needed) — each rule comes from a bug that was actually hit:
+
+- a class name colliding with the harness's own layout names
+- `sibling-index()` inside an unregistered custom property, read across elements
+- `d:` on anything that is not a `<path>` (computes, never paints)
+- a property written both statically and in `@keyframes` (the animation eats it)
+- `clip-path: polygon()` with zero area (the element silently disappears)
+- `pathLength` combined with `non-scaling-stroke` (dash lengths stop matching)
+- asymmetric `border-radius` on a face that gets flipped 180°
+- nested same-class elements spaced with `margin` (margins collapse; the parent moves)
+
+Runtime (real browser):
+
+- no animation was generated at all
+- the rendered output is identical at every sampled point
+- a visible jump at the loop boundary when the author intended seamlessness
+- an element larger than its grid container being centred (centring silently fails)
+- a stagger whose last element does not finish within one cycle
+- an element following `offset-path` drifting off the drawn line
+- cost classification: compositor / paint / layout, from the animated properties
+
+## Resources
+
+- [catalog.json](catalog.json): all 211 experiments, machine-readable. Each entry has
+  `id`, `layer`, `axes` (technique / use / origin / target / timing), `predicted`, `note`.
+- [FINDINGS.md](FINDINGS.md): 34 findings. Every one carries **claim**, **evidence**,
+  **confidence** (`実測` measured / `仕様から確定` spec-derived / `仮説` hypothesis)
+  and **effect**. Negative results are recorded with equal weight — that is the part
+  the open web does not have.
+- [PATTERNS.md](PATTERNS.md): the character of each motion type along three axes —
+  attention cost, whether it reveals origin, and tolerance to repetition. Deliberately
+  states no ranking; choosing is the caller's job.
+- [BROWSER_SUPPORT.md](BROWSER_SUPPORT.md): measured per-browser behaviour, not
+  caniuse tables.
+- [README.md](README.md): how the lab works (Japanese).
+
+## Layers in the catalog
+
+- `L0` one property, one motion — the atoms
+- `L2` composition patterns (simultaneous, lagged, split-easing, additive)
+- `L3` stagger interval and ordering
+- `L4` recipes fixed to a use case
+- `T` techniques that combine CSS capabilities
+- `E` expression borrowed from comics, film, optics
+
+For `T` and `E`, index by `axes.technique` and `axes.use` rather than by motion name.
+
+## Notes for models
+
+- The catalog's `note` and `title` fields are Japanese; `title_en` and `note_en` carry
+  English. Queries match against both.
+- `predicted` is the author's prior guess (`good` / `uncertain` / `bad`), not a verdict.
+  Do not present `predicted: good` as validated.
+- Human verdicts live in `verdicts.json`. An empty `marks` means nothing has been
+  judged by a person yet — say so rather than implying endorsement.
+- The internal cycle in the lab is 1000ms. Individual animations may finish earlier
+  or repeat within it, so `animation-duration` is only stated where it matters.

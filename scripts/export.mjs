@@ -2,11 +2,29 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadCatalog, normalizeVerdicts, validateVerdicts } from './catalog.mjs';
+import { loadContributions, summarize, tally } from './merge-verdicts.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const DIST = join(ROOT, 'dist');
 const { items, errors } = await loadCatalog(ROOT);
 if (errors.length) throw new Error(errors.join('\n'));
+
+/*
+ * 英語を混ぜ込む。
+ *
+ * 翻訳を 211 個の meta.json に散らすと、追随しているかどうかが読めなくなる。
+ * 1 ファイルにまとめておけば、抜けも古びも 1 か所を見れば分かる。
+ * カタログ側には title_en / note_en として畳んで出す。
+ */
+const en = JSON.parse(await readFile(join(ROOT, 'i18n', 'en.json'), 'utf8'));
+const untranslated = items.filter((item) => !en[item.id]).map((item) => item.id);
+if (untranslated.length) {
+  throw new Error(`i18n/en.json に訳が無い: ${untranslated.join(', ')}`);
+}
+for (const item of items) {
+  item.title_en = en[item.id].title;
+  item.note_en = en[item.id].note;
+}
 
 const verdicts = normalizeVerdicts(JSON.parse(await readFile(join(ROOT, 'verdicts.json'), 'utf8')));
 const verdictErrors = validateVerdicts(verdicts, new Set(items.map((item) => item.id)));
@@ -22,6 +40,17 @@ for (const item of adopted) {
   cssParts.push(await readFile(join(ROOT, 'experiments', item.id, 'anim.css'), 'utf8'));
 }
 
+/*
+ * 複数人の判定は別の成果物にする。
+ *
+ * adopted.css に入れるのは維持者が star を付けたものだけ、という規則は変えない。
+ * 集まった判定は「どこで意見が割れたか」を示すためのもので、
+ * 多数決で採用を決めるためのものではない。割れた実験のほうに、
+ * まだ言語化されていない基準が埋まっている。
+ */
+const contributions = await loadContributions(ROOT);
+const rows = tally(contributions, items);
+
 await mkdir(DIST, { recursive: true });
 await writeFile(join(ROOT, 'catalog.json'), `${JSON.stringify(items, null, 2)}\n`);
 await writeFile(join(DIST, 'adopted.css'), `${cssParts.join('\n')}\n`);
@@ -30,5 +59,14 @@ await writeFile(join(DIST, 'manifest.json'), `${JSON.stringify({
   sourceVerdictsUpdatedAt: verdicts.updatedAt,
   adopted: adopted.map(({ id, title, axes }) => ({ id, title, axes })),
 }, null, 2)}\n`);
+await writeFile(join(DIST, 'consensus.json'), `${JSON.stringify({
+  summary: summarize(rows, items, contributions),
+  experiments: rows,
+}, null, 2)}\n`);
 
-console.log(`exported catalog.json (${items.length}) and dist/adopted.css (${adopted.length})`);
+const summary = summarize(rows, items, contributions);
+console.log(
+  `exported catalog.json (${items.length}) and dist/adopted.css (${adopted.length})\n`
+  + `consensus: ${summary.contributors.length} 人 / 判定済み ${summary.judged} 件`
+  + ` / 複数判定 ${summary.multiplyJudged} 件 / 割れ ${summary.contested} 件`,
+);
