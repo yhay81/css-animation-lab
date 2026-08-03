@@ -11,7 +11,7 @@
 
 ## 判定を送る
 
-1. <https://yhay81.github.io/css-animation-lab/lab/contact.html> を開く
+1. <https://cssanime.yhay81.com/lab/contact.html> を開く
 2. 気になったものに判定を付ける（`p` 採用 / `x` 却下 / `f` 気になる / `s` 手本）
    - 全部を見る必要はない。**20 件でも十分意味がある**
    - 判定は端末の中にだけ保存される。どこにも送信されない
@@ -92,6 +92,6 @@ npm run export
 
 ## ブラウザ別の実測を送る
 
-<https://yhay81.github.io/css-animation-lab/lab/verify.html> を手元のブラウザで開き、
+<https://cssanime.yhay81.com/lab/verify.html> を手元のブラウザで開き、
 「結果JSON」を書き出して [browser-support.json](browser-support.json) に足す。
 Chromium 以外の実測が特に足りていない。

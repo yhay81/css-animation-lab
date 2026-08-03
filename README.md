@@ -5,7 +5,7 @@
 CSS アニメーションの表現範囲を、実験・機械検証・比較評価の反復で体系化する研究環境。
 依存パッケージやビルド工程を持たず、Node.js とブラウザだけで動く。
 
-**公開サイト → <https://yhay81.github.io/css-animation-lab/>**
+**公開サイト → <https://cssanime.yhay81.com/>**
 
 ## この場所が扱っている問題
 
@@ -261,8 +261,10 @@ npm run export
 `dist/adopted.css` に入るのは、`verdicts.json` で明示的に `star` と判定された実験だけ。
 多数決では決めない。平均的で無難なものだけが残るため。
 
-GitHub Actionsではテスト、検証、export後の差分有無まで確認し、
-main への push で公開サイトを組み直す。
+GitHub Actionsではテスト、検証、export後の差分有無まで確認する。
+main への push で公開サイトを組み直し、Cloudflare Workers へ配信する
+（[wrangler.toml](wrangler.toml)、[.github/workflows/cloudflare.yml](.github/workflows/cloudflare.yml)）。
+Worker はスクリプト本体を持たず、静的資産だけを配る。
 
 ## 仕組み
 

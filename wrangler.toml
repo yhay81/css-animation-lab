@@ -1,0 +1,25 @@
+# Cloudflare Workers による配信。
+#
+# スクリプト本体は持たない。静的資産だけを配る Worker として置く。
+# 動的な処理が要らないのは、判定の書き戻し以外がすべてリポジトリからの
+# 純粋な導出でしかないため（scripts/build-site.mjs が組む）。
+#
+# Pages ではなく Workers にしてあるのは、将来エッジで手を入れる余地を
+# 残すため。いま静的配信だけを見るなら両者に差は無い。
+
+name = "css-animation-lab"
+compatibility_date = "2026-01-01"
+
+[assets]
+directory = "./dist/site"
+# 存在しないパスは 404.html を返す。既定のままだと素の 404 になる。
+not_found_handling = "404-page"
+
+# 配信元を 1 本にする。workers.dev の URL は生やさない。
+# 同じ中身が 2 つの URL で見えると、どちらが正なのか読む側が判断できなくなる。
+workers_dev = false
+
+# カスタムドメイン。deploy 時に DNS レコードも Cloudflare 側で作られる。
+[[routes]]
+pattern = "cssanime.yhay81.com"
+custom_domain = true

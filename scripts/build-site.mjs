@@ -58,8 +58,45 @@ await write('api/config.json', `${JSON.stringify({
   repository: 'https://github.com/yhay81/css-animation-lab',
 }, null, 2)}\n`);
 
-// GitHub Pages の Jekyll 処理を止める。_ で始まる名前が落とされる事故を防ぐ。
-await write('.nojekyll', '');
+/* ───────────────────────── 見つからなかったとき ───────────────────────── */
+
+/**
+ * 素の 404 を返すと、配信が壊れているのか URL が違うだけなのかが読む側に分からない。
+ * wrangler.toml の not_found_handling がこれを返す。
+ */
+await write('404.html', `<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>見つかりません — css-animation-lab</title>
+<style>
+  body {
+    margin: 0; min-height: 100dvh; display: grid; place-items: center;
+    background: #0b1020; color: #e6e9f5;
+    font: 15px/1.9 ui-sans-serif, system-ui, sans-serif;
+  }
+  main { max-width: 32rem; padding: 24px; text-align: center }
+  h1 { font-size: 20px; margin: 0 0 8px }
+  p { margin: 0 0 20px; color: #8b93b5 }
+  a { color: #7dd3fc }
+  nav { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap }
+</style>
+</head>
+<body>
+<main>
+  <h1>そのページはありません</h1>
+  <p>URL が変わったか、もともと無かったかのどちらかです。</p>
+  <nav>
+    <a href="/">入口</a>
+    <a href="/lab/contact.html">一覧・評価</a>
+    <a href="/lab/strip.html">ストリップ</a>
+    <a href="/lab/verify.html">検証</a>
+  </nav>
+</main>
+</body>
+</html>
+`);
 
 /* ───────────────────────── 入口 ───────────────────────── */
 

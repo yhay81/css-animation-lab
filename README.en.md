@@ -6,7 +6,7 @@ A research environment for CSS animation: 211 catalogued experiments, findings r
 with explicit confidence levels, and a zero-dependency verifier that runs the CSS in a
 real browser. No build step, no npm dependencies — Node.js and a browser.
 
-**Live site → <https://yhay81.github.io/css-animation-lab/>**
+**Live site → <https://cssanime.yhay81.com/>**
 
 ## The problem this addresses
 
@@ -268,7 +268,9 @@ in `verdicts.json` enter `adopted.css`. Adoption is not decided by majority vote
 would leave only the safe and the average.
 
 CI runs tests, validation, and checks that export produces no diff. A push to `main`
-rebuilds the public site.
+rebuilds the public site and deploys it to Cloudflare Workers
+([wrangler.toml](wrangler.toml), [.github/workflows/cloudflare.yml](.github/workflows/cloudflare.yml)).
+The Worker carries no script of its own — it serves static assets only.
 
 ## How it works
 
