@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadCatalog, normalizeVerdicts, validateVerdicts } from './catalog.mjs';
+import { applyTranslations, loadCatalog, normalizeVerdicts, validateVerdicts } from './catalog.mjs';
 import { loadContributions, summarize, tally } from './merge-verdicts.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -9,22 +9,7 @@ const DIST = join(ROOT, 'dist');
 const { items, errors } = await loadCatalog(ROOT);
 if (errors.length) throw new Error(errors.join('\n'));
 
-/*
- * 英語を混ぜ込む。
- *
- * 翻訳を 211 個の meta.json に散らすと、追随しているかどうかが読めなくなる。
- * 1 ファイルにまとめておけば、抜けも古びも 1 か所を見れば分かる。
- * カタログ側には title_en / note_en として畳んで出す。
- */
-const en = JSON.parse(await readFile(join(ROOT, 'i18n', 'en.json'), 'utf8'));
-const untranslated = items.filter((item) => !en[item.id]).map((item) => item.id);
-if (untranslated.length) {
-  throw new Error(`i18n/en.json に訳が無い: ${untranslated.join(', ')}`);
-}
-for (const item of items) {
-  item.title_en = en[item.id].title;
-  item.note_en = en[item.id].note;
-}
+await applyTranslations(items, ROOT);
 
 const verdicts = normalizeVerdicts(JSON.parse(await readFile(join(ROOT, 'verdicts.json'), 'utf8')));
 const verdictErrors = validateVerdicts(verdicts, new Set(items.map((item) => item.id)));

@@ -11,13 +11,15 @@
 import { copyFile, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadCatalog } from './catalog.mjs';
+import { applyTranslations, loadCatalog } from './catalog.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const SITE = join(ROOT, 'dist', 'site');
 
 const { items, errors } = await loadCatalog(ROOT, { readCss: true });
 if (errors.length) throw new Error(errors.join('\n'));
+// 公開サイトからも英語で引けるようにする。export と同じものを通す。
+await applyTranslations(items, ROOT);
 
 const verdicts = JSON.parse(await readFile(join(ROOT, 'verdicts.json'), 'utf8'));
 

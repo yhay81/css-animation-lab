@@ -93,6 +93,26 @@ export async function loadCatalog(root, { readCss = false } = {}) {
   };
 }
 
+/**
+ * 英語を混ぜ込む。
+ *
+ * 翻訳を 211 個の meta.json に散らすと、追随しているかどうかが読めなくなる。
+ * 1 ファイルにまとめておけば、抜けも古びも 1 か所を見れば分かる。
+ *
+ * export（catalog.json）と build-site（公開サイト）の両方がこれを通る。
+ * 片方だけに書くと、公開サイトからだけ英語で引けない状態になる。実際にそうなった。
+ */
+export async function applyTranslations(items, root) {
+  const en = JSON.parse(await readFile(join(root, 'i18n', 'en.json'), 'utf8'));
+  const missing = items.filter((item) => !en[item.id]).map((item) => item.id);
+  if (missing.length) throw new Error(`i18n/en.json に訳が無い: ${missing.join(', ')}`);
+  for (const item of items) {
+    item.title_en = en[item.id].title;
+    item.note_en = en[item.id].note;
+  }
+  return items;
+}
+
 export function normalizeVerdicts(input = {}) {
   const marks = {};
   for (const [id, value] of Object.entries(input.marks ?? {})) {
