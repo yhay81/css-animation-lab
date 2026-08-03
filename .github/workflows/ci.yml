@@ -19,8 +19,11 @@ jobs:
       - run: npm run export
       # 生成物が手で触られていないことを確かめる。
       - run: git diff --exit-code -- catalog.json dist
-      # 公開サイトが組めることも見る。落ちるのを Pages のデプロイ時に知るのでは遅い。
+      # 公開サイトが組めることも見る。落ちるのをデプロイ時に知るのでは遅い。
       - run: npm run build:site
+      # 配信設定の妥当性は認証なしで見られる。
+      # workers_dev が [assets] の中に入っていた事故をこれで捕まえた。
+      - run: npx --yes wrangler@4 deploy --dry-run
 
   # 自分の検査器を自分の実験に当てる。カタログが増えたときの見張りになる。
   dogfood:
