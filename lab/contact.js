@@ -1,7 +1,7 @@
 import {
-  EASINGS, SUBSTRATES, DUR, loadCatalog, injectStyles, buildCell,
+  API, EASINGS, SUBSTRATES, DUR, loadCatalog, loadConfig, injectStyles, buildCell,
   createClock, setEasing, reportFailures, showFatal,
-} from '/lab/lab.js';
+} from './lab.js';
 
 reportFailures();
 
@@ -9,14 +9,16 @@ const $ = (selector) => document.querySelector(selector);
 const grid = $('#grid');
 const veil = $('#veil');
 const savedEl = $('#saved');
+const exportEl = $('#export-verdicts');
 const empty = $('#empty');
 
-const [items, storedRaw] = await Promise.all([
+const [items, storedRaw, config] = await Promise.all([
   loadCatalog(),
-  fetch('/api/verdicts').then((res) => {
+  fetch(API.verdicts).then((res) => {
     if (!res.ok) throw new Error(`判定を取得できません（HTTP ${res.status}）`);
     return res.json();
   }),
+  loadConfig(),
   injectStyles(),
 ]);
 
@@ -34,9 +36,38 @@ function normalizeStored(input = {}) {
   };
 }
 
+/**
+ * 判定の保存先は2通りある。
+ *
+ * 開発サーバーでは verdicts.json へそのまま書き戻すので、
+ * 「配布されている判定」と「自分の判定」は同じ 1 つのものになる。
+ *
+ * 公開サイトでは書き戻せない。自分の判定は端末内にだけ持ち、
+ * 配布されている判定の上に重ねて表示する。書き出すのは自分の判定だけで、
+ * それがそのまま verdicts/<名前>.json として送れる形になる。
+ */
+const LOCAL_KEY = 'css-animation-lab:verdicts:v2';
+
+function readLocal() {
+  try {
+    const raw = localStorage.getItem(LOCAL_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
 const stored = normalizeStored(storedRaw);
-let defaultState = stored.defaultState;
-let marks = stored.marks;
+const baseMarks = stored.marks;
+const localRaw = config.readonly ? readLocal() : null;
+const local = localRaw ? normalizeStored(localRaw) : null;
+
+let defaultState = local?.defaultState ?? stored.defaultState;
+let marks = config.readonly ? (local?.marks ?? {}) : baseMarks;
+const initialSettings = { ...stored.settings, ...(local?.settings ?? {}) };
+
+/** 表示に使う判定。自分の判定が無ければ、配布されている判定を引き継ぐ。 */
+const recordFor = (item) => marks[item.id] ?? (config.readonly ? baseMarks[item.id] : undefined);
 
 const cells = new Map();
 for (const item of items) {
@@ -72,10 +103,10 @@ function addOptions(select, rows, allLabel) {
 addOptions(easeSel, EASINGS.map((entry) => ({ label: entry.label, value: entry.id })));
 addOptions(subSel, SUBSTRATES.map((entry) => ({ label: entry.label, value: entry.id })));
 
-easeSel.value = stored.settings.easing ?? 'linear';
-subSel.value = stored.settings.substrate ?? 'gradient';
-speed.value = String(stored.settings.cycleMs ?? DUR);
-hold.checked = Boolean(stored.settings.hold);
+easeSel.value = initialSettings.easing ?? 'linear';
+subSel.value = initialSettings.substrate ?? 'gradient';
+speed.value = String(initialSettings.cycleMs ?? DUR);
+hold.checked = Boolean(initialSettings.hold);
 
 const clock = createClock({ onTick: (t) => { if (!scrubbing) scrub.value = Math.round(t); } });
 window.__clock = clock;
@@ -134,9 +165,17 @@ async function persist({ keepalive = false } = {}) {
   savedEl.dataset.error = 'false';
   savedEl.textContent = '保存中…';
   try {
+    if (config.readonly) {
+      const revision = changeRevision;
+      localStorage.setItem(LOCAL_KEY, JSON.stringify(savePayload()));
+      savedRevision = Math.max(savedRevision, revision);
+      savedEl.removeAttribute('title');
+      savedEl.textContent = 'この端末に保存';
+      return;
+    }
     while (savedRevision < changeRevision) {
       const revision = changeRevision;
-      const res = await fetch('/api/verdicts', {
+      const res = await fetch(API.verdicts, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(savePayload()),
@@ -168,14 +207,36 @@ savedEl.addEventListener('click', () => { if (savedRevision < changeRevision) pe
 addEventListener('pagehide', () => {
   if (savedRevision >= changeRevision) return;
   clearTimeout(saveTimer);
-  navigator.sendBeacon('/api/verdicts', new Blob([JSON.stringify(savePayload())], { type: 'application/json' }));
+  // 端末内保存は同期なので、離脱時でもそのまま書ける。書き戻し先があるときだけ beacon を使う。
+  if (config.readonly) {
+    try { localStorage.setItem(LOCAL_KEY, JSON.stringify(savePayload())); } catch { /* 容量超過 */ }
+    return;
+  }
+  navigator.sendBeacon(API.verdicts, new Blob([JSON.stringify(savePayload())], { type: 'application/json' }));
+});
+
+/**
+ * 判定の書き出し。公開サイトで付けた判定は端末内にしか無いので、
+ * ここから出して verdicts/<名前>.json として送ってもらう。
+ */
+exportEl.hidden = !config.readonly;
+exportEl.addEventListener('click', () => {
+  const payload = { ...savePayload(), catalogVersion: items.length };
+  const blob = new Blob([`${JSON.stringify(payload, null, 2)}\n`], { type: 'application/json' });
+  const href = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = href;
+  link.download = 'my-verdicts.json';
+  link.click();
+  URL.revokeObjectURL(href);
 });
 
 const MARK_CHAR = { pass: '✓', veto: '✕', flag: '★?', star: '◎' };
 const MARK_LABEL = { pass: '採用', veto: '却下', flag: '気になる', star: '手本' };
 
 function effectiveState(item) {
-  if (marks[item.id]?.state) return marks[item.id].state;
+  const record = recordFor(item);
+  if (record?.state) return record.state;
   if (item.predicted === 'bad') return 'veto';
   return defaultState;
 }
@@ -230,12 +291,15 @@ let shownItems = [...items];
 
 function matchesFilters(item) {
   const mode = item.mode ?? 'keyframes';
-  const record = marks[item.id];
+  const record = recordFor(item);
   const state = effectiveState(item);
   const query = filter.query.value.trim().toLocaleLowerCase('ja');
   if (query) {
-    const haystack = [item.id, item.title, item.note, ...Object.values(item.axes ?? {}).flat()]
-      .join(' ').toLocaleLowerCase('ja');
+    // 英語でも引けるようにする。カタログには title_en / note_en が入っている。
+    const haystack = [
+      item.id, item.title, item.note, item.title_en, item.note_en,
+      ...Object.values(item.axes ?? {}).flat(),
+    ].filter(Boolean).join(' ').toLocaleLowerCase('ja');
     if (!haystack.includes(query)) return false;
   }
   if (filter.layer.value && item.layer !== filter.layer.value) return false;
@@ -266,10 +330,13 @@ function render() {
   let flag = 0;
   let star = 0;
   for (const item of items) {
-    const record = marks[item.id];
+    const record = recordFor(item);
     const state = effectiveState(item);
     const cell = cells.get(item.id);
-    const reviewSource = record ? 'explicit' : item.predicted === 'bad' ? 'predicted' : 'default';
+    // 自分で付けたのか、配布された判定を引き継いでいるのかを見分けられるようにする。
+    const reviewSource = marks[item.id] ? 'explicit'
+      : record ? 'inherited'
+        : item.predicted === 'bad' ? 'predicted' : 'default';
     cell.dataset.state = state;
     cell.dataset.review = reviewSource;
     const markEl = cell.querySelector('.mark');
@@ -398,7 +465,7 @@ addEventListener('keydown', (event) => {
   else if (key === 't') { defaultState = defaultState === 'pass' ? 'veto' : 'pass'; render(); queueSave(); }
   else if (key === 'n') {
     const pending = shownItems.map((entry, index) => ({ entry, index }))
-      .filter(({ entry }) => entry.predicted === 'uncertain' && !marks[entry.id]);
+      .filter(({ entry }) => entry.predicted === 'uncertain' && !recordFor(entry));
     const next = pending.find(({ index }) => index > focusIdx) ?? pending[0];
     if (next) focusCell(next.index);
   } else if (key === 'Enter') setZoom(zoomed() ? null : cell);
@@ -421,7 +488,12 @@ addEventListener('keydown', (event) => {
 
 render();
 updatePlayButton();
-savedEl.textContent = '保存済み';
+if (config.readonly) {
+  savedEl.textContent = local ? 'この端末に保存' : '読むだけ';
+  savedEl.title = '公開サイトでは判定を端末内にだけ保存します。書き出してプルリクエストで送れます。';
+} else {
+  savedEl.textContent = '保存済み';
+}
 focusCell(0);
 
 setTimeout(() => {

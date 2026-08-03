@@ -48,15 +48,20 @@ test('server validates and atomically stores verdicts', async (t) => {
   t.after(() => new Promise((resolve) => server.close(resolve)));
   const port = server.address().port;
 
-  const catalog = await rawRequest(port, '/api/catalog');
+  const catalog = await rawRequest(port, '/api/catalog.json');
   assert.equal(catalog.status, 200);
   assert.equal(JSON.parse(catalog.body).length, 211);
 
-  const styles = await rawRequest(port, '/api/styles');
+  const styles = await rawRequest(port, '/api/styles.css');
   assert.equal(styles.status, 200);
   assert.match(styles.body, /\[data-exp="fade"\]/);
 
-  const rejected = await rawRequest(port, '/api/verdicts', { method: 'POST', body: '{}' });
+  // 開発サーバーは書き戻せる。公開サイトとの違いをクライアントがここで知る。
+  const config = await rawRequest(port, '/api/config.json');
+  assert.equal(config.status, 200);
+  assert.equal(JSON.parse(config.body).readonly, false);
+
+  const rejected = await rawRequest(port, '/api/verdicts.json', { method: 'POST', body: '{}' });
   assert.equal(rejected.status, 415);
 
   const payload = JSON.stringify({
@@ -74,7 +79,7 @@ test('server validates and atomically stores verdicts', async (t) => {
       },
     },
   });
-  const saved = await rawRequest(port, '/api/verdicts', {
+  const saved = await rawRequest(port, '/api/verdicts.json', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: payload,

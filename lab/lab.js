@@ -1,5 +1,28 @@
 // 一覧ページとフィルムストリップで共有する部品。
 
+/**
+ * サイトの基点。このファイルは常に <基点>/lab/lab.js に置かれるので、
+ * 1 つ上がそのまま基点になる。開発サーバー（/）でも、
+ * GitHub Pages のようにサブパスへ置かれた場合（/css-animation-lab/）でも同じ式で当たる。
+ * 絶対パスで書くと後者で全滅するため、参照は必ずここを通す。
+ */
+const BASE = new URL('../', import.meta.url);
+
+/** 基点からの相対パスを絶対 URL に直す。 */
+export const asset = (path) => new URL(path, BASE).href;
+
+/**
+ * データの取得先。拡張子を付けてあるのは、静的ホスティングでも
+ * 正しい content-type で配信させるため。開発サーバーも同じ名前で受ける。
+ */
+export const API = {
+  catalog: asset('api/catalog.json'),
+  styles: asset('api/styles.css'),
+  sources: asset('api/sources.json'),
+  verdicts: asset('api/verdicts.json'),
+  config: asset('api/config.json'),
+};
+
 /** 比較の軸として全体に一括適用するイージング。切り替えは常にグローバル。 */
 export const EASINGS = [
   { id: 'linear', label: 'linear（素）', value: 'linear' },
@@ -36,13 +59,9 @@ export const SUBSTRATES = [
   { id: 'outline', label: '輪郭のみ' },
 ];
 
-/**
- * CSS アニメーションかどうか。CSSTransition と区別するために使う。
- * CSSAnimation だけが animationName を持つ。
- */
-export function isCssAnimation(a) {
-  return typeof a.animationName === 'string';
-}
+// CSS アニメーションかどうかの判定は検査側と共有する。
+// 2 か所に置くと、片方だけが CSSTransition を拾う事故になる。
+export { isCssAnimation } from '../scripts/checks/runtime.mjs';
 
 export async function loadCatalog() {
   if (location.protocol === 'file:') {
@@ -50,9 +69,25 @@ export async function loadCatalog() {
       'file:// では動きません。\nターミナルで `node lab/server.mjs` を起動し、http://localhost:5757/ から開いてください。',
     );
   }
-  const res = await fetch('/api/catalog');
+  const res = await fetch(API.catalog);
   if (!res.ok) throw new Error(`カタログを取得できません（HTTP ${res.status}）`);
   return res.json();
+}
+
+/**
+ * 動作モード。判定を書き戻せる開発サーバーと、読むだけの公開サイトを見分ける。
+ * 公開サイトでは判定を端末内に持つしかないので、保存先の決定に使う。
+ */
+export async function loadConfig() {
+  try {
+    const res = await fetch(API.config);
+    if (!res.ok) throw new Error(String(res.status));
+    const config = await res.json();
+    return { readonly: Boolean(config.readonly), ...config };
+  } catch {
+    // 設定が無い＝書き戻し先も無い。読むだけとして扱うほうが安全側に倒れる。
+    return { readonly: true };
+  }
 }
 
 /** 失敗を黙って黒画面にしない。原因を画面に出す。 */
@@ -79,7 +114,7 @@ export function injectStyles() {
   stylesPromise = new Promise((resolve, reject) => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = '/api/styles';
+    link.href = API.styles;
     link.dataset.experimentStyles = '';
     link.addEventListener('load', resolve, { once: true });
     link.addEventListener('error', () => reject(new Error('実験 CSS を取得できません')), { once: true });

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>css-animation-lab — フィルムストリップ</title>
-<link rel="stylesheet" href="/lab/common.css">
+<link rel="stylesheet" href="common.css">
 <style>
   /* 動きを静止画の連番に開く。人間には一望のため、私には「読める形」にするため。 */
   .stripbar {
@@ -44,9 +44,9 @@
 
 <div class="stripbar">
   <b>ストリップ</b>
-  <a href="/lab/contact.html">評価</a>
-  <a href="/lab/strip.html" aria-current="page">ストリップ</a>
-  <a href="/lab/verify.html">検証</a>
+  <a href="contact.html">評価</a>
+  <a href="strip.html" aria-current="page">ストリップ</a>
+  <a href="verify.html">検証</a>
   <label>イージング <select id="ease"></select></label>
   <label>コマ数 <select id="frames">
     <option>5</option><option selected>9</option><option>13</option>
@@ -73,7 +73,7 @@
 </script>
 
 <script type="module">
-import { EASINGS, DUR, loadCatalog, injectStyles, setEasing, afterStyleResolution, reportFailures, SUBJECT, isCssAnimation } from '/lab/lab.js';
+import { EASINGS, DUR, loadCatalog, injectStyles, setEasing, afterStyleResolution, reportFailures, SUBJECT, isCssAnimation } from './lab.js';
 
 reportFailures();
 

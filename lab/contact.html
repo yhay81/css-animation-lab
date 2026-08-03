@@ -4,21 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>css-animation-lab — 一覧・評価</title>
-<link rel="stylesheet" href="/lab/common.css">
-<link rel="stylesheet" href="/lab/contact.css">
+<link rel="stylesheet" href="common.css">
+<link rel="stylesheet" href="contact.css">
 </head>
 <body>
 
 <header class="workspace-header">
   <div class="identity-row">
-    <a class="identity" href="/lab/contact.html" aria-current="page">
+    <a class="identity" href="contact.html" aria-current="page">
       <span class="identity-mark" aria-hidden="true"></span>
       <span>CSS ANIMATION LAB</span>
     </a>
     <nav class="view-nav" aria-label="ラボの表示">
-      <a href="/lab/contact.html" aria-current="page">評価</a>
-      <a href="/lab/strip.html">ストリップ</a>
-      <a href="/lab/verify.html">検証</a>
+      <a href="contact.html" aria-current="page">評価</a>
+      <a href="strip.html">ストリップ</a>
+      <a href="verify.html">検証</a>
     </nav>
     <span class="spacer"></span>
     <div class="progress" aria-live="polite">
@@ -28,6 +28,8 @@
       <span>手本 <b id="c-star">0</b></span>
     </div>
     <button class="saved" id="saved" type="button" aria-live="polite" title="保存に失敗した場合は再試行">読込中</button>
+    <button class="text-button" id="export-verdicts" type="button" hidden
+      title="自分の判定を JSON で書き出す。プルリクエストで送ると集計に加わる">判定を書き出す</button>
   </div>
 
   <div class="control-row" aria-label="再生条件">
@@ -86,6 +88,6 @@
       '<a href="http://127.0.0.1:5757/lab/contact.html" style="color:#7dd3fc">http://127.0.0.1:5757/lab/contact.html</a> から開いてください。</div>');
   }
 </script>
-<script type="module" src="/lab/contact.js"></script>
+<script type="module" src="contact.js"></script>
 </body>
 </html>

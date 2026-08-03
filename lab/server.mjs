@@ -102,18 +102,25 @@ export function createLabServer({ root = ROOT, verdictsFile = DEFAULT_VERDICTS }
       try { pathname = decodeURIComponent(url.pathname); }
       catch { throw new HttpError(400, 'invalid path encoding'); }
 
-      if (pathname === '/api/catalog') {
+      // 公開サイトは判定を書き戻せない。クライアントが保存先を選べるように状態を伝える。
+      if (pathname === '/api/config.json') {
+        if (req.method !== 'GET' && req.method !== 'HEAD') throw new HttpError(405, 'method not allowed');
+        const body = JSON.stringify({ readonly: false, source: 'dev-server' });
+        return send(res, 200, req.method === 'HEAD' ? '' : body, MIME['.json']);
+      }
+
+      if (pathname === '/api/catalog.json') {
         if (req.method !== 'GET' && req.method !== 'HEAD') throw new HttpError(405, 'method not allowed');
         const { items, errors } = await loadCatalog(root);
         if (errors.length) throw new Error(errors.join('\n'));
         return send(res, 200, req.method === 'HEAD' ? '' : JSON.stringify(items), MIME['.json']);
       }
 
-      if (pathname === '/api/styles' || pathname === '/api/sources') {
+      if (pathname === '/api/styles.css' || pathname === '/api/sources.json') {
         if (req.method !== 'GET' && req.method !== 'HEAD') throw new HttpError(405, 'method not allowed');
         const { items, errors } = await loadCatalog(root, { readCss: true });
         if (errors.length) throw new Error(errors.join('\n'));
-        if (pathname === '/api/sources') {
+        if (pathname === '/api/sources.json') {
           const sources = Object.fromEntries(items.map((item) => [item.id, item.css]));
           return send(res, 200, req.method === 'HEAD' ? '' : JSON.stringify(sources), MIME['.json']);
         }
@@ -121,7 +128,7 @@ export function createLabServer({ root = ROOT, verdictsFile = DEFAULT_VERDICTS }
         return send(res, 200, req.method === 'HEAD' ? '' : css, MIME['.css']);
       }
 
-      if (pathname === '/api/verdicts') {
+      if (pathname === '/api/verdicts.json') {
         if (req.method === 'GET' || req.method === 'HEAD') {
           const body = await readFile(verdictsFile, 'utf8').catch(() => '{}');
           return send(res, 200, req.method === 'HEAD' ? '' : body, MIME['.json']);
