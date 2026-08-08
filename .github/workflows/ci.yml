@@ -1,11 +1,11 @@
 name: CI
 
 on:
-  push:
   pull_request:
 
 jobs:
   validate:
+    timeout-minutes: 1
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,6 +27,7 @@ jobs:
 
   # 自分の検査器を自分の実験に当てる。カタログが増えたときの見張りになる。
   dogfood:
+    timeout-minutes: 1
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
